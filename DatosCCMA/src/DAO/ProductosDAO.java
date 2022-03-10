@@ -7,17 +7,32 @@ package DAO;
 
 import Dominio.Producto;
 import Exceptions.DAOException;
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
  *
  * @author crist
  */
-public class ProductosDAO extends BaseDAO<Producto>{
+public class ProductosDAO extends BaseDAO<Producto> {
 
     @Override
     public void insertar(Producto entidad) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Producto producto = entidad;
+        try (Connection conexion = this.generarConexion()) {
+            Statement comando = conexion.createStatement();
+            String insertarSLQ;
+            insertarSLQ = String.format(
+                    "INSERT INTO productos(descripcion, marca, modelo, año, precio) "
+                            + "VALUES('%s','%s','%s','%s','%s')",
+                    producto.getDescripcion(),
+                    producto.getMarca(),
+                    producto.getModelo(),
+                    producto.getAnio(),
+                    producto.getPrecio());
+            comando.executeUpdate(insertarSLQ);
+        }
     }
 
     @Override
