@@ -20,20 +20,20 @@ public class Venta {
     private Date fecha;
     private Float subtotal;
     private Float total;
-    private Usuario empleado;
+    private Empleado empleado;
     private Pago pago;
 
     public Venta() {
     }
 
-    public Venta(ArrayList<ProductoVenta> listaProductos, Cliente cliente, Date fecha, Usuario empleado) {
+    public Venta(ArrayList<ProductoVenta> listaProductos, Cliente cliente, Date fecha, Empleado empleado) {
         this.listaProductos = listaProductos;
         this.cliente = cliente;
         this.fecha = fecha;
         this.empleado = empleado;
     }
 
-    public Venta(Integer idVenta, ArrayList<ProductoVenta> listaProductos, Cliente cliente, Date fecha, Float subtotal, Float total, Usuario empleado, Pago pago) {
+    public Venta(Integer idVenta, ArrayList<ProductoVenta> listaProductos, Cliente cliente, Date fecha, Float subtotal, Float total, Empleado empleado, Pago pago) {
         this.idVenta = idVenta;
         this.listaProductos = listaProductos;
         this.cliente = cliente;
@@ -92,11 +92,11 @@ public class Venta {
         this.total = total;
     }
 
-    public Usuario getEmpleado() {
+    public Empleado getEmpleado() {
         return empleado;
     }
 
-    public void setEmpleado(Usuario empleado) {
+    public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     }
 

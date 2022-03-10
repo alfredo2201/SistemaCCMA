@@ -18,20 +18,20 @@ public class Presupuesto {
     private ArrayList<ProductoVenta>listaProducto;
     private Float total;
     private Cliente cliente;
-    private Usuario empleado;
+    private Empleado empleado;
     private Date fecha;
 
     public Presupuesto() {
     }
 
-    public Presupuesto(Integer idPresupuesto, ArrayList<ProductoVenta> listaProducto, Cliente cliente, Usuario empleado) {
+    public Presupuesto(Integer idPresupuesto, ArrayList<ProductoVenta> listaProducto, Cliente cliente, Empleado empleado) {
         this.idPresupuesto = idPresupuesto;
         this.listaProducto = listaProducto;
         this.cliente = cliente;
         this.empleado = empleado;
     }
 
-    public Presupuesto(Integer idPresupuesto, ArrayList<ProductoVenta> listaProducto, Float total, Cliente cliente, Usuario empleado, Date fecha) {
+    public Presupuesto(Integer idPresupuesto, ArrayList<ProductoVenta> listaProducto, Float total, Cliente cliente, Empleado empleado, Date fecha) {
         this.idPresupuesto = idPresupuesto;
         this.listaProducto = listaProducto;
         this.total = total;
@@ -72,11 +72,11 @@ public class Presupuesto {
         this.cliente = cliente;
     }
 
-    public Usuario getEmpleado() {
+    public Empleado getEmpleado() {
         return empleado;
     }
 
-    public void setEmpleado(Usuario empleado) {
+    public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     }
 

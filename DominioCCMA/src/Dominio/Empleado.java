@@ -11,23 +11,23 @@ import java.util.Objects;
  *
  * @author Isai Perez
  */
-public class Usuario extends Persona{
+public class Empleado extends Persona{
     private Integer idUsuario;
     private String username;
     private String password;
     private Permiso permiso;
 
-    public Usuario() {
+    public Empleado() {
     }
 
-    public Usuario(String nombre, String username, String password, Permiso permiso) {
+    public Empleado(String nombre, String username, String password, Permiso permiso) {
         super(nombre, password);
         this.username = username;
         this.password = password;
         this.permiso = permiso;
     }
 
-    public Usuario(Integer idUsuario, String nombre, String apellidos, String email, String username, String password, Permiso permiso) {
+    public Empleado(Integer idUsuario, String nombre, String apellidos, String email, String username, String password, Permiso permiso) {
         super(nombre, apellidos, email);
         this.idUsuario = idUsuario;        
         this.username = username;
@@ -86,7 +86,7 @@ public class Usuario extends Persona{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Usuario other = (Usuario) obj;
+        final Empleado other = (Empleado) obj;
         if (!Objects.equals(this.password, other.password)) {
             return false;
         }
