@@ -101,6 +101,33 @@ public class ClienteDAO extends BaseDAO<Cliente> {
         }
     }
 
+    public Cliente consultarByRFC(String RFC) throws DAOException, Exception {
+        if (RFC == null) {
+            throw new Exception("RFC del cliente no encontrado");
+        }
+        Cliente cliente=new Cliente();
+        try {
+            Connection conexion = this.generarConexion();
+            Statement comando = conexion.createStatement();
+            String consultarSQL;
+            consultarSQL=String.format("SELECT id, nombre, apellidos, RFC, correo, telefono FROM clientes WHERE RFC='%s'",
+                    RFC);
+            ResultSet resultadoConsulta=comando.executeQuery(consultarSQL);
+            if(resultadoConsulta.next()){
+                cliente.setId_cliente(resultadoConsulta.getInt("id"));
+                cliente.setNombre(resultadoConsulta.getString("nombre"));
+                cliente.setApellidos(resultadoConsulta.getString("apellidos"));
+                cliente.setRfc(resultadoConsulta.getString("RFC"));
+                cliente.setCorreo(resultadoConsulta.getString("correo"));
+                cliente.setTelefono(resultadoConsulta.getString("telefono"));
+            }
+            conexion.close();
+            return cliente;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return cliente;
+        }
+    }
     @Override
     public void eliminar(Long id) throws DAOException {
         try {
@@ -118,6 +145,7 @@ public class ClienteDAO extends BaseDAO<Cliente> {
             System.out.println(ex.getMessage());
         }
     }
+    
 
     @Override
     public ArrayList<Cliente> consultar() throws DAOException {

@@ -68,6 +68,17 @@ public class Pruebas {
 //            System.out.println(listaClientes.get(i).getTelefono());
 //        }
         
+
+
+        Cliente cliente = CDAO.consultarByRFC("CFRE0987251L3");
+        System.out.println(cliente.getId_cliente());
+        System.out.println(cliente.getNombre());
+        System.out.println(cliente.getApellidos());
+        System.out.println(cliente.getRfc());
+        System.out.println(cliente.getCorreo());
+        System.out.println(cliente.getTelefono());
+        
+   
         
         
 //        Producto prod=new Producto("Tipo pesado","Mofle de carro bien bonito ","STEREN",
