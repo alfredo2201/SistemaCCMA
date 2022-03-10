@@ -7,18 +7,37 @@ package DAO;
 
 import Dominio.Cliente;
 import Exceptions.DAOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import javax.persistence.EntityManager;
 
 /**
  *
  * @author Isai Perez
  */
-public class ClienteDAO extends BaseDAO<Cliente>{
+public class ClienteDAO extends BaseDAO<Cliente> {
 
     @Override
     public void insertar(Cliente entidad) throws Exception {
-        
+        Cliente cliente = (Cliente) entidad;
+        try {
+            try (Connection conexion = this.generarConexion()) {
+                Statement comando = conexion.createStatement();
+                String insertarSLQ;
+                insertarSLQ = String.format(
+                        "INSERT INTO clientes(nombre, apellidos, RFC, correo, telefono) "
+                                + "VALUES('%s','%s','%s','%s','%s')",                        
+                        cliente.getNombre(),
+                        cliente.getApellidos(),
+                        cliente.getRfc(),
+                        cliente.getCorreo(),
+                        cliente.getTelefono());
+                comando.executeUpdate(insertarSLQ);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
@@ -40,5 +59,5 @@ public class ClienteDAO extends BaseDAO<Cliente>{
     public ArrayList<Cliente> consultar() throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

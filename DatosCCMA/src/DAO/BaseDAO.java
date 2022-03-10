@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public abstract class BaseDAO<T> {
 
-    private static final String CADENA_CONEXION = "bd_ccma";
+    private static final String CADENA_CONEXION = "jdbc:mysql://localhost:3306/bd_ccma?autoReconnet=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String USUARIO = "root";
     private static final String CONTRASEÑA ="1602";
     
