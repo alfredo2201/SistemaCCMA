@@ -40,6 +40,15 @@ public class Presupuesto {
         this.fecha = fecha;
     }
 
+    public Presupuesto(ArrayList<ProductoVenta> listaProducto, Float total, Cliente cliente, Empleado empleado, Date fecha) {
+        this.listaProducto = listaProducto;
+        this.total = total;
+        this.cliente = cliente;
+        this.empleado = empleado;
+        this.fecha = fecha;
+    }
+    
+
     public Integer getIdPresupuesto() {
         return idPresupuesto;
     }

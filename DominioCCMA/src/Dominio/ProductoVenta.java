@@ -32,6 +32,13 @@ public class ProductoVenta {
         this.precioVenta = precioVenta;
     }
 
+    public ProductoVenta(Producto producto, Integer cantidad, Float precioVenta) {
+        this.producto = producto;
+        this.cantidad = cantidad;
+        this.precioVenta = precioVenta;
+    }
+    
+
     public Integer getIdProductoVenta() {
         return idProductoVenta;
     }

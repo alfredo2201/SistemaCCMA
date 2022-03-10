@@ -21,6 +21,7 @@ public class Pago {
         this.tipo = tipo;
     }
 
+    
     public Float getCantidad() {
         return cantidad;
     }

@@ -40,6 +40,15 @@ public class Producto {
         this.precio = precio;
     }
 
+    public Producto(String tipo, String descripcion, String marca, String modelo, Integer anio, Float precio) {
+        this.tipo = tipo;
+        this.descripcion = descripcion;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.anio = anio;
+        this.precio = precio;
+    }
+    
     public Integer getIdProducto() {
         return idProducto;
     }

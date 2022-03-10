@@ -5,29 +5,28 @@
  */
 package DAO;
 
-import Dominio.Cliente;
+import Dominio.Venta;
 import Exceptions.DAOException;
 import java.util.ArrayList;
-import javax.persistence.EntityManager;
 
 /**
  *
- * @author Isai Perez
+ * @author crist
  */
-public class ClienteDAO extends BaseDAO<Cliente>{
+public class VentasDAO extends BaseDAO<Venta>{
 
     @Override
-    public void insertar(Cliente entidad) throws Exception {
-        
-    }
-
-    @Override
-    public void actualizar(Cliente entidad) throws DAOException {
+    public void insertar(Venta entidad) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Cliente consultarById(Long id) throws DAOException {
+    public void actualizar(Venta entidad) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Venta consultarById(Long id) throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -37,7 +36,7 @@ public class ClienteDAO extends BaseDAO<Cliente>{
     }
 
     @Override
-    public ArrayList<Cliente> consultar() throws DAOException {
+    public ArrayList<Venta> consultar() throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

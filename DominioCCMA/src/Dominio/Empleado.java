@@ -14,7 +14,7 @@ import java.util.Objects;
 public class Empleado extends Persona{
     private Integer idUsuario;
     private String username;
-    private String password;
+    private String password;    
     private Permiso permiso;
 
     public Empleado() {
@@ -35,6 +35,13 @@ public class Empleado extends Persona{
         this.permiso = permiso;
     }
 
+    public Empleado(String nombre, String apellidos, String correo,String username, String password, Permiso permiso ) {
+        super(nombre, apellidos, correo);
+        this.username = username;
+        this.password = password;
+        this.permiso = permiso;
+    }
+    
     public Integer getIdUsuario() {
         return idUsuario;
     }

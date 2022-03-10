@@ -44,6 +44,16 @@ public class Venta {
         this.pago = pago;
     }
 
+    public Venta(ArrayList<ProductoVenta> listaProductos, Cliente cliente, Date fecha, Float subtotal, Float total, Empleado empleado, Pago pago) {
+        this.listaProductos = listaProductos;
+        this.cliente = cliente;
+        this.fecha = fecha;
+        this.subtotal = subtotal;
+        this.total = total;
+        this.empleado = empleado;
+        this.pago = pago;
+    }
+
     public Integer getIdVenta() {
         return idVenta;
     }

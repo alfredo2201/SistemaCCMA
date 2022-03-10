@@ -22,6 +22,12 @@ public class Cliente extends Persona{
         this.telefono = telefono;
     }
 
+    public Cliente(String nombre, String apellidos, String correo,String rfc, String telefono) {
+        super(nombre, apellidos, correo);
+        this.rfc = rfc;
+        this.telefono = telefono;
+    }
+    
     public Cliente(Integer id_cliente, String nombre, String apellidos, String rfc, String correo, String telefono) {
         super(nombre, apellidos, correo);
         this.id_cliente = id_cliente;

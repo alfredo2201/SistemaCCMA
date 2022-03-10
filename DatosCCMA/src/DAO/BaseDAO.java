@@ -21,7 +21,7 @@ public abstract class BaseDAO<T> {
         return DriverManager.getConnection(CADENA_CONEXION,USUARIO, CONTRASEÑA);
     }
     
-    public abstract void insertar(T entidad)throws DAOException;
+    public abstract void insertar(T entidad)throws Exception;
     public abstract void actualizar(T entidad)throws DAOException;
     public abstract T consultarById(Long id)throws DAOException;
     public abstract void eliminar(Long id)throws DAOException;
