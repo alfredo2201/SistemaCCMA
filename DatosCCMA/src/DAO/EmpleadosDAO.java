@@ -6,38 +6,148 @@
 package DAO;
 
 import Dominio.Empleado;
+import Dominio.Permiso;
 import Exceptions.DAOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
  *
  * @author crist
  */
-public class EmpleadosDAO extends BaseDAO<Empleado>{
+public class EmpleadosDAO extends BaseDAO<Empleado> {
 
     @Override
     public void insertar(Empleado entidad) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //id,nombre,apellido,email,username,password,permiso
+        Empleado empleado = entidad;
+        try {
+            Connection conexion = this.generarConexion();
+            Statement comando = conexion.createStatement();
+            String insertarSLQ;
+            insertarSLQ = String.format(
+                    "INSERT INTO usuarios(nombre, apellido, email, username, password, permiso) "
+                    + "VALUES('%s','%s','%s','%s','%s','%s')",
+                    empleado.getNombre(),
+                    empleado.getApellidos(),
+                    empleado.getCorreo(),
+                    empleado.getUsername(),
+                    empleado.getPassword(),
+                    empleado.getPermiso());
+            comando.executeUpdate(insertarSLQ);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
     public void actualizar(Empleado entidad) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (entidad.getIdUsuario() == null) {
+            throw new DAOException("ID del usuario no encontrado");
+        }
+        Empleado empleado = entidad;
+        try {
+            Connection conexion = this.generarConexion();
+            Statement comando = conexion.createStatement();
+            String actualizarSQL;
+            actualizarSQL = String.format("UPDATE usuarios SET nombre='%s', apellido='%s',email='%s',username='%s',password='%s',permiso='%s' WHERE idUsuario = '%d' ",
+                    empleado.getNombre(),
+                    empleado.getApellidos(),
+                    empleado.getCorreo(),
+                    empleado.getUsername(),
+                    empleado.getPassword(),
+                    empleado.getPermiso(),
+                    empleado.getIdUsuario());
+            int conteoRegistrosAfectados = comando.executeUpdate(actualizarSQL);
+            if (conteoRegistrosAfectados == 1) {
+                System.out.println("Se ha actualizado al usuario");
+            } else {
+                throw new DAOException("No existe el usuario");
+            }
+            conexion.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
     public Empleado consultarById(Long id) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (id == null) {
+            throw new DAOException("ID del empleado no encontrado");
+        }
+        Empleado empleado = new Empleado();
+        try {
+            Connection conexion = this.generarConexion();
+            Statement comando = conexion.createStatement();
+            String consultarSQL;
+            consultarSQL = String.format("SELECT idUsuario, nombre, apellido, email, username, password, permiso FROM usuarios WHERE idUsuario=%d",
+                    id);
+            ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
+            if (resultadoConsulta.next()) {
+                empleado.setIdUsuario(resultadoConsulta.getInt("idUsuario"));
+                empleado.setNombre(resultadoConsulta.getString("nombre"));
+                empleado.setApellidos(resultadoConsulta.getString("apellido"));
+                empleado.setCorreo(resultadoConsulta.getString("email"));
+                empleado.setUsername(resultadoConsulta.getString("username"));
+                empleado.setPassword(resultadoConsulta.getString("password"));
+                empleado.setPermiso(Permiso.valueOf(resultadoConsulta.getString("permiso")));
+            }
+            conexion.close();
+            return empleado;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return empleado;
+        }
     }
 
     @Override
     public void eliminar(Long id) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connection conexion = this.generarConexion();
+            Statement comando = conexion.createStatement();
+            String eliminarSQL;
+            eliminarSQL = String.format("DELETE FROM usuarios WHERE idUsuario=%d",
+                    id);
+            int conteoRegistroAfectados = comando.executeUpdate(eliminarSQL);
+            conexion.close();
+            if (conteoRegistroAfectados == 0) {
+                throw new Exception("No se encontró el empleado con el ID ingresado");
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Override
     public ArrayList<Empleado> consultar() throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                ArrayList<Empleado> listaEmpleados = new ArrayList<>();
+        try {
+            Connection conexion = this.generarConexion();
+            Statement comando = conexion.createStatement();
+            String consultarSQL;
+            consultarSQL=String.format("SELECT idUsuario, nombre, apellido, email, username, password, permiso FROM usuarios");
+            ResultSet resultadoConsulta=comando.executeQuery(consultarSQL);
+            while(resultadoConsulta.next()){
+                Empleado empleado=new Empleado();
+                empleado.setIdUsuario(resultadoConsulta.getInt("idUsuario"));
+                empleado.setNombre(resultadoConsulta.getString("nombre"));
+                empleado.setApellidos(resultadoConsulta.getString("apellido"));
+                empleado.setCorreo(resultadoConsulta.getString("email"));
+                empleado.setUsername(resultadoConsulta.getString("username"));
+                empleado.setPassword(resultadoConsulta.getString("password"));
+                empleado.setPermiso(Permiso.valueOf(resultadoConsulta.getString("permiso")));
+                listaEmpleados.add(empleado);
+            }
+            conexion.close();
+            return listaEmpleados;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return listaEmpleados;
+        }
     }
     
 }

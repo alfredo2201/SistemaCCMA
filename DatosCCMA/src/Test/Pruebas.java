@@ -6,8 +6,11 @@
 package Test;
 
 import DAO.ClienteDAO;
+import DAO.EmpleadosDAO;
 import DAO.ProductosDAO;
 import Dominio.Cliente;
+import Dominio.Empleado;
+import Dominio.Permiso;
 import Dominio.Producto;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -24,6 +27,69 @@ public class Pruebas {
      */
     public static void main(String[] args) throws Exception {
                 ClienteDAO CDAO = new ClienteDAO();
+                EmpleadosDAO EDAO = new EmpleadosDAO();
+                
+//                Empleado em = new Empleado("Angel","Hernandez","angel_213@gmail.com","xxXPUSSYDESTROYERXxx","contraseñauwu",Permiso.ADMIN);
+//                Empleado em2 = new Empleado("Jesus","Arenas","angel_212223@gmail.com","xxXPUSSYDESTROYERXxx2","contraseñauwu2",Permiso.EMPLEADO);
+//                EDAO.insertar(em);
+//                EDAO.insertar(em2);
+                
+//                Empleado emactualizar = new Empleado(1,"Pepe","Picapapas","angel_212223@gmail.com","asdfg","contraseñauwu2",Permiso.EMPLEADO);
+//                EDAO.actualizar(emactualizar);
+//                
+                
+                
+//                Empleado pruebaConsulta = EDAO.consultarById(1L);
+//                System.out.println(pruebaConsulta.getIdUsuario());
+//                System.out.println(pruebaConsulta.getNombre());
+//                System.out.println(pruebaConsulta.getApellidos());
+//                System.out.println(pruebaConsulta.getCorreo());
+//                System.out.println(pruebaConsulta.getUsername());
+//                System.out.println(pruebaConsulta.getPassword());
+//                System.out.println(pruebaConsulta.getPermiso());
+
+//            EDAO.eliminar(1L);
+
+        ArrayList<Empleado> listaEmpleados = EDAO.consultar();
+        for (int i = 0; i < listaEmpleados.size(); i++) {
+            System.out.println(listaEmpleados.get(i).getIdUsuario());
+            System.out.println(listaEmpleados.get(i).getNombre());
+            System.out.println(listaEmpleados.get(i).getApellidos());
+            System.out.println(listaEmpleados.get(i).getCorreo());
+            System.out.println(listaEmpleados.get(i).getUsername());
+            System.out.println(listaEmpleados.get(i).getPassword());
+            System.out.println(listaEmpleados.get(i).getPermiso());
+        }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
 //        Cliente c1 = new Cliente("Isai","Borbon", "isailol2201@gmail.com","CFRE0987251L3", "6682107900");
 //        try {
 //            CDAO.insertar(c1);
@@ -70,13 +136,13 @@ public class Pruebas {
         
 
 
-        Cliente cliente = CDAO.consultarByRFC("CFRE0987251L3");
-        System.out.println(cliente.getId_cliente());
-        System.out.println(cliente.getNombre());
-        System.out.println(cliente.getApellidos());
-        System.out.println(cliente.getRfc());
-        System.out.println(cliente.getCorreo());
-        System.out.println(cliente.getTelefono());
+//        Cliente cliente = CDAO.consultarByRFC("CFRE0987251L3");
+//        System.out.println(cliente.getId_cliente());
+//        System.out.println(cliente.getNombre());
+//        System.out.println(cliente.getApellidos());
+//        System.out.println(cliente.getRfc());
+//        System.out.println(cliente.getCorreo());
+//        System.out.println(cliente.getTelefono());
         
    
         
