@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author crist
+ * @author Isai Perez
  */
 public class EmpleadosDAO extends BaseDAO<Empleado> {
 
@@ -40,7 +40,7 @@ public class EmpleadosDAO extends BaseDAO<Empleado> {
             comando.executeUpdate(insertarSLQ);
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
@@ -70,7 +70,7 @@ public class EmpleadosDAO extends BaseDAO<Empleado> {
                 }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
@@ -99,7 +99,7 @@ public class EmpleadosDAO extends BaseDAO<Empleado> {
             }
             return empleado;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
             return empleado;
         }
     }
@@ -119,7 +119,7 @@ public class EmpleadosDAO extends BaseDAO<Empleado> {
                 throw new Exception("No se encontró el empleado con el ID ingresado");
             }
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            System.err.println(ex.getMessage());
         }
     }
 
@@ -146,7 +146,7 @@ public class EmpleadosDAO extends BaseDAO<Empleado> {
             }
             return listaEmpleados;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
             return listaEmpleados;
         }
     }

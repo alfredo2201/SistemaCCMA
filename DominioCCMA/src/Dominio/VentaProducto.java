@@ -9,55 +9,54 @@ import java.util.Objects;
 
 /**
  *
- * @author crist
+ * @author Isai Perez
  */
 public class VentaProducto {
-    private Integer idVentaProducto;
-    private Integer idProducto;
-    private Integer idVenta;
-    private Integer cantidad;  
-    private Float precioUnitario;
+    private Integer idProductoVenta;
+    private Producto producto;
+    private Venta venta;
+    private Integer cantidad;
+    private Float precioVenta;
 
     public VentaProducto() {
     }
 
-    public VentaProducto(Integer idProducto, Integer idVenta, Integer cantidad, Float precioUnitario) {
-        this.idProducto = idProducto;
-        this.idVenta = idVenta;
+    public VentaProducto(Producto producto, Integer cantidad) {
+        this.producto = producto;
         this.cantidad = cantidad;
-        this.precioUnitario = precioUnitario;
     }
 
-    public VentaProducto(Integer idVentaProducto, Integer idProducto, Integer idVenta, Integer cantidad, Float precioUnitario) {
-        this.idVentaProducto = idVentaProducto;
-        this.idProducto = idProducto;
-        this.idVenta = idVenta;
+    public VentaProducto(Integer idProductoVenta, Producto producto, Venta venta, Integer cantidad, Float precioVenta) {
+        this.idProductoVenta = idProductoVenta;
+        this.producto = producto;
+        this.venta = venta;
         this.cantidad = cantidad;
-        this.precioUnitario = precioUnitario;
+        this.precioVenta = precioVenta;
     }
 
-    public Integer getIdVentaProducto() {
-        return idVentaProducto;
+
+
+    public VentaProducto(Producto producto, Integer cantidad, Float precioVenta) {
+        this.producto = producto;
+        this.cantidad = cantidad;
+        this.precioVenta = precioVenta;
+    }
+    
+
+    public Integer getIdProductoVenta() {
+        return idProductoVenta;
     }
 
-    public void setIdVentaProducto(Integer idVentaProducto) {
-        this.idVentaProducto = idVentaProducto;
+    public void setIdProductoVenta(Integer idProductoVenta) {
+        this.idProductoVenta = idProductoVenta;
     }
 
-    public Integer getIdProducto() {
-        return idProducto;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setIdProducto(Integer idProducto) {
-        this.idProducto = idProducto;
-    }
-
-    public Integer getIdVenta() {
-        return idVenta;
-    }
-
-    public void setIdVenta(Integer idVenta) {
-        this.idVenta = idVenta;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public Integer getCantidad() {
@@ -68,18 +67,26 @@ public class VentaProducto {
         this.cantidad = cantidad;
     }
 
-    public Float getPrecioUnitario() {
-        return precioUnitario;
+    public Float getPrecioVenta() {
+        return precioVenta;
     }
 
-    public void setPrecioUnitario(Float precioUnitario) {
-        this.precioUnitario = precioUnitario;
+    public void setPrecioVenta(Float precioVenta) {
+        this.precioVenta = precioVenta;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 67 * hash + Objects.hashCode(this.idVentaProducto);
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.idProductoVenta);
         return hash;
     }
 
@@ -95,10 +102,15 @@ public class VentaProducto {
             return false;
         }
         final VentaProducto other = (VentaProducto) obj;
-        if (!Objects.equals(this.idVentaProducto, other.idVentaProducto)) {
+        if (!Objects.equals(this.idProductoVenta, other.idProductoVenta)) {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductoVenta{" + "producto=" + producto.getTipo() + ", cantidad=" + cantidad + ", precioVenta=" + precioVenta + '}';
     }
     
     

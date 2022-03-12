@@ -37,7 +37,7 @@ public class ClienteDAO extends BaseDAO<Cliente> {
             comando.executeUpdate(insertarSLQ);
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
@@ -51,7 +51,9 @@ public class ClienteDAO extends BaseDAO<Cliente> {
             try (Connection conexion = this.generarConexion()) {
                 Statement comando = conexion.createStatement();
                 String actualizarSQL;
-                actualizarSQL = String.format("UPDATE clientes SET nombre='%s', apellidos='%s',RFC='%s',correo='%s',telefono='%s' WHERE id = '%d' ",
+                actualizarSQL = String.format("UPDATE clientes "
+                        + "SET nombre='%s', apellidos='%s',RFC='%s',correo='%s',telefono='%s' "
+                        + "WHERE id = '%d' ",
                         cliente.getNombre(),
                         cliente.getApellidos(),
                         cliente.getRfc(),
@@ -66,7 +68,7 @@ public class ClienteDAO extends BaseDAO<Cliente> {
                 }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
@@ -94,7 +96,7 @@ public class ClienteDAO extends BaseDAO<Cliente> {
             }
             return cliente;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
             return cliente;
         }
     }
@@ -122,7 +124,7 @@ public class ClienteDAO extends BaseDAO<Cliente> {
             }
             return cliente;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
             return cliente;
         }
     }
@@ -141,7 +143,7 @@ public class ClienteDAO extends BaseDAO<Cliente> {
                 throw new Exception("No se encontró el cliente con el ID ingresado");
             }
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            System.err.println(ex.getMessage());
         }
     }
     
@@ -168,11 +170,9 @@ public class ClienteDAO extends BaseDAO<Cliente> {
             }
             return listaClientes;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
             return listaClientes;
         }
     }
-    /**
-     * Consultar cliente por RFC
-     */
+
 }

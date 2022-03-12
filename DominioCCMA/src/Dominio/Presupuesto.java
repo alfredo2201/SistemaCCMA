@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 public class Presupuesto {
     private Integer idPresupuesto;
-    private ArrayList<ProductoVenta>listaProducto;
+    private ArrayList<VentaProducto>listaProducto;
     private Float total;
     private Cliente cliente;
     private Empleado empleado;
@@ -24,14 +24,14 @@ public class Presupuesto {
     public Presupuesto() {
     }
 
-    public Presupuesto(Integer idPresupuesto, ArrayList<ProductoVenta> listaProducto, Cliente cliente, Empleado empleado) {
+    public Presupuesto(Integer idPresupuesto, ArrayList<VentaProducto> listaProducto, Cliente cliente, Empleado empleado) {
         this.idPresupuesto = idPresupuesto;
         this.listaProducto = listaProducto;
         this.cliente = cliente;
         this.empleado = empleado;
     }
 
-    public Presupuesto(Integer idPresupuesto, ArrayList<ProductoVenta> listaProducto, Float total, Cliente cliente, Empleado empleado, Date fecha) {
+    public Presupuesto(Integer idPresupuesto, ArrayList<VentaProducto> listaProducto, Float total, Cliente cliente, Empleado empleado, Date fecha) {
         this.idPresupuesto = idPresupuesto;
         this.listaProducto = listaProducto;
         this.total = total;
@@ -40,7 +40,7 @@ public class Presupuesto {
         this.fecha = fecha;
     }
 
-    public Presupuesto(ArrayList<ProductoVenta> listaProducto, Float total, Cliente cliente, Empleado empleado, Date fecha) {
+    public Presupuesto(ArrayList<VentaProducto> listaProducto, Float total, Cliente cliente, Empleado empleado, Date fecha) {
         this.listaProducto = listaProducto;
         this.total = total;
         this.cliente = cliente;
@@ -57,11 +57,11 @@ public class Presupuesto {
         this.idPresupuesto = idPresupuesto;
     }
 
-    public ArrayList<ProductoVenta> getListaProducto() {
+    public ArrayList<VentaProducto> getListaProducto() {
         return listaProducto;
     }
 
-    public void setListaProducto(ArrayList<ProductoVenta> listaProducto) {
+    public void setListaProducto(ArrayList<VentaProducto> listaProducto) {
         this.listaProducto = listaProducto;
     }
 

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author crist
+ * @author Isai Perez
  */
 public class PresupuestoDAO extends BaseDAO<Presupuesto> {
 

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author crist
+ * @author Isai Perez
  */
 public class ProductosDAO extends BaseDAO<Producto> {
 
