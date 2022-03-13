@@ -18,6 +18,7 @@ public class IRegistrarVenta extends javax.swing.JFrame {
      */
     public IRegistrarVenta() {
         initComponents();
+        this.setBackground(Color.white);
     }
 
     /**
@@ -69,7 +70,7 @@ public class IRegistrarVenta extends javax.swing.JFrame {
         jToolBar1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jToolBar1.setRollover(true);
 
-        btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/inicio.png"))); // NOI18N
+        btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/inicio.png"))); // NOI18N
         btnInicio.setText("Inicio");
         btnInicio.setFocusable(false);
         btnInicio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -81,21 +82,21 @@ public class IRegistrarVenta extends javax.swing.JFrame {
         });
         jToolBar1.add(btnInicio);
 
-        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/clientes.png"))); // NOI18N
+        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/clientes.png"))); // NOI18N
         btnClientes.setText("Clientes");
         btnClientes.setFocusable(false);
         btnClientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnClientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btnClientes);
 
-        btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/productos.png"))); // NOI18N
+        btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/productos.png"))); // NOI18N
         btnProductos.setText("Productos");
         btnProductos.setFocusable(false);
         btnProductos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnProductos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btnProductos);
 
-        btnVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ventas.png"))); // NOI18N
+        btnVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/ventas.png"))); // NOI18N
         btnVentas.setText("Ventas");
         btnVentas.setFocusable(false);
         btnVentas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -107,7 +108,7 @@ public class IRegistrarVenta extends javax.swing.JFrame {
         });
         jToolBar1.add(btnVentas);
 
-        btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cerrar-sesion.png"))); // NOI18N
+        btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/cerrar-sesion.png"))); // NOI18N
         btnCerrarSesion.setText("Cerrar sesión");
         btnCerrarSesion.setFocusable(false);
         btnCerrarSesion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -188,7 +189,7 @@ public class IRegistrarVenta extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/buscar.png"))); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/iconos/buscar.png"))); // NOI18N
 
         btnAgregarProducto.setBackground(new java.awt.Color(153, 153, 153));
         btnAgregarProducto.setText("Agregar producto");
