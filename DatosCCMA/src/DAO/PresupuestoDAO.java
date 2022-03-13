@@ -7,6 +7,10 @@ package DAO;
 
 import Dominio.Presupuesto;
 import Exceptions.DAOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -17,27 +21,123 @@ public class PresupuestoDAO extends BaseDAO<Presupuesto> {
 
     @Override
     public void insertar(Presupuesto entidad) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Presupuesto presupuesto = entidad;
+        try {
+            Connection conexion = this.generarConexion();
+            Statement comando = conexion.createStatement();
+            String insertarSLQ;
+            insertarSLQ = String.format(
+                    "INSERT INTO presupuestos(idCliente, fecha, total) "
+                    + "VALUES('%s','%s','%s')",
+                    presupuesto.getCliente().getId_cliente(),
+                    presupuesto.getFecha(),
+                    presupuesto.getTotal());
+            comando.executeUpdate(insertarSLQ);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     @Override
-    public void actualizar(Presupuesto entidad) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void actualizar(Presupuesto entidad) throws DAOException, Exception {
+        if (entidad.getIdPresupuesto() == null) {
+            throw new Exception("ID del presupuesto no encontrado");
+        }
+        Presupuesto presupuesto = entidad;
+        try {
+            try (Connection conexion = this.generarConexion()) {
+                Statement comando = conexion.createStatement();
+                String actualizarSQL;
+                actualizarSQL = String.format("UPDATE presupuestos "
+                        + "SET idCliente='%s', fecha='%s',total='%s'"
+                        + "WHERE id = '%d' ",
+                        presupuesto.getCliente().getId_cliente(),
+                        presupuesto.getFecha(),
+                        presupuesto.getTotal(),
+                        presupuesto.getIdPresupuesto());
+                int conteoRegistrosAfectados = comando.executeUpdate(actualizarSQL);
+                if (conteoRegistrosAfectados == 1) {
+                    System.out.println("Se ha actualizado el presupuesto");
+                } else {
+                    throw new Exception("No existe el presupuesto");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     @Override
-    public Presupuesto consultarById(Long id) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Presupuesto consultarById(Long id) throws DAOException, Exception {
+        if (id == null) {
+            throw new Exception("ID del presupuesto no encontrado");
+        }
+        Presupuesto presupuesto = new Presupuesto();
+        try {
+            Connection conexion = this.generarConexion();
+            ClienteDAO ctl = new ClienteDAO();
+            Statement comando = conexion.createStatement();
+            String consultarSQL;
+            consultarSQL = String.format("SELECT idPresupuesto, idCliente, fecha, total FROM presupuestos WHERE id=%d",
+                    id);
+            ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
+            if (resultadoConsulta.next()) {
+                presupuesto.setIdPresupuesto(resultadoConsulta.getInt("idPresupuesto"));
+                presupuesto.setCliente(ctl.consultarById(resultadoConsulta.getLong("idCliente")));
+                presupuesto.setFecha(resultadoConsulta.getDate("fecha"));
+                presupuesto.setTotal(resultadoConsulta.getFloat("total"));
+            }
+
+            return presupuesto;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return presupuesto;
+        }
     }
 
     @Override
     public void eliminar(Long id) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            int conteoRegistroAfectados;
+            try (Connection conexion = this.generarConexion()) {
+                Statement comando = conexion.createStatement();
+                String eliminarSQL;
+                eliminarSQL = String.format("DELETE FROM presupuestos WHERE id=%d",
+                        id);
+                conteoRegistroAfectados = comando.executeUpdate(eliminarSQL);
+            }
+            if (conteoRegistroAfectados == 0) {
+                throw new Exception("No se encontró el presupuesto con el ID ingresado");
+            }
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 
     @Override
     public ArrayList<Presupuesto> consultar() throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Presupuesto> listaPresupuesto = new ArrayList<>();
+        try {
+            Connection conexion = this.generarConexion();
+            ClienteDAO ctl = new ClienteDAO();
+            Statement comando = conexion.createStatement();
+            String consultarSQL;
+            consultarSQL = String.format("SELECT idPresupuesto, idCliente, fecha, total FROM presupuestos");
+            ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
+            while (resultadoConsulta.next()) {
+                Presupuesto presupuesto = new Presupuesto();
+                presupuesto.setIdPresupuesto(resultadoConsulta.getInt("idPresupuesto"));
+                presupuesto.setCliente(ctl.consultarById(resultadoConsulta.getLong("idCliente")));
+                presupuesto.setFecha(resultadoConsulta.getDate("fecha"));
+                presupuesto.setTotal(resultadoConsulta.getFloat("total"));
+                listaPresupuesto.add(presupuesto);
+            }
+
+            return listaPresupuesto;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return listaPresupuesto;
+        }
     }
-    
+
 }
