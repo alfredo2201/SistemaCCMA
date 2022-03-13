@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Samuel%20Medellin/Documents/NetBeansProjects/InterfacesCCMA/src/IAdministrarVentas/IRegistraVenta.java</file>
-            <file>file:/C:/Users/Samuel%20Medellin/Documents/NetBeansProjects/InterfacesCCMA/src/interfacesccma/InterfacesCCMA.java</file>
-            <file>file:/C:/Users/Samuel%20Medellin/Documents/NetBeansProjects/InterfacesCCMA/src/IAdministrarVentas/IAgregarProducto.java</file>
-            <file>file:/C:/Users/Samuel%20Medellin/Documents/NetBeansProjects/InterfacesCCMA/src/IAdministrarVentas/IEliminarVenta.java</file>
-            <file>file:/C:/Users/Samuel%20Medellin/Documents/NetBeansProjects/InterfacesCCMA/src/IAdministrarVentas/IConsultarVenta.java</file>
-            <file>file:/C:/Users/Samuel%20Medellin/Documents/NetBeansProjects/InterfacesCCMA/src/IAdministrarVentas/IBuscarVenta.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/IBuscarVenta.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/IConsultarVenta.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/IAgregarProducto.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/IBuscarCliente.java</file>
         </group>
     </open-files>
 </project-private>

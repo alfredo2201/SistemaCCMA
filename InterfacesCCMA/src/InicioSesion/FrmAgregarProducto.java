@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfaces;
+package InicioSesion;
 
 /**
  *
@@ -17,6 +17,7 @@ public class FrmAgregarProducto extends javax.swing.JFrame {
     public FrmAgregarProducto() {
         initComponents();
         txtNombreCliente.setEditable(false);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -30,7 +31,7 @@ public class FrmAgregarProducto extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        pnTop = new javax.swing.JPanel();
         lblIcono = new javax.swing.JLabel();
         lblNombreEmpresa = new javax.swing.JLabel();
         lblFotoUsuario = new javax.swing.JLabel();
@@ -60,7 +61,7 @@ public class FrmAgregarProducto extends javax.swing.JFrame {
         listArticulos = new javax.swing.JList<>();
         btnCerrarSesion1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        btnContinuarVenta1 = new javax.swing.JButton();
+        btnContinuarVenta = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -69,8 +70,8 @@ public class FrmAgregarProducto extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(153, 153, 153));
 
-        jPanel2.setBackground(new java.awt.Color(191, 189, 121));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        pnTop.setBackground(new java.awt.Color(191, 189, 121));
+        pnTop.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
         lblIcono.setBackground(new java.awt.Color(255, 255, 255));
         lblIcono.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
@@ -111,24 +112,24 @@ public class FrmAgregarProducto extends javax.swing.JFrame {
         lblVentasEstado.setForeground(new java.awt.Color(0, 0, 0));
         lblVentasEstado.setText("En linea");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnTopLayout = new javax.swing.GroupLayout(pnTop);
+        pnTop.setLayout(pnTopLayout);
+        pnTopLayout.setHorizontalGroup(
+            pnTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnTopLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(lblIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblNombreEmpresa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHoraTexto)
                     .addComponent(lblHora)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(pnTopLayout.createSequentialGroup()
                         .addComponent(lblTextoVentas)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblVentasEstado))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(pnTopLayout.createSequentialGroup()
                         .addComponent(lblTextoUsuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblNombreUsuario)))
@@ -136,33 +137,33 @@ public class FrmAgregarProducto extends javax.swing.JFrame {
                 .addComponent(lblFotoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pnTopLayout.setVerticalGroup(
+            pnTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnTopLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(pnTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTopLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(pnTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTopLayout.createSequentialGroup()
                                 .addComponent(lblHoraTexto)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblHora)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(pnTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblTextoVentas)
                                     .addComponent(lblVentasEstado))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(pnTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblTextoUsuario)
                                     .addComponent(lblNombreUsuario))
                                 .addGap(61, 61, 61))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGroup(pnTopLayout.createSequentialGroup()
+                                .addGroup(pnTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblNombreEmpresa))
                                 .addGap(43, 43, 43))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(pnTopLayout.createSequentialGroup()
                         .addComponent(lblFotoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
@@ -299,19 +300,24 @@ public class FrmAgregarProducto extends javax.swing.JFrame {
             .addGap(0, 267, Short.MAX_VALUE)
         );
 
-        btnContinuarVenta1.setBackground(new java.awt.Color(153, 153, 0));
-        btnContinuarVenta1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnContinuarVenta1.setForeground(new java.awt.Color(0, 0, 0));
-        btnContinuarVenta1.setText("Continuar Venta");
-        btnContinuarVenta1.setBorder(null);
-        btnContinuarVenta1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnContinuarVenta1.setFocusPainted(false);
+        btnContinuarVenta.setBackground(new java.awt.Color(153, 153, 0));
+        btnContinuarVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnContinuarVenta.setForeground(new java.awt.Color(0, 0, 0));
+        btnContinuarVenta.setText("Continuar Venta");
+        btnContinuarVenta.setBorder(null);
+        btnContinuarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnContinuarVenta.setFocusPainted(false);
+        btnContinuarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContinuarVentaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -354,20 +360,20 @@ public class FrmAgregarProducto extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addContainerGap(648, Short.MAX_VALUE)
-                    .addComponent(btnContinuarVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnContinuarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(305, 305, 305)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnTop, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(12, 12, 12)
                         .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -413,7 +419,7 @@ public class FrmAgregarProducto extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addContainerGap(482, Short.MAX_VALUE)
-                    .addComponent(btnContinuarVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnContinuarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(21, 21, 21)))
         );
 
@@ -438,6 +444,10 @@ public class FrmAgregarProducto extends javax.swing.JFrame {
     private void cmbAniosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAniosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbAniosActionPerformed
+
+    private void btnContinuarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarVentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnContinuarVentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -477,7 +487,7 @@ public class FrmAgregarProducto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrarSesion1;
     private javax.swing.JButton btnClientes;
-    private javax.swing.JButton btnContinuarVenta1;
+    private javax.swing.JButton btnContinuarVenta;
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnMetodoPago;
     private javax.swing.JButton btnProductos;
@@ -488,7 +498,6 @@ public class FrmAgregarProducto extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
@@ -507,6 +516,7 @@ public class FrmAgregarProducto extends javax.swing.JFrame {
     private javax.swing.JLabel lblTextoVentas;
     private javax.swing.JLabel lblVentasEstado;
     private javax.swing.JList<String> listArticulos;
+    private javax.swing.JPanel pnTop;
     private javax.swing.JTextField txtNombreCliente;
     // End of variables declaration//GEN-END:variables
 }

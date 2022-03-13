@@ -7,14 +7,8 @@ package Test;
 
 import DAO.ClienteDAO;
 import DAO.EmpleadosDAO;
-import DAO.ProductosDAO;
-import Dominio.Cliente;
 import Dominio.Empleado;
-import Dominio.Permiso;
-import Dominio.Producto;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
