@@ -136,7 +136,7 @@ public class PresupuestoProductosDAO extends BaseDAO<PresupuestoProducto> {
     public ArrayList<PresupuestoProducto> consultar() throws DAOException {
         ArrayList<PresupuestoProducto> listaPresupuesto = new ArrayList<>();
         PresupuestoDAO presupuestoDAO = new PresupuestoDAO();
-        ProductosDAO productoDAO = new ProductosDAO();        
+        ProductosDAO productoDAO = new ProductosDAO();
         try {
             try (Connection conexion = this.generarConexion()) {
                 Statement comando = conexion.createStatement();
@@ -165,9 +165,50 @@ public class PresupuestoProductosDAO extends BaseDAO<PresupuestoProducto> {
                 }
             }
             return listaPresupuesto;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             return listaPresupuesto;
+        }
+    }
+
+    public PresupuestoProducto consultarByIdPresupuesto(Long id) throws DAOException, Exception {
+        if (id == null) {
+            throw new DAOException("ID del presupuesto no encontrado");
+        }
+        PresupuestoDAO presupuestoDAO = new PresupuestoDAO();
+        ProductosDAO productoDAO = new ProductosDAO();
+        PresupuestoProducto pp = new PresupuestoProducto();
+        try {
+            try (Connection conexion = this.generarConexion()) {
+                Statement comando = conexion.createStatement();
+                String consultarSQL;
+                consultarSQL = String.format("SELECT idPP, idPresupuesto, idProducto, cantidad, precioUnitario,"
+                        + "FROM presupuestoproductos "
+                        + "WHERE idPresupuesto=%d",
+                        id);
+                ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
+                if (resultadoConsulta.next()) {
+                    Presupuesto presupuesto = null;
+                    Producto producto = null;
+                    pp.setIdPresupuestoProducto(resultadoConsulta.getInt("idPP"));
+                    Long idPresupuesto = resultadoConsulta.getLong("idPresupuesto");
+                    Long idProducto = resultadoConsulta.getLong("idProducto");
+                    if (idPresupuesto > 0) {
+                        presupuesto = presupuestoDAO.consultarById(idPresupuesto);
+                    }
+                    if (idProducto > 0) {
+                        producto = productoDAO.consultarById(idProducto);
+                    }
+                    pp.setPresupuesto(presupuesto);
+                    pp.setProducto(producto);
+                    pp.setCantidad(resultadoConsulta.getInt("cantidad"));
+                    pp.setPrecioUnitario(resultadoConsulta.getFloat("precioUnitario"));
+                }
+            }
+            return pp;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return pp;
         }
     }
 

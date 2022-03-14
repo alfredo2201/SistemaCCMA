@@ -4,8 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/IBuscarVenta.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/PnMenuClientes.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/InicioSesion/FrmAgregarProducto.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/PnMenuVenta.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/IRegistrarCliente.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/Principal/FrmPrincipal.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/IConsultarVenta.java</file>
-            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/IAgregarProducto.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/InicioSesion/FrmInicioSesion.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/IBuscarCliente.java</file>
         </group>
     </open-files>

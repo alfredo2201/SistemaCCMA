@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Dominio.Cliente;
 import Dominio.Presupuesto;
 import Exceptions.DAOException;
 import java.sql.Connection;
@@ -12,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -140,4 +142,55 @@ public class PresupuestoDAO extends BaseDAO<Presupuesto> {
         }
     }
 
+    public ArrayList<Presupuesto> consultarByFecha(Date fecha) throws DAOException {
+        ArrayList<Presupuesto> listaPresupuesto = new ArrayList<>();
+        try {
+            Connection conexion = this.generarConexion();
+            ClienteDAO ctl = new ClienteDAO();
+            Statement comando = conexion.createStatement();
+            String consultarSQL;
+            consultarSQL = String.format("SELECT idPresupuesto, idCliente, fecha, total FROM presupuestos WHERE fecha='%s'", fecha);
+            ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
+            while (resultadoConsulta.next()) {
+                Presupuesto presupuesto = new Presupuesto();
+                presupuesto.setIdPresupuesto(resultadoConsulta.getInt("idPresupuesto"));
+                presupuesto.setCliente(ctl.consultarById(resultadoConsulta.getLong("idCliente")));
+                presupuesto.setFecha(resultadoConsulta.getDate("fecha"));
+                presupuesto.setTotal(resultadoConsulta.getFloat("total"));
+                listaPresupuesto.add(presupuesto);
+            }
+
+            return listaPresupuesto;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return listaPresupuesto;
+        }
+    }
+
+    public ArrayList<Presupuesto> consultarByRFC(String RFC) throws DAOException {
+        ArrayList<Presupuesto> listaPresupuesto = new ArrayList<>();
+        try {
+            Connection conexion = this.generarConexion();
+            ClienteDAO ctl = new ClienteDAO();
+            Statement comando = conexion.createStatement();
+            String consultarSQL;
+            ClienteDAO cdao = new ClienteDAO();
+            Cliente c = cdao.consultarByRFC(RFC);
+            consultarSQL = String.format("SELECT idPresupuesto, idCliente, fecha, total FROM presupuestos WHERE idClienet='%d'", c.getId_cliente());
+            ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
+            while (resultadoConsulta.next()) {
+                Presupuesto presupuesto = new Presupuesto();
+                presupuesto.setIdPresupuesto(resultadoConsulta.getInt("idPresupuesto"));
+                presupuesto.setCliente(ctl.consultarById(resultadoConsulta.getLong("idCliente")));
+                presupuesto.setFecha(resultadoConsulta.getDate("fecha"));
+                presupuesto.setTotal(resultadoConsulta.getFloat("total"));
+                listaPresupuesto.add(presupuesto);
+            }
+
+            return listaPresupuesto;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return listaPresupuesto;
+        }
+    }
 }

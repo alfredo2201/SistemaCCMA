@@ -19,6 +19,7 @@ public class Producto {
     private String modelo;
     private Integer anio;
     private Float precio;   
+    private Integer disponible;
 
     public Producto() {
     }
@@ -30,7 +31,7 @@ public class Producto {
         this.precio = precio;
     }
 
-    public Producto(Integer idProducto, String tipo, String descripcion, String marca, String modelo, Integer anio, Float precio) {
+    public Producto(Integer idProducto, String tipo, String descripcion, String marca, String modelo, Integer anio, Float precio, Integer disponible) {
         this.idProducto = idProducto;
         this.tipo = tipo;
         this.descripcion = descripcion;
@@ -38,7 +39,10 @@ public class Producto {
         this.modelo = modelo;
         this.anio = anio;
         this.precio = precio;
+        this.disponible = disponible;
     }
+
+
 
     public Producto(String tipo, String descripcion, String marca, String modelo, Integer anio, Float precio) {
         this.tipo = tipo;
@@ -104,6 +108,15 @@ public class Producto {
     public void setPrecio(Float precio) {
         this.precio = precio;
     }
+
+    public Integer getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(Integer disponible) {
+        this.disponible = disponible;
+    }
+    
 
     @Override
     public int hashCode() {

@@ -9,8 +9,10 @@ import Dominio.Venta;
 import Exceptions.DAOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -34,8 +36,8 @@ public class VentasDAO extends BaseDAO<Venta> {
                     venta.getTotal(),
                     venta.getEmpleado().getIdUsuario());
             comando.executeUpdate(insertarSLQ);
-
-        } catch (Exception e) {
+            
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
     }
@@ -148,5 +150,65 @@ public class VentasDAO extends BaseDAO<Venta> {
             return listaVentas;
         }
     }
+    
+    public Venta consultarByFecha(Date fecha) throws DAOException {
+        if (fecha == null) {
+            throw new DAOException("fecha de la venta no encontrado");
+        }
+        Venta venta = new Venta();
+        try {
+            ClienteDAO clt = new ClienteDAO();
+            EmpleadosDAO empl = new EmpleadosDAO();
+            Connection conexion = this.generarConexion();
+            Statement comando = conexion.createStatement();
+            String consultarSQL;
+            consultarSQL = String.format("SELECT idventa, idCliente, fecha, subtotal, total, idUsuario FROM ventas WHERE fecha='%s'",
+                    fecha);
+            ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
+            if (resultadoConsulta.next()) {
+                venta.setIdVenta(resultadoConsulta.getInt("idventa"));
+                venta.setCliente(clt.consultarById(resultadoConsulta.getLong("idCliente")));
+                venta.setFecha(resultadoConsulta.getDate("fecha"));
+                venta.setSubtotal(resultadoConsulta.getFloat("subtotal"));
+                venta.setTotal(resultadoConsulta.getFloat("total"));
+                venta.setEmpleado(empl.consultarById(resultadoConsulta.getLong("idUsuario")));
+            }
+            return venta;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return venta;
+        }
+    }
+    public ArrayList<Venta> consultarByRangoFechas(Date inicio,Date fin) throws DAOException {
+        if (inicio == null || fin == null) {
+            throw new DAOException("fecha de la venta no encontrado");
+        }       
+        ArrayList<Venta>listaVentas = new ArrayList<>();
+        try {
+            ClienteDAO clt = new ClienteDAO();
+            EmpleadosDAO empl = new EmpleadosDAO();
+            Connection conexion = this.generarConexion();
+            Statement comando = conexion.createStatement();
+            String consultarSQL;
+            consultarSQL = String.format("SELECT idventa, idCliente, fecha, subtotal, total, idUsuario FROM ventas WHERE fecha BETWEEN '%s' AND '%s'",
+                    inicio,fin);
+            ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
+            while (resultadoConsulta.next()) {
+                Venta venta = new Venta();
+                venta.setIdVenta(resultadoConsulta.getInt("idventa"));
+                venta.setCliente(clt.consultarById(resultadoConsulta.getLong("idCliente")));
+                venta.setFecha(resultadoConsulta.getDate("fecha"));
+                venta.setSubtotal(resultadoConsulta.getFloat("subtotal"));
+                venta.setTotal(resultadoConsulta.getFloat("total"));
+                venta.setEmpleado(empl.consultarById(resultadoConsulta.getLong("idUsuario")));
+                listaVentas.add(venta);
+            }
+            return listaVentas;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return listaVentas;
+        }
+    }
+
 
 }

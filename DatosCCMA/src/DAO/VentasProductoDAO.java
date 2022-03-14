@@ -9,6 +9,7 @@ import Dominio.VentaProducto;
 import Exceptions.DAOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  *
  * @author Isai Perez
  */
-public class VentasProductoDAO extends BaseDAO<VentaProducto>{
+public class VentasProductoDAO extends BaseDAO<VentaProducto> {
 
     @Override
     public void insertar(VentaProducto entidad) throws Exception {
@@ -27,27 +28,27 @@ public class VentasProductoDAO extends BaseDAO<VentaProducto>{
             String insertarSLQ;
             insertarSLQ = String.format(
                     "INSERT INTO ventaproductos(idProducto, IdVenta, cantidad, precioUnitario) "
-                    + "VALUES('%s','%s','%s','%s')",
+                    + "VALUES('%d','%d','%s','%s')",
                     ventaProducto.getProducto().getIdProducto(),
                     ventaProducto.getVenta().getIdVenta(),
                     ventaProducto.getCantidad(),
                     ventaProducto.getPrecioVenta());
             comando.executeUpdate(insertarSLQ);
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
     }
 
     @Override
     public void actualizar(VentaProducto entidad) throws DAOException {
-        if (entidad.getIdProductoVenta()== null) {
+        if (entidad.getIdProductoVenta() == null) {
             throw new DAOException("ID de la venta producto no encontrado");
         }
         VentaProducto ventaProducto = entidad;
         try {
-                Connection conexion = this.generarConexion();
-                Statement comando = conexion.createStatement();
+            Connection conexion = this.generarConexion();
+            Statement comando = conexion.createStatement();
             String actualizarSQL;
             actualizarSQL = String.format("UPDATE ventaproductos "
                     + "SET idProducto='%s', IdVenta='%s',cantidad='%s',precioUnitario='%s'"
@@ -56,14 +57,14 @@ public class VentasProductoDAO extends BaseDAO<VentaProducto>{
                     ventaProducto.getVenta().getIdVenta(),
                     ventaProducto.getCantidad(),
                     ventaProducto.getPrecioVenta(),
-                      ventaProducto.getIdProductoVenta());
+                    ventaProducto.getIdProductoVenta());
             int conteoRegistrosAfectados = comando.executeUpdate(actualizarSQL);
             if (conteoRegistrosAfectados == 1) {
                 System.out.println("Se ha actualizado la venta producto");
             } else {
-                    throw new Exception("No existe la venta producto");
-                }
-            
+                throw new Exception("No existe la venta producto");
+            }
+
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -74,25 +75,25 @@ public class VentasProductoDAO extends BaseDAO<VentaProducto>{
         if (id == null) {
             throw new DAOException("ID de la venta producto no encontrado");
         }
-        VentaProducto ventaProducto=new VentaProducto();
+        VentaProducto ventaProducto = new VentaProducto();
         try {
             ProductosDAO prod = new ProductosDAO();
-            VentasDAO vent=new VentasDAO();
+            VentasDAO vent = new VentasDAO();
             Connection conexion = this.generarConexion();
-                Statement comando = conexion.createStatement();
-                String consultarSQL;
-                consultarSQL=String.format("SELECT idProducto, IdVenta, cantidad, precioUnitario FROM ventaproductos WHERE id=%d",
-                        id);
-                ResultSet resultadoConsulta=comando.executeQuery(consultarSQL);
-                if(resultadoConsulta.next()){
-                    ventaProducto.setProducto(prod.consultarById(resultadoConsulta.getLong("idProducto")));
-                    ventaProducto.setVenta(vent.consultarById(resultadoConsulta.getLong("IdVenta")));
-                    ventaProducto.setCantidad(resultadoConsulta.getInt("cantidad"));
-                    ventaProducto.setPrecioVenta(resultadoConsulta.getFloat("precioUnitario"));
-                }
-            
+            Statement comando = conexion.createStatement();
+            String consultarSQL;
+            consultarSQL = String.format("SELECT idProducto, IdVenta, cantidad, precioUnitario FROM ventaproductos WHERE id=%d",
+                    id);
+            ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
+            if (resultadoConsulta.next()) {
+                ventaProducto.setProducto(prod.consultarById(resultadoConsulta.getLong("idProducto")));
+                ventaProducto.setVenta(vent.consultarById(resultadoConsulta.getLong("IdVenta")));
+                ventaProducto.setCantidad(resultadoConsulta.getInt("cantidad"));
+                ventaProducto.setPrecioVenta(resultadoConsulta.getFloat("precioUnitario"));
+            }
+
             return ventaProducto;
-        } catch (Exception e) {
+        } catch (DAOException | SQLException e) {
             System.err.println(e.getMessage());
             return ventaProducto;
         }
@@ -121,30 +122,56 @@ public class VentasProductoDAO extends BaseDAO<VentaProducto>{
     public ArrayList<VentaProducto> consultar() throws DAOException {
         ArrayList<VentaProducto> listaVentaProducto = new ArrayList<>();
         try {
-                Connection conexion = this.generarConexion();
-                Statement comando = conexion.createStatement();
-                 ProductosDAO prod = new ProductosDAO();
-            VentasDAO vent=new VentasDAO();
-                String consultarSQL;
-                consultarSQL=String.format("SELECT id, nombre, apellidos, RFC, correo, telefono FROM clientes");
-                ResultSet resultadoConsulta=comando.executeQuery(consultarSQL);
-                while(resultadoConsulta.next()){
-                    VentaProducto ventaProducto=new VentaProducto();
-                    ventaProducto.setIdProductoVenta(resultadoConsulta.getInt("idVentaProductos"));
-                    ventaProducto.setProducto(prod.consultarById(resultadoConsulta.getLong("idProducto")));
-                    ventaProducto.setVenta(vent.consultarById(resultadoConsulta.getLong("IdVenta")));
-                    ventaProducto.setCantidad(resultadoConsulta.getInt("cantidad"));
-                    ventaProducto.setPrecioVenta(resultadoConsulta.getFloat("precioUnitario"));
-                    listaVentaProducto.add(ventaProducto);
-                }
-            
+            Connection conexion = this.generarConexion();
+            Statement comando = conexion.createStatement();
+            ProductosDAO prod = new ProductosDAO();
+            VentasDAO vent = new VentasDAO();
+            String consultarSQL;
+            consultarSQL = String.format("SELECT id, nombre, apellidos, RFC, correo, telefono FROM clientes");
+            ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
+            while (resultadoConsulta.next()) {
+                VentaProducto ventaProducto = new VentaProducto();
+                ventaProducto.setIdProductoVenta(resultadoConsulta.getInt("idVentaProductos"));
+                ventaProducto.setProducto(prod.consultarById(resultadoConsulta.getLong("idProducto")));
+                ventaProducto.setVenta(vent.consultarById(resultadoConsulta.getLong("IdVenta")));
+                ventaProducto.setCantidad(resultadoConsulta.getInt("cantidad"));
+                ventaProducto.setPrecioVenta(resultadoConsulta.getFloat("precioUnitario"));
+                listaVentaProducto.add(ventaProducto);
+            }
+
             return listaVentaProducto;
-        } catch (Exception e) {
+        } catch (DAOException | SQLException e) {
             System.err.println(e.getMessage());
             return listaVentaProducto;
         }
     }
 
+    public VentaProducto consultarByIdVenta(Long id) throws DAOException {
+        if (id == null) {
+            throw new DAOException("ID de la venta no encontrado");
+        }
+        VentaProducto ventaProducto = new VentaProducto();
+        try {
+            ProductosDAO prod = new ProductosDAO();
+            VentasDAO vent = new VentasDAO();
+            Connection conexion = this.generarConexion();
+            Statement comando = conexion.createStatement();
+            String consultarSQL;
+            consultarSQL = String.format("SELECT idProducto, IdVenta, cantidad, precioUnitario FROM ventaproductos WHERE IdVenta=%d",
+                    id);
+            ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
+            if (resultadoConsulta.next()) {
+                ventaProducto.setProducto(prod.consultarById(resultadoConsulta.getLong("idProducto")));
+                ventaProducto.setVenta(vent.consultarById(resultadoConsulta.getLong("IdVenta")));
+                ventaProducto.setCantidad(resultadoConsulta.getInt("cantidad"));
+                ventaProducto.setPrecioVenta(resultadoConsulta.getFloat("precioUnitario"));
+            }
 
-    
+            return ventaProducto;
+        } catch (DAOException | SQLException e) {
+            System.err.println(e.getMessage());
+            return ventaProducto;
+        }
+    }
+
 }
