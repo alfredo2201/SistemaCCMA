@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package Principal;
-
-import IAdministrarCliente.PnMenuClientes;
-import IAdministrarVentas.PnMenuVenta;
+import PanelesGlobales.PnContenido;
+import PanelesGlobales.PnMenu;
+import javax.swing.JFrame;
 
 /**
  *
@@ -17,11 +17,21 @@ public class FrmPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form FrmPrincipal
      */
-    private PnMenuClientes pnMnCliente = new PnMenuClientes();
-    private PnMenuVenta pnMnVentas = new PnMenuVenta();
-    public FrmPrincipal() {
+    private PnMenu pnMenu = new PnMenu();
+    private PnContenido pnContenido = PnContenido.getInstance();
+    private static FrmPrincipal instance = null;
+    private FrmPrincipal() {
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);        
+        pnMenu.setVisible(true);
+        pnMenu.setLocation(0,143);
+        pnMenu.setSize(320 , 1000);
+        pnContenido.setVisible(true);
+        pnContenido.setLocation(320, 143);
+        pnContenido.setSize(1900, 1000);
+        this.add(pnMenu);
+        this.add(pnContenido);
 
     }
 
@@ -44,15 +54,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         lblTextoUsuario = new javax.swing.JLabel();
         lblNombreUsuario = new javax.swing.JLabel();
         lblVentasEstado = new javax.swing.JLabel();
-        pnMenuLateral = new javax.swing.JPanel();
-        btnInicio = new javax.swing.JButton();
-        btnProductos = new javax.swing.JButton();
-        btnCerrarSesion1 = new javax.swing.JButton();
-        btnClientes = new javax.swing.JButton();
-        btnVentas = new javax.swing.JButton();
-        pnContenido = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Inicio");
 
         pnTop.setBackground(new java.awt.Color(191, 189, 121));
         pnTop.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
@@ -151,182 +155,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
-        pnMenuLateral.setBackground(new java.awt.Color(255, 255, 255));
-
-        btnInicio.setBackground(new java.awt.Color(153, 153, 0));
-        btnInicio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnInicio.setForeground(new java.awt.Color(0, 0, 0));
-        btnInicio.setText("Inicio");
-        btnInicio.setBorder(null);
-        btnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnInicio.setFocusPainted(false);
-        btnInicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInicioActionPerformed(evt);
-            }
-        });
-
-        btnProductos.setBackground(new java.awt.Color(153, 153, 0));
-        btnProductos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnProductos.setForeground(new java.awt.Color(0, 0, 0));
-        btnProductos.setText("Productos");
-        btnProductos.setBorder(null);
-        btnProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnProductos.setFocusPainted(false);
-
-        btnCerrarSesion1.setBackground(new java.awt.Color(153, 153, 0));
-        btnCerrarSesion1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCerrarSesion1.setForeground(new java.awt.Color(0, 0, 0));
-        btnCerrarSesion1.setText("Cerrar Sesión");
-        btnCerrarSesion1.setBorder(null);
-        btnCerrarSesion1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCerrarSesion1.setFocusPainted(false);
-
-        btnClientes.setBackground(new java.awt.Color(153, 153, 0));
-        btnClientes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnClientes.setForeground(new java.awt.Color(0, 0, 0));
-        btnClientes.setText("Clientes");
-        btnClientes.setBorder(null);
-        btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnClientes.setFocusPainted(false);
-
-        btnVentas.setBackground(new java.awt.Color(153, 153, 0));
-        btnVentas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnVentas.setForeground(new java.awt.Color(0, 0, 0));
-        btnVentas.setText("Ventas");
-        btnVentas.setBorder(null);
-        btnVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnVentas.setFocusPainted(false);
-        btnVentas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVentasActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnMenuLateralLayout = new javax.swing.GroupLayout(pnMenuLateral);
-        pnMenuLateral.setLayout(pnMenuLateralLayout);
-        pnMenuLateralLayout.setHorizontalGroup(
-            pnMenuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnMenuLateralLayout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addGroup(pnMenuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCerrarSesion1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(83, Short.MAX_VALUE))
-        );
-        pnMenuLateralLayout.setVerticalGroup(
-            pnMenuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnMenuLateralLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(btnCerrarSesion1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
-        );
-
-        pnContenido.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout pnContenidoLayout = new javax.swing.GroupLayout(pnContenido);
-        pnContenido.setLayout(pnContenidoLayout);
-        pnContenidoLayout.setHorizontalGroup(
-            pnContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        pnContenidoLayout.setVerticalGroup(
-            pnContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnMenuLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pnContenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(pnTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnMenuLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnContenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(468, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        pnContenido.removeAll();
-        pnMnCliente.setSize(810,600);       
-        pnMnCliente.setLocation(0,-40); 
-        pnContenido.add(pnMnCliente);
-        pnContenido.revalidate();
-        pnContenido.repaint();
-    }//GEN-LAST:event_btnInicioActionPerformed
-
-    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
-        pnContenido.removeAll();
-        pnMnVentas.setSize(810,600);
-        pnMnVentas.setLocation(20, -40);
-        pnContenido.add(pnMnVentas);
-        pnContenido.revalidate();
-        pnContenido.repaint();
-    }//GEN-LAST:event_btnVentasActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmPrincipal().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCerrarSesion1;
-    private javax.swing.JButton btnClientes;
-    private javax.swing.JButton btnInicio;
-    private javax.swing.JButton btnProductos;
-    private javax.swing.JButton btnVentas;
     private javax.swing.JLabel lblFotoUsuario;
     private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblHoraTexto;
@@ -336,8 +182,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblTextoUsuario;
     private javax.swing.JLabel lblTextoVentas;
     private javax.swing.JLabel lblVentasEstado;
-    private javax.swing.JPanel pnContenido;
-    private javax.swing.JPanel pnMenuLateral;
     private javax.swing.JPanel pnTop;
     // End of variables declaration//GEN-END:variables
+   public static FrmPrincipal getInstance(){
+       if (instance == null) {
+           instance = new FrmPrincipal();
+       }
+       return instance;
+   }
+   
+   public void cerrar(){
+       dispose();
+   }
 }

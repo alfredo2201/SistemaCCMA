@@ -30,13 +30,13 @@ public class PnMenuVenta extends javax.swing.JPanel {
         btnOpcionNuevaVenta = new javax.swing.JButton();
         btnOpcionEliminarVenta = new javax.swing.JButton();
         btnOpcionConsultarCliente = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
         lblTextoMenuClientes = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         btnOpcionNuevaVenta.setBackground(new java.awt.Color(204, 204, 0));
         btnOpcionNuevaVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnOpcionNuevaVenta.setForeground(new java.awt.Color(0, 0, 0));
         btnOpcionNuevaVenta.setText("Nueva Venta");
         btnOpcionNuevaVenta.setBorder(null);
         btnOpcionNuevaVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -44,6 +44,7 @@ public class PnMenuVenta extends javax.swing.JPanel {
 
         btnOpcionEliminarVenta.setBackground(new java.awt.Color(204, 204, 0));
         btnOpcionEliminarVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnOpcionEliminarVenta.setForeground(new java.awt.Color(0, 0, 0));
         btnOpcionEliminarVenta.setText("Eliminar Venta");
         btnOpcionEliminarVenta.setBorder(null);
         btnOpcionEliminarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -51,57 +52,42 @@ public class PnMenuVenta extends javax.swing.JPanel {
 
         btnOpcionConsultarCliente.setBackground(new java.awt.Color(204, 204, 0));
         btnOpcionConsultarCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnOpcionConsultarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnOpcionConsultarCliente.setText("Consultar Ventas");
         btnOpcionConsultarCliente.setBorder(null);
         btnOpcionConsultarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnOpcionConsultarCliente.setFocusPainted(false);
 
-        jPanel2.setBackground(new java.awt.Color(188, 186, 120));
-
         lblTextoMenuClientes.setFont(new java.awt.Font("Segoe UI", 2, 26)); // NOI18N
+        lblTextoMenuClientes.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoMenuClientes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTextoMenuClientes.setText("Menú de Ventas");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblTextoMenuClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(485, 485, 485))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(lblTextoMenuClientes)
-                .addGap(0, 6, Short.MAX_VALUE))
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(227, Short.MAX_VALUE)
+                .addContainerGap(282, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnOpcionNuevaVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnOpcionEliminarVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnOpcionConsultarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(264, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnOpcionConsultarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTextoMenuClientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(319, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
+                .addGap(75, 75, 75)
+                .addComponent(lblTextoMenuClientes)
+                .addGap(47, 47, 47)
                 .addComponent(btnOpcionNuevaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
+                .addGap(40, 40, 40)
                 .addComponent(btnOpcionEliminarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
+                .addGap(40, 40, 40)
                 .addComponent(btnOpcionConsultarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -110,7 +96,6 @@ public class PnMenuVenta extends javax.swing.JPanel {
     private javax.swing.JButton btnOpcionConsultarCliente;
     private javax.swing.JButton btnOpcionEliminarVenta;
     private javax.swing.JButton btnOpcionNuevaVenta;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblTextoMenuClientes;
     // End of variables declaration//GEN-END:variables
 }
