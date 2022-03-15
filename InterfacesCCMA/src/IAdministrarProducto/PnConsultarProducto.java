@@ -34,8 +34,7 @@ public class PnConsultarProducto extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        btnSalir = new javax.swing.JButton();
-        btnmenu = new javax.swing.JButton();
+        btnMenu = new javax.swing.JButton();
         txtDesc = new javax.swing.JTextField();
         txtTipo = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
@@ -50,33 +49,51 @@ public class PnConsultarProducto extends javax.swing.JPanel {
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
         jSeparator10 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        btnConsultar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Consultar prodcuto");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Descripción:");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Tipo:");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Marca:");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Modelo:");
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Año:");
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Precio:");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Cantidad:");
 
-        btnSalir.setBackground(new java.awt.Color(153, 153, 0));
-        btnSalir.setText("Salir");
+        btnMenu.setBackground(new java.awt.Color(153, 153, 0));
+        btnMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnMenu.setForeground(new java.awt.Color(0, 0, 0));
+        btnMenu.setText("Regresar a menu");
+        btnMenu.setBorder(null);
 
-        btnmenu.setBackground(new java.awt.Color(153, 153, 0));
-        btnmenu.setText("Regresar a menu");
-
+        txtDesc.setBackground(new java.awt.Color(255, 255, 255));
+        txtDesc.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtDesc.setForeground(new java.awt.Color(0, 0, 0));
         txtDesc.setBorder(null);
         txtDesc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,72 +101,91 @@ public class PnConsultarProducto extends javax.swing.JPanel {
             }
         });
 
+        txtTipo.setBackground(new java.awt.Color(255, 255, 255));
+        txtTipo.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtTipo.setForeground(new java.awt.Color(0, 0, 0));
         txtTipo.setBorder(null);
 
+        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
         jTextField3.setBorder(null);
 
+        txtModel.setBackground(new java.awt.Color(255, 255, 255));
+        txtModel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtModel.setForeground(new java.awt.Color(0, 0, 0));
         txtModel.setBorder(null);
 
+        txtAnio.setBackground(new java.awt.Color(255, 255, 255));
+        txtAnio.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtAnio.setForeground(new java.awt.Color(0, 0, 0));
         txtAnio.setBorder(null);
 
+        txtPrecio.setBackground(new java.awt.Color(255, 255, 255));
+        txtPrecio.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtPrecio.setForeground(new java.awt.Color(0, 0, 0));
         txtPrecio.setBorder(null);
 
+        txtCantidad.setBackground(new java.awt.Color(255, 255, 255));
+        txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtCantidad.setForeground(new java.awt.Color(0, 0, 0));
         txtCantidad.setBorder(null);
 
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/buscarIcon.png"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setFocusable(false);
+        btnConsultar.setBackground(new java.awt.Color(255, 255, 255));
+        btnConsultar.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/buscarIcon.png"))); // NOI18N
+        btnConsultar.setBorder(null);
+        btnConsultar.setBorderPainted(false);
+        btnConsultar.setFocusable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(207, 207, 207)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator10)
-                            .addComponent(jSeparator6)
-                            .addComponent(jSeparator4)
-                            .addComponent(jSeparator1)
-                            .addComponent(txtDesc)
-                            .addComponent(txtTipo)
-                            .addComponent(jTextField3)
-                            .addComponent(txtModel)
-                            .addComponent(txtAnio)
-                            .addComponent(txtPrecio)
-                            .addComponent(txtCantidad)
-                            .addComponent(jSeparator2)
-                            .addComponent(jSeparator7)
-                            .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                        .addGap(207, 207, 207)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(239, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jSeparator10)
+                                    .addComponent(jSeparator6)
+                                    .addComponent(jSeparator4)
+                                    .addComponent(jSeparator1)
+                                    .addComponent(txtDesc)
+                                    .addComponent(txtTipo)
+                                    .addComponent(jTextField3)
+                                    .addComponent(txtModel)
+                                    .addComponent(txtAnio)
+                                    .addComponent(txtPrecio)
+                                    .addComponent(txtCantidad)
+                                    .addComponent(jSeparator2)
+                                    .addComponent(jSeparator7)
+                                    .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(250, 250, 250)
+                        .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(261, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(102, 102, 102)
+                .addGap(100, 100, 100)
                 .addComponent(jLabel1)
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +195,7 @@ public class PnConsultarProducto extends javax.swing.JPanel {
                             .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1))
+                    .addComponent(btnConsultar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -196,11 +232,9 @@ public class PnConsultarProducto extends javax.swing.JPanel {
                     .addComponent(txtCantidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
+                .addGap(44, 44, 44)
+                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(95, 95, 95))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -210,9 +244,8 @@ public class PnConsultarProducto extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSalir;
-    private javax.swing.JButton btnmenu;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnConsultar;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

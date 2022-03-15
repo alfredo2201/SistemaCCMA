@@ -49,8 +49,10 @@ public class PnAgregarProducto extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         lblTextoCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoCliente.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoCliente.setText("Cliente:");
 
+        txtNombreCliente.setBackground(new java.awt.Color(255, 255, 255));
         txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtNombreCliente.setBorder(null);
         txtNombreCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -61,33 +63,45 @@ public class PnAgregarProducto extends javax.swing.JPanel {
 
         lblTextoTipo.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoTipo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoTipo.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoTipo.setText("Tipo:");
 
+        cmbTipo.setBackground(new java.awt.Color(255, 255, 255));
         cmbTipo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmbTipo.setForeground(new java.awt.Color(0, 0, 0));
         cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Automovil", "Motocicleta", "Lancha", "Universal" }));
         cmbTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblTextoMarca.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoMarca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoMarca.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoMarca.setText("Marca:");
 
+        cmbMarca.setBackground(new java.awt.Color(255, 255, 255));
         cmbMarca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmbMarca.setForeground(new java.awt.Color(0, 0, 0));
         cmbMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nissan", "Ford", "Toyota", "Kia" }));
         cmbMarca.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblTextoModelo.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoModelo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoModelo.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoModelo.setText("Modelo:");
 
+        cmbModelos1.setBackground(new java.awt.Color(255, 255, 255));
         cmbModelos1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmbModelos1.setForeground(new java.awt.Color(0, 0, 0));
         cmbModelos1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Altima", "Sentra", "Versa", "Tsuru" }));
         cmbModelos1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblTextoAnios.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoAnios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoAnios.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoAnios.setText("Año:");
 
+        cmbAnios.setBackground(new java.awt.Color(255, 255, 255));
         cmbAnios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmbAnios.setForeground(new java.awt.Color(0, 0, 0));
         cmbAnios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1990 - 2000", "2001 - 2010", "2010 - 2013" }));
         cmbAnios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cmbAnios.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +120,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
 
         btnBuscarProducto.setBackground(new java.awt.Color(153, 153, 0));
         btnBuscarProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBuscarProducto.setForeground(new java.awt.Color(0, 0, 0));
         btnBuscarProducto.setText("Buscar");
         btnBuscarProducto.setBorder(null);
         btnBuscarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -123,7 +138,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 242, Short.MAX_VALUE)
+            .addGap(0, 153, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,6 +147,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
 
         btnMetodoPago.setBackground(new java.awt.Color(134, 134, 93));
         btnMetodoPago.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnMetodoPago.setForeground(new java.awt.Color(0, 0, 0));
         btnMetodoPago.setText("Cancelar");
         btnMetodoPago.setBorder(null);
         btnMetodoPago.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -139,6 +155,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
 
         btnContinuarVenta.setBackground(new java.awt.Color(153, 153, 0));
         btnContinuarVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnContinuarVenta.setForeground(new java.awt.Color(0, 0, 0));
         btnContinuarVenta.setText("Continuar Venta");
         btnContinuarVenta.setBorder(null);
         btnContinuarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -154,83 +171,80 @@ public class PnAgregarProducto extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(98, 98, 98)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblTextoTipo)
-                                    .addComponent(cmbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblTextoMarca)
-                                    .addComponent(lblTextoModelo)
-                                    .addComponent(cmbModelos1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblTextoAnios)
-                                    .addComponent(cmbAnios, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblTextoCliente))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(116, 116, 116)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnContinuarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(btnMetodoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(41, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTextoTipo)
+                            .addComponent(cmbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTextoMarca)
+                            .addComponent(lblTextoModelo)
+                            .addComponent(cmbModelos1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTextoAnios)
+                            .addComponent(cmbAnios, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTextoCliente)
+                            .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
+                        .addGap(25, 25, 25))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNombreCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                            .addComponent(jSeparator1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 611, Short.MAX_VALUE)))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTextoCliente)
-                            .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(2, 2, 2)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(lblTextoTipo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblTextoMarca)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTextoModelo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbModelos1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTextoAnios)
-                        .addGap(13, 13, 13)
-                        .addComponent(cmbAnios, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(130, 130, 130)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(68, 68, 68)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblTextoCliente)
+                                    .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addComponent(lblTextoTipo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblTextoMarca)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblTextoModelo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbModelos1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblTextoAnios)
+                                .addGap(13, 13, 13)
+                                .addComponent(cmbAnios, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMetodoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnContinuarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61))
+                .addGap(40, 40, 40))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -30,15 +30,16 @@ public class PnActualizarProducto extends javax.swing.JPanel {
         txtProducto = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        btnMenu3 = new javax.swing.JButton();
-        btnMenu5 = new javax.swing.JButton();
+        tblProductos = new javax.swing.JTable();
+        btnEditar = new javax.swing.JButton();
+        btnMenu = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Producto:");
 
         txtProducto.setEditable(false);
@@ -54,7 +55,7 @@ public class PnActualizarProducto extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -80,7 +81,7 @@ public class PnActualizarProducto extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblProductos);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -97,25 +98,30 @@ public class PnActualizarProducto extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE))
         );
 
-        btnMenu3.setBackground(new java.awt.Color(153, 153, 0));
-        btnMenu3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnMenu3.setText("Editar");
-        btnMenu3.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setBackground(new java.awt.Color(153, 153, 0));
+        btnEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnEditar.setForeground(new java.awt.Color(0, 0, 0));
+        btnEditar.setText("Editar");
+        btnEditar.setBorder(null);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenu3ActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
 
-        btnMenu5.setBackground(new java.awt.Color(153, 153, 0));
-        btnMenu5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnMenu5.setText("Regresar al menu");
-        btnMenu5.addActionListener(new java.awt.event.ActionListener() {
+        btnMenu.setBackground(new java.awt.Color(204, 204, 0));
+        btnMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnMenu.setForeground(new java.awt.Color(0, 0, 0));
+        btnMenu.setText("Regresar al menu");
+        btnMenu.setBorder(null);
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenu5ActionPerformed(evt);
+                btnMenuActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Actualizar producto");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -127,8 +133,8 @@ public class PnActualizarProducto extends javax.swing.JPanel {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnMenu3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMenu5, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,9 +167,9 @@ public class PnActualizarProducto extends javax.swing.JPanel {
                         .addGap(17, 17, 17)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnMenu3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(btnMenu5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(131, 131, 131))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -177,24 +183,24 @@ public class PnActualizarProducto extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtProductoActionPerformed
 
-    private void btnMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenu3ActionPerformed
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnMenu3ActionPerformed
+    }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void btnMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenu5ActionPerformed
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnMenu5ActionPerformed
+    }//GEN-LAST:event_btnMenuActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMenu3;
-    private javax.swing.JButton btnMenu5;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblProductos;
     private javax.swing.JTextField txtProducto;
     // End of variables declaration//GEN-END:variables
 }
