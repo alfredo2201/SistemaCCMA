@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Principal;
+
 import PanelesGlobales.PnContenido;
 import PanelesGlobales.PnMenu;
 import javax.swing.JFrame;
@@ -20,13 +21,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private PnMenu pnMenu = new PnMenu();
     private PnContenido pnContenido = PnContenido.getInstance();
     private static FrmPrincipal instance = null;
+
     private FrmPrincipal() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
-        setLocationRelativeTo(null);        
+        setLocationRelativeTo(null);
         pnMenu.setVisible(true);
-        pnMenu.setLocation(0,143);
-        pnMenu.setSize(320 , 1000);
+        pnMenu.setLocation(0, 143);
+        pnMenu.setSize(320, 1000);
         pnContenido.setVisible(true);
         pnContenido.setLocation(320, 143);
         pnContenido.setSize(1900, 1000);
@@ -184,14 +186,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblVentasEstado;
     private javax.swing.JPanel pnTop;
     // End of variables declaration//GEN-END:variables
-   public static FrmPrincipal getInstance(){
-       if (instance == null) {
-           instance = new FrmPrincipal();
-       }
-       return instance;
-   }
-   
-   public void cerrar(){
-       dispose();
-   }
+   public static FrmPrincipal getInstance() {
+        if (instance == null) {
+            instance = new FrmPrincipal();
+        }
+        return instance;
+    }
+
+    public void cerrar() {
+        dispose();
+    }
 }

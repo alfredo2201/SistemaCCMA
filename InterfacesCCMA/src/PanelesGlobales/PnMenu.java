@@ -5,7 +5,7 @@
  */
 package PanelesGlobales;
 
-import AdministrarProducto.PnMenuProducto;
+import IAdministrarProducto.PnMenuProducto;
 import IAdministrarCliente.PnMenuClientes;
 import IAdministrarVentas.PnMenuVenta;
 import InicioSesion.FrmInicioSesion;
