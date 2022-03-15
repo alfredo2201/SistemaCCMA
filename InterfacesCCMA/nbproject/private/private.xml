@@ -3,17 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/AgregarProducto.java</file>
-            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/InicioSesion/FrmAgregarProducto.java</file>
-            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/PanelesGlobales/PnMenu.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/PnConsularCliente.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/PnRegistrarCliente.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/PnMenuVenta.java</file>
-            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/IRegistrarCliente.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarProducto/PnMenuProducto.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/PnEliminarCliente.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/Principal/FrmPrincipal.java</file>
-            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/IBuscarCliente.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/InicioSesion/FrmInicioSesion.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/AgregarProducto.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/FrmBuscarCliente.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/PnMenuClientes.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/PanelesGlobales/PnMenu.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/PnActualizarCliente.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/PnEditarCliente.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/PanelesGlobales/PnContenido.java</file>
-            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/IEliminarCliente.java</file>
-            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/IConsultarCliente.java</file>
         </group>
     </open-files>
 </project-private>

@@ -5,6 +5,8 @@
  */
 package IAdministrarCliente;
 
+import PanelesGlobales.PnContenido;
+
 /**
  *
  * @author crist
@@ -14,6 +16,13 @@ public class PnMenuClientes extends javax.swing.JPanel {
     /**
      * Creates new form PnMenuClientes
      */
+    private FrmBuscarCliente buscarCliente = new FrmBuscarCliente();
+    private PnRegistrarCliente registrar = new PnRegistrarCliente();
+    private PnEliminarCliente eliminar = new PnEliminarCliente();
+    private PnEditarCliente editar = new PnEditarCliente();
+    private PnConsularCliente consultar = new PnConsularCliente();
+    private PnContenido contenido = PnContenido.getInstance();
+
     public PnMenuClientes() {
         initComponents();
     }
@@ -42,6 +51,11 @@ public class PnMenuClientes extends javax.swing.JPanel {
         btnOpcionRegistrarCliente.setBorder(null);
         btnOpcionRegistrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnOpcionRegistrarCliente.setFocusPainted(false);
+        btnOpcionRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpcionRegistrarClienteActionPerformed(evt);
+            }
+        });
 
         lblTextoMenuClientes.setFont(new java.awt.Font("Segoe UI", 2, 26)); // NOI18N
         lblTextoMenuClientes.setForeground(new java.awt.Color(0, 0, 0));
@@ -55,6 +69,11 @@ public class PnMenuClientes extends javax.swing.JPanel {
         btnOpcionActualizarCliente.setBorder(null);
         btnOpcionActualizarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnOpcionActualizarCliente.setFocusPainted(false);
+        btnOpcionActualizarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpcionActualizarClienteActionPerformed(evt);
+            }
+        });
 
         btnOpcionEliminarCliente.setBackground(new java.awt.Color(204, 204, 0));
         btnOpcionEliminarCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -63,6 +82,11 @@ public class PnMenuClientes extends javax.swing.JPanel {
         btnOpcionEliminarCliente.setBorder(null);
         btnOpcionEliminarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnOpcionEliminarCliente.setFocusPainted(false);
+        btnOpcionEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpcionEliminarClienteActionPerformed(evt);
+            }
+        });
 
         btnOpcionConsultarCliente.setBackground(new java.awt.Color(204, 204, 0));
         btnOpcionConsultarCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -71,6 +95,11 @@ public class PnMenuClientes extends javax.swing.JPanel {
         btnOpcionConsultarCliente.setBorder(null);
         btnOpcionConsultarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnOpcionConsultarCliente.setFocusPainted(false);
+        btnOpcionConsultarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpcionConsultarClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -102,6 +131,46 @@ public class PnMenuClientes extends javax.swing.JPanel {
                 .addGap(136, 136, 136))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnOpcionRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionRegistrarClienteActionPerformed
+        contenido.removeAll();
+        registrar.setVisible(true);
+        registrar.setSize(810, 600);
+        registrar.setLocation(0, -40);
+        contenido.add(registrar);
+        contenido.revalidate();
+        contenido.repaint();
+    }//GEN-LAST:event_btnOpcionRegistrarClienteActionPerformed
+
+    private void btnOpcionActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionActualizarClienteActionPerformed
+                contenido.removeAll();
+        eliminar.setVisible(true);
+        eliminar.setSize(810, 600);
+        eliminar.setLocation(0, -40);
+        contenido.add(eliminar);
+        contenido.revalidate();
+        contenido.repaint();
+    }//GEN-LAST:event_btnOpcionActualizarClienteActionPerformed
+
+    private void btnOpcionEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionEliminarClienteActionPerformed
+                contenido.removeAll();
+        editar.setVisible(true);
+        editar.setSize(810, 600);
+        editar.setLocation(0, -40);
+        contenido.add(editar);
+        contenido.revalidate();
+        contenido.repaint();
+    }//GEN-LAST:event_btnOpcionEliminarClienteActionPerformed
+
+    private void btnOpcionConsultarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionConsultarClienteActionPerformed
+             contenido.removeAll();
+        consultar.setVisible(true);
+        consultar.setSize(810, 600);
+        consultar.setLocation(0, -40);
+        contenido.add(consultar);
+        contenido.revalidate();
+        contenido.repaint();
+    }//GEN-LAST:event_btnOpcionConsultarClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

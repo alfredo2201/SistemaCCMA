@@ -9,12 +9,12 @@ package IAdministrarCliente;
  *
  * @author crist
  */
-public class PnConsularCliente extends javax.swing.JPanel {
+public class PnEditarCliente extends javax.swing.JPanel {
 
     /**
-     * Creates new form PnConsularCliente
+     * Creates new form PnEditarCliente
      */
-    public PnConsularCliente() {
+    public PnEditarCliente() {
         initComponents();
     }
 
@@ -30,24 +30,24 @@ public class PnConsularCliente extends javax.swing.JPanel {
         lblTitulo = new javax.swing.JLabel();
         lblTextoNombre = new javax.swing.JLabel();
         txtNombreCliente = new javax.swing.JTextField();
-        jSeparator5 = new javax.swing.JSeparator();
+        spNombre = new javax.swing.JSeparator();
         lblTextoEmail = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
-        jSeparator7 = new javax.swing.JSeparator();
+        spEmail = new javax.swing.JSeparator();
         lblTextoTelefono = new javax.swing.JLabel();
         txtTelefono = new javax.swing.JTextField();
-        jSeparator8 = new javax.swing.JSeparator();
+        spTelefono = new javax.swing.JSeparator();
         lblTextoRFC = new javax.swing.JLabel();
         txtRFC = new javax.swing.JTextField();
-        jSeparator13 = new javax.swing.JSeparator();
-        btnSalir = new javax.swing.JButton();
+        spRFC = new javax.swing.JSeparator();
+        btnActualizar = new javax.swing.JButton();
         btnMenu = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
-        lblTitulo.setText("Consultar cliente");
+        lblTitulo.setText("Editar cliente");
 
         lblTextoNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTextoNombre.setForeground(new java.awt.Color(0, 0, 0));
@@ -81,11 +81,11 @@ public class PnConsularCliente extends javax.swing.JPanel {
         txtRFC.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtRFC.setBorder(null);
 
-        btnSalir.setBackground(new java.awt.Color(255, 255, 0));
-        btnSalir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnSalir.setForeground(new java.awt.Color(0, 0, 0));
-        btnSalir.setText("Salir");
-        btnSalir.setBorder(null);
+        btnActualizar.setBackground(new java.awt.Color(255, 255, 0));
+        btnActualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(0, 0, 0));
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setBorder(null);
 
         btnMenu.setBackground(new java.awt.Color(153, 153, 0));
         btnMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -107,7 +107,7 @@ public class PnConsularCliente extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(324, 324, 324)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -115,7 +115,7 @@ public class PnConsularCliente extends javax.swing.JPanel {
                             .addComponent(lblTextoRFC)
                             .addGap(10, 10, 10)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jSeparator13)
+                                .addComponent(spRFC)
                                 .addComponent(txtRFC)))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(198, 198, 198)
@@ -128,8 +128,8 @@ public class PnConsularCliente extends javax.swing.JPanel {
                                     .addGap(10, 10, 10)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txtTelefono)
-                                        .addComponent(jSeparator8)
-                                        .addComponent(jSeparator7)))
+                                        .addComponent(spTelefono)
+                                        .addComponent(spEmail)))
                                 .addGroup(layout.createSequentialGroup()
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txtCorreo))
@@ -138,11 +138,11 @@ public class PnConsularCliente extends javax.swing.JPanel {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(lblTitulo)
-                                            .addGap(0, 18, Short.MAX_VALUE))
+                                            .addGap(0, 0, Short.MAX_VALUE))
                                         .addComponent(txtNombreCliente)))))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(317, 317, 317)
-                            .addComponent(jSeparator5))))
+                            .addComponent(spNombre))))
                 .addGap(270, 270, 270))
         );
         layout.setVerticalGroup(
@@ -155,19 +155,19 @@ public class PnConsularCliente extends javax.swing.JPanel {
                     .addComponent(lblTextoNombre)
                     .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTextoEmail))
                 .addGap(8, 8, 8)
-                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTextoTelefono)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
-                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -175,9 +175,9 @@ public class PnConsularCliente extends javax.swing.JPanel {
                         .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(spRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(38, 38, 38)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(84, 84, 84))
@@ -190,17 +190,17 @@ public class PnConsularCliente extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnMenu;
-    private javax.swing.JButton btnSalir;
-    private javax.swing.JSeparator jSeparator13;
-    private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JLabel lblTextoEmail;
     private javax.swing.JLabel lblTextoNombre;
     private javax.swing.JLabel lblTextoRFC;
     private javax.swing.JLabel lblTextoTelefono;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JSeparator spEmail;
+    private javax.swing.JSeparator spNombre;
+    private javax.swing.JSeparator spRFC;
+    private javax.swing.JSeparator spTelefono;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombreCliente;
     private javax.swing.JTextField txtRFC;
