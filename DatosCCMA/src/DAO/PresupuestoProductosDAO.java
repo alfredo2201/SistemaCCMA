@@ -74,7 +74,7 @@ public class PresupuestoProductosDAO extends BaseDAO<PresupuestoProducto> {
     }
 
     @Override
-    public PresupuestoProducto consultarById(Long id) throws DAOException, Exception {
+    public PresupuestoProducto consultarById(Integer id) throws DAOException, Exception {
         if (id == null) {
             throw new DAOException("ID del empleado no encontrado");
         }
@@ -94,8 +94,8 @@ public class PresupuestoProductosDAO extends BaseDAO<PresupuestoProducto> {
                     Presupuesto presupuesto = null;
                     Producto producto = null;
                     pp.setIdPresupuestoProducto(resultadoConsulta.getInt("idPP"));
-                    Long idPresupuesto = resultadoConsulta.getLong("idPresupuesto");
-                    Long idProducto = resultadoConsulta.getLong("idProducto");
+                    Integer idPresupuesto = resultadoConsulta.getInt("idPresupuesto");
+                    Integer idProducto = resultadoConsulta.getInt("idProducto");
                     if (idPresupuesto > 0) {
                         presupuesto = presupuestoDAO.consultarById(idPresupuesto);
                     }
@@ -116,7 +116,7 @@ public class PresupuestoProductosDAO extends BaseDAO<PresupuestoProducto> {
     }
 
     @Override
-    public void eliminar(Long id) throws DAOException {
+    public void eliminar(Integer id) throws DAOException {
         try {
             try (Connection conexion = this.generarConexion()) {
                 Statement comando = conexion.createStatement();
@@ -149,8 +149,8 @@ public class PresupuestoProductosDAO extends BaseDAO<PresupuestoProducto> {
                     Presupuesto presupuesto = null;
                     Producto producto = null;
                     pp.setIdPresupuestoProducto(resultadoConsulta.getInt("idPP"));
-                    Long idPresupuesto = resultadoConsulta.getLong("idPresupuesto");
-                    Long idProducto = resultadoConsulta.getLong("idProducto");
+                    Integer idPresupuesto = resultadoConsulta.getInt("idPresupuesto");
+                    Integer idProducto = resultadoConsulta.getInt("idProducto");
                     if (idPresupuesto > 0) {
                         presupuesto = presupuestoDAO.consultarById(idPresupuesto);
                     }
@@ -171,7 +171,7 @@ public class PresupuestoProductosDAO extends BaseDAO<PresupuestoProducto> {
         }
     }
 
-    public PresupuestoProducto consultarByIdPresupuesto(Long id) throws DAOException, Exception {
+    public PresupuestoProducto consultarByIdPresupuesto(Integer id) throws DAOException, Exception {
         if (id == null) {
             throw new DAOException("ID del presupuesto no encontrado");
         }
@@ -191,8 +191,8 @@ public class PresupuestoProductosDAO extends BaseDAO<PresupuestoProducto> {
                     Presupuesto presupuesto = null;
                     Producto producto = null;
                     pp.setIdPresupuestoProducto(resultadoConsulta.getInt("idPP"));
-                    Long idPresupuesto = resultadoConsulta.getLong("idPresupuesto");
-                    Long idProducto = resultadoConsulta.getLong("idProducto");
+                    Integer idPresupuesto = resultadoConsulta.getInt("idPresupuesto");
+                    Integer idProducto = resultadoConsulta.getInt("idProducto");
                     if (idPresupuesto > 0) {
                         presupuesto = presupuestoDAO.consultarById(idPresupuesto);
                     }
@@ -210,11 +210,6 @@ public class PresupuestoProductosDAO extends BaseDAO<PresupuestoProducto> {
             System.err.println(e.getMessage());
             return pp;
         }
-    }
-
-    @Override
-    public ArrayList<PresupuestoProducto> consultar(String nombreParametro, String nombreEntidad) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

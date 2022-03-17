@@ -75,7 +75,7 @@ public class EmpleadosDAO extends BaseDAO<Empleado> {
     }
 
     @Override
-    public Empleado consultarById(Long id) throws DAOException {
+    public Empleado consultarById(Integer id) throws DAOException {
         if (id == null) {
             throw new DAOException("ID del empleado no encontrado");
         }
@@ -105,7 +105,7 @@ public class EmpleadosDAO extends BaseDAO<Empleado> {
     }
 
     @Override
-    public void eliminar(Long id) throws DAOException {
+    public void eliminar(Integer id) throws DAOException {
         try {
             int conteoRegistroAfectados;
             try (Connection conexion = this.generarConexion()) {
@@ -151,8 +151,4 @@ public class EmpleadosDAO extends BaseDAO<Empleado> {
         }
     }
 
-    @Override
-    public ArrayList<Empleado> consultar(String nombreParametro, String nombreEntidad) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

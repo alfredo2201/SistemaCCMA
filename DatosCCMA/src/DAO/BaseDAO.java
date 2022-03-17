@@ -16,7 +16,7 @@ public abstract class BaseDAO<T> {
 //    private static final String CADENA_CONEXION = "jdbc:mysql://localhost:3306/bd_ccma?autoReconnet=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String CADENA_CONEXION = "jdbc:mysql://127.0.0.1:3306/bd_ccma?useSSL=false";
     private static final String USUARIO = "root";
-    private static final String CONTRASENIA ="1234";
+    private static final String CONTRASENIA ="1602";
     
     public Connection generarConexion()throws SQLException{
         return DriverManager.getConnection(CADENA_CONEXION,USUARIO, CONTRASENIA);
@@ -24,9 +24,8 @@ public abstract class BaseDAO<T> {
     
     public abstract void insertar(T entidad)throws Exception;
     public abstract void actualizar(T entidad)throws DAOException,Exception;
-    public abstract T consultarById(Long id)throws DAOException, Exception;
-    public abstract void eliminar(Long id)throws DAOException;
-    public abstract ArrayList<T>consultar(String nombreParametro, String nombreEntidad)throws DAOException;
+    public abstract T consultarById(Integer id)throws DAOException, Exception;
+    public abstract void eliminar(Integer id)throws DAOException;  
     public abstract ArrayList<T>obtenerTodo()throws DAOException;
 
 }

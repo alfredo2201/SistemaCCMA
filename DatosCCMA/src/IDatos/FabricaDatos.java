@@ -3,18 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control;
-
-import Dominio.Cliente;
+package IDatos;
 
 /**
  *
  * @author Isai Perez
  */
-public class ControlCliente {
-    
-    public void agregar(Cliente cliente){
-    
+public class FabricaDatos {
+
+    public static IDatos getInstance() {
+        return new FachadaDatos();
     }
-    
+
 }

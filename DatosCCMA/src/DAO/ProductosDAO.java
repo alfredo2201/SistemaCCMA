@@ -73,7 +73,7 @@ public class ProductosDAO extends BaseDAO<Producto> {
     }
 
     @Override
-    public Producto consultarById(Long id) throws DAOException {
+    public Producto consultarById(Integer id) throws DAOException {
         if (id == null) {
             throw new DAOException("Id del producto no encontrado");
         }
@@ -104,7 +104,7 @@ public class ProductosDAO extends BaseDAO<Producto> {
     }
 
     @Override
-    public void eliminar(Long id) throws DAOException {
+    public void eliminar(Integer id) throws DAOException {
         try {
             int conteoRegistroAfectados;
             try (Connection conexion = this.generarConexion()) {
@@ -300,7 +300,7 @@ public class ProductosDAO extends BaseDAO<Producto> {
         }
     }
 
-    public ArrayList<Producto> consultarByTipo(int año) throws DAOException {
+    public ArrayList<Producto> consultarByAño(int año) throws DAOException {
         if (año <= 0) {
             throw new DAOException("Año no disponible");
         }
@@ -329,8 +329,4 @@ public class ProductosDAO extends BaseDAO<Producto> {
         }
     }
 
-    @Override
-    public ArrayList<Producto> consultar(String nombreParametro, String nombreEntidad) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

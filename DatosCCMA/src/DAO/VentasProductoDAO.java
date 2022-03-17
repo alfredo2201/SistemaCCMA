@@ -71,7 +71,7 @@ public class VentasProductoDAO extends BaseDAO<VentaProducto> {
     }
 
     @Override
-    public VentaProducto consultarById(Long id) throws DAOException {
+    public VentaProducto consultarById(Integer id) throws DAOException {
         if (id == null) {
             throw new DAOException("ID de la venta producto no encontrado");
         }
@@ -86,8 +86,8 @@ public class VentasProductoDAO extends BaseDAO<VentaProducto> {
                     id);
             ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
             if (resultadoConsulta.next()) {
-                ventaProducto.setProducto(prod.consultarById(resultadoConsulta.getLong("idProducto")));
-                ventaProducto.setVenta(vent.consultarById(resultadoConsulta.getLong("IdVenta")));
+                ventaProducto.setProducto(prod.consultarById(resultadoConsulta.getInt("idProducto")));
+                ventaProducto.setVenta(vent.consultarById(resultadoConsulta.getInt("IdVenta")));
                 ventaProducto.setCantidad(resultadoConsulta.getInt("cantidad"));
                 ventaProducto.setPrecioVenta(resultadoConsulta.getFloat("precioUnitario"));
             }
@@ -100,7 +100,7 @@ public class VentasProductoDAO extends BaseDAO<VentaProducto> {
     }
 
     @Override
-    public void eliminar(Long id) throws DAOException {
+    public void eliminar(Integer id) throws DAOException {
         try {
             int conteoRegistroAfectados;
             try (Connection conexion = this.generarConexion()) {
@@ -132,8 +132,8 @@ public class VentasProductoDAO extends BaseDAO<VentaProducto> {
             while (resultadoConsulta.next()) {
                 VentaProducto ventaProducto = new VentaProducto();
                 ventaProducto.setIdProductoVenta(resultadoConsulta.getInt("idVentaProductos"));
-                ventaProducto.setProducto(prod.consultarById(resultadoConsulta.getLong("idProducto")));
-                ventaProducto.setVenta(vent.consultarById(resultadoConsulta.getLong("IdVenta")));
+                ventaProducto.setProducto(prod.consultarById(resultadoConsulta.getInt("idProducto")));
+                ventaProducto.setVenta(vent.consultarById(resultadoConsulta.getInt("IdVenta")));
                 ventaProducto.setCantidad(resultadoConsulta.getInt("cantidad"));
                 ventaProducto.setPrecioVenta(resultadoConsulta.getFloat("precioUnitario"));
                 listaVentaProducto.add(ventaProducto);
@@ -146,7 +146,7 @@ public class VentasProductoDAO extends BaseDAO<VentaProducto> {
         }
     }
 
-    public VentaProducto consultarByIdVenta(Long id) throws DAOException {
+    public VentaProducto consultarByIdVenta(Integer id) throws DAOException {
         if (id == null) {
             throw new DAOException("ID de la venta no encontrado");
         }
@@ -161,8 +161,8 @@ public class VentasProductoDAO extends BaseDAO<VentaProducto> {
                     id);
             ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
             if (resultadoConsulta.next()) {
-                ventaProducto.setProducto(prod.consultarById(resultadoConsulta.getLong("idProducto")));
-                ventaProducto.setVenta(vent.consultarById(resultadoConsulta.getLong("IdVenta")));
+                ventaProducto.setProducto(prod.consultarById(resultadoConsulta.getInt("idProducto")));
+                ventaProducto.setVenta(vent.consultarById(resultadoConsulta.getInt("IdVenta")));
                 ventaProducto.setCantidad(resultadoConsulta.getInt("cantidad"));
                 ventaProducto.setPrecioVenta(resultadoConsulta.getFloat("precioUnitario"));
             }
@@ -174,9 +174,5 @@ public class VentasProductoDAO extends BaseDAO<VentaProducto> {
         }
     }
 
-    @Override
-    public ArrayList<VentaProducto> consultar(String nombreParametro, String nombreEntidad) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

@@ -73,7 +73,7 @@ public class ClienteDAO extends BaseDAO<Cliente> {
     }
 
     @Override
-    public Cliente consultarById(Long id) throws DAOException, Exception {
+    public Cliente consultarById(Integer id) throws DAOException, Exception {
         if (id == null) {
             throw new Exception("ID del cliente no encontrado");
         }
@@ -130,7 +130,7 @@ public class ClienteDAO extends BaseDAO<Cliente> {
     }
 
     @Override
-    public void eliminar(Long id) throws DAOException {
+    public void eliminar(Integer id) throws DAOException {
         try {
             int conteoRegistroAfectados;
             try (Connection conexion = this.generarConexion()) {
@@ -174,8 +174,7 @@ public class ClienteDAO extends BaseDAO<Cliente> {
             return listaClientes;
         }
     }
-
-    @Override
+    
     public ArrayList<Cliente> consultar(String nombreParametro, String nombreEntidad) throws DAOException {
         ArrayList<Cliente> listaClientes = new ArrayList<>();
         try {
