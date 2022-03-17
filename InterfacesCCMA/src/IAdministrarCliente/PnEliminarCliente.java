@@ -5,17 +5,47 @@
  */
 package IAdministrarCliente;
 
+import DAO.ClienteDAO;
+import Dominio.Cliente;
+import Exceptions.DAOException;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author crist
  */
 public class PnEliminarCliente extends javax.swing.JPanel {
 
+    private final ClienteDAO clDao;
+    ArrayList<Cliente> cLIsta;
+    ArrayList<Cliente> cLIstaEliminar;
+
     /**
      * Creates new form PnEliminarCliente
      */
     public PnEliminarCliente() {
         initComponents();
+        clDao = new ClienteDAO();
+        DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
+        try {
+            cLIsta = clDao.obtenerTodo();
+            if (cLIsta.isEmpty()) {
+                // No hay carnales
+                JOptionPane.showMessageDialog(this, "No se ha encontrado ningun cliente", "No se encontro el cliente", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            cLIsta.forEach(cl -> {
+                dtm.addRow(new Object[]{cl.getId_cliente(), cl.getNombre(),
+                    cl.getApellidos(), cl.getCorreo(), cl.getTelefono(), cl.getRfc(), false});
+            });
+        } catch (Exception e) {
+            // No se pudo obtener
+            JOptionPane.showMessageDialog(this, "No se han podido recuperar los usuarios.", "Error al buscar clientes", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
     /**
@@ -33,7 +63,7 @@ public class PnEliminarCliente extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         pnTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        clienteTable = new javax.swing.JTable();
         btnEliminar = new javax.swing.JButton();
         btnCancelar1 = new javax.swing.JButton();
         btnMenu = new javax.swing.JButton();
@@ -53,21 +83,21 @@ public class PnEliminarCliente extends javax.swing.JPanel {
         txtClienteEliminar.setForeground(new java.awt.Color(0, 0, 0));
         txtClienteEliminar.setBorder(null);
 
-        jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        clienteTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        clienteTable.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        clienteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Nombre", "Correo electrónico", "Teléfono", "RFC", "Eliminar"
+                "ID", "Nombre", "Apellido", "Correo electrónico", "Teléfono", "RFC", "Eliminar"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true
+                false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -78,7 +108,7 @@ public class PnEliminarCliente extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(clienteTable);
 
         javax.swing.GroupLayout pnTablaLayout = new javax.swing.GroupLayout(pnTabla);
         pnTabla.setLayout(pnTablaLayout);
@@ -98,6 +128,11 @@ public class PnEliminarCliente extends javax.swing.JPanel {
         btnEliminar.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorder(null);
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnCancelar1.setBackground(new java.awt.Color(153, 153, 153));
         btnCancelar1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -170,15 +205,38 @@ public class PnEliminarCliente extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
+        for (int i = 0; i < dtm.getRowCount(); i++) {
+            if (((Vector) dtm.getDataVector().elementAt(i)).elementAt(6).equals(true)) {
+                cLIstaEliminar.add(cLIsta.get(i));
+            }
+        }
+
+        if (cLIstaEliminar.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado ningun cliente", "No se selecciono ningun cliente", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        cLIstaEliminar.forEach(cl -> {
+            try {
+                clDao.eliminar(new Long(cl.getId_cliente()));
+            } catch (DAOException e) {
+                JOptionPane.showMessageDialog(this, ("No se ha podido eliminar el cliente del id: " + cl.getId_cliente().toString()), "No se elimino el cliente", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        });
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar1;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnMenu;
+    private javax.swing.JTable clienteTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnTabla;
     private javax.swing.JTextField txtClienteEliminar;

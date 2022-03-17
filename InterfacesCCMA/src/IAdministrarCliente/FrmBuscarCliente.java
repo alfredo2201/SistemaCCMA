@@ -5,11 +5,20 @@
  */
 package IAdministrarCliente;
 
+import DAO.ClienteDAO;
+import Dominio.Cliente;
+import Exceptions.DAOException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author herna
  */
 public class FrmBuscarCliente extends javax.swing.JFrame {
+
+    private final ClienteDAO clDao;
 
     /**
      * Creates new form IBuscarCliente
@@ -18,6 +27,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        clDao = new ClienteDAO();
     }
 
     /**
@@ -40,7 +50,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         pnListaClientes = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        clienteTable = new javax.swing.JTable();
         btnContinuar = new javax.swing.JButton();
         btnCSinCliente = new javax.swing.JButton();
 
@@ -91,11 +101,10 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
 
         pnListaClientes.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.gray, null, null));
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        clienteTable.setBackground(new java.awt.Color(255, 255, 255));
+        clienteTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.gray, null, null));
+        clienteTable.setForeground(new java.awt.Color(0, 0, 0));
+        clienteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -118,7 +127,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(clienteTable);
 
         javax.swing.GroupLayout pnListaClientesLayout = new javax.swing.GroupLayout(pnListaClientes);
         pnListaClientes.setLayout(pnListaClientesLayout);
@@ -137,6 +146,11 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         btnContinuar.setText("Continuar");
         btnContinuar.setBorder(null);
         btnContinuar.setBorderPainted(false);
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContinuarActionPerformed(evt);
+            }
+        });
 
         btnCSinCliente.setBackground(new java.awt.Color(153, 153, 0));
         btnCSinCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -218,6 +232,41 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
+        // Borra todos los rows
+        dtm.setRowCount(0);
+
+        if (!txtNombreCliente2.getText().isEmpty()) {
+            String ent = "\"%" + txtNombreCliente2.getText() + "%\"";
+            try {
+                ArrayList<Cliente> cLista = clDao.consultar("nombre", ent);
+                if (cLista.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "No se ha encontrado ningun cliente", "No se encontro el cliente", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+                cLista.forEach(cl -> {
+                    dtm.addRow(new Object[]{cl.getNombre(), cl.getRfc(), cl.getCorreo()});
+                });
+            } catch (DAOException e) {
+                System.out.println(e.getMessage());
+            }
+        } else if (!txtRFC2.getText().isEmpty()) {
+            String ent = "\"" + txtRFC2.getText() + "\"";
+            try {
+                ArrayList<Cliente> cLista = clDao.consultar("RFC", ent);
+                cLista.forEach(cl -> {
+                    dtm.addRow(new Object[]{cl.getNombre(), cl.getRfc(), cl.getCorreo()});
+                });
+            } catch (DAOException e) {
+                System.out.println(e.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Inserte informacion del cliente a buscar.", "Error al buscar cliente", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnContinuarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -257,6 +306,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCSinCliente;
     private javax.swing.JButton btnContinuar;
+    private javax.swing.JTable clienteTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JPanel jPanel1;
@@ -264,7 +314,6 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblTextoRFC;
     private javax.swing.JPanel pnListaClientes;
     private javax.swing.JTextField txtNombreCliente2;

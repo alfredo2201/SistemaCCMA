@@ -117,7 +117,7 @@ public class PresupuestoDAO extends BaseDAO<Presupuesto> {
     }
 
     @Override
-    public ArrayList<Presupuesto> consultar() throws DAOException {
+    public ArrayList<Presupuesto> obtenerTodo() throws DAOException {
         ArrayList<Presupuesto> listaPresupuesto = new ArrayList<>();
         try {
             Connection conexion = this.generarConexion();
@@ -192,5 +192,10 @@ public class PresupuestoDAO extends BaseDAO<Presupuesto> {
             System.err.println(e.getMessage());
             return listaPresupuesto;
         }
+    }
+
+    @Override
+    public ArrayList<Presupuesto> consultar(String nombreParametro, String nombreEntidad) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

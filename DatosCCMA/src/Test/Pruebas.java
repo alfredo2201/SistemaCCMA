@@ -28,6 +28,8 @@ public class Pruebas {
         ProductosDAO productosDAO = new ProductosDAO();
         VentasDAO ventasDAO = new VentasDAO();
         VentasProductoDAO vpdao = new VentasProductoDAO();
+//        String ent = "\"%" + "Nombre" + "%\"";
+//        System.out.println(CDAO.consultar("nombre", ent));
 
 //        Cliente c = new Cliente("Juan", "Bajeca", "juanBaca@gmail.com", "rfcsqwue2267s", "6682107900");
 //        CDAO.insertar(c);

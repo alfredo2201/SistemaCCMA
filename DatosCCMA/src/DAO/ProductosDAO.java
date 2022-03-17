@@ -123,7 +123,7 @@ public class ProductosDAO extends BaseDAO<Producto> {
     }
 
     @Override
-    public ArrayList<Producto> consultar() throws DAOException {
+    public ArrayList<Producto> obtenerTodo() throws DAOException {
 
         ArrayList<Producto> listaProductos = new ArrayList<>();
 
@@ -327,5 +327,10 @@ public class ProductosDAO extends BaseDAO<Producto> {
             System.err.println(e.getMessage());
             return listaProductos;
         }
+    }
+
+    @Override
+    public ArrayList<Producto> consultar(String nombreParametro, String nombreEntidad) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

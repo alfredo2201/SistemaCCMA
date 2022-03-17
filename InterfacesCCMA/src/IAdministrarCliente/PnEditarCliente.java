@@ -5,17 +5,34 @@
  */
 package IAdministrarCliente;
 
+import DAO.ClienteDAO;
+import Dominio.Cliente;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author crist
  */
 public class PnEditarCliente extends javax.swing.JPanel {
+    private Cliente clEditar;
+    private final ClienteDAO clDao;
 
     /**
      * Creates new form PnEditarCliente
      */
     public PnEditarCliente() {
         initComponents();
+        clDao = new ClienteDAO();
+    }
+    
+    /**
+     * Creates new form PnEditarCliente
+     * @param clEditar
+     */
+    public PnEditarCliente(Cliente clEditar) {
+        initComponents();
+        clDao = new ClienteDAO();
+        this.clEditar = clEditar;
     }
 
     /**
@@ -86,6 +103,11 @@ public class PnEditarCliente extends javax.swing.JPanel {
         btnActualizar.setForeground(new java.awt.Color(0, 0, 0));
         btnActualizar.setText("Actualizar");
         btnActualizar.setBorder(null);
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnMenu.setBackground(new java.awt.Color(153, 153, 0));
         btnMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -168,7 +190,6 @@ public class PnEditarCliente extends javax.swing.JPanel {
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
                 .addComponent(spTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblTextoRFC)
@@ -187,6 +208,27 @@ public class PnEditarCliente extends javax.swing.JPanel {
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        String nombre = txtNombreCliente.getText();
+        //TODO
+//        String apellidos = txtApellidosCliente.getText();
+        String email = txtCorreo.getText();
+        String telefono = txtTelefono.getText();
+        String RFC = txtRFC.getText();
+
+        if (nombre.isEmpty() || email.isEmpty() || telefono.isEmpty() || RFC.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Favor de llenar todas las casillas.", "No se pudo editar el cliente.", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                Cliente cl = new Cliente(nombre, "", email, RFC, telefono);
+                clDao.actualizar(cl);
+                JOptionPane.showMessageDialog(this, "Error al intentar editar al cliente.", "ERROR: Editar cliente", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error al intentar editar al cliente.", "ERROR: Editar cliente", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

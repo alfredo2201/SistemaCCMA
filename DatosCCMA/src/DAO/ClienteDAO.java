@@ -77,15 +77,15 @@ public class ClienteDAO extends BaseDAO<Cliente> {
         if (id == null) {
             throw new Exception("ID del cliente no encontrado");
         }
-        Cliente cliente=new Cliente();
+        Cliente cliente = new Cliente();
         try {
             try (Connection conexion = this.generarConexion()) {
                 Statement comando = conexion.createStatement();
                 String consultarSQL;
-                consultarSQL=String.format("SELECT id, nombre, apellidos, RFC, correo, telefono FROM clientes WHERE id=%d",
+                consultarSQL = String.format("SELECT id, nombre, apellidos, RFC, correo, telefono FROM clientes WHERE id=%d",
                         id);
-                ResultSet resultadoConsulta=comando.executeQuery(consultarSQL);
-                if(resultadoConsulta.next()){
+                ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
+                if (resultadoConsulta.next()) {
                     cliente.setId_cliente(resultadoConsulta.getInt("id"));
                     cliente.setNombre(resultadoConsulta.getString("nombre"));
                     cliente.setApellidos(resultadoConsulta.getString("apellidos"));
@@ -105,15 +105,15 @@ public class ClienteDAO extends BaseDAO<Cliente> {
         if (RFC == null) {
             throw new Exception("RFC del cliente no encontrado");
         }
-        Cliente cliente=new Cliente();
+        Cliente cliente = new Cliente();
         try {
             try (Connection conexion = this.generarConexion()) {
                 Statement comando = conexion.createStatement();
                 String consultarSQL;
-                consultarSQL=String.format("SELECT id, nombre, apellidos, RFC, correo, telefono FROM clientes WHERE RFC='%s'",
+                consultarSQL = String.format("SELECT id, nombre, apellidos, RFC, correo, telefono FROM clientes WHERE RFC='%s'",
                         RFC);
-                ResultSet resultadoConsulta=comando.executeQuery(consultarSQL);
-                if(resultadoConsulta.next()){
+                ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
+                if (resultadoConsulta.next()) {
                     cliente.setId_cliente(resultadoConsulta.getInt("id"));
                     cliente.setNombre(resultadoConsulta.getString("nombre"));
                     cliente.setApellidos(resultadoConsulta.getString("apellidos"));
@@ -128,6 +128,7 @@ public class ClienteDAO extends BaseDAO<Cliente> {
             return cliente;
         }
     }
+
     @Override
     public void eliminar(Long id) throws DAOException {
         try {
@@ -146,19 +147,45 @@ public class ClienteDAO extends BaseDAO<Cliente> {
             System.err.println(ex.getMessage());
         }
     }
-    
 
     @Override
-    public ArrayList<Cliente> consultar() throws DAOException {
+    public ArrayList<Cliente> obtenerTodo() throws DAOException {
         ArrayList<Cliente> listaClientes = new ArrayList<>();
         try {
             try (Connection conexion = this.generarConexion()) {
                 Statement comando = conexion.createStatement();
                 String consultarSQL;
-                consultarSQL=String.format("SELECT id, nombre, apellidos, RFC, correo, telefono FROM clientes");
-                ResultSet resultadoConsulta=comando.executeQuery(consultarSQL);
-                while(resultadoConsulta.next()){
-                    Cliente cliente=new Cliente();
+                consultarSQL = String.format("SELECT id, nombre, apellidos, RFC, correo, telefono FROM clientes");
+                ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
+                while (resultadoConsulta.next()) {
+                    Cliente cliente = new Cliente();
+                    cliente.setId_cliente(resultadoConsulta.getInt("id"));
+                    cliente.setNombre(resultadoConsulta.getString("nombre"));
+                    cliente.setApellidos(resultadoConsulta.getString("apellidos"));
+                    cliente.setRfc(resultadoConsulta.getString("RFC"));
+                    cliente.setCorreo(resultadoConsulta.getString("correo"));
+                    cliente.setTelefono(resultadoConsulta.getString("telefono"));
+                    listaClientes.add(cliente);
+                }
+            }
+            return listaClientes;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return listaClientes;
+        }
+    }
+
+    @Override
+    public ArrayList<Cliente> consultar(String nombreParametro, String nombreEntidad) throws DAOException {
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+        try {
+            try (Connection conexion = this.generarConexion()) {
+                Statement comando = conexion.createStatement();
+                String consultarSQL;
+                consultarSQL = String.format("SELECT id, nombre, apellidos, RFC, correo, telefono FROM clientes WHERE %s LIKE %s", nombreParametro, nombreEntidad);
+                ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
+                while (resultadoConsulta.next()) {
+                    Cliente cliente = new Cliente();
                     cliente.setId_cliente(resultadoConsulta.getInt("id"));
                     cliente.setNombre(resultadoConsulta.getString("nombre"));
                     cliente.setApellidos(resultadoConsulta.getString("apellidos"));

@@ -133,7 +133,7 @@ public class PresupuestoProductosDAO extends BaseDAO<PresupuestoProducto> {
     }
 
     @Override
-    public ArrayList<PresupuestoProducto> consultar() throws DAOException {
+    public ArrayList<PresupuestoProducto> obtenerTodo() throws DAOException {
         ArrayList<PresupuestoProducto> listaPresupuesto = new ArrayList<>();
         PresupuestoDAO presupuestoDAO = new PresupuestoDAO();
         ProductosDAO productoDAO = new ProductosDAO();
@@ -210,6 +210,11 @@ public class PresupuestoProductosDAO extends BaseDAO<PresupuestoProducto> {
             System.err.println(e.getMessage());
             return pp;
         }
+    }
+
+    @Override
+    public ArrayList<PresupuestoProducto> consultar(String nombreParametro, String nombreEntidad) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
