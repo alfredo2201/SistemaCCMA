@@ -7,6 +7,7 @@ package IAdministrarCliente;
 
 import DAO.ClienteDAO;
 import Dominio.Cliente;
+import PanelesGlobales.PnContenido;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,8 +15,11 @@ import javax.swing.JOptionPane;
  * @author crist
  */
 public class PnEditarCliente extends javax.swing.JPanel {
+
     private Cliente clEditar;
     private final ClienteDAO clDao;
+
+    private PnContenido pnContenido = PnContenido.getInstance();
 
     /**
      * Creates new form PnEditarCliente
@@ -24,9 +28,10 @@ public class PnEditarCliente extends javax.swing.JPanel {
         initComponents();
         clDao = new ClienteDAO();
     }
-    
+
     /**
      * Creates new form PnEditarCliente
+     *
      * @param clEditar
      */
     public PnEditarCliente(Cliente clEditar) {
@@ -206,7 +211,9 @@ public class PnEditarCliente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        // TODO add your handling code here:
+        pnContenido.removeAll();
+        pnContenido.revalidate();
+        pnContenido.repaint();
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
