@@ -110,7 +110,7 @@ public class ClienteDAO extends BaseDAO<Cliente> {
             try (Connection conexion = this.generarConexion()) {
                 Statement comando = conexion.createStatement();
                 String consultarSQL;
-                consultarSQL = String.format("SELECT id, nombre, apellidos, RFC, correo, telefono FROM clientes WHERE RFC='%s'",
+                consultarSQL = String.format("SELECT id, nombre, apellidos, RFC, correo, telefono FROM clientes WHERE RFC LIKE '%s'",
                         RFC);
                 ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
                 if (resultadoConsulta.next()) {
