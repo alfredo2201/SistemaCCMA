@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class PnRegistrarCliente extends javax.swing.JPanel {
 
     private final ClienteDAO clDao;
-    private PnContenido pnContenido = PnContenido.getInstance();
+    private PnContenido pnContenido = PnContenido.getInstance();    
 
     /**
      * Creates new form PnRegistrarCliente
@@ -154,7 +154,11 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        PnMenuClientes pnMnCliente = new PnMenuClientes();
         pnContenido.removeAll();
+        pnMnCliente.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
+        pnMnCliente.setLocation(0, -40);
+        pnContenido.add(pnMnCliente);
         pnContenido.revalidate();
         pnContenido.repaint();
     }//GEN-LAST:event_btnCancelarActionPerformed

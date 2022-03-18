@@ -17,6 +17,7 @@ public class PnConsularCliente extends javax.swing.JPanel {
      * Creates new form PnConsularCliente
      */
     private PnContenido pnContenido = PnContenido.getInstance();
+    
 
     public PnConsularCliente() {
         initComponents();
@@ -34,7 +35,6 @@ public class PnConsularCliente extends javax.swing.JPanel {
         lblTitulo = new javax.swing.JLabel();
         lblTextoNombre = new javax.swing.JLabel();
         txtNombreCliente = new javax.swing.JTextField();
-        jSeparator5 = new javax.swing.JSeparator();
         lblTextoEmail = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
@@ -46,15 +46,18 @@ public class PnConsularCliente extends javax.swing.JPanel {
         jSeparator13 = new javax.swing.JSeparator();
         btnSalir = new javax.swing.JButton();
         btnMenu = new javax.swing.JButton();
+        jSeparator9 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Consultar cliente");
 
         lblTextoNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTextoNombre.setForeground(new java.awt.Color(0, 0, 0));
+        lblTextoNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoNombre.setText("Nombre:");
 
         txtNombreCliente.setBackground(new java.awt.Color(255, 255, 255));
@@ -63,6 +66,7 @@ public class PnConsularCliente extends javax.swing.JPanel {
 
         lblTextoEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTextoEmail.setForeground(new java.awt.Color(0, 0, 0));
+        lblTextoEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoEmail.setText("Correo electrónico:");
 
         txtCorreo.setBackground(new java.awt.Color(255, 255, 255));
@@ -71,6 +75,7 @@ public class PnConsularCliente extends javax.swing.JPanel {
 
         lblTextoTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTextoTelefono.setForeground(new java.awt.Color(0, 0, 0));
+        lblTextoTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoTelefono.setText("Teléfono:");
 
         txtTelefono.setBackground(new java.awt.Color(255, 255, 255));
@@ -79,6 +84,7 @@ public class PnConsularCliente extends javax.swing.JPanel {
 
         lblTextoRFC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTextoRFC.setForeground(new java.awt.Color(0, 0, 0));
+        lblTextoRFC.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoRFC.setText("RFC:");
 
         txtRFC.setBackground(new java.awt.Color(255, 255, 255));
@@ -106,65 +112,54 @@ public class PnConsularCliente extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(324, 324, 324)
+                        .addComponent(lblTextoRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(286, 286, 286)
-                            .addComponent(lblTextoRFC)
-                            .addGap(10, 10, 10)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jSeparator13)
-                                .addComponent(txtRFC)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(198, 198, 198)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblTextoEmail)
-                                .addComponent(lblTextoTelefono)
-                                .addComponent(lblTextoNombre))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtTelefono)
-                                        .addComponent(jSeparator8)
-                                        .addComponent(jSeparator7)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtCorreo))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(lblTitulo)
-                                            .addGap(0, 18, Short.MAX_VALUE))
-                                        .addComponent(txtNombreCliente)))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(317, 317, 317)
-                            .addComponent(jSeparator5))))
-                .addGap(270, 270, 270))
+                            .addComponent(jSeparator13)
+                            .addComponent(txtRFC)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblTextoEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblTextoTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblTextoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTelefono)
+                            .addComponent(jSeparator8)
+                            .addComponent(jSeparator7)
+                            .addComponent(txtCorreo)
+                            .addComponent(txtNombreCliente)
+                            .addComponent(jSeparator9))))
+                .addGap(180, 180, 180))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(200, Short.MAX_VALUE)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(200, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(33, 33, 33)
                 .addComponent(lblTitulo)
-                .addGap(42, 42, 42)
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTextoNombre)
                     .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(1, 1, 1)
+                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTextoEmail))
-                .addGap(8, 8, 8)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -172,7 +167,7 @@ public class PnConsularCliente extends javax.swing.JPanel {
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
                 .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblTextoRFC)
@@ -180,16 +175,20 @@ public class PnConsularCliente extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        PnMenuClientes pnMnCliente = new PnMenuClientes();
         pnContenido.removeAll();
+        pnMnCliente.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
+        pnMnCliente.setLocation(0, -40);
+        pnContenido.add(pnMnCliente);
         pnContenido.revalidate();
         pnContenido.repaint();
     }//GEN-LAST:event_btnMenuActionPerformed
@@ -199,9 +198,9 @@ public class PnConsularCliente extends javax.swing.JPanel {
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnSalir;
     private javax.swing.JSeparator jSeparator13;
-    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JLabel lblTextoEmail;
     private javax.swing.JLabel lblTextoNombre;
     private javax.swing.JLabel lblTextoRFC;

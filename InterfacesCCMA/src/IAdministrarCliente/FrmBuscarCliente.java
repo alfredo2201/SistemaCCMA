@@ -8,6 +8,7 @@ package IAdministrarCliente;
 import DAO.ClienteDAO;
 import Dominio.Cliente;
 import Exceptions.DAOException;
+import PanelesGlobales.PnContenido;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -19,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 public class FrmBuscarCliente extends javax.swing.JFrame {
 
     private final ClienteDAO clDao;
+    private PnContenido contenido = PnContenido.getInstance();
+    private PnEditarCliente editar = new PnEditarCliente();
 
     /**
      * Creates new form IBuscarCliente
@@ -252,37 +255,46 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
-        // Borra todos los rows
-        dtm.setRowCount(0);
+//        DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
+//        // Borra todos los rows
+//        dtm.setRowCount(0);
+//
+//        if (!txtNombreCliente2.getText().isEmpty()) {
+//            String ent = "\"%" + txtNombreCliente2.getText() + "%\"";
+//            try {
+//                ArrayList<Cliente> cLista = clDao.consultar("nombre", ent);
+//                if (cLista.isEmpty()) {
+//                    JOptionPane.showMessageDialog(this, "No se ha encontrado ningun cliente", "No se encontro el cliente", JOptionPane.INFORMATION_MESSAGE);
+//                    return;
+//                }
+//                cLista.forEach(cl -> {
+//                    dtm.addRow(new Object[]{cl.getNombre(), cl.getRfc(), cl.getCorreo()});
+//                });
+//            } catch (DAOException e) {
+//                System.out.println(e.getMessage());
+//            }
+//        } else if (!txtRFC2.getText().isEmpty()) {
+//            String ent = "\"" + txtRFC2.getText() + "\"";
+//            try {
+//                ArrayList<Cliente> cLista = clDao.consultar("RFC", ent);
+//                cLista.forEach(cl -> {
+//                    dtm.addRow(new Object[]{cl.getNombre(), cl.getRfc(), cl.getCorreo()});
+//                });
+//            } catch (DAOException e) {
+//                System.out.println(e.getMessage());
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Inserte informacion del cliente a buscar.", "Error al buscar cliente", JOptionPane.ERROR_MESSAGE);
+//        }
 
-        if (!txtNombreCliente2.getText().isEmpty()) {
-            String ent = "\"%" + txtNombreCliente2.getText() + "%\"";
-            try {
-                ArrayList<Cliente> cLista = clDao.consultar("nombre", ent);
-                if (cLista.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "No se ha encontrado ningun cliente", "No se encontro el cliente", JOptionPane.INFORMATION_MESSAGE);
-                    return;
-                }
-                cLista.forEach(cl -> {
-                    dtm.addRow(new Object[]{cl.getNombre(), cl.getRfc(), cl.getCorreo()});
-                });
-            } catch (DAOException e) {
-                System.out.println(e.getMessage());
-            }
-        } else if (!txtRFC2.getText().isEmpty()) {
-            String ent = "\"" + txtRFC2.getText() + "\"";
-            try {
-                ArrayList<Cliente> cLista = clDao.consultar("RFC", ent);
-                cLista.forEach(cl -> {
-                    dtm.addRow(new Object[]{cl.getNombre(), cl.getRfc(), cl.getCorreo()});
-                });
-            } catch (DAOException e) {
-                System.out.println(e.getMessage());
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Inserte informacion del cliente a buscar.", "Error al buscar cliente", JOptionPane.ERROR_MESSAGE);
-        }
+        contenido.removeAll();
+        editar.setVisible(true);
+        editar.setSize(contenido.getSize().width, contenido.getSize().height);
+        editar.setLocation(0, 0);
+        contenido.add(editar);
+        contenido.revalidate();
+        contenido.repaint();
+        dispose();
     }//GEN-LAST:event_btnContinuarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed

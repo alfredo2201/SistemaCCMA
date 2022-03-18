@@ -15,11 +15,9 @@ public class PnMenuClientes extends javax.swing.JPanel {
 
     /**
      * Creates new form PnMenuClientes
-     */
-    private FrmBuscarCliente buscarCliente = new FrmBuscarCliente();
+     */    
     private PnRegistrarCliente registrar = new PnRegistrarCliente();
-    private PnEliminarCliente eliminar = new PnEliminarCliente();
-    private PnEditarCliente editar = new PnEditarCliente();
+    private PnEliminarCliente eliminar = new PnEliminarCliente();    
     private PnConsularCliente consultar = new PnConsularCliente();
     private PnContenido contenido = PnContenido.getInstance();
 
@@ -143,13 +141,9 @@ public class PnMenuClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_btnOpcionRegistrarClienteActionPerformed
 
     private void btnOpcionActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionActualizarClienteActionPerformed
-        contenido.removeAll();
-        editar.setVisible(true);
-        editar.setSize(contenido.getSize().width, contenido.getSize().height);
-        editar.setLocation(0, 0);
-        contenido.add(editar);
-        contenido.revalidate();
-        contenido.repaint();
+        FrmBuscarCliente buscar = new FrmBuscarCliente();
+        buscar.setVisible(true);
+        
     }//GEN-LAST:event_btnOpcionActualizarClienteActionPerformed
 
     private void btnOpcionEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionEliminarClienteActionPerformed
