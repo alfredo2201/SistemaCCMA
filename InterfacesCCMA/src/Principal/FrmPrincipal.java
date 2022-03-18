@@ -7,11 +7,12 @@ package Principal;
 
 import PanelesGlobales.PnContenido;
 import PanelesGlobales.PnMenu;
+import java.awt.Dimension;
 import javax.swing.JFrame;
 
 /**
  *
- * @author crist
+ * @author Isai Perez
  */
 public class FrmPrincipal extends javax.swing.JFrame {
 
@@ -23,18 +24,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private static FrmPrincipal instance = null;
 
     private FrmPrincipal() {
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
-        setLocationRelativeTo(null);
-        pnMenu.setVisible(true);
-        pnMenu.setLocation(0, 143);
-        pnMenu.setSize(320, 1000);
-        pnContenido.setVisible(true);
-        pnContenido.setLocation(320, 143);
-        pnContenido.setSize(1900, 1000);
-        this.add(pnMenu);
-        this.add(pnContenido);
-
+        iniciarPantalla();
     }
 
     /**
@@ -110,7 +101,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(lblIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblNombreEmpresa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 422, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1179, Short.MAX_VALUE)
                 .addGroup(pnTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHoraTexto)
                     .addComponent(lblHora)
@@ -167,7 +158,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(468, Short.MAX_VALUE))
+                .addContainerGap(937, Short.MAX_VALUE))
         );
 
         pack();
@@ -195,5 +186,22 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     public void cerrar() {
         dispose();
+    }
+
+    private void iniciarPantalla() {
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        Dimension screenSize = new Dimension(getSize().width, getSize().width);
+        this.getSize(screenSize);
+        setLocationRelativeTo(null);
+        pnMenu.setVisible(true);
+        pnMenu.setLocation(0, 143);
+        int h = screenSize.height;
+        int w = screenSize.width;
+        pnMenu.setSize(321, h - 143);
+        pnContenido.setVisible(true);
+        pnContenido.setLocation(320, 143);
+        pnContenido.setSize(w - 321, h - 143);
+        this.add(pnMenu);
+        this.add(pnContenido);
     }
 }

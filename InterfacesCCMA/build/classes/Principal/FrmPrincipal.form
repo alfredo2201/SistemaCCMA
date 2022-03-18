@@ -31,7 +31,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Component id="pnTop" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="468" max="32767" attributes="0"/>
+              <EmptySpace pref="937" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -59,7 +59,7 @@
                   <Component id="lblIcono" min="-2" pref="114" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="lblNombreEmpresa" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="422" max="32767" attributes="0"/>
+                  <EmptySpace pref="1179" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblHoraTexto" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblHora" alignment="0" min="-2" max="-2" attributes="0"/>
