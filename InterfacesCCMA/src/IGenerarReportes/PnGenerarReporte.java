@@ -4,6 +4,7 @@
  */
 package IGenerarReportes;
 
+import PanelesGlobales.PnContenido;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -17,6 +18,9 @@ public class PnGenerarReporte extends javax.swing.JPanel {
     /**
      * Creates new form GenerarReporte
      */
+    private PnContenido contenido = PnContenido.getInstance();
+    private PnReporteGenerado reporte = new PnReporteGenerado();
+
     public PnGenerarReporte() {
         initComponents();
     }
@@ -31,12 +35,14 @@ public class PnGenerarReporte extends javax.swing.JPanel {
     private void initComponents() {
 
         btnGenReporte = new javax.swing.JButton();
-        txtCancelarProduc = new javax.swing.JButton();
+        txtCancelar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         dcFechaInicio = new com.toedter.calendar.JDateChooser();
         dcFechaFin = new com.toedter.calendar.JDateChooser();
+        rbMesAnterior = new javax.swing.JRadioButton();
+        rbMedioMes = new javax.swing.JRadioButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -52,12 +58,12 @@ public class PnGenerarReporte extends javax.swing.JPanel {
             }
         });
 
-        txtCancelarProduc.setBackground(new java.awt.Color(153, 153, 0));
-        txtCancelarProduc.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtCancelarProduc.setForeground(new java.awt.Color(0, 0, 0));
-        txtCancelarProduc.setText("Cancelar");
-        txtCancelarProduc.setBorder(null);
-        txtCancelarProduc.setBorderPainted(false);
+        txtCancelar.setBackground(new java.awt.Color(153, 153, 153));
+        txtCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCancelar.setForeground(new java.awt.Color(0, 0, 0));
+        txtCancelar.setText("Cancelar");
+        txtCancelar.setBorder(null);
+        txtCancelar.setBorderPainted(false);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -77,25 +83,53 @@ public class PnGenerarReporte extends javax.swing.JPanel {
         dcFechaFin.setBackground(new java.awt.Color(255, 255, 255));
         dcFechaFin.setForeground(new java.awt.Color(0, 0, 0));
 
+        rbMesAnterior.setBackground(new java.awt.Color(255, 255, 255));
+        rbMesAnterior.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rbMesAnterior.setForeground(new java.awt.Color(0, 0, 0));
+        rbMesAnterior.setText("1 Mes");
+        rbMesAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbMesAnteriorActionPerformed(evt);
+            }
+        });
+
+        rbMedioMes.setBackground(new java.awt.Color(255, 255, 255));
+        rbMedioMes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rbMedioMes.setForeground(new java.awt.Color(0, 0, 0));
+        rbMedioMes.setText("15 Días");
+        rbMedioMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbMedioMesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(63, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(txtCancelarProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGenReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(3, 3, 3)
-                        .addComponent(dcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(txtCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGenReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(jLabel5)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(75, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(rbMedioMes)
+                        .addGap(26, 26, 26)
+                        .addComponent(rbMesAnterior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(239, 239, 239))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,38 +138,61 @@ public class PnGenerarReporte extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(119, 119, 119)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 1, Short.MAX_VALUE)
-                        .addComponent(dcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(dcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(dcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbMesAnterior)
+                    .addComponent(rbMedioMes))
+                .addGap(34, 34, 34)
                 .addComponent(btnGenReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(txtCancelarProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenReporteActionPerformed
-        // TODO add your handling code here:
-        Date fechaI = dcFechaInicio.getDate();
-        Date fechaF = dcFechaFin.getDate();
-        //        Date[] fechas;
-        //        fechas = new Date[2];
-        //        fechas[0] = fechaI;
-        //        fechas[1] = fechaF;
+//        // TODO add your handling code here:
+//        Date fechaI = dcFechaInicio.getDate();
+//        Date fechaF = dcFechaFin.getDate();
+//
+//        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
+//        JOptionPane.showMessageDialog(null, "La fecha es del: " + formato.format(fechaI) + " al " + formato.format(fechaF));
 
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
-        JOptionPane.showMessageDialog(null, "La fecha es del: " + formato.format(fechaI) + " al " + formato.format(fechaF));
-
+        contenido.removeAll();
+        reporte.setVisible(true);
+        reporte.setSize(contenido.getSize().width, contenido.getSize().height);
+        reporte.setLocation(0, 0);
+        contenido.add(reporte);
+        contenido.revalidate();
+        contenido.repaint();
     }//GEN-LAST:event_btnGenReporteActionPerformed
+
+    private void rbMesAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMesAnteriorActionPerformed
+
+        if (rbMesAnterior.isSelected()) {
+            rbMedioMes.setSelected(false);
+            dcFechaInicio.setEnabled(false);
+            dcFechaFin.setEnabled(false);
+        } else {
+            dcFechaInicio.setEnabled(true);
+            dcFechaFin.setEnabled(true);
+        }
+    }//GEN-LAST:event_rbMesAnteriorActionPerformed
+
+    private void rbMedioMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMedioMesActionPerformed
+        if (rbMedioMes.isSelected()) {
+            rbMesAnterior.setSelected(false);
+            dcFechaInicio.setEnabled(false);
+            dcFechaFin.setEnabled(false);
+        } else {
+            dcFechaInicio.setEnabled(true);
+            dcFechaFin.setEnabled(true);
+        }
+    }//GEN-LAST:event_rbMedioMesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -145,6 +202,8 @@ public class PnGenerarReporte extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JButton txtCancelarProduc;
+    private javax.swing.JRadioButton rbMedioMes;
+    private javax.swing.JRadioButton rbMesAnterior;
+    private javax.swing.JButton txtCancelar;
     // End of variables declaration//GEN-END:variables
 }

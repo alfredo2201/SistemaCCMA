@@ -5,6 +5,10 @@
  */
 package IAdministrarVentas;
 
+import IAdministrarCliente.FrmBuscarCliente;
+import IGenerarReportes.PnGenerarReporte;
+import PanelesGlobales.PnContenido;
+
 /**
  *
  * @author crist
@@ -14,6 +18,9 @@ public class PnMenuVenta extends javax.swing.JPanel {
     /**
      * Creates new form PnMenuVenta
      */
+    private PnContenido contenido = PnContenido.getInstance();
+    private PnGenerarReporte generarReporte = new PnGenerarReporte();
+
     public PnMenuVenta() {
         initComponents();
     }
@@ -27,23 +34,24 @@ public class PnMenuVenta extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnOpcionConsultarProductos = new javax.swing.JButton();
+        btnOpcionConsultarVenta = new javax.swing.JButton();
         btnOpcionEliminarProducto = new javax.swing.JButton();
-        btnOpcionRegistrarProducto = new javax.swing.JButton();
+        btnOpcionRegistrarVenta = new javax.swing.JButton();
         lblTextoMenuClientes = new javax.swing.JLabel();
+        btnOpcionGenerarReporte = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        btnOpcionConsultarProductos.setBackground(new java.awt.Color(204, 204, 0));
-        btnOpcionConsultarProductos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnOpcionConsultarProductos.setForeground(new java.awt.Color(0, 0, 0));
-        btnOpcionConsultarProductos.setText("Consultar Ventas");
-        btnOpcionConsultarProductos.setBorder(null);
-        btnOpcionConsultarProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnOpcionConsultarProductos.setFocusPainted(false);
-        btnOpcionConsultarProductos.addActionListener(new java.awt.event.ActionListener() {
+        btnOpcionConsultarVenta.setBackground(new java.awt.Color(204, 204, 0));
+        btnOpcionConsultarVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnOpcionConsultarVenta.setForeground(new java.awt.Color(0, 0, 0));
+        btnOpcionConsultarVenta.setText("Consultar Ventas");
+        btnOpcionConsultarVenta.setBorder(null);
+        btnOpcionConsultarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnOpcionConsultarVenta.setFocusPainted(false);
+        btnOpcionConsultarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOpcionConsultarProductosActionPerformed(evt);
+                btnOpcionConsultarVentaActionPerformed(evt);
             }
         });
 
@@ -55,17 +63,22 @@ public class PnMenuVenta extends javax.swing.JPanel {
         btnOpcionEliminarProducto.setBorder(null);
         btnOpcionEliminarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnOpcionEliminarProducto.setFocusPainted(false);
-
-        btnOpcionRegistrarProducto.setBackground(new java.awt.Color(204, 204, 0));
-        btnOpcionRegistrarProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnOpcionRegistrarProducto.setForeground(new java.awt.Color(0, 0, 0));
-        btnOpcionRegistrarProducto.setText("Agregar Venta Nueva");
-        btnOpcionRegistrarProducto.setBorder(null);
-        btnOpcionRegistrarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnOpcionRegistrarProducto.setFocusPainted(false);
-        btnOpcionRegistrarProducto.addActionListener(new java.awt.event.ActionListener() {
+        btnOpcionEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOpcionRegistrarProductoActionPerformed(evt);
+                btnOpcionEliminarProductoActionPerformed(evt);
+            }
+        });
+
+        btnOpcionRegistrarVenta.setBackground(new java.awt.Color(204, 204, 0));
+        btnOpcionRegistrarVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnOpcionRegistrarVenta.setForeground(new java.awt.Color(0, 0, 0));
+        btnOpcionRegistrarVenta.setText("Agregar Venta Nueva");
+        btnOpcionRegistrarVenta.setBorder(null);
+        btnOpcionRegistrarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnOpcionRegistrarVenta.setFocusPainted(false);
+        btnOpcionRegistrarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpcionRegistrarVentaActionPerformed(evt);
             }
         });
 
@@ -74,6 +87,19 @@ public class PnMenuVenta extends javax.swing.JPanel {
         lblTextoMenuClientes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTextoMenuClientes.setText("Menú de Ventas");
 
+        btnOpcionGenerarReporte.setBackground(new java.awt.Color(204, 204, 0));
+        btnOpcionGenerarReporte.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnOpcionGenerarReporte.setForeground(new java.awt.Color(0, 0, 0));
+        btnOpcionGenerarReporte.setText("Generar Reportes");
+        btnOpcionGenerarReporte.setBorder(null);
+        btnOpcionGenerarReporte.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnOpcionGenerarReporte.setFocusPainted(false);
+        btnOpcionGenerarReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpcionGenerarReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,11 +107,12 @@ public class PnMenuVenta extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(282, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnOpcionConsultarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOpcionConsultarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnOpcionRegistrarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnOpcionRegistrarVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnOpcionEliminarProducto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                        .addComponent(lblTextoMenuClientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(lblTextoMenuClientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnOpcionGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(319, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -94,28 +121,51 @@ public class PnMenuVenta extends javax.swing.JPanel {
                 .addGap(75, 75, 75)
                 .addComponent(lblTextoMenuClientes)
                 .addGap(47, 47, 47)
-                .addComponent(btnOpcionRegistrarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnOpcionRegistrarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(btnOpcionEliminarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(btnOpcionConsultarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addComponent(btnOpcionConsultarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(btnOpcionGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(127, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnOpcionRegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionRegistrarProductoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnOpcionRegistrarProductoActionPerformed
+    private void btnOpcionRegistrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionRegistrarVentaActionPerformed
+        FrmBuscarCliente buscarCliente = new FrmBuscarCliente();
+        buscarCliente.setVisible(true);
+        buscarCliente.setTipoPantalla(3);
+    }//GEN-LAST:event_btnOpcionRegistrarVentaActionPerformed
 
-    private void btnOpcionConsultarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionConsultarProductosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnOpcionConsultarProductosActionPerformed
+    private void btnOpcionConsultarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionConsultarVentaActionPerformed
+        FrmBuscarVenta buscarVenta = new FrmBuscarVenta();
+        buscarVenta.setVisible(true);
+        buscarVenta.setTipoPantalla(0);
+    }//GEN-LAST:event_btnOpcionConsultarVentaActionPerformed
+
+    private void btnOpcionEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionEliminarProductoActionPerformed
+        FrmBuscarVenta buscarVenta = new FrmBuscarVenta();
+        buscarVenta.setVisible(true);
+        buscarVenta.setTipoPantalla(1);
+    }//GEN-LAST:event_btnOpcionEliminarProductoActionPerformed
+
+    private void btnOpcionGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionGenerarReporteActionPerformed
+        contenido.removeAll();
+        generarReporte.setVisible(true);
+        generarReporte.setSize(contenido.getSize().width, contenido.getSize().height);
+        generarReporte.setLocation(0, 0);
+        contenido.add(generarReporte);
+        contenido.revalidate();
+        contenido.repaint();
+    }//GEN-LAST:event_btnOpcionGenerarReporteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnOpcionConsultarProductos;
+    private javax.swing.JButton btnOpcionConsultarVenta;
     private javax.swing.JButton btnOpcionEliminarProducto;
-    private javax.swing.JButton btnOpcionRegistrarProducto;
+    private javax.swing.JButton btnOpcionGenerarReporte;
+    private javax.swing.JButton btnOpcionRegistrarVenta;
     private javax.swing.JLabel lblTextoMenuClientes;
     // End of variables declaration//GEN-END:variables
 }

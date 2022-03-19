@@ -5,14 +5,14 @@
  */
 package IAdministrarCliente;
 
-import DAO.ClienteDAO;
-import Dominio.Cliente;
-import Exceptions.DAOException;
+//import DAO.ClienteDAO;
+//import Dominio.Cliente;
+//import Exceptions.DAOException;
 import PanelesGlobales.PnContenido;
-import java.util.ArrayList;
-import java.util.Vector;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+//import java.util.ArrayList;
+//import java.util.Vector;
+//import javax.swing.JOptionPane;
+//import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,9 +20,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PnEliminarCliente extends javax.swing.JPanel {
 
-    private final ClienteDAO clDao;
-    ArrayList<Cliente> cLIsta;
-    ArrayList<Cliente> cLIstaEliminar;    
+//    private final ClienteDAO clDao;
+//    ArrayList<Cliente> cLIsta;
+//    ArrayList<Cliente> cLIstaEliminar;    
 
     private PnContenido pnContenido = PnContenido.getInstance();
 
@@ -31,23 +31,23 @@ public class PnEliminarCliente extends javax.swing.JPanel {
      */
     public PnEliminarCliente() {
         initComponents();
-        clDao = new ClienteDAO();
-        DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
-        try {
-            cLIsta = clDao.obtenerTodo();
-            if (cLIsta.isEmpty()) {
-                // No hay carnales
-                JOptionPane.showMessageDialog(this, "No se ha encontrado ningun cliente", "No se encontro el cliente", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
-            cLIsta.forEach(cl -> {
-                dtm.addRow(new Object[]{cl.getId_cliente(), cl.getNombre(),
-                    cl.getApellidos(), cl.getCorreo(), cl.getTelefono(), cl.getRfc(), false});
-            });
-        } catch (Exception e) {
-            // No se pudo obtener
-            JOptionPane.showMessageDialog(this, "No se han podido recuperar los usuarios.", "Error al buscar clientes", JOptionPane.ERROR_MESSAGE);
-        }
+//        clDao = new ClienteDAO();
+//        DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
+//        try {
+//            cLIsta = clDao.obtenerTodo();
+//            if (cLIsta.isEmpty()) {
+//                // No hay carnales
+//                JOptionPane.showMessageDialog(this, "No se ha encontrado ningun cliente", "No se encontro el cliente", JOptionPane.INFORMATION_MESSAGE);
+//                return;
+//            }
+//            cLIsta.forEach(cl -> {
+//                dtm.addRow(new Object[]{cl.getId_cliente(), cl.getNombre(),
+//                    cl.getApellidos(), cl.getCorreo(), cl.getTelefono(), cl.getRfc(), false});
+//            });
+//        } catch (Exception e) {
+//            // No se pudo obtener
+//            JOptionPane.showMessageDialog(this, "No se han podido recuperar los usuarios.", "Error al buscar clientes", JOptionPane.ERROR_MESSAGE);
+//        }
 
     }
 
@@ -61,9 +61,6 @@ public class PnEliminarCliente extends javax.swing.JPanel {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
-        lblTextoCliente = new javax.swing.JLabel();
-        txtClienteEliminar = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
         pnTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         clienteTable = new javax.swing.JTable();
@@ -76,15 +73,6 @@ public class PnEliminarCliente extends javax.swing.JPanel {
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setText("Eliminar cliente");
-
-        lblTextoCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblTextoCliente.setForeground(new java.awt.Color(0, 0, 0));
-        lblTextoCliente.setText("Cliente:");
-
-        txtClienteEliminar.setBackground(new java.awt.Color(255, 255, 255));
-        txtClienteEliminar.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        txtClienteEliminar.setForeground(new java.awt.Color(0, 0, 0));
-        txtClienteEliminar.setBorder(null);
 
         pnTabla.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -126,8 +114,9 @@ public class PnEliminarCliente extends javax.swing.JPanel {
         pnTablaLayout.setVerticalGroup(
             pnTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTablaLayout.createSequentialGroup()
-                .addGap(0, 23, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         btnEliminar.setBackground(new java.awt.Color(255, 255, 0));
@@ -168,71 +157,56 @@ public class PnEliminarCliente extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(70, 70, 70)
+                .addComponent(pnTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(50, 50, 50))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblTextoCliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator1)
-                            .addComponent(txtClienteEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(lblTitulo)
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTextoCliente)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(txtClienteEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                        .addGap(135, 135, 135)
                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(61, Short.MAX_VALUE))
+                        .addComponent(pnTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, 0)))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
-        for (int i = 0; i < dtm.getRowCount(); i++) {
-            if (((Vector) dtm.getDataVector().elementAt(i)).elementAt(6).equals(true)) {
-                cLIstaEliminar.add(cLIsta.get(i));
-            }
-        }
-
-        if (cLIstaEliminar.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No se ha seleccionado ningun cliente", "No se selecciono ningun cliente", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        cLIstaEliminar.forEach(cl -> {
-            try {
-                clDao.eliminar(new Long(cl.getId_cliente()));
-            } catch (DAOException e) {
-                JOptionPane.showMessageDialog(this, ("No se ha podido eliminar el cliente del id: " + cl.getId_cliente().toString()), "No se elimino el cliente", JOptionPane.INFORMATION_MESSAGE);
-            }
-
-        });
+//        // TODO add your handling code here:
+//        DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
+//        for (int i = 0; i < dtm.getRowCount(); i++) {
+//            if (((Vector) dtm.getDataVector().elementAt(i)).elementAt(6).equals(true)) {
+//                cLIstaEliminar.add(cLIsta.get(i));
+//            }
+//        }
+//
+//        if (cLIstaEliminar.isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "No se ha seleccionado ningun cliente", "No se selecciono ningun cliente", JOptionPane.INFORMATION_MESSAGE);
+//            return;
+//        }
+//        cLIstaEliminar.forEach(cl -> {
+//            try {
+//                clDao.eliminar(new Long(cl.getId_cliente()));
+//            } catch (DAOException e) {
+//                JOptionPane.showMessageDialog(this, ("No se ha podido eliminar el cliente del id: " + cl.getId_cliente().toString()), "No se elimino el cliente", JOptionPane.INFORMATION_MESSAGE);
+//            }
+//
+//        });
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
@@ -252,10 +226,7 @@ public class PnEliminarCliente extends javax.swing.JPanel {
     private javax.swing.JButton btnMenu;
     private javax.swing.JTable clienteTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lblTextoCliente;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnTabla;
-    private javax.swing.JTextField txtClienteEliminar;
     // End of variables declaration//GEN-END:variables
 }

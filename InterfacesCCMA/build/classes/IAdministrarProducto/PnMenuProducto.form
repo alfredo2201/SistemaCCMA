@@ -75,6 +75,9 @@
         </Property>
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpcionRegistrarProductoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnOpcionConsultarProductos">
       <Properties>
@@ -96,6 +99,9 @@
         </Property>
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpcionConsultarProductosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnOpcionEliminarProducto">
       <Properties>
@@ -118,6 +124,9 @@
         </Property>
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpcionEliminarProductoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnOpcionActualizarProducto">
       <Properties>
@@ -139,6 +148,9 @@
         </Property>
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpcionActualizarProductoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTextoMenuClientes">
       <Properties>

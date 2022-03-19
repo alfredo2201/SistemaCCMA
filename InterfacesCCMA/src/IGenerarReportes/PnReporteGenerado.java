@@ -4,6 +4,10 @@
  */
 package IGenerarReportes;
 
+import IAdministrarCliente.PnMenuClientes;
+import IAdministrarVentas.PnMenuVenta;
+import PanelesGlobales.PnContenido;
+
 /**
  *
  * @author Samuel Medellin
@@ -13,6 +17,8 @@ public class PnReporteGenerado extends javax.swing.JPanel {
     /**
      * Creates new form ReporteGenerado
      */
+    private PnContenido pnContenido = PnContenido.getInstance();
+
     public PnReporteGenerado() {
         initComponents();
     }
@@ -30,7 +36,7 @@ public class PnReporteGenerado extends javax.swing.JPanel {
         btnExportar = new javax.swing.JButton();
         btnMenu = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbReporteVentas = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -38,7 +44,7 @@ public class PnReporteGenerado extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Reporte de ventas");
 
-        btnExportar.setBackground(new java.awt.Color(153, 153, 0));
+        btnExportar.setBackground(new java.awt.Color(255, 255, 0));
         btnExportar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnExportar.setForeground(new java.awt.Color(0, 0, 0));
         btnExportar.setText("Exportar");
@@ -51,8 +57,13 @@ public class PnReporteGenerado extends javax.swing.JPanel {
         btnMenu.setText("Regresar al menu");
         btnMenu.setBorder(null);
         btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbReporteVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -71,20 +82,20 @@ public class PnReporteGenerado extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tbReporteVentas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE)
-                .addGap(54, 54, 54)
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 741, Short.MAX_VALUE)
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnExportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51))
+                    .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42))
             .addGroup(layout.createSequentialGroup()
                 .addGap(377, 377, 377)
                 .addComponent(jLabel1)
@@ -93,19 +104,31 @@ public class PnReporteGenerado extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(50, 50, 50)
                 .addComponent(jLabel1)
-                .addGap(102, 102, 102)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(151, 151, 151))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                        .addContainerGap(65, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        PnMenuVenta pnMnVenta = new PnMenuVenta();
+        pnContenido.removeAll();
+        pnMnVenta.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
+        pnMnVenta.setLocation(0, -40);
+        pnContenido.add(pnMnVenta);
+        pnContenido.revalidate();
+        pnContenido.repaint();
+    }//GEN-LAST:event_btnMenuActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -113,6 +136,6 @@ public class PnReporteGenerado extends javax.swing.JPanel {
     private javax.swing.JButton btnMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbReporteVentas;
     // End of variables declaration//GEN-END:variables
 }

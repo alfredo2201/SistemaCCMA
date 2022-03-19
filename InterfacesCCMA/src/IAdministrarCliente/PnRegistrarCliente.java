@@ -5,7 +5,7 @@
  */
 package IAdministrarCliente;
 
-import DAO.ClienteDAO;
+//import DAO.ClienteDAO;
 import Dominio.Cliente;
 import PanelesGlobales.PnContenido;
 import javax.swing.JOptionPane;
@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class PnRegistrarCliente extends javax.swing.JPanel {
 
-    private final ClienteDAO clDao;
+    //private final ClienteDAO clDao;
     private PnContenido pnContenido = PnContenido.getInstance();    
 
     /**
@@ -24,7 +24,7 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
      */
     public PnRegistrarCliente() {
         initComponents();
-        clDao = new ClienteDAO();
+        //clDao = new ClienteDAO();
     }
 
     /**
@@ -37,6 +37,8 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
+        btnAgregarCliente = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         lblTextoNombre = new javax.swing.JLabel();
         txtNombreCliente = new javax.swing.JTextField();
         spNombre = new javax.swing.JSeparator();
@@ -49,72 +51,16 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
         lblTextoRFC = new javax.swing.JLabel();
         txtRFC = new javax.swing.JTextField();
         spRFC = new javax.swing.JSeparator();
-        btnAgregarCliente = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtApellidosCliente = new javax.swing.JTextField();
         spNombre1 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Registrar Cliente Nuevo");
-        add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 40, 229, -1));
-
-        lblTextoNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblTextoNombre.setForeground(new java.awt.Color(0, 0, 0));
-        lblTextoNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTextoNombre.setText("Nombre:");
-        add(lblTextoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 109, 117, -1));
-
-        txtNombreCliente.setBackground(new java.awt.Color(255, 255, 255));
-        txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        txtNombreCliente.setBorder(null);
-        add(txtNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 110, 246, 20));
-        add(spNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 131, 256, 10));
-
-        lblTextoEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblTextoEmail.setForeground(new java.awt.Color(0, 0, 0));
-        lblTextoEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTextoEmail.setText("Correo electrónico:");
-        add(lblTextoEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 194, 117, -1));
-
-        txtCorreo.setBackground(new java.awt.Color(255, 255, 255));
-        txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        txtCorreo.setBorder(null);
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
-            }
-        });
-        add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 194, 261, 20));
-        add(spEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 216, 261, 12));
-
-        lblTextoTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblTextoTelefono.setForeground(new java.awt.Color(0, 0, 0));
-        lblTextoTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTextoTelefono.setText("Teléfono:");
-        add(lblTextoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 241, 117, -1));
-
-        txtTelefono.setBackground(new java.awt.Color(255, 255, 255));
-        txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        txtTelefono.setBorder(null);
-        add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 240, 263, 20));
-        add(spTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 267, 256, 10));
-
-        lblTextoRFC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblTextoRFC.setForeground(new java.awt.Color(0, 0, 0));
-        lblTextoRFC.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTextoRFC.setText("RFC:");
-        add(lblTextoRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 288, 117, -1));
-
-        txtRFC.setBackground(new java.awt.Color(255, 255, 255));
-        txtRFC.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        txtRFC.setBorder(null);
-        add(txtRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 289, 249, 20));
-        add(spRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 309, 256, 11));
 
         btnAgregarCliente.setBackground(new java.awt.Color(255, 255, 0));
         btnAgregarCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -126,7 +72,6 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
                 btnAgregarClienteActionPerformed(evt);
             }
         });
-        add(btnAgregarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(278, 337, 301, 43));
 
         btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -138,19 +83,147 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
                 btnCancelarActionPerformed(evt);
             }
         });
-        add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(341, 398, 154, 48));
+
+        lblTextoNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoNombre.setForeground(new java.awt.Color(0, 0, 0));
+        lblTextoNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTextoNombre.setText("Nombre:");
+
+        txtNombreCliente.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtNombreCliente.setBorder(null);
+
+        lblTextoEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoEmail.setForeground(new java.awt.Color(0, 0, 0));
+        lblTextoEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTextoEmail.setText("Correo electrónico:");
+
+        txtCorreo.setBackground(new java.awt.Color(255, 255, 255));
+        txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtCorreo.setBorder(null);
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoActionPerformed(evt);
+            }
+        });
+
+        lblTextoTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoTelefono.setForeground(new java.awt.Color(0, 0, 0));
+        lblTextoTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTextoTelefono.setText("Teléfono:");
+
+        txtTelefono.setBackground(new java.awt.Color(255, 255, 255));
+        txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtTelefono.setBorder(null);
+
+        lblTextoRFC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoRFC.setForeground(new java.awt.Color(0, 0, 0));
+        lblTextoRFC.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTextoRFC.setText("RFC:");
+
+        txtRFC.setBackground(new java.awt.Color(255, 255, 255));
+        txtRFC.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtRFC.setBorder(null);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Apellidos:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 151, 117, -1));
 
         txtApellidosCliente.setBackground(new java.awt.Color(255, 255, 255));
         txtApellidosCliente.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtApellidosCliente.setBorder(null);
-        add(txtApellidosCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 152, 246, 20));
-        add(spNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 172, 263, 10));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(154, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(txtApellidosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(spNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblTextoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(5, 5, 5)
+                            .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblTextoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(5, 5, 5)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(spTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                                .addComponent(txtTelefono)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(125, 125, 125)
+                            .addComponent(spNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblTextoRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(5, 5, 5)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(spRFC)
+                                .addComponent(txtRFC))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTextoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(spEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAgregarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(lblTitulo)
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTextoNombre))
+                .addGap(0, 0, 0)
+                .addComponent(spNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtApellidosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(0, 0, 0)
+                .addComponent(spNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTextoEmail))
+                .addGap(0, 0, 0)
+                .addComponent(spEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTextoTelefono))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(spTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTextoRFC))
+                .addGap(0, 0, 0)
+                .addComponent(spRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(btnAgregarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -164,24 +237,24 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
-        // TODO add your handling code here:
-        String nombre = txtNombreCliente.getText();
-        String apellidos = txtApellidosCliente.getText();
-        String email = txtCorreo.getText();
-        String telefono = txtTelefono.getText();
-        String RFC = txtRFC.getText();
-
-        if (nombre.isEmpty() || apellidos.isEmpty() || email.isEmpty() || telefono.isEmpty() || RFC.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Favor de llenar todas las casillas.", "No se pudo agregar el cliente.", JOptionPane.ERROR_MESSAGE);
-        } else {
-            try {
-                Cliente cl = new Cliente(nombre, apellidos, email, RFC, telefono);
-                clDao.insertar(cl);
-                JOptionPane.showMessageDialog(this, "Error al intentar añadir al cliente.", "ERROR: Agregar cliente", JOptionPane.INFORMATION_MESSAGE);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Error al intentar añadir al cliente.", "ERROR: Agregar cliente", JOptionPane.ERROR_MESSAGE);
-            }
-        }
+//        // TODO add your handling code here:
+//        String nombre = txtNombreCliente.getText();
+//        String apellidos = txtApellidosCliente.getText();
+//        String email = txtCorreo.getText();
+//        String telefono = txtTelefono.getText();
+//        String RFC = txtRFC.getText();
+//
+//        if (nombre.isEmpty() || apellidos.isEmpty() || email.isEmpty() || telefono.isEmpty() || RFC.isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Favor de llenar todas las casillas.", "No se pudo agregar el cliente.", JOptionPane.ERROR_MESSAGE);
+//        } else {
+//            try {
+//                Cliente cl = new Cliente(nombre, apellidos, email, RFC, telefono);
+//                clDao.insertar(cl);
+//                JOptionPane.showMessageDialog(this, "Error al intentar añadir al cliente.", "ERROR: Agregar cliente", JOptionPane.INFORMATION_MESSAGE);
+//            } catch (Exception e) {
+//                JOptionPane.showMessageDialog(this, "Error al intentar añadir al cliente.", "ERROR: Agregar cliente", JOptionPane.ERROR_MESSAGE);
+//            }
+//        }
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed

@@ -15,10 +15,10 @@ public class PnMenuClientes extends javax.swing.JPanel {
 
     /**
      * Creates new form PnMenuClientes
-     */    
+     */
     private PnRegistrarCliente registrar = new PnRegistrarCliente();
-    private PnEliminarCliente eliminar = new PnEliminarCliente();    
-    private PnConsularCliente consultar = new PnConsularCliente();
+    private PnEliminarCliente eliminar = new PnEliminarCliente();
+    private PnActualizarCliente actualizar = new PnActualizarCliente();
     private PnContenido contenido = PnContenido.getInstance();
 
     public PnMenuClientes() {
@@ -141,9 +141,13 @@ public class PnMenuClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_btnOpcionRegistrarClienteActionPerformed
 
     private void btnOpcionActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionActualizarClienteActionPerformed
-        FrmBuscarCliente buscar = new FrmBuscarCliente();
-        buscar.setVisible(true);
-        
+        contenido.removeAll();
+        actualizar.setVisible(true);
+        actualizar.setSize(contenido.getSize().width, contenido.getSize().height);
+        actualizar.setLocation(0, 0);
+        contenido.add(actualizar);
+        contenido.revalidate();
+        contenido.repaint();
     }//GEN-LAST:event_btnOpcionActualizarClienteActionPerformed
 
     private void btnOpcionEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionEliminarClienteActionPerformed
@@ -158,13 +162,9 @@ public class PnMenuClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_btnOpcionEliminarClienteActionPerformed
 
     private void btnOpcionConsultarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionConsultarClienteActionPerformed
-        contenido.removeAll();
-        consultar.setVisible(true);
-        consultar.setSize(contenido.getSize().width, contenido.getSize().height);
-        consultar.setLocation(0, 0);
-        contenido.add(consultar);
-        contenido.revalidate();
-        contenido.repaint();
+        FrmBuscarCliente buscar = new FrmBuscarCliente();
+        buscar.setVisible(true);
+        buscar.setTipoPantalla(1);
     }//GEN-LAST:event_btnOpcionConsultarClienteActionPerformed
 
 

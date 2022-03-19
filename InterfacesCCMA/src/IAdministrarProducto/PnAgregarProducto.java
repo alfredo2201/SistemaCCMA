@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package IAdministrarPresupuesto;
+package IAdministrarProducto;
 
 import IAdministrarVentas.*;
 
@@ -45,16 +45,19 @@ public class PnAgregarProducto extends javax.swing.JPanel {
         listArticulos = new javax.swing.JList<>();
         btnBuscarProducto = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        btnMetodoPago = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         btnContinuarVenta = new javax.swing.JButton();
-        btnRegresar = new javax.swing.JButton();
+        lblTextoProductoSelec = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         lblTextoCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoCliente.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoCliente.setText("Cliente:");
 
+        txtNombreCliente.setBackground(new java.awt.Color(255, 255, 255));
         txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtNombreCliente.setForeground(new java.awt.Color(0, 0, 0));
         txtNombreCliente.setBorder(null);
         txtNombreCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,35 +67,43 @@ public class PnAgregarProducto extends javax.swing.JPanel {
 
         lblTextoTipo.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoTipo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoTipo.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoTipo.setText("Tipo:");
 
         cmbTipo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmbTipo.setForeground(new java.awt.Color(0, 0, 0));
         cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Automovil", "Motocicleta", "Lancha", "Universal" }));
-        cmbTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cmbTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         lblTextoMarca.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoMarca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoMarca.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoMarca.setText("Marca:");
 
         cmbMarca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmbMarca.setForeground(new java.awt.Color(0, 0, 0));
         cmbMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nissan", "Ford", "Toyota", "Kia" }));
-        cmbMarca.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cmbMarca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         lblTextoModelo.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoModelo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoModelo.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoModelo.setText("Modelo:");
 
         cmbModelos1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmbModelos1.setForeground(new java.awt.Color(0, 0, 0));
         cmbModelos1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Altima", "Sentra", "Versa", "Tsuru" }));
-        cmbModelos1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cmbModelos1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         lblTextoAnios.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoAnios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoAnios.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoAnios.setText("Año:");
 
         cmbAnios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmbAnios.setForeground(new java.awt.Color(0, 0, 0));
         cmbAnios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1990 - 2000", "2001 - 2010", "2010 - 2013" }));
-        cmbAnios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cmbAnios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbAnios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbAniosActionPerformed(evt);
@@ -107,11 +118,12 @@ public class PnAgregarProducto extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(listArticulos);
 
-        btnBuscarProducto.setBackground(new java.awt.Color(153, 153, 0));
+        btnBuscarProducto.setBackground(new java.awt.Color(204, 204, 0));
         btnBuscarProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBuscarProducto.setForeground(new java.awt.Color(0, 0, 0));
         btnBuscarProducto.setText("Buscar");
         btnBuscarProducto.setBorder(null);
-        btnBuscarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnBuscarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarProducto.setFocusPainted(false);
         btnBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,18 +145,20 @@ public class PnAgregarProducto extends javax.swing.JPanel {
             .addGap(0, 267, Short.MAX_VALUE)
         );
 
-        btnMetodoPago.setBackground(new java.awt.Color(134, 134, 93));
-        btnMetodoPago.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnMetodoPago.setText("Cancelar");
-        btnMetodoPago.setBorder(null);
-        btnMetodoPago.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnMetodoPago.setFocusPainted(false);
+        btnCancelar.setBackground(new java.awt.Color(134, 134, 93));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(0, 0, 0));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setBorder(null);
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.setFocusPainted(false);
 
         btnContinuarVenta.setBackground(new java.awt.Color(153, 153, 0));
         btnContinuarVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnContinuarVenta.setForeground(new java.awt.Color(0, 0, 0));
         btnContinuarVenta.setText("Continuar Presupuesto");
         btnContinuarVenta.setBorder(null);
-        btnContinuarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnContinuarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnContinuarVenta.setFocusPainted(false);
         btnContinuarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,9 +166,10 @@ public class PnAgregarProducto extends javax.swing.JPanel {
             }
         });
 
-        btnRegresar.setBackground(new java.awt.Color(255, 255, 0));
-        btnRegresar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnRegresar.setText("Regresar");
+        lblTextoProductoSelec.setBackground(new java.awt.Color(255, 255, 255));
+        lblTextoProductoSelec.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoProductoSelec.setForeground(new java.awt.Color(0, 0, 0));
+        lblTextoProductoSelec.setText("Productos seleccionados:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -187,65 +202,67 @@ public class PnAgregarProducto extends javax.swing.JPanel {
                                             .addComponent(lblTextoAnios)
                                             .addComponent(cmbAnios, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(lblTextoCliente))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE))
+                                        .addGap(93, 93, 93))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addContainerGap()
                                         .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(116, 116, 116)))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(25, 25, 25)))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)))
+                        .addGap(30, 30, 30)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnMetodoPago, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(46, 46, 46))))
+                    .addComponent(lblTextoProductoSelec)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(10, 10, 10))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(37, 37, 37)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTextoCliente)
-                            .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(2, 2, 2)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(lblTextoTipo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblTextoMarca)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(lblTextoProductoSelec)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTextoModelo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbModelos1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTextoAnios)
-                        .addGap(13, 13, 13)
-                        .addComponent(cmbAnios, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(btnMetodoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblTextoCliente)
+                                    .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(2, 2, 2)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(lblTextoTipo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblTextoMarca)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblTextoModelo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbModelos1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblTextoAnios)
+                                .addGap(13, 13, 13)
+                                .addComponent(cmbAnios, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(94, 94, 94)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(45, 45, 45))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(130, 130, 130)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(34, 34, 34)
+                        .addComponent(jScrollPane1)
+                        .addGap(34, 34, 34)))
                 .addComponent(btnContinuarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(40, 40, 40))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -268,9 +285,8 @@ public class PnAgregarProducto extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarProducto;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnContinuarVenta;
-    private javax.swing.JButton btnMetodoPago;
-    private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cmbAnios;
     private javax.swing.JComboBox<String> cmbMarca;
     private javax.swing.JComboBox<String> cmbModelos1;
@@ -282,6 +298,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
     private javax.swing.JLabel lblTextoCliente;
     private javax.swing.JLabel lblTextoMarca;
     private javax.swing.JLabel lblTextoModelo;
+    private javax.swing.JLabel lblTextoProductoSelec;
     private javax.swing.JLabel lblTextoTipo;
     private javax.swing.JList<String> listArticulos;
     private javax.swing.JTextField txtNombreCliente;

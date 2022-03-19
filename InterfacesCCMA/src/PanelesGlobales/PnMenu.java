@@ -7,10 +7,10 @@ package PanelesGlobales;
 
 import IAdministrarProducto.PnMenuProducto;
 import IAdministrarCliente.PnMenuClientes;
+import IAdministrarPresupuesto.PnMenuPresupuesto;
 import IAdministrarVentas.PnMenuVenta;
 import InicioSesion.FrmInicioSesion;
 import Principal.FrmPrincipal;
-
 
 /**
  *
@@ -22,11 +22,10 @@ public class PnMenu extends javax.swing.JPanel {
     private PnMenuClientes pnMnCliente = new PnMenuClientes();
     private PnMenuVenta pnMnVentas = new PnMenuVenta();
     private PnMenuProducto pnMnProducto = new PnMenuProducto();
+    private PnMenuPresupuesto pnMnPresupuesto = new PnMenuPresupuesto();
 
     public PnMenu() {
         initComponents();
-
-        System.out.println(getSize().height + " , " + getSize().height);
     }
 
     /**
@@ -43,6 +42,7 @@ public class PnMenu extends javax.swing.JPanel {
         btnProductos = new javax.swing.JButton();
         btnVentas = new javax.swing.JButton();
         btnCerrarSesion1 = new javax.swing.JButton();
+        btnPresupuestos = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -111,6 +111,19 @@ public class PnMenu extends javax.swing.JPanel {
             }
         });
 
+        btnPresupuestos.setBackground(new java.awt.Color(153, 153, 0));
+        btnPresupuestos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnPresupuestos.setForeground(new java.awt.Color(0, 0, 0));
+        btnPresupuestos.setText("Presupuestos");
+        btnPresupuestos.setBorder(null);
+        btnPresupuestos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPresupuestos.setFocusPainted(false);
+        btnPresupuestos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPresupuestosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,7 +135,8 @@ public class PnMenu extends javax.swing.JPanel {
                     .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPresupuestos, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(93, 93, 93))
         );
         layout.setVerticalGroup(
@@ -136,6 +150,8 @@ public class PnMenu extends javax.swing.JPanel {
                 .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(btnPresupuestos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(btnCerrarSesion1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
@@ -184,11 +200,21 @@ public class PnMenu extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnCerrarSesion1ActionPerformed
 
+    private void btnPresupuestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPresupuestosActionPerformed
+        pnContenido.removeAll();
+        pnMnPresupuesto.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
+        pnMnPresupuesto.setLocation(0, -40);
+        pnContenido.add(pnMnPresupuesto);
+        pnContenido.revalidate();
+        pnContenido.repaint();
+    }//GEN-LAST:event_btnPresupuestosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrarSesion1;
     private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnPresupuestos;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnVentas;
     // End of variables declaration//GEN-END:variables

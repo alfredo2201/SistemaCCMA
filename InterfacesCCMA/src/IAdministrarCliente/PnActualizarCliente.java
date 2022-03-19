@@ -55,6 +55,7 @@ public class PnActualizarCliente extends javax.swing.JPanel {
         txtClienteActualizar.setFont(new java.awt.Font("Nirmala UI", 0, 13)); // NOI18N
         txtClienteActualizar.setBorder(null);
 
+        tblCliente.setBackground(new java.awt.Color(255, 255, 255));
         tblCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.darkGray, null, null));
         tblCliente.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         tblCliente.setForeground(new java.awt.Color(255, 255, 255));
@@ -107,6 +108,11 @@ public class PnActualizarCliente extends javax.swing.JPanel {
         btnEditar.setText("Editar");
         btnEditar.setBorder(null);
         btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -171,6 +177,10 @@ public class PnActualizarCliente extends javax.swing.JPanel {
         pnContenido.revalidate();
         pnContenido.repaint();
     }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,6 +5,8 @@
  */
 package IAdministrarPresupuesto;
 
+import PanelesGlobales.PnContenido;
+
 /**
  *
  * @author herna
@@ -13,7 +15,7 @@ public class PnConsultarPresupuesto extends javax.swing.JPanel {
 
     /**
      * Creates new form PnConsultarPresupuesto
-     */
+     */private PnContenido pnContenido = PnContenido.getInstance();
     public PnConsultarPresupuesto() {
         initComponents();
     }
@@ -46,11 +48,12 @@ public class PnConsultarPresupuesto extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
-        btnCancelar3 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         btnConfirmarCompra = new javax.swing.JButton();
-        btnRegresar2 = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -200,14 +203,14 @@ public class PnConsultarPresupuesto extends javax.swing.JPanel {
                 .addGap(44, 44, 44))
         );
 
-        btnCancelar3.setBackground(new java.awt.Color(153, 153, 153));
-        btnCancelar3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCancelar3.setForeground(new java.awt.Color(0, 0, 0));
-        btnCancelar3.setText("Cancelar");
-        btnCancelar3.setBorder(null);
-        btnCancelar3.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(0, 0, 0));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setBorder(null);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelar3ActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -222,18 +225,27 @@ public class PnConsultarPresupuesto extends javax.swing.JPanel {
             }
         });
 
-        btnRegresar2.setBackground(new java.awt.Color(153, 153, 0));
-        btnRegresar2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnRegresar2.setForeground(new java.awt.Color(0, 0, 0));
-        btnRegresar2.setText("Regresar al menú");
-        btnRegresar2.setBorder(null);
+        btnRegresar.setBackground(new java.awt.Color(153, 153, 0));
+        btnRegresar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnRegresar.setForeground(new java.awt.Color(0, 0, 0));
+        btnRegresar.setText("Regresar al menú");
+        btnRegresar.setBorder(null);
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 22)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Consultar presupuesto");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(162, 162, 162)
@@ -250,45 +262,51 @@ public class PnConsultarPresupuesto extends javax.swing.JPanel {
                                     .addComponent(jSeparator5)
                                     .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                                     .addComponent(jSeparator6)))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 841, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnConfirmarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegresar2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel3)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(1, 1, 1)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(71, 71, 71)
                         .addComponent(btnConfirmarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnCancelar3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnRegresar2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0)
-                        .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)))
-                .addGap(65, 65, 65))
+                        .addGap(20, 20, 20)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -296,9 +314,9 @@ public class PnConsultarPresupuesto extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaActionPerformed
 
-    private void btnCancelar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar3ActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelar3ActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnConfirmarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarCompraActionPerformed
         // TODO add your handling code here:
@@ -308,13 +326,24 @@ public class PnConsultarPresupuesto extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIvaActionPerformed
 
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        PnMenuPresupuesto pnMnPresupuesto = new PnMenuPresupuesto();
+        pnContenido.removeAll();
+        pnMnPresupuesto.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
+        pnMnPresupuesto.setLocation(0, -40);
+        pnContenido.add(pnMnPresupuesto);
+        pnContenido.revalidate();
+        pnContenido.repaint();
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar3;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmarCompra;
-    private javax.swing.JButton btnRegresar2;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

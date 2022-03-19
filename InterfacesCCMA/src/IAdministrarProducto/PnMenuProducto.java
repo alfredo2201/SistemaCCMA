@@ -5,6 +5,8 @@
  */
 package IAdministrarProducto;
 
+import PanelesGlobales.PnContenido;
+
 /**
  *
  * @author crist
@@ -14,6 +16,12 @@ public class PnMenuProducto extends javax.swing.JPanel {
     /**
      * Creates new form PnMenuProducto
      */
+    private PnRegistrarProducto registrar = new PnRegistrarProducto();
+    private PnActualizarProducto actualizar = new PnActualizarProducto();
+    private PnEliminarProducto eliminar = new PnEliminarProducto();
+    private PnConsultarProducto consultar = new PnConsultarProducto();
+    private PnContenido pnContenido = PnContenido.getInstance();
+
     public PnMenuProducto() {
         initComponents();
     }
@@ -42,6 +50,11 @@ public class PnMenuProducto extends javax.swing.JPanel {
         btnOpcionRegistrarProducto.setBorder(null);
         btnOpcionRegistrarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnOpcionRegistrarProducto.setFocusPainted(false);
+        btnOpcionRegistrarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpcionRegistrarProductoActionPerformed(evt);
+            }
+        });
 
         btnOpcionConsultarProductos.setBackground(new java.awt.Color(204, 204, 0));
         btnOpcionConsultarProductos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -50,6 +63,11 @@ public class PnMenuProducto extends javax.swing.JPanel {
         btnOpcionConsultarProductos.setBorder(null);
         btnOpcionConsultarProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnOpcionConsultarProductos.setFocusPainted(false);
+        btnOpcionConsultarProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpcionConsultarProductosActionPerformed(evt);
+            }
+        });
 
         btnOpcionEliminarProducto.setBackground(new java.awt.Color(204, 204, 0));
         btnOpcionEliminarProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -59,6 +77,11 @@ public class PnMenuProducto extends javax.swing.JPanel {
         btnOpcionEliminarProducto.setBorder(null);
         btnOpcionEliminarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnOpcionEliminarProducto.setFocusPainted(false);
+        btnOpcionEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpcionEliminarProductoActionPerformed(evt);
+            }
+        });
 
         btnOpcionActualizarProducto.setBackground(new java.awt.Color(204, 204, 0));
         btnOpcionActualizarProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -67,6 +90,11 @@ public class PnMenuProducto extends javax.swing.JPanel {
         btnOpcionActualizarProducto.setBorder(null);
         btnOpcionActualizarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnOpcionActualizarProducto.setFocusPainted(false);
+        btnOpcionActualizarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpcionActualizarProductoActionPerformed(evt);
+            }
+        });
 
         lblTextoMenuClientes.setFont(new java.awt.Font("Segoe UI", 2, 26)); // NOI18N
         lblTextoMenuClientes.setForeground(new java.awt.Color(0, 0, 0));
@@ -104,6 +132,42 @@ public class PnMenuProducto extends javax.swing.JPanel {
                 .addContainerGap(184, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnOpcionRegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionRegistrarProductoActionPerformed
+        pnContenido.removeAll();
+        registrar.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
+        registrar.setLocation(0, -40);
+        pnContenido.add(registrar);
+        pnContenido.revalidate();
+        pnContenido.repaint();
+    }//GEN-LAST:event_btnOpcionRegistrarProductoActionPerformed
+
+    private void btnOpcionActualizarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionActualizarProductoActionPerformed
+        pnContenido.removeAll();
+        actualizar.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
+        actualizar.setLocation(0, -40);
+        pnContenido.add(actualizar);
+        pnContenido.revalidate();
+        pnContenido.repaint();
+    }//GEN-LAST:event_btnOpcionActualizarProductoActionPerformed
+
+    private void btnOpcionEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionEliminarProductoActionPerformed
+        pnContenido.removeAll();
+        eliminar.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
+        eliminar.setLocation(0, -40);
+        pnContenido.add(eliminar);
+        pnContenido.revalidate();
+        pnContenido.repaint();
+    }//GEN-LAST:event_btnOpcionEliminarProductoActionPerformed
+
+    private void btnOpcionConsultarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionConsultarProductosActionPerformed
+        pnContenido.removeAll();
+        consultar.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
+        consultar.setLocation(0, -40);
+        pnContenido.add(consultar);
+        pnContenido.revalidate();
+        pnContenido.repaint();
+    }//GEN-LAST:event_btnOpcionConsultarProductosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,13 +5,9 @@
  */
 package IAdministrarCliente;
 
-import DAO.ClienteDAO;
-import Dominio.Cliente;
-import Exceptions.DAOException;
+//import DAO.ClienteDAO;
+import IAdministrarVentas.RegistrarVenta;
 import PanelesGlobales.PnContenido;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,9 +15,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmBuscarCliente extends javax.swing.JFrame {
 
-    private final ClienteDAO clDao;
+//    private final ClienteDAO clDao;
     private PnContenido contenido = PnContenido.getInstance();
-    private PnEditarCliente editar = new PnEditarCliente();
+    private PnConsularCliente consultar = new PnConsularCliente();
+    private RegistrarVenta registrarVenta = new RegistrarVenta();
+    private int tipoPantalla;       
+    private static int CONSULTAR_CLIENTE = 1;
+    private static int REGISTRAR_VENTA = 3;
+    private static int REGISTRAR_PRESUPUESTO = 4;
 
     /**
      * Creates new form IBuscarCliente
@@ -30,7 +31,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        clDao = new ClienteDAO();
+//        clDao = new ClienteDAO();
     }
 
     /**
@@ -286,14 +287,23 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
 //        } else {
 //            JOptionPane.showMessageDialog(this, "Inserte informacion del cliente a buscar.", "Error al buscar cliente", JOptionPane.ERROR_MESSAGE);
 //        }
-
-        contenido.removeAll();
-        editar.setVisible(true);
-        editar.setSize(contenido.getSize().width, contenido.getSize().height);
-        editar.setLocation(0, 0);
-        contenido.add(editar);
-        contenido.revalidate();
-        contenido.repaint();
+        if (getTipoPantalla() == REGISTRAR_VENTA) {
+            contenido.removeAll();
+            registrarVenta.setVisible(true);
+            registrarVenta.setSize(contenido.getSize().width, contenido.getSize().height);
+            registrarVenta.setLocation(0, 0);
+            contenido.add(registrarVenta);
+            contenido.revalidate();
+            contenido.repaint();
+        } else if (getTipoPantalla() == CONSULTAR_CLIENTE) {
+            contenido.removeAll();
+            consultar.setVisible(true);
+            consultar.setSize(contenido.getSize().width, contenido.getSize().height);
+            consultar.setLocation(0, 0);
+            contenido.add(consultar);
+            contenido.revalidate();
+            contenido.repaint();
+        }
         dispose();
     }//GEN-LAST:event_btnContinuarActionPerformed
 
@@ -301,41 +311,6 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmBuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmBuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmBuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmBuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmBuscarCliente().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -354,4 +329,13 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombreCliente2;
     private javax.swing.JTextField txtRFC2;
     // End of variables declaration//GEN-END:variables
+
+    public int getTipoPantalla() {
+        return tipoPantalla;
+    }
+
+    public void setTipoPantalla(int tipoPantalla) {
+        this.tipoPantalla = tipoPantalla;
+    }
+
 }

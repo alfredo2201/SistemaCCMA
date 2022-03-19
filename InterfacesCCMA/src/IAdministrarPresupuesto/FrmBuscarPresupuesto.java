@@ -5,6 +5,8 @@
  */
 package IAdministrarPresupuesto;
 
+import PanelesGlobales.PnContenido;
+
 /**
  *
  * @author herna
@@ -14,8 +16,17 @@ public class FrmBuscarPresupuesto extends javax.swing.JFrame {
     /**
      * Creates new form FrmBuscarPresupuesto
      */
+    private PnContenido pnContenido = PnContenido.getInstance();
+    private PnEditarPresupuesto editar = new PnEditarPresupuesto();
+    private PnConsultarPresupuesto consultar = new PnConsultarPresupuesto();
+    private int tipoPantalla;
+    private static int CONSULTAR = 0;
+    private static int EDITAR = 1;
+
     public FrmBuscarPresupuesto() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
@@ -32,15 +43,13 @@ public class FrmBuscarPresupuesto extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         lblTextoRFC = new javax.swing.JLabel();
-        txtFechaPresupuesto = new javax.swing.JTextField();
         txtRFC2 = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         btnContinuarPresupuesto = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnBuscarRFC = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbPresupuestos = new javax.swing.JTable();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,6 +58,7 @@ public class FrmBuscarPresupuesto extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(188, 186, 120));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Buscar Presupuesto");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -69,31 +79,41 @@ public class FrmBuscarPresupuesto extends javax.swing.JFrame {
         );
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Fecha:");
 
         lblTextoRFC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoRFC.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoRFC.setText("RFC:");
 
-        txtFechaPresupuesto.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        txtFechaPresupuesto.setBorder(null);
-
+        txtRFC2.setBackground(new java.awt.Color(255, 255, 255));
         txtRFC2.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtRFC2.setBorder(null);
 
         btnContinuarPresupuesto.setBackground(new java.awt.Color(153, 153, 0));
         btnContinuarPresupuesto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnContinuarPresupuesto.setForeground(new java.awt.Color(0, 0, 0));
         btnContinuarPresupuesto.setText("Continuar");
         btnContinuarPresupuesto.setBorder(null);
         btnContinuarPresupuesto.setBorderPainted(false);
+        btnContinuarPresupuesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContinuarPresupuestoActionPerformed(evt);
+            }
+        });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/iconCalendar.png"))); // NOI18N
+        btnBuscarRFC.setBackground(new java.awt.Color(255, 255, 255));
+        btnBuscarRFC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/buscarIcon.png"))); // NOI18N
+        btnBuscarRFC.setBorder(null);
+        btnBuscarRFC.setBorderPainted(false);
+        btnBuscarRFC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/buscarIcon.png"))); // NOI18N
-        jButton2.setBorder(null);
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.gray, null, null));
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbPresupuestos.setBackground(new java.awt.Color(255, 255, 255));
+        tbPresupuestos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.gray, null, null));
+        tbPresupuestos.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        tbPresupuestos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -116,7 +136,7 @@ public class FrmBuscarPresupuesto extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbPresupuestos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,55 +144,48 @@ public class FrmBuscarPresupuesto extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(134, 134, 134)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblTextoRFC)
+                    .addComponent(jLabel12))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblTextoRFC)
-                            .addComponent(jLabel12))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtFechaPresupuesto, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                    .addComponent(jSeparator1))
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtRFC2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtRFC2)
+                            .addComponent(jSeparator2)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBuscarRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(298, 298, 298))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(290, 290, 290)
                         .addComponent(btnContinuarPresupuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(113, 113, 113)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addGap(102, 102, 102))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel12)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(txtFechaPresupuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButton1))
+                .addGap(56, 56, 56)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel12)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblTextoRFC)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(txtRFC2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBuscarRFC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -194,55 +207,49 @@ public class FrmBuscarPresupuesto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmBuscarPresupuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmBuscarPresupuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmBuscarPresupuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmBuscarPresupuesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void btnContinuarPresupuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarPresupuestoActionPerformed
+        // TODO add your handling code here:        
+        if (getTipoPantalla() == CONSULTAR) {
+            pnContenido.removeAll();
+            consultar.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
+            consultar.setLocation(0, -40);
+            pnContenido.add(consultar);
+            pnContenido.revalidate();
+            pnContenido.repaint();
+        } else if (getTipoPantalla() == EDITAR) {
+            pnContenido.removeAll();
+            editar.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
+            editar.setLocation(0, -40);
+            pnContenido.add(editar);
+            pnContenido.revalidate();
+            pnContenido.repaint();
         }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmBuscarPresupuesto().setVisible(true);
-            }
-        });
-    }
+        dispose();
+    }//GEN-LAST:event_btnContinuarPresupuestoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarRFC;
     private javax.swing.JButton btnContinuarPresupuesto;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblTextoRFC;
-    private javax.swing.JTextField txtFechaPresupuesto;
+    private javax.swing.JTable tbPresupuestos;
     private javax.swing.JTextField txtRFC2;
     // End of variables declaration//GEN-END:variables
+
+    public int getTipoPantalla() {
+        return tipoPantalla;
+    }
+
+    public void setTipoPantalla(int tipoPantalla) {
+        this.tipoPantalla = tipoPantalla;
+    }
+
 }

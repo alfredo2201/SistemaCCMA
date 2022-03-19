@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package IAdministrarVentas;
+import PanelesGlobales.PnContenido;
 
 /**
  *
@@ -13,6 +14,7 @@ public class PnConsultarVenta extends javax.swing.JPanel {
     /**
      * Creates new form ConsultarVenta
      */
+    private PnContenido pnContenido = PnContenido.getInstance();
     public PnConsultarVenta() {
         initComponents();
     }
@@ -33,7 +35,7 @@ public class PnConsultarVenta extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        tbVentas.setBackground(new java.awt.Color(255, 255, 255));
+        tbVentas.setBackground(new java.awt.Color(153, 153, 153));
         tbVentas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbVentas.setForeground(new java.awt.Color(0, 0, 0));
         tbVentas.setModel(new javax.swing.table.DefaultTableModel(
@@ -80,9 +82,9 @@ public class PnConsultarVenta extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(99, 99, 99)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
                         .addGap(44, 44, 44)
-                        .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(360, 360, 360)
                         .addComponent(jLabel1)))
@@ -91,18 +93,24 @@ public class PnConsultarVenta extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
+                .addGap(50, 50, 50)
                 .addComponent(jLabel1)
-                .addGap(80, 80, 80)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE))
-                .addGap(78, 78, 78))
+                    .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        // TODO add your handling code here:
+        PnMenuVenta pnMnVenta = new PnMenuVenta();
+        pnContenido.removeAll();
+        pnMnVenta.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
+        pnMnVenta.setLocation(0, -40);
+        pnContenido.add(pnMnVenta);
+        pnContenido.revalidate();
+        pnContenido.repaint();
     }//GEN-LAST:event_btnMenuActionPerformed
 
 
