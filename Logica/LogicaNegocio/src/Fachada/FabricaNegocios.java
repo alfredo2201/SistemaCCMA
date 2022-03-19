@@ -9,12 +9,7 @@ package Fachada;
  *
  * @author crist
  */
-public class FabricaNegocios {
-    /**
-     * Atributo instancia.
-     */
-    private static FachadaNegocos instance;
-    
+public class FabricaNegocios { 
     /**
      * Obtiene la instancia existente de FachadanNegocios. Si no existe 
      * Crea una nueva.
@@ -22,10 +17,7 @@ public class FabricaNegocios {
      * ya creada.
      */
     public static INegocios getInstance(){
-        if (instance == null) {
-            instance = new FachadaNegocos();
-        }
-        return instance;
+        return new FachadaNegocos();
     }
     
 }

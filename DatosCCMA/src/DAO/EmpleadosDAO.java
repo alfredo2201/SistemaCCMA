@@ -75,7 +75,7 @@ public class EmpleadosDAO extends BaseDAO<Empleado> {
     }
 
     @Override
-    public Empleado consultarById(Long id) throws DAOException {
+    public Empleado consultarById(Integer id) throws DAOException {
         if (id == null) {
             throw new DAOException("ID del empleado no encontrado");
         }
@@ -105,7 +105,7 @@ public class EmpleadosDAO extends BaseDAO<Empleado> {
     }
 
     @Override
-    public void eliminar(Long id) throws DAOException {
+    public void eliminar(Integer id) throws DAOException {
         try {
             int conteoRegistroAfectados;
             try (Connection conexion = this.generarConexion()) {
@@ -124,7 +124,7 @@ public class EmpleadosDAO extends BaseDAO<Empleado> {
     }
 
     @Override
-    public ArrayList<Empleado> consultar() throws DAOException {
+    public ArrayList<Empleado> obtenerTodo() throws DAOException {
         ArrayList<Empleado> listaEmpleados = new ArrayList<>();
         try {
             try (Connection conexion = this.generarConexion()) {
@@ -150,29 +150,5 @@ public class EmpleadosDAO extends BaseDAO<Empleado> {
             return listaEmpleados;
         }
     }
-public Empleado consultarByUsuarioContraseña(String usuario, String contraseña) throws DAOException {        
-        Empleado empleado = new Empleado();
-        try {
-            try (Connection conexion = this.generarConexion()) {
-                Statement comando = conexion.createStatement();
-                String consultarSQL;
-                consultarSQL = String.format("SELECT idUsuario, nombre, apellido, email, username, password, permiso FROM usuarios WHERE usuario='%s' AND password='%s'" ,
-                        usuario,contraseña);
-                ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
-                if (resultadoConsulta.next()) {
-                    empleado.setIdUsuario(resultadoConsulta.getInt("idUsuario"));
-                    empleado.setNombre(resultadoConsulta.getString("nombre"));
-                    empleado.setApellidos(resultadoConsulta.getString("apellido"));
-                    empleado.setCorreo(resultadoConsulta.getString("email"));
-                    empleado.setUsername(resultadoConsulta.getString("username"));
-                    empleado.setPassword(resultadoConsulta.getString("password"));
-                    empleado.setPermiso(Permiso.valueOf(resultadoConsulta.getString("permiso")));
-                }
-            }
-            return empleado;
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-            return empleado;
-        }
-    }
+
 }

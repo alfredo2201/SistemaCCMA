@@ -5,11 +5,23 @@
  */
 package IAdministrarCliente;
 
+import DAO.ClienteDAO;
+import Dominio.Cliente;
+import Exceptions.DAOException;
+import PanelesGlobales.PnContenido;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author herna
  */
 public class FrmBuscarCliente extends javax.swing.JFrame {
+
+    private final ClienteDAO clDao;
+    private PnContenido contenido = PnContenido.getInstance();
+    private PnEditarCliente editar = new PnEditarCliente();
 
     /**
      * Creates new form IBuscarCliente
@@ -18,6 +30,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        clDao = new ClienteDAO();
     }
 
     /**
@@ -40,9 +53,10 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         pnListaClientes = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        clienteTable = new javax.swing.JTable();
         btnContinuar = new javax.swing.JButton();
         btnCSinCliente = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,11 +105,10 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
 
         pnListaClientes.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.gray, null, null));
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        clienteTable.setBackground(new java.awt.Color(255, 255, 255));
+        clienteTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.gray, null, null));
+        clienteTable.setForeground(new java.awt.Color(0, 0, 0));
+        clienteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -118,7 +131,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(clienteTable);
 
         javax.swing.GroupLayout pnListaClientesLayout = new javax.swing.GroupLayout(pnListaClientes);
         pnListaClientes.setLayout(pnListaClientesLayout);
@@ -137,6 +150,11 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         btnContinuar.setText("Continuar");
         btnContinuar.setBorder(null);
         btnContinuar.setBorderPainted(false);
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContinuarActionPerformed(evt);
+            }
+        });
 
         btnCSinCliente.setBackground(new java.awt.Color(153, 153, 0));
         btnCSinCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -144,6 +162,18 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         btnCSinCliente.setText("Continuar sin cliente");
         btnCSinCliente.setBorder(null);
         btnCSinCliente.setBorderPainted(false);
+
+        btnBuscar.setBackground(new java.awt.Color(255, 255, 0));
+        btnBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/buscarIcon.png"))); // NOI18N
+        btnBuscar.setBorder(null);
+        btnBuscar.setBorderPainted(false);
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -171,7 +201,9 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
                                 .addGap(5, 5, 5)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtRFC2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addComponent(pnListaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -182,11 +214,14 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(txtNombreCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(txtNombreCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTextoRFC)
@@ -195,11 +230,11 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(pnListaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnCSinCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                     .addComponent(btnContinuar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -217,6 +252,54 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
+        // TODO add your handling code here:
+//        DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
+//        // Borra todos los rows
+//        dtm.setRowCount(0);
+//
+//        if (!txtNombreCliente2.getText().isEmpty()) {
+//            String ent = "\"%" + txtNombreCliente2.getText() + "%\"";
+//            try {
+//                ArrayList<Cliente> cLista = clDao.consultar("nombre", ent);
+//                if (cLista.isEmpty()) {
+//                    JOptionPane.showMessageDialog(this, "No se ha encontrado ningun cliente", "No se encontro el cliente", JOptionPane.INFORMATION_MESSAGE);
+//                    return;
+//                }
+//                cLista.forEach(cl -> {
+//                    dtm.addRow(new Object[]{cl.getNombre(), cl.getRfc(), cl.getCorreo()});
+//                });
+//            } catch (DAOException e) {
+//                System.out.println(e.getMessage());
+//            }
+//        } else if (!txtRFC2.getText().isEmpty()) {
+//            String ent = "\"" + txtRFC2.getText() + "\"";
+//            try {
+//                ArrayList<Cliente> cLista = clDao.consultar("RFC", ent);
+//                cLista.forEach(cl -> {
+//                    dtm.addRow(new Object[]{cl.getNombre(), cl.getRfc(), cl.getCorreo()});
+//                });
+//            } catch (DAOException e) {
+//                System.out.println(e.getMessage());
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Inserte informacion del cliente a buscar.", "Error al buscar cliente", JOptionPane.ERROR_MESSAGE);
+//        }
+
+        contenido.removeAll();
+        editar.setVisible(true);
+        editar.setSize(contenido.getSize().width, contenido.getSize().height);
+        editar.setLocation(0, 0);
+        contenido.add(editar);
+        contenido.revalidate();
+        contenido.repaint();
+        dispose();
+    }//GEN-LAST:event_btnContinuarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,8 +338,10 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCSinCliente;
     private javax.swing.JButton btnContinuar;
+    private javax.swing.JTable clienteTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JPanel jPanel1;
@@ -264,7 +349,6 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblTextoRFC;
     private javax.swing.JPanel pnListaClientes;
     private javax.swing.JTextField txtNombreCliente2;

@@ -5,10 +5,21 @@
  */
 package Control;
 
+import Dominio.Cliente;
+import IDatos.FabricaDatos;
+import IDatos.IDatos;
+
 /**
  *
  * @author Isai Perez
  */
 public class ControlCliente {
+    IDatos iDatos = FabricaDatos.getInstance();
+    
+    public void agregar(Cliente cliente){
+        if (cliente != null) {
+            iDatos.insertarCliente(cliente);
+        }
+    }
     
 }

@@ -59,6 +59,10 @@ public class Cliente extends Persona{
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-           
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "id_cliente=" + id_cliente + ", rfc=" + rfc + ", telefono=" + telefono + '}';
+    }
             
 }

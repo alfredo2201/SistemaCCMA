@@ -70,7 +70,7 @@ public class PresupuestoDAO extends BaseDAO<Presupuesto> {
     }
 
     @Override
-    public Presupuesto consultarById(Long id) throws DAOException, Exception {
+    public Presupuesto consultarById(Integer id) throws DAOException, Exception {
         if (id == null) {
             throw new Exception("ID del presupuesto no encontrado");
         }
@@ -85,7 +85,7 @@ public class PresupuestoDAO extends BaseDAO<Presupuesto> {
             ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
             if (resultadoConsulta.next()) {
                 presupuesto.setIdPresupuesto(resultadoConsulta.getInt("idPresupuesto"));
-                presupuesto.setCliente(ctl.consultarById(resultadoConsulta.getLong("idCliente")));
+                presupuesto.setCliente(ctl.consultarById(resultadoConsulta.getInt("idCliente")));
                 presupuesto.setFecha(resultadoConsulta.getDate("fecha"));
                 presupuesto.setTotal(resultadoConsulta.getFloat("total"));
             }
@@ -98,7 +98,7 @@ public class PresupuestoDAO extends BaseDAO<Presupuesto> {
     }
 
     @Override
-    public void eliminar(Long id) throws DAOException {
+    public void eliminar(Integer id) throws DAOException {
         try {
             int conteoRegistroAfectados;
             try (Connection conexion = this.generarConexion()) {
@@ -117,7 +117,7 @@ public class PresupuestoDAO extends BaseDAO<Presupuesto> {
     }
 
     @Override
-    public ArrayList<Presupuesto> consultar() throws DAOException {
+    public ArrayList<Presupuesto> obtenerTodo() throws DAOException {
         ArrayList<Presupuesto> listaPresupuesto = new ArrayList<>();
         try {
             Connection conexion = this.generarConexion();
@@ -129,7 +129,7 @@ public class PresupuestoDAO extends BaseDAO<Presupuesto> {
             while (resultadoConsulta.next()) {
                 Presupuesto presupuesto = new Presupuesto();
                 presupuesto.setIdPresupuesto(resultadoConsulta.getInt("idPresupuesto"));
-                presupuesto.setCliente(ctl.consultarById(resultadoConsulta.getLong("idCliente")));
+                presupuesto.setCliente(ctl.consultarById(resultadoConsulta.getInt("idCliente")));
                 presupuesto.setFecha(resultadoConsulta.getDate("fecha"));
                 presupuesto.setTotal(resultadoConsulta.getFloat("total"));
                 listaPresupuesto.add(presupuesto);
@@ -154,7 +154,7 @@ public class PresupuestoDAO extends BaseDAO<Presupuesto> {
             while (resultadoConsulta.next()) {
                 Presupuesto presupuesto = new Presupuesto();
                 presupuesto.setIdPresupuesto(resultadoConsulta.getInt("idPresupuesto"));
-                presupuesto.setCliente(ctl.consultarById(resultadoConsulta.getLong("idCliente")));
+                presupuesto.setCliente(ctl.consultarById(resultadoConsulta.getInt("idCliente")));
                 presupuesto.setFecha(resultadoConsulta.getDate("fecha"));
                 presupuesto.setTotal(resultadoConsulta.getFloat("total"));
                 listaPresupuesto.add(presupuesto);
@@ -181,7 +181,7 @@ public class PresupuestoDAO extends BaseDAO<Presupuesto> {
             while (resultadoConsulta.next()) {
                 Presupuesto presupuesto = new Presupuesto();
                 presupuesto.setIdPresupuesto(resultadoConsulta.getInt("idPresupuesto"));
-                presupuesto.setCliente(ctl.consultarById(resultadoConsulta.getLong("idCliente")));
+                presupuesto.setCliente(ctl.consultarById(resultadoConsulta.getInt("idCliente")));
                 presupuesto.setFecha(resultadoConsulta.getDate("fecha"));
                 presupuesto.setTotal(resultadoConsulta.getFloat("total"));
                 listaPresupuesto.add(presupuesto);
@@ -193,4 +193,5 @@ public class PresupuestoDAO extends BaseDAO<Presupuesto> {
             return listaPresupuesto;
         }
     }
+
 }

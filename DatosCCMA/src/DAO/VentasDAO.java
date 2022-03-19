@@ -73,7 +73,7 @@ public class VentasDAO extends BaseDAO<Venta> {
     }
 
     @Override
-    public Venta consultarById(Long id) throws DAOException {
+    public Venta consultarById(Integer id) throws DAOException {
         if (id == null) {
             throw new DAOException("ID de la venta no encontrado");
         }
@@ -89,11 +89,11 @@ public class VentasDAO extends BaseDAO<Venta> {
             ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
             if (resultadoConsulta.next()) {
                 venta.setIdVenta(resultadoConsulta.getInt("idventa"));
-                venta.setCliente(clt.consultarById(resultadoConsulta.getLong("idCliente")));
+                venta.setCliente(clt.consultarById(resultadoConsulta.getInt("idCliente")));
                 venta.setFecha(resultadoConsulta.getDate("fecha"));
                 venta.setSubtotal(resultadoConsulta.getFloat("subtotal"));
                 venta.setTotal(resultadoConsulta.getFloat("total"));
-                venta.setEmpleado(empl.consultarById(resultadoConsulta.getLong("idUsuario")));
+                venta.setEmpleado(empl.consultarById(resultadoConsulta.getInt("idUsuario")));
             }
             return venta;
         } catch (Exception e) {
@@ -103,7 +103,7 @@ public class VentasDAO extends BaseDAO<Venta> {
     }
 
     @Override
-    public void eliminar(Long id) throws DAOException {
+    public void eliminar(Integer id) throws DAOException {
         try {
             int conteoRegistroAfectados;
             try (Connection conexion = this.generarConexion()) {
@@ -122,7 +122,7 @@ public class VentasDAO extends BaseDAO<Venta> {
     }
 
     @Override
-    public ArrayList<Venta> consultar() throws DAOException {
+    public ArrayList<Venta> obtenerTodo() throws DAOException {
         ArrayList<Venta> listaVentas = new ArrayList<>();
         try {
             ClienteDAO clt = new ClienteDAO();
@@ -135,11 +135,11 @@ public class VentasDAO extends BaseDAO<Venta> {
             while (resultadoConsulta.next()) {
                 Venta venta = new Venta();
                 venta.setIdVenta(resultadoConsulta.getInt("idventa"));
-                venta.setCliente(clt.consultarById(resultadoConsulta.getLong("idCliente")));
+                venta.setCliente(clt.consultarById(resultadoConsulta.getInt("idCliente")));
                 venta.setFecha(resultadoConsulta.getDate("fecha"));
                 venta.setSubtotal(resultadoConsulta.getFloat("subtotal"));
                 venta.setTotal(resultadoConsulta.getFloat("total"));
-                venta.setEmpleado(empl.consultarById(resultadoConsulta.getLong("idUsuario")));
+                venta.setEmpleado(empl.consultarById(resultadoConsulta.getInt("idUsuario")));
 
                 listaVentas.add(venta);
             }
@@ -151,11 +151,11 @@ public class VentasDAO extends BaseDAO<Venta> {
         }
     }
     
-    public Venta consultarByFecha(Date fecha) throws DAOException {
+    public ArrayList<Venta> consultarByFecha(Date fecha) throws DAOException {
         if (fecha == null) {
             throw new DAOException("fecha de la venta no encontrado");
         }
-        Venta venta = new Venta();
+        ArrayList<Venta>ventas = new ArrayList<>();
         try {
             ClienteDAO clt = new ClienteDAO();
             EmpleadosDAO empl = new EmpleadosDAO();
@@ -165,18 +165,20 @@ public class VentasDAO extends BaseDAO<Venta> {
             consultarSQL = String.format("SELECT idventa, idCliente, fecha, subtotal, total, idUsuario FROM ventas WHERE fecha='%s'",
                     fecha);
             ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
-            if (resultadoConsulta.next()) {
+            while (resultadoConsulta.next()) {
+                Venta venta = new Venta();                
                 venta.setIdVenta(resultadoConsulta.getInt("idventa"));
-                venta.setCliente(clt.consultarById(resultadoConsulta.getLong("idCliente")));
+                venta.setCliente(clt.consultarById(resultadoConsulta.getInt("idCliente")));
                 venta.setFecha(resultadoConsulta.getDate("fecha"));
                 venta.setSubtotal(resultadoConsulta.getFloat("subtotal"));
                 venta.setTotal(resultadoConsulta.getFloat("total"));
-                venta.setEmpleado(empl.consultarById(resultadoConsulta.getLong("idUsuario")));
+                venta.setEmpleado(empl.consultarById(resultadoConsulta.getInt("idUsuario")));
+                ventas.add(venta);
             }
-            return venta;
+            return ventas;
         } catch (Exception e) {
             System.err.println(e.getMessage());
-            return venta;
+            return ventas;
         }
     }
     public ArrayList<Venta> consultarByRangoFechas(Date inicio,Date fin) throws DAOException {
@@ -196,11 +198,11 @@ public class VentasDAO extends BaseDAO<Venta> {
             while (resultadoConsulta.next()) {
                 Venta venta = new Venta();
                 venta.setIdVenta(resultadoConsulta.getInt("idventa"));
-                venta.setCliente(clt.consultarById(resultadoConsulta.getLong("idCliente")));
+                venta.setCliente(clt.consultarById(resultadoConsulta.getInt("idCliente")));
                 venta.setFecha(resultadoConsulta.getDate("fecha"));
                 venta.setSubtotal(resultadoConsulta.getFloat("subtotal"));
                 venta.setTotal(resultadoConsulta.getFloat("total"));
-                venta.setEmpleado(empl.consultarById(resultadoConsulta.getLong("idUsuario")));
+                venta.setEmpleado(empl.consultarById(resultadoConsulta.getInt("idUsuario")));
                 listaVentas.add(venta);
             }
             return listaVentas;
@@ -209,6 +211,5 @@ public class VentasDAO extends BaseDAO<Venta> {
             return listaVentas;
         }
     }
-
 
 }

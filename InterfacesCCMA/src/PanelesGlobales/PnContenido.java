@@ -27,7 +27,7 @@ public class PnContenido extends javax.swing.JPanel {
     private void initComponents() {
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setForeground(new java.awt.Color(0, 204, 204));
+        setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

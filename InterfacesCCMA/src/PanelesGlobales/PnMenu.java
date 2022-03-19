@@ -11,6 +11,7 @@ import IAdministrarVentas.PnMenuVenta;
 import InicioSesion.FrmInicioSesion;
 import Principal.FrmPrincipal;
 
+
 /**
  *
  * @author crist
@@ -20,10 +21,12 @@ public class PnMenu extends javax.swing.JPanel {
     private PnContenido pnContenido = PnContenido.getInstance();
     private PnMenuClientes pnMnCliente = new PnMenuClientes();
     private PnMenuVenta pnMnVentas = new PnMenuVenta();
-    private PnMenuProducto pnMnProducto = new PnMenuProducto();   
-    
+    private PnMenuProducto pnMnProducto = new PnMenuProducto();
+
     public PnMenu() {
         initComponents();
+
+        System.out.println(getSize().height + " , " + getSize().height);
     }
 
     /**
@@ -140,12 +143,14 @@ public class PnMenu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-
+        pnContenido.removeAll();
+        pnContenido.revalidate();
+        pnContenido.repaint();
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
         pnContenido.removeAll();
-        pnMnVentas.setSize(810, 600);
+        pnMnVentas.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
         pnMnVentas.setLocation(0, -40);
         pnContenido.add(pnMnVentas);
         pnContenido.revalidate();
@@ -154,7 +159,7 @@ public class PnMenu extends javax.swing.JPanel {
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
         pnContenido.removeAll();
-        pnMnCliente.setSize(810, 600);
+        pnMnCliente.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
         pnMnCliente.setLocation(0, -40);
         pnContenido.add(pnMnCliente);
         pnContenido.revalidate();
@@ -163,7 +168,7 @@ public class PnMenu extends javax.swing.JPanel {
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
         pnContenido.removeAll();
-        pnMnProducto.setSize(810, 600);
+        pnMnProducto.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
         pnMnProducto.setLocation(0, -40);
         pnContenido.add(pnMnProducto);
         pnContenido.revalidate();
@@ -172,11 +177,11 @@ public class PnMenu extends javax.swing.JPanel {
 
     private void btnCerrarSesion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesion1ActionPerformed
         FrmInicioSesion inicio = new FrmInicioSesion();
-        inicio.setVisible(true);   
+        inicio.setVisible(true);
         pnContenido.removeAll();
         FrmPrincipal princi = FrmPrincipal.getInstance();
         princi.dispose();
-        
+
     }//GEN-LAST:event_btnCerrarSesion1ActionPerformed
 
 
