@@ -22,7 +22,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="264" max="32767" attributes="0"/>
+              <EmptySpace pref="269" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnOpcionRegistrarProducto" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnOpcionActualizarProducto" alignment="0" max="32767" attributes="0"/>
@@ -30,7 +30,7 @@
                   <Component id="btnOpcionEliminarProducto" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnOpcionConsultarProductos" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="301" max="32767" attributes="0"/>
+              <EmptySpace pref="306" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -159,7 +159,7 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Men&#xfa; de Presupuestos"/>
+        <Property name="text" type="java.lang.String" value="Men&#xfa; de Presupuesto"/>
       </Properties>
     </Component>
   </SubComponents>

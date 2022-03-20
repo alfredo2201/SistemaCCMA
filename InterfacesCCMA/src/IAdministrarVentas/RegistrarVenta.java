@@ -191,7 +191,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
         btnMetodoPago.setBackground(new java.awt.Color(153, 153, 0));
         btnMetodoPago.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnMetodoPago.setForeground(new java.awt.Color(0, 0, 0));
-        btnMetodoPago.setText("Metodo de pago");
+        btnMetodoPago.setText("Método de pago");
         btnMetodoPago.setBorder(null);
         btnMetodoPago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,8 +274,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
                                         .addGap(117, 117, 117)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rbClienteTemporal)))))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                        .addComponent(rbClienteTemporal))))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(jScrollPane1)))
@@ -347,7 +346,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_rbClienteTemporalActionPerformed
 
     private void btnMetodoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMetodoPagoActionPerformed
-        // TODO add your handling code here:
+        FrmMetodoPago metodoPago = new FrmMetodoPago();
+        metodoPago.setVisible(true);
     }//GEN-LAST:event_btnMetodoPagoActionPerformed
 
     private void btnAgregarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductosActionPerformed

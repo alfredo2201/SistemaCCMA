@@ -121,7 +121,7 @@ public class PnEliminarVenta extends javax.swing.JPanel {
         btnMenuPrincipal.setBackground(new java.awt.Color(204, 204, 0));
         btnMenuPrincipal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnMenuPrincipal.setForeground(new java.awt.Color(0, 0, 0));
-        btnMenuPrincipal.setText("Regresar al menu");
+        btnMenuPrincipal.setText("Regresar al menú");
         btnMenuPrincipal.setBorder(null);
         btnMenuPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

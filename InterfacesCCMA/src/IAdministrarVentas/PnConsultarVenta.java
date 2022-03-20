@@ -62,7 +62,7 @@ public class PnConsultarVenta extends javax.swing.JPanel {
         btnMenu.setBackground(new java.awt.Color(153, 153, 0));
         btnMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnMenu.setForeground(new java.awt.Color(0, 0, 0));
-        btnMenu.setText("Regresar al menu");
+        btnMenu.setText("Regresar al menú");
         btnMenu.setBorder(null);
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
