@@ -146,10 +146,11 @@ public class VentasProductoDAO extends BaseDAO<VentaProducto> {
         }
     }
 
-    public VentaProducto consultarByIdVenta(Integer id) throws DAOException {
+    public ArrayList<VentaProducto> consultarByIdVenta(Integer id) throws DAOException {
         if (id == null) {
             throw new DAOException("ID de la venta no encontrado");
         }
+        ArrayList<VentaProducto> ventaProductos = new ArrayList<>();
         VentaProducto ventaProducto = new VentaProducto();
         try {
             ProductosDAO prod = new ProductosDAO();
@@ -160,17 +161,18 @@ public class VentasProductoDAO extends BaseDAO<VentaProducto> {
             consultarSQL = String.format("SELECT idProducto, IdVenta, cantidad, precioUnitario FROM ventaproductos WHERE IdVenta=%d",
                     id);
             ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
-            if (resultadoConsulta.next()) {
+            while (resultadoConsulta.next()) {
                 ventaProducto.setProducto(prod.consultarById(resultadoConsulta.getInt("idProducto")));
                 ventaProducto.setVenta(vent.consultarById(resultadoConsulta.getInt("IdVenta")));
                 ventaProducto.setCantidad(resultadoConsulta.getInt("cantidad"));
                 ventaProducto.setPrecioVenta(resultadoConsulta.getFloat("precioUnitario"));
+                ventaProductos.add(ventaProducto);
             }
 
-            return ventaProducto;
+            return ventaProductos;
         } catch (DAOException | SQLException e) {
             System.err.println(e.getMessage());
-            return ventaProducto;
+            return ventaProductos;
         }
     }
 

@@ -6,17 +6,28 @@
 package Fachada;
 
 import Dominio.Cliente;
+import Dominio.Empleado;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Isai Perez
  */
 public interface INegocios {
+
+    public Empleado obtenEmpleado(String username, String password);
+
     public void registrarClienteNuevo(Cliente cliente);
+
     public Cliente consultarCliente(Cliente cliente);
-    public ArrayList<Cliente>obtenerClientes();   
+
+    public ArrayList<Cliente> obtenerClientes();
+
     public void actualizarCliente(Cliente cliente);
+
     public void eliminarCliente(Cliente cliente);
-    
+
+    public void muestraMsj(String mensaje, String titulo, int tipo);
+
 }

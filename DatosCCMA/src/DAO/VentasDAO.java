@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -27,16 +28,18 @@ public class VentasDAO extends BaseDAO<Venta> {
             Connection conexion = this.generarConexion();
             Statement comando = conexion.createStatement();
             String insertarSLQ;
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String time = formato.format(venta.getFecha());
             insertarSLQ = String.format(
                     "INSERT INTO ventas(idCliente, fecha, subtotal, total, idUsuario) "
                     + "VALUES('%s','%s','%s','%s','%s')",
                     venta.getCliente().getId_cliente(),
-                    venta.getFecha(),
+                    time,
                     venta.getSubtotal(),
                     venta.getTotal(),
                     venta.getEmpleado().getIdUsuario());
             comando.executeUpdate(insertarSLQ);
-            
+
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
@@ -52,11 +55,13 @@ public class VentasDAO extends BaseDAO<Venta> {
             Connection conexion = this.generarConexion();
             Statement comando = conexion.createStatement();
             String actualizarSQL;
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String time = formato.format(venta.getFecha());
             actualizarSQL = String.format("UPDATE ventas "
                     + "SET idCliente='%s', fecha='%s',subtotal='%s',total='%s',idUsuario='%s' "
                     + "WHERE id = '%d' ",
                     venta.getCliente().getId_cliente(),
-                    venta.getFecha(),
+                    time,
                     venta.getSubtotal(),
                     venta.getTotal(),
                     venta.getEmpleado().getIdUsuario(),
@@ -84,13 +89,13 @@ public class VentasDAO extends BaseDAO<Venta> {
             Connection conexion = this.generarConexion();
             Statement comando = conexion.createStatement();
             String consultarSQL;
-            consultarSQL = String.format("SELECT idventa, idCliente, fecha, subtotal, total, idUsuario FROM ventas WHERE id=%d",
+            consultarSQL = String.format("SELECT idventa, idCliente, fecha, subtotal, total, idUsuario FROM ventas WHERE idventa='%d'",
                     id);
             ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
             if (resultadoConsulta.next()) {
                 venta.setIdVenta(resultadoConsulta.getInt("idventa"));
                 venta.setCliente(clt.consultarById(resultadoConsulta.getInt("idCliente")));
-                venta.setFecha(resultadoConsulta.getDate("fecha"));
+                venta.setFecha(resultadoConsulta.getTimestamp("fecha"));
                 venta.setSubtotal(resultadoConsulta.getFloat("subtotal"));
                 venta.setTotal(resultadoConsulta.getFloat("total"));
                 venta.setEmpleado(empl.consultarById(resultadoConsulta.getInt("idUsuario")));
@@ -109,7 +114,7 @@ public class VentasDAO extends BaseDAO<Venta> {
             try (Connection conexion = this.generarConexion()) {
                 Statement comando = conexion.createStatement();
                 String eliminarSQL;
-                eliminarSQL = String.format("DELETE FROM ventas WHERE id=%d",
+                eliminarSQL = String.format("DELETE FROM ventas WHERE idventa=%d",
                         id);
                 conteoRegistroAfectados = comando.executeUpdate(eliminarSQL);
             }
@@ -130,13 +135,13 @@ public class VentasDAO extends BaseDAO<Venta> {
             Connection conexion = this.generarConexion();
             Statement comando = conexion.createStatement();
             String consultarSQL;
-            consultarSQL = String.format("SELECT id, nombre, apellidos, RFC, correo, telefono FROM ventas");
+            consultarSQL = String.format("SELECT * FROM ventas");
             ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
             while (resultadoConsulta.next()) {
                 Venta venta = new Venta();
                 venta.setIdVenta(resultadoConsulta.getInt("idventa"));
                 venta.setCliente(clt.consultarById(resultadoConsulta.getInt("idCliente")));
-                venta.setFecha(resultadoConsulta.getDate("fecha"));
+                venta.setFecha(resultadoConsulta.getTimestamp("fecha"));
                 venta.setSubtotal(resultadoConsulta.getFloat("subtotal"));
                 venta.setTotal(resultadoConsulta.getFloat("total"));
                 venta.setEmpleado(empl.consultarById(resultadoConsulta.getInt("idUsuario")));
@@ -150,12 +155,12 @@ public class VentasDAO extends BaseDAO<Venta> {
             return listaVentas;
         }
     }
-    
-    public ArrayList<Venta> consultarByFecha(Date fecha) throws DAOException {
+
+    public ArrayList<Venta> consultarByFecha(String fecha) throws DAOException {
         if (fecha == null) {
             throw new DAOException("fecha de la venta no encontrado");
         }
-        ArrayList<Venta>ventas = new ArrayList<>();
+        ArrayList<Venta> ventas = new ArrayList<>();
         try {
             ClienteDAO clt = new ClienteDAO();
             EmpleadosDAO empl = new EmpleadosDAO();
@@ -166,10 +171,10 @@ public class VentasDAO extends BaseDAO<Venta> {
                     fecha);
             ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
             while (resultadoConsulta.next()) {
-                Venta venta = new Venta();                
+                Venta venta = new Venta();
                 venta.setIdVenta(resultadoConsulta.getInt("idventa"));
                 venta.setCliente(clt.consultarById(resultadoConsulta.getInt("idCliente")));
-                venta.setFecha(resultadoConsulta.getDate("fecha"));
+                venta.setFecha(resultadoConsulta.getTimestamp("fecha"));
                 venta.setSubtotal(resultadoConsulta.getFloat("subtotal"));
                 venta.setTotal(resultadoConsulta.getFloat("total"));
                 venta.setEmpleado(empl.consultarById(resultadoConsulta.getInt("idUsuario")));
@@ -181,11 +186,12 @@ public class VentasDAO extends BaseDAO<Venta> {
             return ventas;
         }
     }
-    public ArrayList<Venta> consultarByRangoFechas(Date inicio,Date fin) throws DAOException {
+
+    public ArrayList<Venta> consultarByRangoFechas(String inicio, String fin) throws DAOException {
         if (inicio == null || fin == null) {
             throw new DAOException("fecha de la venta no encontrado");
-        }       
-        ArrayList<Venta>listaVentas = new ArrayList<>();
+        }
+        ArrayList<Venta> listaVentas = new ArrayList<>();
         try {
             ClienteDAO clt = new ClienteDAO();
             EmpleadosDAO empl = new EmpleadosDAO();
@@ -193,13 +199,13 @@ public class VentasDAO extends BaseDAO<Venta> {
             Statement comando = conexion.createStatement();
             String consultarSQL;
             consultarSQL = String.format("SELECT idventa, idCliente, fecha, subtotal, total, idUsuario FROM ventas WHERE fecha BETWEEN '%s' AND '%s'",
-                    inicio,fin);
+                    inicio, fin);
             ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
             while (resultadoConsulta.next()) {
                 Venta venta = new Venta();
                 venta.setIdVenta(resultadoConsulta.getInt("idventa"));
                 venta.setCliente(clt.consultarById(resultadoConsulta.getInt("idCliente")));
-                venta.setFecha(resultadoConsulta.getDate("fecha"));
+                venta.setFecha(resultadoConsulta.getTimestamp("fecha"));
                 venta.setSubtotal(resultadoConsulta.getFloat("subtotal"));
                 venta.setTotal(resultadoConsulta.getFloat("total"));
                 venta.setEmpleado(empl.consultarById(resultadoConsulta.getInt("idUsuario")));

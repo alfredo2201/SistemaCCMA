@@ -142,7 +142,7 @@ public class PresupuestoDAO extends BaseDAO<Presupuesto> {
         }
     }
 
-    public ArrayList<Presupuesto> consultarByFecha(Date fecha) throws DAOException {
+    public ArrayList<Presupuesto> consultarByFecha(String fecha) throws DAOException {
         ArrayList<Presupuesto> listaPresupuesto = new ArrayList<>();
         try {
             Connection conexion = this.generarConexion();

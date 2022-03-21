@@ -17,19 +17,19 @@ public class Cliente extends Persona{
     public Cliente() {
     }
 
-    public Cliente(String nombre, String apellidos, String telefono) {
-        super(nombre,apellidos);        
+    public Cliente(String nombre_completo, String telefono) {
+        super(nombre_completo);        
         this.telefono = telefono;
     }
 
-    public Cliente(String nombre, String apellidos, String correo,String rfc, String telefono) {
-        super(nombre, apellidos, correo);
+    public Cliente(String nombre_completo, String correo,String rfc, String telefono) {
+        super(nombre_completo, correo);
         this.rfc = rfc;
         this.telefono = telefono;
     }
     
-    public Cliente(Integer id_cliente, String nombre, String apellidos, String rfc, String correo, String telefono) {
-        super(nombre, apellidos, correo);
+    public Cliente(Integer id_cliente, String nombre_completo, String rfc, String correo, String telefono) {
+        super(nombre_completo, correo);
         this.id_cliente = id_cliente;
         this.rfc = rfc;        
         this.telefono = telefono;

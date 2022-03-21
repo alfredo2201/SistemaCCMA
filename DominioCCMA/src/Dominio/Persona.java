@@ -10,38 +10,29 @@ package Dominio;
  * @author crist
  */
 public class Persona {
-    private String nombre;
-    private String apellidos;
+
+    private String nombre_completo;
     private String correo;
 
     public Persona() {
     }
 
-    public Persona(String nombre, String apellidos) {
-        this.nombre = nombre;
-        this.apellidos = apellidos;
+    public Persona(String nombre_completo) {
+        this.nombre_completo = nombre_completo;
     }
 
-    public Persona(String nombre, String apellidos, String correo) {
-        this.nombre = nombre;
-        this.apellidos = apellidos;
+    public Persona(String nombre_completo, String correo) {
+        this.nombre_completo = nombre_completo;
+
         this.correo = correo;
     }
 
     public String getNombre() {
-        return nombre;
+        return nombre_completo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setNombre(String nombre_completo) {
+        this.nombre_completo = nombre_completo;
     }
 
     public String getCorreo() {
@@ -51,5 +42,5 @@ public class Persona {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    
+
 }

@@ -5,10 +5,12 @@
  */
 package Principal;
 
+import Dominio.Empleado;
 import PanelesGlobales.PnContenido;
 import PanelesGlobales.PnMenu;
 import java.awt.Dimension;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,10 +24,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private PnMenu pnMenu = new PnMenu();
     private PnContenido pnContenido = PnContenido.getInstance();
     private static FrmPrincipal instance = null;
+    private Empleado empleado;
 
     private FrmPrincipal() {
-        initComponents();
-        iniciarPantalla();
+        initComponents();        
+        iniciarPantalla();        
     }
 
     /**
@@ -171,13 +174,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblHoraTexto;
     private javax.swing.JLabel lblIcono;
     private javax.swing.JLabel lblNombreEmpresa;
-    private javax.swing.JLabel lblNombreUsuario;
+    public javax.swing.JLabel lblNombreUsuario;
     private javax.swing.JLabel lblTextoUsuario;
     private javax.swing.JLabel lblTextoVentas;
     private javax.swing.JLabel lblVentasEstado;
     private javax.swing.JPanel pnTop;
     // End of variables declaration//GEN-END:variables
-   public static FrmPrincipal getInstance() {
+  
+    public static FrmPrincipal getInstance() {
         if (instance == null) {
             instance = new FrmPrincipal();
         }
@@ -202,6 +206,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pnContenido.setLocation(320, 143);
         pnContenido.setSize(w - 321, h - 143);
         this.add(pnMenu);
-        this.add(pnContenido);
+        this.add(pnContenido);       
     }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+        cargarEmpleado();
+    }
+    
+    private void cargarEmpleado(){
+        lblNombreUsuario.setText(this.empleado.getNombre());
+    }
+    
 }

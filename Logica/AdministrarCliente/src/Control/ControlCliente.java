@@ -8,6 +8,8 @@ package Control;
 import Dominio.Cliente;
 import IDatos.FabricaDatos;
 import IDatos.IDatos;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,7 +20,11 @@ public class ControlCliente {
     
     public void agregar(Cliente cliente){
         if (cliente != null) {
-            iDatos.insertarCliente(cliente);
+            try {
+                iDatos.insertarCliente(cliente);
+            } catch (Exception ex) {
+                Logger.getLogger(ControlCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     

@@ -27,10 +27,9 @@ public class ClienteDAO extends BaseDAO<Cliente> {
             Statement comando = conexion.createStatement();
             String insertarSLQ;
             insertarSLQ = String.format(
-                    "INSERT INTO clientes(nombre, apellidos, RFC, correo, telefono) "
+                    "INSERT INTO clientes(nombre_completo, apellidos, RFC, correo, telefono) "
                     + "VALUES('%s','%s','%s','%s','%s')",
                     cliente.getNombre(),
-                    cliente.getApellidos(),
                     cliente.getRfc(),
                     cliente.getCorreo(),
                     cliente.getTelefono());
@@ -52,10 +51,9 @@ public class ClienteDAO extends BaseDAO<Cliente> {
                 Statement comando = conexion.createStatement();
                 String actualizarSQL;
                 actualizarSQL = String.format("UPDATE clientes "
-                        + "SET nombre='%s', apellidos='%s',RFC='%s',correo='%s',telefono='%s' "
+                        + "SET nombre_completo='%s',RFC='%s',correo='%s',telefono='%s' "
                         + "WHERE id = '%d' ",
                         cliente.getNombre(),
-                        cliente.getApellidos(),
                         cliente.getRfc(),
                         cliente.getCorreo(),
                         cliente.getTelefono(),
@@ -82,13 +80,12 @@ public class ClienteDAO extends BaseDAO<Cliente> {
             try (Connection conexion = this.generarConexion()) {
                 Statement comando = conexion.createStatement();
                 String consultarSQL;
-                consultarSQL = String.format("SELECT id, nombre, apellidos, RFC, correo, telefono FROM clientes WHERE id=%d",
+                consultarSQL = String.format("SELECT id, nombre_completo, RFC, correo, telefono FROM clientes WHERE id=%d",
                         id);
                 ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
                 if (resultadoConsulta.next()) {
                     cliente.setId_cliente(resultadoConsulta.getInt("id"));
-                    cliente.setNombre(resultadoConsulta.getString("nombre"));
-                    cliente.setApellidos(resultadoConsulta.getString("apellidos"));
+                    cliente.setNombre(resultadoConsulta.getString("nombre_completo"));
                     cliente.setRfc(resultadoConsulta.getString("RFC"));
                     cliente.setCorreo(resultadoConsulta.getString("correo"));
                     cliente.setTelefono(resultadoConsulta.getString("telefono"));
@@ -110,13 +107,12 @@ public class ClienteDAO extends BaseDAO<Cliente> {
             try (Connection conexion = this.generarConexion()) {
                 Statement comando = conexion.createStatement();
                 String consultarSQL;
-                consultarSQL = String.format("SELECT id, nombre, apellidos, RFC, correo, telefono FROM clientes WHERE RFC LIKE '%s'",
+                consultarSQL = String.format("SELECT id, nombre_completo, RFC, correo, telefono FROM clientes WHERE RFC LIKE '%s'",
                         RFC);
                 ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
                 if (resultadoConsulta.next()) {
                     cliente.setId_cliente(resultadoConsulta.getInt("id"));
-                    cliente.setNombre(resultadoConsulta.getString("nombre"));
-                    cliente.setApellidos(resultadoConsulta.getString("apellidos"));
+                    cliente.setNombre(resultadoConsulta.getString("nombre"));                    
                     cliente.setRfc(resultadoConsulta.getString("RFC"));
                     cliente.setCorreo(resultadoConsulta.getString("correo"));
                     cliente.setTelefono(resultadoConsulta.getString("telefono"));
@@ -155,13 +151,12 @@ public class ClienteDAO extends BaseDAO<Cliente> {
             try (Connection conexion = this.generarConexion()) {
                 Statement comando = conexion.createStatement();
                 String consultarSQL;
-                consultarSQL = String.format("SELECT id, nombre, apellidos, RFC, correo, telefono FROM clientes");
+                consultarSQL = String.format("SELECT id, nombre_completo, RFC, correo, telefono FROM clientes");
                 ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
                 while (resultadoConsulta.next()) {
                     Cliente cliente = new Cliente();
                     cliente.setId_cliente(resultadoConsulta.getInt("id"));
                     cliente.setNombre(resultadoConsulta.getString("nombre"));
-                    cliente.setApellidos(resultadoConsulta.getString("apellidos"));
                     cliente.setRfc(resultadoConsulta.getString("RFC"));
                     cliente.setCorreo(resultadoConsulta.getString("correo"));
                     cliente.setTelefono(resultadoConsulta.getString("telefono"));
@@ -181,13 +176,12 @@ public class ClienteDAO extends BaseDAO<Cliente> {
             try (Connection conexion = this.generarConexion()) {
                 Statement comando = conexion.createStatement();
                 String consultarSQL;
-                consultarSQL = String.format("SELECT id, nombre, apellidos, RFC, correo, telefono FROM clientes WHERE %s LIKE %s", nombreParametro, nombreEntidad);
+                consultarSQL = String.format("SELECT id, nombre_completo, RFC, correo, telefono FROM clientes WHERE %s LIKE %s", nombreParametro, nombreEntidad);
                 ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
                 while (resultadoConsulta.next()) {
                     Cliente cliente = new Cliente();
                     cliente.setId_cliente(resultadoConsulta.getInt("id"));
-                    cliente.setNombre(resultadoConsulta.getString("nombre"));
-                    cliente.setApellidos(resultadoConsulta.getString("apellidos"));
+                    cliente.setNombre(resultadoConsulta.getString("nombre"));                    
                     cliente.setRfc(resultadoConsulta.getString("RFC"));
                     cliente.setCorreo(resultadoConsulta.getString("correo"));
                     cliente.setTelefono(resultadoConsulta.getString("telefono"));

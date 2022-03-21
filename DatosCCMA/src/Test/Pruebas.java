@@ -21,7 +21,18 @@ public class Pruebas {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
-        
+//           ClienteDAO c = new ClienteDAO();
+//           ArrayList<Cliente> clientes = c.obtenerTodo();
+//           clientes.forEach((cliente) -> {
+//               System.out.println(cliente);
+//        });
+    VentasDAO v = new VentasDAO();
+//    Venta venta = v.consultarById(2);
+//        System.out.println(venta);
+    ArrayList<Venta> ventas = v.obtenerTodo();
+        for (Venta venta : ventas) {
+            System.out.println(venta);
+        }
 
     }
 

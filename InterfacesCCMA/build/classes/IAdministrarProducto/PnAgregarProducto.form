@@ -194,16 +194,19 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="Automovil"/>
-            <StringItem index="1" value="Motocicleta"/>
-            <StringItem index="2" value="Lancha"/>
-            <StringItem index="3" value="Universal"/>
+            <StringItem index="0" value="Freno de mano"/>
+            <StringItem index="1" value="Clutch"/>
+            <StringItem index="2" value="Acelerador"/>
+            <StringItem index="3" value=" "/>
           </StringArray>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Cursor de Mano"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbTipoActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>

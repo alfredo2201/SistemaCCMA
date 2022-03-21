@@ -20,6 +20,7 @@ import Dominio.Producto;
 import Dominio.Venta;
 import Dominio.VentaProducto;
 import Exceptions.DAOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -29,14 +30,15 @@ import java.util.logging.Logger;
  *
  * @author Isai Perez
  */
-public class FachadaDatos implements IDatos{
+public class FachadaDatos implements IDatos {
+
     private ClienteDAO clienteDao;
     private EmpleadosDAO empleadoDao;
     private PresupuestoDAO presupuestoDao;
-    private PresupuestoProductosDAO ppDao ;
+    private PresupuestoProductosDAO ppDao;
     private ProductosDAO productoDao;
     private VentasDAO ventasDao;
-    private VentasProductoDAO vpDao;    
+    private VentasProductoDAO vpDao;
 
     public FachadaDatos() {
         this.clienteDao = new ClienteDAO();
@@ -46,465 +48,347 @@ public class FachadaDatos implements IDatos{
         this.productoDao = new ProductosDAO();
         this.ventasDao = new VentasDAO();
         this.vpDao = new VentasProductoDAO();
-    }    
-
-    @Override
-    public void insertarCliente(Cliente cliente) {
-        try {
-            clienteDao.insertar(cliente);
-        } catch (Exception ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     @Override
-    public void actualizaCliente(Cliente cliente) {
-        try {
-            clienteDao.actualizar(cliente);
-        } catch (Exception ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void insertarCliente(Cliente cliente) throws Exception {
+
+        clienteDao.insertar(cliente);
+
     }
 
     @Override
-    public Cliente consultarClienteById(Integer id) {
-        try {
-            return clienteDao.consultarById(id);
-        } catch (Exception ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public void actualizaCliente(Cliente cliente) throws Exception {
+
+        clienteDao.actualizar(cliente);
+
     }
 
     @Override
-    public Cliente consultarClienteByRFC(String RFC) {
-        try {
-            return clienteDao.consultarByRFC(RFC);
-        } catch (Exception ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public Cliente consultarClienteById(Integer id) throws Exception {
+
+        return clienteDao.consultarById(id);
+
     }
 
     @Override
-    public void eliminarCliente(Integer id) {
-        try {
-            clienteDao.eliminar(id);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public Cliente consultarClienteByRFC(String RFC) throws Exception {
+        return clienteDao.consultarByRFC(RFC);
+
     }
 
     @Override
-    public ArrayList<Cliente> obtenerTodoClientes() {
-        try {
-            return clienteDao.obtenerTodo();
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public void eliminarCliente(Integer id) throws DAOException {
+
+        clienteDao.eliminar(id);
+
     }
 
     @Override
-    public ArrayList<Cliente> consultarCliente(String nombreParametro, String nombreEntidad) {
-        try {
-           return clienteDao.consultar(nombreParametro, nombreEntidad);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public ArrayList<Cliente> obtenerTodoClientes() throws DAOException {
+
+        return clienteDao.obtenerTodo();
+
     }
 
     @Override
-    public void insertarEmpleado(Empleado empleado) {
-        try {
-            empleadoDao.insertar(empleado);
-        } catch (Exception ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public ArrayList<Cliente> consultarCliente(String nombreParametro, String nombreEntidad) throws DAOException {
+
+        return clienteDao.consultar(nombreParametro, nombreEntidad);
+
     }
 
     @Override
-    public void actualizaEmpleado(Empleado empleado) {
-        try {
-            empleadoDao.actualizar(empleado);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void insertarEmpleado(Empleado empleado) throws Exception {
+
+        empleadoDao.insertar(empleado);
+
     }
 
     @Override
-    public Empleado consultarEmpleadoById(Integer id) {
-        try {
-           return empleadoDao.consultarById(id);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public void actualizaEmpleado(Empleado empleado) throws DAOException {
+
+        empleadoDao.actualizar(empleado);
+
     }
 
     @Override
-    public void eliminarEmpleado(Integer id) {
-        try {
-            empleadoDao.eliminar(id);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public Empleado consultarEmpleadoById(Integer id) throws DAOException {
+
+        return empleadoDao.consultarById(id);
+
     }
 
     @Override
-    public ArrayList<Empleado> obtenerTodoEmpleado() {
-        try {
-            return empleadoDao.obtenerTodo();
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }        
+    public void eliminarEmpleado(Integer id) throws DAOException {
+
+        empleadoDao.eliminar(id);
+
     }
 
     @Override
-    public void insertarPresupuesto(Presupuesto presupuesto) {
-        try {
-            presupuestoDao.insertar(presupuesto);
-        } catch (Exception ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public ArrayList<Empleado> obtenerTodoEmpleado() throws DAOException {
+
+        return empleadoDao.obtenerTodo();
+
     }
 
     @Override
-    public void actualizaPresupuesto(Presupuesto presupuesto) {
-        try {
-            presupuestoDao.actualizar(presupuesto);
-        } catch (Exception ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void insertarPresupuesto(Presupuesto presupuesto) throws Exception {
+
+        presupuestoDao.insertar(presupuesto);
+
     }
 
     @Override
-    public Presupuesto consultarPresupuestoById(Integer id) {
-        try {
-            return  presupuestoDao.consultarById(id);
-        } catch (Exception ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }        
+    public void actualizaPresupuesto(Presupuesto presupuesto) throws Exception {
+
+        presupuestoDao.actualizar(presupuesto);
+
     }
 
     @Override
-    public void eliminarPresupuesto(Integer id) {
-        try {
-            presupuestoDao.eliminar(id);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public Presupuesto consultarPresupuestoById(Integer id) throws Exception {
+
+        return presupuestoDao.consultarById(id);
     }
 
     @Override
-    public ArrayList<Presupuesto> obtenerTodoPresupuesto() {
-        try {
-            return   presupuestoDao.obtenerTodo();
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public void eliminarPresupuesto(Integer id) throws DAOException {
+
+        presupuestoDao.eliminar(id);
+
     }
 
     @Override
-    public ArrayList<Presupuesto> consultarPresupuestoByFecha(Date fecha) {
-        try {
-            return  presupuestoDao.consultarByFecha(fecha);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public ArrayList<Presupuesto> obtenerTodoPresupuesto() throws DAOException {
+
+        return presupuestoDao.obtenerTodo();
+
     }
 
     @Override
-    public ArrayList<Presupuesto> consultarByPresupuestoRFCCliente(String RFC) {
-        try {
-            return   presupuestoDao.consultarByRFC(RFC);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public ArrayList<Presupuesto> consultarPresupuestoByFecha(Date fecha) throws DAOException {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String time = formato.format(fecha);
+        System.out.println(time);
+        return presupuestoDao.consultarByFecha(time);
     }
 
     @Override
-    public void insertarPresupuestoProducto(PresupuestoProducto pp) {
-        try {
-            ppDao.insertar(pp);
-        } catch (Exception ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public ArrayList<Presupuesto> consultarByPresupuestoRFCCliente(String RFC) throws DAOException {
+
+        return presupuestoDao.consultarByRFC(RFC);
+
     }
 
     @Override
-    public void actualizaPresupuestoProducto(PresupuestoProducto pp) {
-        try {
-            ppDao.actualizar(pp);
-        } catch (Exception ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void insertarPresupuestoProducto(PresupuestoProducto pp) throws Exception {
+
+        ppDao.insertar(pp);
+
     }
 
     @Override
-    public PresupuestoProducto consultarPresupuestoProductoById(Integer id) {
-        try {
-            return ppDao.consultarById(id);
-        } catch (Exception ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public void actualizaPresupuestoProducto(PresupuestoProducto pp) throws Exception {
+
+        ppDao.actualizar(pp);
+
     }
 
     @Override
-    public void eliminarPresupuestoProducto(Integer id) {
-        try {
-            ppDao.eliminar(id);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public PresupuestoProducto consultarPresupuestoProductoById(Integer id) throws Exception {
+
+        return ppDao.consultarById(id);
+
     }
 
     @Override
-    public ArrayList<PresupuestoProducto> obtenerTodoPresupuestoProducto() {
-        try {
-            return  ppDao.obtenerTodo();
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public void eliminarPresupuestoProducto(Integer id) throws DAOException {
+
+        ppDao.eliminar(id);
     }
 
     @Override
-    public PresupuestoProducto consultarPresupuestoProductoByIdPresupuesto(Integer id) {
-        try {
-            return  ppDao.consultarByIdPresupuesto(id);
-        } catch (Exception ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public ArrayList<PresupuestoProducto> obtenerTodoPresupuestoProducto() throws DAOException {
+
+        return ppDao.obtenerTodo();
+
     }
 
     @Override
-    public void insertarProducto(Producto producto) {
-        try {
-            productoDao.insertar(producto);
-        } catch (Exception ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public PresupuestoProducto consultarPresupuestoProductoByIdPresupuesto(Integer id) throws Exception {
+
+        return ppDao.consultarByIdPresupuesto(id);
+
     }
 
     @Override
-    public void actualizaProducto(Producto producto) {
-        try {
-            productoDao.actualizar(producto);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void insertarProducto(Producto producto) throws Exception {
+
+        productoDao.insertar(producto);
+
     }
 
     @Override
-    public Producto consultarProductoById(Integer id) {
-        try {
-            return productoDao.consultarById(id);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public void actualizaProducto(Producto producto) throws DAOException {
+
+        productoDao.actualizar(producto);
+
     }
 
     @Override
-    public void eliminarProducto(Integer id) {
-        try {
-            productoDao.eliminar(id);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public Producto consultarProductoById(Integer id) throws DAOException {
+
+        return productoDao.consultarById(id);
+
     }
 
     @Override
-    public ArrayList<Producto> obtenerTodoProducto() {
-        try {
-            return  productoDao.obtenerTodo();
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public void eliminarProducto(Integer id) throws DAOException {
+        productoDao.eliminar(id);
+
     }
 
     @Override
-    public ArrayList<Producto> consultarProductoByConjunto(String tipo, String marca, String modelo, int año) {
-        try {        
-            return  productoDao.consultarConjunto(tipo, marca, modelo, año);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public ArrayList<Producto> obtenerTodoProducto() throws DAOException {
+
+        return productoDao.obtenerTodo();
+
     }
 
     @Override
-    public ArrayList<Producto> consultarProductoByTipo(String tipo) {
-        try {
-            return  productoDao.consultarByTipo(tipo);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public ArrayList<Producto> consultarProductoByConjunto(String tipo, String marca, String modelo, int año) throws DAOException {
+
+        return productoDao.consultarConjunto(tipo, marca, modelo, año);
+
     }
 
     @Override
-    public ArrayList<Producto> consultarProductoByMarca(String marca) {
-        try {
-            return  productoDao.consultarByMarca(marca);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public ArrayList<Producto> consultarProductoByTipo(String tipo) throws DAOException {
+
+        return productoDao.consultarByTipo(tipo);
+
     }
 
     @Override
-    public ArrayList<Producto> consultarProductoByModelo(String modelo) {
-        try {
-            return  productoDao.consultarByModelo(modelo);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public ArrayList<Producto> consultarProductoByMarca(String marca) throws DAOException {
+
+        return productoDao.consultarByMarca(marca);
+
     }
 
     @Override
-    public ArrayList<Producto> consultarProductoByAño(int año) {
-        try {
-            return  productoDao.consultarByAño(año);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public ArrayList<Producto> consultarProductoByModelo(String modelo) throws DAOException {
+
+        return productoDao.consultarByModelo(modelo);
+
     }
 
     @Override
-    public void insertarVenta(Venta venta) {
-        try {
-            ventasDao.insertar(venta);
-        } catch (Exception ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public ArrayList<Producto> consultarProductoByAño(int año) throws DAOException {
+
+        return productoDao.consultarByAño(año);
+
     }
 
     @Override
-    public void actualizaVenta(Venta venta) {
-        try {
-            ventasDao.actualizar(venta);
-        } catch (Exception ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void insertarVenta(Venta venta) throws Exception {
+
+        ventasDao.insertar(venta);
     }
 
     @Override
-    public Venta consultarVentaById(Integer id) {
-        try {
-            return  ventasDao.consultarById(id);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public void actualizaVenta(Venta venta) throws Exception {
+
+        ventasDao.actualizar(venta);
+
     }
 
     @Override
-    public void eliminarVenta(Integer id) {
-        try {
-            ventasDao.eliminar(id);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public Venta consultarVentaById(Integer id) throws DAOException {
+
+        return ventasDao.consultarById(id);
+
     }
 
     @Override
-    public ArrayList<Venta> obtenerTodoVenta() {
-        try {
-            return  ventasDao.obtenerTodo();
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public void eliminarVenta(Integer id) throws DAOException {
+
+        ventasDao.eliminar(id);
+
     }
 
     @Override
-    public ArrayList<Venta> consultarVentaByFecha(Date fecha) {
-        try {
-            return  ventasDao.consultarByFecha(fecha);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public ArrayList<Venta> obtenerTodoVenta() throws DAOException {
+
+        return ventasDao.obtenerTodo();
+
     }
 
     @Override
-    public ArrayList<Venta> consultarVentaByRangoFechas(Date inicio, Date fin) {
-        try {
-            return ventasDao.consultarByRangoFechas(inicio, fin);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public ArrayList<Venta> consultarVentaByFecha(Date fecha) throws DAOException {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String time = formato.format(fecha);
+        System.out.println(time);
+        return ventasDao.consultarByFecha(time);
+
     }
 
     @Override
-    public void insertarVentaProducto(VentaProducto producto) {
-        try {
-            vpDao.insertar(producto);
-        } catch (Exception ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public ArrayList<Venta> consultarVentaByRangoFechas(Date inicio, Date fin) throws DAOException {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String inicioS = formato.format(inicio);
+        String finS = formato.format(fin);        
+        return ventasDao.consultarByRangoFechas(inicioS,finS);
+
     }
 
     @Override
-    public void actualizaProducto(VentaProducto producto) {
-        try {
-            vpDao.actualizar(producto);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void insertarVentaProducto(VentaProducto producto) throws Exception {
+
+        vpDao.insertar(producto);
+
     }
 
     @Override
-    public VentaProducto consultarVentaProductoById(Integer id) {
-        try {
-            return  vpDao.consultarById(id);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public void actualizaProducto(VentaProducto producto) throws DAOException {
+
+        vpDao.actualizar(producto);
+
     }
 
     @Override
-    public void eliminarVentasProducto(Integer id) {
-        try {
-            vpDao.eliminar(id);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public VentaProducto consultarVentaProductoById(Integer id) throws DAOException {
+
+        return vpDao.consultarById(id);
+
     }
 
     @Override
-    public ArrayList<VentaProducto> obtenerTodoVentaProducto() {
-        try {
-            return  vpDao.obtenerTodo();
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public void eliminarVentasProducto(Integer id) throws DAOException {
+
+        vpDao.eliminar(id);
+
     }
 
     @Override
-    public VentaProducto consultarVentaProductoByIdVenta(Integer id) {
-        try {
-            return vpDao.consultarByIdVenta(id);
-        } catch (DAOException ex) {
-            Logger.getLogger(FachadaDatos.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public ArrayList<VentaProducto> obtenerTodoVentaProducto() throws DAOException {
+
+        return vpDao.obtenerTodo();
+
     }
-        
+
+    @Override
+    public ArrayList<VentaProducto> consultarVentaProductoByIdVenta(Integer id) throws DAOException {
+
+        return vpDao.consultarByIdVenta(id);
+
+    }
+
+    @Override
+    public Empleado consultarByCredenciales(String user, String password) throws DAOException {
+        return empleadoDao.consultarByCredenciales(user, password);
+    }
+
 }

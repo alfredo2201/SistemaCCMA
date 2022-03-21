@@ -5,10 +5,93 @@
  */
 package Control;
 
+import Dominio.*;
+import IDatos.FabricaDatos;
+import IDatos.IDatos;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  *
  * @author Isai Perez
  */
 public class ControlVenta {
-    
+
+    private IDatos iDatos = FabricaDatos.getInstance();
+
+    public String agregar(Venta venta, ArrayList<VentaProducto> listaProductos) {
+        if (venta != null) {
+            try {
+                iDatos.insertarVenta(venta);
+                ArrayList<Venta> ventas = iDatos.consultarVentaByFecha(venta.getFecha());
+                Venta aux = ventas.get(0);
+                Venta ventaAux = iDatos.consultarVentaById(aux.getIdVenta());
+                for (VentaProducto producto : listaProductos) {
+                    producto.setVenta(ventaAux);
+                    iDatos.insertarVentaProducto(producto);
+                }
+                return "Se guardo correctamente.";
+            } catch (Exception ex) {
+                System.err.println(ex.getMessage());
+                return "Error al guardar venta";
+            }
+        }
+        return "Venta invalida";
+    }
+
+    public String eliminar(Integer id) {
+        if (id != null || id > 0) {
+            try {
+                iDatos.eliminarVenta(id);
+                return "Venta eliminada";
+            } catch (Exception ex) {
+                System.err.println(ex.getMessage());
+                return "Error al eliminar venta";
+            }
+        }
+        return "Venta eliminada.";
+    }
+
+    public ArrayList<Venta> consultarTodo() {
+        try {
+            return iDatos.obtenerTodoVenta();
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
+    }
+
+    public ArrayList<VentaProducto> consultarVentaProducto(Integer id) {
+        try {
+            return iDatos.consultarVentaProductoByIdVenta(id);
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
+    }
+
+    public ArrayList<Venta> consultaVentaPeriodoDeterminado(int dias) {
+        LocalDate date = LocalDate.now();
+        Date fechaFin = new Date();
+        date = date.minusDays(dias);
+        System.out.println(date);
+        Date fechaInicio = new Date(date.getYear() - 1900, date.getMonthValue() - 1, date.getDayOfMonth());
+        try {
+            return iDatos.consultarVentaByRangoFechas(fechaInicio, fechaFin);
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
+    }
+
+    public ArrayList<Venta> consultarVentaRangoFechas(Date inicio, Date fin) {
+        try {
+            return iDatos.consultarVentaByRangoFechas(inicio, fin);
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
+    }
+
 }

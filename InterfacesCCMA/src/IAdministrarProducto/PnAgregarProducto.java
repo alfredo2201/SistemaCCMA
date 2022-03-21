@@ -72,8 +72,13 @@ public class PnAgregarProducto extends javax.swing.JPanel {
 
         cmbTipo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cmbTipo.setForeground(new java.awt.Color(0, 0, 0));
-        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Automovil", "Motocicleta", "Lancha", "Universal" }));
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Freno de mano", "Clutch", "Acelerador", " " }));
         cmbTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cmbTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTipoActionPerformed(evt);
+            }
+        });
 
         lblTextoMarca.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoMarca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -281,6 +286,10 @@ public class PnAgregarProducto extends javax.swing.JPanel {
     private void btnContinuarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarVentaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnContinuarVentaActionPerformed
+
+    private void cmbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbTipoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

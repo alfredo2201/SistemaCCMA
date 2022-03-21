@@ -5,14 +5,20 @@
  */
 package Fachada;
 
+import ControlEmpleado.ControlEmpleado;
 import Dominio.Cliente;
+import Dominio.Empleado;
+import static java.awt.image.ImageObserver.HEIGHT;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Isai Perez
  */
 public class FachadaNegocos implements INegocios {
+
+    private ControlEmpleado ctlEmpleado = new ControlEmpleado();
 
     @Override
     public void registrarClienteNuevo(Cliente cliente) {
@@ -37,6 +43,19 @@ public class FachadaNegocos implements INegocios {
     @Override
     public void eliminarCliente(Cliente cliente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Empleado obtenEmpleado(String username, String password) {
+        if (!username.isEmpty() || !password.isEmpty()) {
+            return ctlEmpleado.obtenEmpleado(username, password);    
+        }
+        return null;
+    }
+
+    @Override
+    public void muestraMsj(String mensaje, String titulo, int tipo) {
+        JOptionPane.showMessageDialog(null, mensaje, titulo, tipo);
     }
 
 }
