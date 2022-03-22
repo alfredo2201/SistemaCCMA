@@ -5,11 +5,12 @@
  */
 package Fachada;
 
+import Control.ControlCliente;
 import ControlEmpleado.ControlEmpleado;
 import Dominio.Cliente;
 import Dominio.Empleado;
-import static java.awt.image.ImageObserver.HEIGHT;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,43 +20,66 @@ import javax.swing.JOptionPane;
 public class FachadaNegocos implements INegocios {
 
     private ControlEmpleado ctlEmpleado = new ControlEmpleado();
+    private ControlCliente ctlCliente = new ControlCliente();
 
     @Override
     public void registrarClienteNuevo(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String mensaje = ctlCliente.agregarCliente(cliente);
+        if (mensaje.contains("Error")) {
+            muestraMsj(mensaje, "Mensaje de error", JOptionPane.ERROR_MESSAGE,"src/iconos/warning.png");
+        } else {
+            muestraMsj(mensaje, "Cliente nuevo", JOptionPane.OK_OPTION,"src/iconos/comprobado.png");
+        }
     }
 
     @Override
-    public Cliente consultarCliente(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<Cliente> obtenerClientes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void actualizarCliente(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void eliminarCliente(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Empleado obtenEmpleado(String username, String password) {
-        if (!username.isEmpty() || !password.isEmpty()) {
-            return ctlEmpleado.obtenEmpleado(username, password);    
+    public ArrayList<Cliente> consultarClienteNombre(String nombre) {
+        if (nombre != null && !nombre.isEmpty()) {
+            return ctlCliente.consultarClienteByNombre(nombre);
         }
         return null;
     }
 
     @Override
-    public void muestraMsj(String mensaje, String titulo, int tipo) {
-        JOptionPane.showMessageDialog(null, mensaje, titulo, tipo);
+    public ArrayList<Cliente> obtenerClientes() {
+        return ctlCliente.consultaTodoCliente();
+    }
+
+    @Override
+    public void actualizarCliente(Cliente cliente) {
+        if (cliente.getId_cliente() != null && cliente.getId_cliente() > 0) {
+            String mensaje = ctlCliente.actualizarCliente(cliente);
+            if (mensaje.contains("Error")) {
+                muestraMsj(mensaje, "Mensaje de error", JOptionPane.ERROR_MESSAGE,"src/iconos/warning.png");
+            } else {
+                muestraMsj(mensaje, "Cliente Actualizado", JOptionPane.OK_OPTION,"src/iconos/comprobado.png");
+            }
+        }
+    }
+
+    @Override
+    public void eliminarCliente(Cliente cliente) {
+        if (cliente.getId_cliente() != null && cliente.getId_cliente() > 0) {
+            String mensaje = ctlCliente.eliminarCliente(cliente.getId_cliente());
+            if (mensaje.contains("Error")) {
+                muestraMsj(mensaje, "Mensaje de error", JOptionPane.ERROR_MESSAGE,"src/iconos/warning.png");
+            } else {
+                muestraMsj(mensaje, "Cliente Actualizado", JOptionPane.OK_OPTION,"src/iconos/comprobado.png");
+            }
+        }
+    }
+
+    @Override
+    public Empleado obtenEmpleado(String username, String password) {
+        if (!username.isEmpty() || !password.isEmpty()) {
+            return ctlEmpleado.obtenEmpleado(username, password);
+        }
+        return null;
+    }
+
+    @Override
+    public void muestraMsj(String mensaje, String titulo, int tipo, String urlImagen) {
+        JOptionPane.showMessageDialog(null, mensaje, titulo, tipo, new ImageIcon(urlImagen));
     }
 
 }

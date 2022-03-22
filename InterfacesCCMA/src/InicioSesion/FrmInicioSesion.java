@@ -6,10 +6,8 @@
 package InicioSesion;
 
 import Dominio.Empleado;
-import Fachada.FabricaNegocios;
-import Fachada.INegocios;
+import Fachada.*;
 import Principal.FrmPrincipal;
-import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -227,13 +225,13 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         user = txtNombreUsuario.getText();
         password = pfContraseña.getText();
         Empleado empleado = negocios.obtenEmpleado(user, password);
-        if (empleado.getIdUsuario() != null) {
+        if (empleado.getIdUsuario() != null && user.equals(empleado.getUsername()) && password.equals(empleado.getPassword())) {
             FrmPrincipal main = FrmPrincipal.getInstance();
             main.setEmpleado(empleado);
             main.setVisible(true);
             this.dispose();
         } else {
-            negocios.muestraMsj("Usuario y/o contraseña incorrecta. Vuelva intentarlo", "Credenciales Erroneas", JOptionPane.ERROR_MESSAGE);
+            negocios.muestraMsj("Usuario y/o contraseña incorrecta. Vuelva intentarlo", "Credenciales Erroneas", JOptionPane.ERROR_MESSAGE,"src/iconos/warning.png");
         }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 

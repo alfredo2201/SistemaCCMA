@@ -7,6 +7,8 @@ package IAdministrarCliente;
 
 //import DAO.ClienteDAO;
 import Dominio.Cliente;
+import Fachada.FabricaNegocios;
+import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
 import javax.swing.JOptionPane;
 
@@ -17,7 +19,8 @@ import javax.swing.JOptionPane;
 public class PnRegistrarCliente extends javax.swing.JPanel {
 
     //private final ClienteDAO clDao;
-    private PnContenido pnContenido = PnContenido.getInstance();    
+    private PnContenido pnContenido = PnContenido.getInstance();
+    private INegocios negocios = FabricaNegocios.getInstance();
 
     /**
      * Creates new form PnRegistrarCliente
@@ -101,11 +104,6 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
         txtCorreo.setBackground(new java.awt.Color(255, 255, 255));
         txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtCorreo.setBorder(null);
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
-            }
-        });
 
         lblTextoTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTextoTelefono.setForeground(new java.awt.Color(0, 0, 0));
@@ -232,29 +230,19 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
-//        // TODO add your handling code here:
-//        String nombre = txtNombreCliente.getText();
-//        String apellidos = txtApellidosCliente.getText();
-//        String email = txtCorreo.getText();
-//        String telefono = txtTelefono.getText();
-//        String RFC = txtRFC.getText();
-//
-//        if (nombre.isEmpty() || apellidos.isEmpty() || email.isEmpty() || telefono.isEmpty() || RFC.isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Favor de llenar todas las casillas.", "No se pudo agregar el cliente.", JOptionPane.ERROR_MESSAGE);
-//        } else {
-//            try {
-//                Cliente cl = new Cliente(nombre, apellidos, email, RFC, telefono);
-//                clDao.insertar(cl);
-//                JOptionPane.showMessageDialog(this, "Error al intentar añadir al cliente.", "ERROR: Agregar cliente", JOptionPane.INFORMATION_MESSAGE);
-//            } catch (Exception e) {
-//                JOptionPane.showMessageDialog(this, "Error al intentar añadir al cliente.", "ERROR: Agregar cliente", JOptionPane.ERROR_MESSAGE);
-//            }
-//        }
-    }//GEN-LAST:event_btnAgregarClienteActionPerformed
-
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
+        String nombre = txtNombreCliente.getText();
+        String apellidos = txtApellidosCliente.getText();
+        String email = txtCorreo.getText();
+        String telefono = txtTelefono.getText();
+        String RFC = txtRFC.getText();
+        if (nombre.isEmpty() || apellidos.isEmpty() || email.isEmpty() || telefono.isEmpty() || RFC.isEmpty()) {
+            negocios.muestraMsj("Campos vacios. Verifique su información", "Error de campos de entrada", JOptionPane.INFORMATION_MESSAGE,"src/iconos/warning.png");
+        } else {
+            Cliente cl = new Cliente(nombre + " " + apellidos, email, RFC, telefono);
+            negocios.registrarClienteNuevo(cl);
+        }
+    }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

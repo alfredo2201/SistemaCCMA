@@ -27,8 +27,8 @@ public class ClienteDAO extends BaseDAO<Cliente> {
             Statement comando = conexion.createStatement();
             String insertarSLQ;
             insertarSLQ = String.format(
-                    "INSERT INTO clientes(nombre_completo, apellidos, RFC, correo, telefono) "
-                    + "VALUES('%s','%s','%s','%s','%s')",
+                    "INSERT INTO clientes(nombre_completo, RFC, correo, telefono) "
+                    + "VALUES('%s','%s','%s','%s')",
                     cliente.getNombre(),
                     cliente.getRfc(),
                     cliente.getCorreo(),

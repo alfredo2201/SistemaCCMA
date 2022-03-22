@@ -8,7 +8,6 @@ package Fachada;
 import Dominio.Cliente;
 import Dominio.Empleado;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,7 +19,7 @@ public interface INegocios {
 
     public void registrarClienteNuevo(Cliente cliente);
 
-    public Cliente consultarCliente(Cliente cliente);
+    public ArrayList<Cliente> consultarClienteNombre(String nombre);
 
     public ArrayList<Cliente> obtenerClientes();
 
@@ -28,6 +27,7 @@ public interface INegocios {
 
     public void eliminarCliente(Cliente cliente);
 
-    public void muestraMsj(String mensaje, String titulo, int tipo);
+    public void muestraMsj(String mensaje, String titulo, int tipo, String urlImagen);
+        
 
 }

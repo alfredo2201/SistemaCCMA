@@ -228,9 +228,6 @@
           <Border info="null"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCorreoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="spEmail">
     </Component>

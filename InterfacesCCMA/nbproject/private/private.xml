@@ -6,6 +6,7 @@
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/PnRegistrarCliente.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarProducto/PnAgregarProducto.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarPresupuesto/PnCrearPresupuesto.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/PnMenuVenta.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarProducto/PnMenuProducto.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarProducto/PnRegistrarProducto.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/PnEliminarCliente.java</file>
@@ -15,17 +16,18 @@
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IGenerarReportes/PnReporteGenerado.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/FrmBuscarCliente.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/FrmBuscarVenta.java</file>
-            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarPresupuesto/PnMenuPresupuesto.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/PnActualizarCliente.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IGenerarReportes/PnGenerarReporte.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/RegistrarVenta.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/PanelesGlobales/PnContenido.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarProducto/PnConsultarProducto.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/PnConsularCliente.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/PnEliminarVenta.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarPresupuesto/PnEditarPresupuesto.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/InicioSesion/FrmInicioSesion.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarProducto/PnEliminarProducto.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarProducto/PnActualizarProducto.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/PnConsultarVenta.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/PnMenuClientes.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/PanelesGlobales/PnMenu.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/RoundedBorder.java</file>
