@@ -5,7 +5,14 @@
  */
 package IAdministrarProducto;
 
+import Control.ControlProducto;
+import Dominio.Producto;
+import Fachada.FabricaNegocios;
+import Fachada.INegocios;
 import IAdministrarVentas.*;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 /**
  *
@@ -13,12 +20,12 @@ import IAdministrarVentas.*;
  */
 public class PnAgregarProducto extends javax.swing.JPanel {
 
-    /**
-     * Creates new form AgregarProducto
-     */
+    private ControlProducto negocios = new ControlProducto();
+
     public PnAgregarProducto() {
         initComponents();
         txtNombreCliente.setEditable(false);
+        mostrarArticulos();
     }
 
     /**
@@ -52,12 +59,9 @@ public class PnAgregarProducto extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         lblTextoCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblTextoCliente.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoCliente.setText("Cliente:");
 
-        txtNombreCliente.setBackground(new java.awt.Color(255, 255, 255));
         txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        txtNombreCliente.setForeground(new java.awt.Color(0, 0, 0));
         txtNombreCliente.setBorder(null);
         txtNombreCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,11 +71,9 @@ public class PnAgregarProducto extends javax.swing.JPanel {
 
         lblTextoTipo.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoTipo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblTextoTipo.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoTipo.setText("Tipo:");
 
         cmbTipo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmbTipo.setForeground(new java.awt.Color(0, 0, 0));
         cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Freno de mano", "Clutch", "Acelerador", " " }));
         cmbTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbTipo.addActionListener(new java.awt.event.ActionListener() {
@@ -82,31 +84,25 @@ public class PnAgregarProducto extends javax.swing.JPanel {
 
         lblTextoMarca.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoMarca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblTextoMarca.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoMarca.setText("Marca:");
 
         cmbMarca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmbMarca.setForeground(new java.awt.Color(0, 0, 0));
         cmbMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nissan", "Ford", "Toyota", "Kia" }));
         cmbMarca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         lblTextoModelo.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoModelo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblTextoModelo.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoModelo.setText("Modelo:");
 
         cmbModelos1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmbModelos1.setForeground(new java.awt.Color(0, 0, 0));
         cmbModelos1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Altima", "Sentra", "Versa", "Tsuru" }));
         cmbModelos1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         lblTextoAnios.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoAnios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblTextoAnios.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoAnios.setText("Año:");
 
         cmbAnios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmbAnios.setForeground(new java.awt.Color(0, 0, 0));
         cmbAnios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1990 - 2000", "2001 - 2010", "2010 - 2013" }));
         cmbAnios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbAnios.addActionListener(new java.awt.event.ActionListener() {
@@ -116,16 +112,10 @@ public class PnAgregarProducto extends javax.swing.JPanel {
         });
 
         listArticulos.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        listArticulos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Chicote de freno de mano - Club Car Precedent -  2008 - Disponible: 3 Unidades - Costo :$200", "Chicote de freno de mano - Volkswagen -  Jetta A4  -  Universal - Disponible: 3 Unidades - Costo :$200", "Chicote de freno de mano - Volkswagen - Bocho - 2003 - Disponible: 3 Unidades - Costo :$200", " " };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(listArticulos);
 
         btnBuscarProducto.setBackground(new java.awt.Color(204, 204, 0));
         btnBuscarProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnBuscarProducto.setForeground(new java.awt.Color(0, 0, 0));
         btnBuscarProducto.setText("Buscar");
         btnBuscarProducto.setBorder(null);
         btnBuscarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -152,7 +142,6 @@ public class PnAgregarProducto extends javax.swing.JPanel {
 
         btnCancelar.setBackground(new java.awt.Color(134, 134, 93));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(null);
         btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -160,7 +149,6 @@ public class PnAgregarProducto extends javax.swing.JPanel {
 
         btnContinuarVenta.setBackground(new java.awt.Color(153, 153, 0));
         btnContinuarVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnContinuarVenta.setForeground(new java.awt.Color(0, 0, 0));
         btnContinuarVenta.setText("Continuar Presupuesto");
         btnContinuarVenta.setBorder(null);
         btnContinuarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -173,7 +161,6 @@ public class PnAgregarProducto extends javax.swing.JPanel {
 
         lblTextoProductoSelec.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoProductoSelec.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblTextoProductoSelec.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoProductoSelec.setText("Productos seleccionados:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -291,6 +278,18 @@ public class PnAgregarProducto extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbTipoActionPerformed
 
+    private void mostrarArticulos() {
+        ArrayList<Producto> productos = negocios.consultaTodoProducto();
+        if (productos != null) {
+            DefaultListModel<String> modelo = new DefaultListModel<>();
+            for (Producto producto : productos) {
+                modelo.addElement(producto.toString().trim());
+            }
+            listArticulos.setModel(modelo);
+        } else {
+            System.out.println("No sirve");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarProducto;
