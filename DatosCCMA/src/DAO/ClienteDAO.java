@@ -107,12 +107,12 @@ public class ClienteDAO extends BaseDAO<Cliente> {
             try (Connection conexion = this.generarConexion()) {
                 Statement comando = conexion.createStatement();
                 String consultarSQL;
-                consultarSQL = String.format("SELECT id, nombre_completo, RFC, correo, telefono FROM clientes WHERE RFC LIKE '%s'",
+                consultarSQL = String.format("SELECT id, nombre_completo, RFC, correo, telefono FROM clientes WHERE RFC = '%s'",
                         RFC);
                 ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
                 if (resultadoConsulta.next()) {
                     cliente.setId_cliente(resultadoConsulta.getInt("id"));
-                    cliente.setNombre(resultadoConsulta.getString("nombre"));                    
+                    cliente.setNombre(resultadoConsulta.getString("nombre_completo"));                    
                     cliente.setRfc(resultadoConsulta.getString("RFC"));
                     cliente.setCorreo(resultadoConsulta.getString("correo"));
                     cliente.setTelefono(resultadoConsulta.getString("telefono"));
@@ -156,7 +156,7 @@ public class ClienteDAO extends BaseDAO<Cliente> {
                 while (resultadoConsulta.next()) {
                     Cliente cliente = new Cliente();
                     cliente.setId_cliente(resultadoConsulta.getInt("id"));
-                    cliente.setNombre(resultadoConsulta.getString("nombre"));
+                    cliente.setNombre(resultadoConsulta.getString("nombre_completo"));
                     cliente.setRfc(resultadoConsulta.getString("RFC"));
                     cliente.setCorreo(resultadoConsulta.getString("correo"));
                     cliente.setTelefono(resultadoConsulta.getString("telefono"));
@@ -181,7 +181,7 @@ public class ClienteDAO extends BaseDAO<Cliente> {
                 while (resultadoConsulta.next()) {
                     Cliente cliente = new Cliente();
                     cliente.setId_cliente(resultadoConsulta.getInt("id"));
-                    cliente.setNombre(resultadoConsulta.getString("nombre"));                    
+                    cliente.setNombre(resultadoConsulta.getString("nombre_completo"));                    
                     cliente.setRfc(resultadoConsulta.getString("RFC"));
                     cliente.setCorreo(resultadoConsulta.getString("correo"));
                     cliente.setTelefono(resultadoConsulta.getString("telefono"));

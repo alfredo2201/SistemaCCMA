@@ -20,12 +20,16 @@ public interface INegocios {
     public void registrarClienteNuevo(Cliente cliente);
 
     public ArrayList<Cliente> consultarClienteNombre(String nombre);
+    
+    public Cliente consultarClienteByRFC(String RFC);
 
     public ArrayList<Cliente> obtenerClientes();
 
     public void actualizarCliente(Cliente cliente);
 
     public void eliminarCliente(Cliente cliente);
+    
+    public ArrayList<Cliente> consultarCliente(String campo, String parametro);
 
     public void muestraMsj(String mensaje, String titulo, int tipo, String urlImagen);
         

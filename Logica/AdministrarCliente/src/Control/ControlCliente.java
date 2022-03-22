@@ -84,7 +84,7 @@ public class ControlCliente {
             Matcher mat = pat.matcher(rfc);
             if (mat.matches()) {
                 try {
-                    iDatos.consultarClienteByRFC(rfc);
+                    return iDatos.consultarClienteByRFC(rfc);
                 } catch (Exception ex) {
                     Logger.getLogger(ControlCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -97,7 +97,18 @@ public class ControlCliente {
     public ArrayList<Cliente> consultarClienteByNombre(String nombre) {
         if (nombre != null || !nombre.isEmpty()) {
             try {
-               return iDatos.consultarCliente("nombre_completo", nombre);
+               return iDatos.consultarCliente("nombre_completo",nombre);
+            } catch (Exception ex) {
+                Logger.getLogger(ControlCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
+    }
+    
+    public ArrayList<Cliente>consultarClientePersonalizado(String campo, String parametro){
+        if (campo != null && !campo.isEmpty() && parametro != null && !parametro.isEmpty()) {
+            try {
+                return iDatos.consultarCliente(campo, parametro);
             } catch (Exception ex) {
                 Logger.getLogger(ControlCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
