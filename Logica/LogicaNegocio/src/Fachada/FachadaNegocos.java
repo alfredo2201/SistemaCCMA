@@ -6,12 +6,12 @@
 package Fachada;
 
 import Control.ControlCliente;
+import Control.ControlProducto;
 import ControlEmpleado.ControlEmpleado;
 import Dominio.Cliente;
 import Dominio.Empleado;
+import Dominio.Producto;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +21,7 @@ public class FachadaNegocos implements INegocios {
 
     private ControlEmpleado ctlEmpleado = new ControlEmpleado();
     private ControlCliente ctlCliente = new ControlCliente();
+    private ControlProducto ctlProducto = new ControlProducto();
 
     @Override
     public void registrarClienteNuevo(Cliente cliente) {
@@ -74,6 +75,50 @@ public class FachadaNegocos implements INegocios {
             return ctlCliente.consultarClienteByRFC(RFC);
         }
         return null;
+    }
+
+    @Override
+    public void registrarProductoNuevo(Producto producto) {
+        if (producto != null) {
+            ctlProducto.agregar(producto);
+        }
+    }
+
+    @Override
+    public Producto consultarProducto(Producto producto) {
+        if (producto != null) {
+            return null;
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<Producto> consultarTodoProducto() {
+        return ctlProducto.consultarTodo();
+    }
+
+    @Override
+    public void actualizarProducto(Producto prodcuto) {
+        if (prodcuto != null) {
+            ctlProducto.actualizar(prodcuto);
+        }
+    }
+
+    @Override
+    public void eliminarProdcuto(Producto producto) {
+        if (producto != null) {
+            ctlProducto.eliminar(producto.getIdProducto());
+        }
+    }
+
+    @Override
+    public ArrayList<Producto> consultarPersonalizadoProducto(String tipo, String marca, String modelo, int anio) {
+        return ctlProducto.consultarProductoCompleto(tipo, marca, modelo, anio);        
+    }
+    
+    @Override
+    public Producto consultarProductoById(int id){
+        return ctlProducto.consultarProductoById(id);
     }
 
 }

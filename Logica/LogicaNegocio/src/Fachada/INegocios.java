@@ -5,8 +5,7 @@
  */
 package Fachada;
 
-import Dominio.Cliente;
-import Dominio.Empleado;
+import Dominio.*;
 import java.util.ArrayList;
 
 /**
@@ -20,7 +19,7 @@ public interface INegocios {
     public void registrarClienteNuevo(Cliente cliente);
 
     public ArrayList<Cliente> consultarClienteNombre(String nombre);
-    
+
     public Cliente consultarClienteByRFC(String RFC);
 
     public ArrayList<Cliente> obtenerClientes();
@@ -28,7 +27,21 @@ public interface INegocios {
     public void actualizarCliente(Cliente cliente);
 
     public void eliminarCliente(Cliente cliente);
+
+    public ArrayList<Cliente> consultarCliente(String campo, String parametro);
+
+    public void registrarProductoNuevo(Producto producto);
+
+    public Producto consultarProducto(Producto producto);
+
+    public ArrayList<Producto> consultarTodoProducto();
+
+    public void actualizarProducto(Producto prodcuto);
+
+    public void eliminarProdcuto(Producto producto);
     
-    public ArrayList<Cliente> consultarCliente(String campo, String parametro);    
+    public ArrayList<Producto>consultarPersonalizadoProducto(String tipo, String marca,String modelo, int anio);
+    
+    public Producto consultarProductoById(int id);
 
 }

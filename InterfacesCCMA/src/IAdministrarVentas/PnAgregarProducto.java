@@ -3,16 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package IAdministrarProducto;
+package IAdministrarVentas;
 
 import Control.ControlProducto;
 import Dominio.Producto;
-import Fachada.FabricaNegocios;
-import Fachada.INegocios;
-import IAdministrarVentas.*;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
+
 
 /**
  *
@@ -59,9 +56,11 @@ public class PnAgregarProducto extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         lblTextoCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoCliente.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoCliente.setText("Cliente:");
 
         txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtNombreCliente.setForeground(new java.awt.Color(0, 0, 0));
         txtNombreCliente.setBorder(null);
         txtNombreCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,9 +70,12 @@ public class PnAgregarProducto extends javax.swing.JPanel {
 
         lblTextoTipo.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoTipo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoTipo.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoTipo.setText("Tipo:");
 
+        cmbTipo.setBackground(new java.awt.Color(255, 255, 255));
         cmbTipo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmbTipo.setForeground(new java.awt.Color(0, 0, 0));
         cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Freno de mano", "Clutch", "Acelerador", " " }));
         cmbTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbTipo.addActionListener(new java.awt.event.ActionListener() {
@@ -84,25 +86,34 @@ public class PnAgregarProducto extends javax.swing.JPanel {
 
         lblTextoMarca.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoMarca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoMarca.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoMarca.setText("Marca:");
 
+        cmbMarca.setBackground(new java.awt.Color(255, 255, 255));
         cmbMarca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmbMarca.setForeground(new java.awt.Color(0, 0, 0));
         cmbMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nissan", "Ford", "Toyota", "Kia" }));
         cmbMarca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         lblTextoModelo.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoModelo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoModelo.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoModelo.setText("Modelo:");
 
+        cmbModelos1.setBackground(new java.awt.Color(255, 255, 255));
         cmbModelos1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmbModelos1.setForeground(new java.awt.Color(0, 0, 0));
         cmbModelos1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Altima", "Sentra", "Versa", "Tsuru" }));
         cmbModelos1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         lblTextoAnios.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoAnios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoAnios.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoAnios.setText("Año:");
 
+        cmbAnios.setBackground(new java.awt.Color(255, 255, 255));
         cmbAnios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmbAnios.setForeground(new java.awt.Color(0, 0, 0));
         cmbAnios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1990 - 2000", "2001 - 2010", "2010 - 2013" }));
         cmbAnios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbAnios.addActionListener(new java.awt.event.ActionListener() {
@@ -116,6 +127,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
 
         btnBuscarProducto.setBackground(new java.awt.Color(204, 204, 0));
         btnBuscarProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBuscarProducto.setForeground(new java.awt.Color(0, 0, 0));
         btnBuscarProducto.setText("Buscar");
         btnBuscarProducto.setBorder(null);
         btnBuscarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -140,8 +152,9 @@ public class PnAgregarProducto extends javax.swing.JPanel {
             .addGap(0, 267, Short.MAX_VALUE)
         );
 
-        btnCancelar.setBackground(new java.awt.Color(134, 134, 93));
+        btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(null);
         btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -161,6 +174,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
 
         lblTextoProductoSelec.setBackground(new java.awt.Color(255, 255, 255));
         lblTextoProductoSelec.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoProductoSelec.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoProductoSelec.setText("Productos seleccionados:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -183,7 +197,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(98, 98, 98)
+                                        .addGap(50, 50, 50)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lblTextoTipo)
                                             .addComponent(cmbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,22 +208,22 @@ public class PnAgregarProducto extends javax.swing.JPanel {
                                             .addComponent(lblTextoAnios)
                                             .addComponent(cmbAnios, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(lblTextoCliente))
-                                        .addGap(93, 93, 93))
+                                        .addGap(50, 50, 50))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addContainerGap()
                                         .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(116, 116, 116)))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)))
-                        .addGap(30, 30, 30)))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)))
+                        .addGap(50, 50, 50)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTextoProductoSelec)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTextoProductoSelec)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(37, 37, 37)))))
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(50, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,7 +260,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
                                 .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(94, 94, 94)
+                                .addGap(97, 97, 97)
                                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(45, 45, 45))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -254,7 +268,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
                         .addComponent(jScrollPane1)
                         .addGap(34, 34, 34)))
                 .addComponent(btnContinuarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -279,7 +293,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_cmbTipoActionPerformed
 
     private void mostrarArticulos() {
-        ArrayList<Producto> productos = negocios.consultaTodoProducto();
+        ArrayList<Producto> productos = negocios.consultarTodo();
         if (productos != null) {
             DefaultListModel<String> modelo = new DefaultListModel<>();
             for (Producto producto : productos) {

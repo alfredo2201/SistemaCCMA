@@ -4,7 +4,6 @@
  */
 package IAdministrarVentas;
 
-import IAdministrarProducto.PnAgregarProducto;
 import PanelesGlobales.PnContenido;
 
 /**
