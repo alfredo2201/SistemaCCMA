@@ -4,7 +4,12 @@
  */
 package IAdministrarProducto;
 
+import Control.Control;
+import Dominio.Producto;
+import Fachada.FabricaNegocios;
+import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,11 +20,12 @@ public class PnRegistrarProducto extends javax.swing.JPanel {
     /**
      * Creates new form RegistrarProducto
      */
-    
-private PnContenido pnContenido = PnContenido.getInstance();
+    private PnContenido pnContenido = PnContenido.getInstance();
+    private INegocios negocios;
 
     public PnRegistrarProducto() {
         initComponents();
+        negocios = FabricaNegocios.getInstance();
     }
 
     /**
@@ -42,7 +48,7 @@ private PnContenido pnContenido = PnContenido.getInstance();
         btnAgregar = new javax.swing.JButton();
         txtDesc = new javax.swing.JTextField();
         txtTipo = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtMarca = new javax.swing.JTextField();
         txtModel = new javax.swing.JTextField();
         txtAnio = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
@@ -101,6 +107,11 @@ private PnContenido pnContenido = PnContenido.getInstance();
         btnAgregar.setForeground(new java.awt.Color(0, 0, 0));
         btnAgregar.setText("Agregar");
         btnAgregar.setBorder(null);
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         txtDesc.setBackground(new java.awt.Color(255, 255, 255));
         txtDesc.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -117,10 +128,10 @@ private PnContenido pnContenido = PnContenido.getInstance();
         txtTipo.setForeground(new java.awt.Color(0, 0, 0));
         txtTipo.setBorder(null);
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField3.setBorder(null);
+        txtMarca.setBackground(new java.awt.Color(255, 255, 255));
+        txtMarca.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtMarca.setForeground(new java.awt.Color(0, 0, 0));
+        txtMarca.setBorder(null);
 
         txtModel.setBackground(new java.awt.Color(255, 255, 255));
         txtModel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -180,7 +191,7 @@ private PnContenido pnContenido = PnContenido.getInstance();
                             .addComponent(jSeparator1)
                             .addComponent(txtDesc)
                             .addComponent(txtTipo)
-                            .addComponent(jTextField3)
+                            .addComponent(txtMarca)
                             .addComponent(txtModel)
                             .addComponent(txtAnio)
                             .addComponent(txtPrecio)
@@ -212,7 +223,7 @@ private PnContenido pnContenido = PnContenido.getInstance();
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
@@ -248,18 +259,18 @@ private PnContenido pnContenido = PnContenido.getInstance();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtDescActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         PnMenuProducto pnMnProducto = new PnMenuProducto();
-        pnContenido.removeAll();
-        pnMnProducto.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
-        pnMnProducto.setLocation(0, -40);
-        pnContenido.add(pnMnProducto);
-        pnContenido.revalidate();
-        pnContenido.repaint();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnProducto);
     }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        agregarProducto();
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -280,12 +291,48 @@ private PnContenido pnContenido = PnContenido.getInstance();
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField txtAnio;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtDesc;
+    private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModel;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
+    private void agregarProducto() {
+        Control ctl = new Control();
+        String descripcion = txtDesc.getText();
+        String tipo = txtTipo.getText();
+        String marca = txtMarca.getText();
+        String modelo = txtModel.getText();
+        Integer anio = Integer.parseInt(txtAnio.getText());
+        Float precio = Float.parseFloat(txtPrecio.getText());
+        Integer disponible = Integer.parseInt(txtCantidad.getText());
+
+        if (descripcion.isEmpty() || tipo.isEmpty() || marca.isEmpty() || modelo.isEmpty() || anio == null || precio == null || disponible == null) {
+            ctl.muestraMsj("Favor de llenar todas las casillas.", "No se pudo registrar el producto.", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+        } else {
+            try {
+                Producto producto = new Producto(descripcion, tipo, marca, modelo, anio, precio);
+                producto.setDisponible(disponible);
+                negocios.registrarProductoNuevo(producto);
+                ctl.muestraMsj("Se registro un nuevo producto.", "Producto agregado", JOptionPane.ERROR_MESSAGE, "src/iconos/comprobado.png");
+                limpiarCampos();
+            } catch (Error e) {
+                ctl.muestraMsj("Error al intentar registrar el producto.", "Error al registrar producto", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+            }
+        }
+    }
+
+    private void limpiarCampos() {
+        txtDesc.setText("");
+        txtTipo.setText("");
+        txtMarca.setText("");
+        txtModel.setText("");
+        txtAnio.setText("");
+        txtPrecio.setText("");
+        txtCantidad.setText("");
+
+    }
+
 }

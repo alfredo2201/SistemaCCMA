@@ -16,8 +16,10 @@ public class RegistrarVenta extends javax.swing.JPanel {
      * Creates new form RegistrarVenta
      */
     private PnContenido pnContenido = PnContenido.getInstance();
+    private PnAgregarProducto pnAgregarProducto = new PnAgregarProducto();
     public RegistrarVenta() {
         initComponents();
+        
         txtIva.setEditable(false);
         txtSubTotal.setEditable(false);
         txtTotal.setEditable(false);
@@ -351,7 +353,12 @@ public class RegistrarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMetodoPagoActionPerformed
 
     private void btnAgregarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductosActionPerformed
-        // TODO add your handling code here:
+        pnContenido.removeAll();
+        pnAgregarProducto.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
+        pnAgregarProducto.setLocation(0, -40);
+        pnContenido.add(pnAgregarProducto);
+        pnContenido.revalidate();
+        pnContenido.repaint();
     }//GEN-LAST:event_btnAgregarProductosActionPerformed
 
     private void btnCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCobrarActionPerformed

@@ -26,8 +26,8 @@ public class ProductosDAO extends BaseDAO<Producto> {
             Statement comando = conexion.createStatement();
             String insertarSLQ;
             insertarSLQ = String.format(
-                    "INSERT INTO productos(tipo,descripcion, marca, modelo, año, precio,disponible) "
-                    + "VALUES('%s','%s','%s','%s','%s','%s','%d')",
+                    "INSERT INTO productos(tipo,descripcion, marca, modelo, año, precio, disponible) "
+                    + "VALUES('%s','%s','%s','%s','%d','%s','%d')",
                     producto.getTipo(),
                     producto.getDescripcion(),
                     producto.getMarca(),

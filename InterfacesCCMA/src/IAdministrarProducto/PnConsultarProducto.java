@@ -4,6 +4,8 @@
  */
 package IAdministrarProducto;
 
+import Control.Control;
+import Dominio.Producto;
 import PanelesGlobales.PnContenido;
 
 /**
@@ -15,6 +17,7 @@ public class PnConsultarProducto extends javax.swing.JPanel {
     /**
      * Creates new form ConsultarProducto
      */
+    private Producto producto;
     private PnContenido pnContenido = PnContenido.getInstance();
     public PnConsultarProducto() {
         initComponents();
@@ -40,7 +43,7 @@ public class PnConsultarProducto extends javax.swing.JPanel {
         btnMenu = new javax.swing.JButton();
         txtDesc = new javax.swing.JTextField();
         txtTipo = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtMarca = new javax.swing.JTextField();
         txtModel = new javax.swing.JTextField();
         txtAnio = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
@@ -52,7 +55,6 @@ public class PnConsultarProducto extends javax.swing.JPanel {
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
         jSeparator10 = new javax.swing.JSeparator();
-        btnConsultar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -116,10 +118,10 @@ public class PnConsultarProducto extends javax.swing.JPanel {
         txtTipo.setForeground(new java.awt.Color(0, 0, 0));
         txtTipo.setBorder(null);
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField3.setBorder(null);
+        txtMarca.setBackground(new java.awt.Color(255, 255, 255));
+        txtMarca.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtMarca.setForeground(new java.awt.Color(0, 0, 0));
+        txtMarca.setBorder(null);
 
         txtModel.setBackground(new java.awt.Color(255, 255, 255));
         txtModel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -141,19 +143,6 @@ public class PnConsultarProducto extends javax.swing.JPanel {
         txtCantidad.setForeground(new java.awt.Color(0, 0, 0));
         txtCantidad.setBorder(null);
 
-        btnConsultar.setBackground(new java.awt.Color(255, 255, 255));
-        btnConsultar.setForeground(new java.awt.Color(255, 255, 255));
-        btnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/buscarIcon.png"))); // NOI18N
-        btnConsultar.setBorder(null);
-        btnConsultar.setBorderPainted(false);
-        btnConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnConsultar.setFocusable(false);
-        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -174,26 +163,23 @@ public class PnConsultarProducto extends javax.swing.JPanel {
                             .addComponent(jLabel7)
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jSeparator10)
-                                    .addComponent(jSeparator6)
-                                    .addComponent(jSeparator4)
-                                    .addComponent(jSeparator1)
-                                    .addComponent(txtDesc)
-                                    .addComponent(txtTipo)
-                                    .addComponent(jTextField3)
-                                    .addComponent(txtModel)
-                                    .addComponent(txtAnio)
-                                    .addComponent(txtPrecio)
-                                    .addComponent(txtCantidad)
-                                    .addComponent(jSeparator2)
-                                    .addComponent(jSeparator7)
-                                    .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jSeparator10)
+                                .addComponent(jSeparator6)
+                                .addComponent(jSeparator4)
+                                .addComponent(jSeparator1)
+                                .addComponent(txtDesc)
+                                .addComponent(txtTipo)
+                                .addComponent(txtMarca)
+                                .addComponent(txtModel)
+                                .addComponent(txtAnio)
+                                .addComponent(txtPrecio)
+                                .addComponent(txtCantidad)
+                                .addComponent(jSeparator2)
+                                .addComponent(jSeparator7)
+                                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(246, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -202,14 +188,11 @@ public class PnConsultarProducto extends javax.swing.JPanel {
                 .addGap(100, 100, 100)
                 .addComponent(jLabel1)
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -219,7 +202,7 @@ public class PnConsultarProducto extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
@@ -256,23 +239,14 @@ public class PnConsultarProducto extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescActionPerformed
 
-    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConsultarActionPerformed
-
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         PnMenuProducto pnMnProducto = new PnMenuProducto();
-        pnContenido.removeAll();
-        pnMnProducto.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
-        pnMnProducto.setLocation(0, -40);
-        pnContenido.add(pnMnProducto);
-        pnContenido.revalidate();
-        pnContenido.repaint();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnProducto);
     }//GEN-LAST:event_btnMenuActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -289,12 +263,42 @@ public class PnConsultarProducto extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField txtAnio;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtDesc;
+    private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModel;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public void cargarProducto(){
+        txtTipo.setText(getProducto().getTipo());
+        txtDesc.setText(getProducto().getDescripcion());
+        txtMarca.setText(getProducto().getMarca());
+        txtModel.setText(getProducto().getModelo());
+        txtAnio.setText(getProducto().getAnio()+"");
+        txtPrecio.setText(getProducto().getPrecio()+"");
+        txtCantidad.setText(getProducto().getDisponible()+"");
+    
+    }
+    
+    private void limpiarCampos(){
+       txtTipo.setText("");
+        txtDesc.setText("");
+        txtMarca.setText("");
+        txtModel.setText("");
+        txtAnio.setText("");
+        txtPrecio.setText("");
+        txtCantidad.setText("");
+    }
+
 }

@@ -20,23 +20,23 @@ public class Empleado extends Persona{
     public Empleado() {
     }
 
-    public Empleado(String nombre, String username, String password, Permiso permiso) {
-        super(nombre, password);
+    public Empleado(String nombre_completo, String username, String password, Permiso permiso) {
+        super(nombre_completo);
         this.username = username;
         this.password = password;
         this.permiso = permiso;
     }
 
-    public Empleado(Integer idUsuario, String nombre, String apellidos, String email, String username, String password, Permiso permiso) {
-        super(nombre, apellidos, email);
+    public Empleado(Integer idUsuario, String nombre_completo, String email, String username, String password, Permiso permiso) {
+        super(nombre_completo, email);
         this.idUsuario = idUsuario;        
         this.username = username;
         this.password = password;
         this.permiso = permiso;
     }
 
-    public Empleado(String nombre, String apellidos, String correo,String username, String password, Permiso permiso ) {
-        super(nombre, apellidos, correo);
+    public Empleado(String nombre_completo, String correo,String username, String password, Permiso permiso ) {
+        super(nombre_completo, correo);
         this.username = username;
         this.password = password;
         this.permiso = permiso;
@@ -105,7 +105,7 @@ public class Empleado extends Persona{
 
     @Override
     public String toString() {
-        return "Usuario{" + "nombre=" + super.getNombre() + ", apellidos=" + super.getApellidos() + ", permiso=" + permiso + '}';
+        return "Empleado{" + "idUsuario=" + idUsuario + ", nombre=" + super.getNombre()+'}';
     }
     
 }

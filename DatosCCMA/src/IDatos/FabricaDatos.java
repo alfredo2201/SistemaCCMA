@@ -11,8 +11,16 @@ package IDatos;
  */
 public class FabricaDatos {
 
+    private static FachadaDatos instance;
+
+    private FabricaDatos() {
+    }
+
     public static IDatos getInstance() {
-        return new FachadaDatos();
+        if (instance == null) {
+            instance = new FachadaDatos();
+        }
+        return instance;
     }
 
 }

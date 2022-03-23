@@ -4,7 +4,14 @@
  */
 package IAdministrarProducto;
 
+import Control.Control;
+import Dominio.Producto;
+import Fachada.FabricaNegocios;
+import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,9 +21,16 @@ public class PnActualizarProducto extends javax.swing.JPanel {
 
     /**
      * Creates new form ActualizarProducto
-     */private PnContenido pnContenido = PnContenido.getInstance();
+     */
+    private PnContenido pnContenido = PnContenido.getInstance();
+    private INegocios negocios = FabricaNegocios.getInstance();
+    private PnEditarProducto editar = new PnEditarProducto();
+    private ArrayList<Producto> cLista;
+    private DefaultTableModel dtm;
+
     public PnActualizarProducto() {
         initComponents();
+        this.dtm = (DefaultTableModel) tblProductos.getModel();        
     }
 
     /**
@@ -47,10 +61,7 @@ public class PnActualizarProducto extends javax.swing.JPanel {
         tblProductos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Descripción", "Tipo", "Marca", "Modelo", "Año", "Precio", "Cantidad"
@@ -150,17 +161,13 @@ public class PnActualizarProducto extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        continuar();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         PnMenuProducto pnMnProducto = new PnMenuProducto();
-        pnContenido.removeAll();
-        pnMnProducto.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
-        pnMnProducto.setLocation(0, -40);
-        pnContenido.add(pnMnProducto);
-        pnContenido.revalidate();
-        pnContenido.repaint();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnProducto);
     }//GEN-LAST:event_btnMenuActionPerformed
 
 
@@ -172,4 +179,29 @@ public class PnActualizarProducto extends javax.swing.JPanel {
     private javax.swing.JPanel pnTabla;
     private javax.swing.JTable tblProductos;
     // End of variables declaration//GEN-END:variables
+
+    public void buscarProducto() {
+        // Borra todos los rows
+        dtm.setRowCount(0);
+        cLista = negocios.consultarTodoProducto();
+        cLista.forEach(pr -> {
+            dtm.addRow(new Object[]{pr.getIdProducto(),pr.getDescripcion(),pr.getTipo(), pr.getMarca(), pr.getModelo(), pr.getAnio(),pr.getPrecio(),pr.getDisponible()});
+        });
+    }
+
+    private void continuar() {
+        Control ctl = new Control();
+        int i = tblProductos.getSelectedRow();
+        Producto aux = null;
+        if (i >= 0) {
+            int id = cLista.get(i).getIdProducto();
+            aux = negocios.consultarProductoById(id);
+            editar.setProducto(aux);
+            ctl.muestraPantalla(pnContenido, editar);
+            editar.cargarProducto();
+        } else {
+            ctl.muestraMsj("Seleccione un producto para continuar.", "Producto no seleccionado", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+        }
+    }
+
 }

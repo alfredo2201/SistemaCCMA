@@ -4,8 +4,15 @@
  */
 package IAdministrarProducto;
 
+import Control.Control;
+import Dominio.Producto;
+import Fachada.FabricaNegocios;
+import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
-
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,9 +22,17 @@ public class PnEliminarProducto extends javax.swing.JPanel {
 
     /**
      * Creates new form EliminarProducto
-     */    private PnContenido pnContenido = PnContenido.getInstance();
+     */
+    private PnContenido pnContenido = PnContenido.getInstance();
+    private ArrayList<Producto> pdLista;
+    private ArrayList<Producto> pdListaEliminar;
+    private INegocios negocios;
+
     public PnEliminarProducto() {
         initComponents();
+        negocios = FabricaNegocios.getInstance();
+        pdLista = new ArrayList<>();
+        pdListaEliminar = new ArrayList<>();
     }
 
     /**
@@ -46,23 +61,21 @@ public class PnEliminarProducto extends javax.swing.JPanel {
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         tbProducto.setBackground(new java.awt.Color(255, 255, 255));
+        tbProducto.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         tbProducto.setForeground(new java.awt.Color(0, 0, 0));
         tbProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "ID", "Descripción", "Tipo", "Marca", "Modelo", "Año", "Precio", "Cantidad"
+                "ID", "Descripción", "Tipo", "Marca", "Modelo", "Año", "Precio", "Cantidad", "Eliminar"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -167,21 +180,18 @@ public class PnEliminarProducto extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProducActionPerformed
-        // TODO add your handling code here:
+        eliminarProductos();
+        cargarProducto();
     }//GEN-LAST:event_btnEliminarProducActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        cargarProducto();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         PnMenuProducto pnMnProducto = new PnMenuProducto();
-        pnContenido.removeAll();
-        pnMnProducto.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
-        pnMnProducto.setLocation(0, -40);
-        pnContenido.add(pnMnProducto);
-        pnContenido.revalidate();
-        pnContenido.repaint();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnProducto);
     }//GEN-LAST:event_btnMenuActionPerformed
 
 
@@ -194,4 +204,55 @@ public class PnEliminarProducto extends javax.swing.JPanel {
     private javax.swing.JPanel pnTabla;
     private javax.swing.JTable tbProducto;
     // End of variables declaration//GEN-END:variables
+    public void cargarProducto() {
+        DefaultTableModel dtm = (DefaultTableModel) tbProducto.getModel();
+        Control ctl = new Control();
+        limpiarTabla();
+        try {
+            pdLista = negocios.consultarTodoProducto();
+            if (pdLista.isEmpty()) {
+                ctl.muestraMsj("No se ha encontrado ningun producto", "Sin producto", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+                return;
+            }
+            pdLista.forEach(pd -> {
+                dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(),
+                    pd.getTipo(), pd.getMarca(), pd.getModelo(), pd.getAnio(), pd.getPrecio(), pd.getDisponible(), false});
+            });
+        } catch (Exception e) {
+            ctl.muestraMsj("No se han podido recuperar los productos.", "Error al buscar productos", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+        }
+    }
+
+    private void eliminarProductos() {
+        DefaultTableModel dtm = (DefaultTableModel) tbProducto.getModel();
+        Control ctl = new Control();
+        for (int i = 0; i < dtm.getRowCount(); i++) {
+            if (((Vector) dtm.getDataVector().elementAt(i)).elementAt(8).equals(true)) {
+                pdListaEliminar.add(pdLista.get(i));
+            }
+        }
+
+        if (pdListaEliminar.isEmpty()) {
+            ctl.muestraMsj("No se ha seleccionado ningun producto", "Error de productos", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+            return;
+        }
+        pdListaEliminar.forEach(pd -> {
+            try {
+                negocios.eliminarProdcuto(pd);
+                ctl.muestraMsj("Los productos se eliminaron correctamente", "Productos eliminados", JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");
+            } catch (Error e) {
+                ctl.muestraMsj(("No se ha podido eliminar el producto seleccionado: " + pd.getIdProducto().toString()), "Error al buscar productos", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+            }
+
+        });
+    }
+
+    private void limpiarTabla() {
+        DefaultTableModel temp = (DefaultTableModel) tbProducto.getModel();
+        int filas = tbProducto.getRowCount();
+
+        for (int a = 0; filas > a; a++) {
+            temp.removeRow(0);
+        }
+    }
 }

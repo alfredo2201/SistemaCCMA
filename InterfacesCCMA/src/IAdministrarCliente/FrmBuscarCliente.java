@@ -6,8 +6,15 @@
 package IAdministrarCliente;
 
 //import DAO.ClienteDAO;
+import Control.Control;
+import Dominio.Cliente;
+import Fachada.FabricaNegocios;
+import Fachada.INegocios;
 import IAdministrarVentas.RegistrarVenta;
 import PanelesGlobales.PnContenido;
+import java.util.ArrayList;
+import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,23 +22,25 @@ import PanelesGlobales.PnContenido;
  */
 public class FrmBuscarCliente extends javax.swing.JFrame {
 
-//    private final ClienteDAO clDao;
     private PnContenido contenido = PnContenido.getInstance();
     private PnConsularCliente consultar = new PnConsularCliente();
     private RegistrarVenta registrarVenta = new RegistrarVenta();
-    private int tipoPantalla;       
+    private INegocios negocios = FabricaNegocios.getInstance();
+    private int tipoPantalla;
     private static int CONSULTAR_CLIENTE = 1;
     private static int REGISTRAR_VENTA = 3;
-    private static int REGISTRAR_PRESUPUESTO = 4;
+    private DefaultTableModel dtm;
 
     /**
      * Creates new form IBuscarCliente
      */
     public FrmBuscarCliente() {
+
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-//        clDao = new ClienteDAO();
+        this.dtm = (DefaultTableModel) clienteTable.getModel();
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -48,8 +57,8 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         lblTextoRFC = new javax.swing.JLabel();
-        txtNombreCliente2 = new javax.swing.JTextField();
-        txtRFC2 = new javax.swing.JTextField();
+        txtNombreCliente = new javax.swing.JTextField();
+        txtRFC = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         pnListaClientes = new javax.swing.JPanel();
@@ -94,15 +103,15 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         lblTextoRFC.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoRFC.setText("RFC:");
 
-        txtNombreCliente2.setBackground(new java.awt.Color(255, 255, 255));
-        txtNombreCliente2.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        txtNombreCliente2.setForeground(new java.awt.Color(0, 0, 0));
-        txtNombreCliente2.setBorder(null);
+        txtNombreCliente.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtNombreCliente.setForeground(new java.awt.Color(0, 0, 0));
+        txtNombreCliente.setBorder(null);
 
-        txtRFC2.setBackground(new java.awt.Color(255, 255, 255));
-        txtRFC2.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        txtRFC2.setForeground(new java.awt.Color(0, 0, 0));
-        txtRFC2.setBorder(null);
+        txtRFC.setBackground(new java.awt.Color(255, 255, 255));
+        txtRFC.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtRFC.setForeground(new java.awt.Color(0, 0, 0));
+        txtRFC.setBorder(null);
 
         pnListaClientes.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -195,13 +204,13 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
                                 .addComponent(jLabel12)
                                 .addGap(5, 5, 5)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNombreCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblTextoRFC)
                                 .addGap(5, 5, 5)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtRFC2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -219,14 +228,14 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
-                            .addComponent(txtNombreCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTextoRFC)
-                    .addComponent(txtRFC2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
@@ -255,60 +264,14 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-        // TODO add your handling code here:
-//        DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
-//        // Borra todos los rows
-//        dtm.setRowCount(0);
-//
-//        if (!txtNombreCliente2.getText().isEmpty()) {
-//            String ent = "\"%" + txtNombreCliente2.getText() + "%\"";
-//            try {
-//                ArrayList<Cliente> cLista = clDao.consultar("nombre", ent);
-//                if (cLista.isEmpty()) {
-//                    JOptionPane.showMessageDialog(this, "No se ha encontrado ningun cliente", "No se encontro el cliente", JOptionPane.INFORMATION_MESSAGE);
-//                    return;
-//                }
-//                cLista.forEach(cl -> {
-//                    dtm.addRow(new Object[]{cl.getNombre(), cl.getRfc(), cl.getCorreo()});
-//                });
-//            } catch (DAOException e) {
-//                System.out.println(e.getMessage());
-//            }
-//        } else if (!txtRFC2.getText().isEmpty()) {
-//            String ent = "\"" + txtRFC2.getText() + "\"";
-//            try {
-//                ArrayList<Cliente> cLista = clDao.consultar("RFC", ent);
-//                cLista.forEach(cl -> {
-//                    dtm.addRow(new Object[]{cl.getNombre(), cl.getRfc(), cl.getCorreo()});
-//                });
-//            } catch (DAOException e) {
-//                System.out.println(e.getMessage());
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Inserte informacion del cliente a buscar.", "Error al buscar cliente", JOptionPane.ERROR_MESSAGE);
-//        }
-        if (getTipoPantalla() == REGISTRAR_VENTA) {
-            contenido.removeAll();
-            registrarVenta.setVisible(true);
-            registrarVenta.setSize(contenido.getSize().width, contenido.getSize().height);
-            registrarVenta.setLocation(0, 0);
-            contenido.add(registrarVenta);
-            contenido.revalidate();
-            contenido.repaint();
-        } else if (getTipoPantalla() == CONSULTAR_CLIENTE) {
-            contenido.removeAll();
-            consultar.setVisible(true);
-            consultar.setSize(contenido.getSize().width, contenido.getSize().height);
-            consultar.setLocation(0, 0);
-            contenido.add(consultar);
-            contenido.revalidate();
-            contenido.repaint();
-        }
-        dispose();
+        continuar();
     }//GEN-LAST:event_btnContinuarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+        String nombre, RFC;
+        nombre = txtNombreCliente.getText();
+        RFC = txtRFC.getText();
+        buscarClientes(nombre, RFC);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
 
@@ -326,8 +289,8 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblTextoRFC;
     private javax.swing.JPanel pnListaClientes;
-    private javax.swing.JTextField txtNombreCliente2;
-    private javax.swing.JTextField txtRFC2;
+    private javax.swing.JTextField txtNombreCliente;
+    private javax.swing.JTextField txtRFC;
     // End of variables declaration//GEN-END:variables
 
     public int getTipoPantalla() {
@@ -336,6 +299,42 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
 
     public void setTipoPantalla(int tipoPantalla) {
         this.tipoPantalla = tipoPantalla;
+    }
+
+    public void buscarClientes(String nombre, String RFC) {
+        ArrayList<Cliente> cLista = new ArrayList<>();
+
+        // Borra todos los rows
+        dtm.setRowCount(0);
+        if (!nombre.isEmpty() && RFC.isEmpty()) {
+            cLista = negocios.consultarClienteNombre(nombre);
+        } else if (nombre.isEmpty() && !RFC.isEmpty()) {
+            cLista.add(negocios.consultarClienteByRFC(RFC));
+        } else {
+            cLista = negocios.obtenerClientes();
+        }
+        cLista.forEach(cl -> {
+            dtm.addRow(new Object[]{cl.getNombre(), cl.getRfc(), cl.getCorreo()});
+        });
+    }
+
+    private void continuar() {
+        Control ctl = new Control();
+        int i = clienteTable.getSelectedRow();
+        Cliente aux = null;
+        if (i >= 0) {
+            String c = (String) dtm.getValueAt(i, 1);
+            aux = negocios.consultarClienteByRFC(c);
+        }
+        if (getTipoPantalla() == REGISTRAR_VENTA) {
+            ctl.muestraPantalla(contenido, registrarVenta);
+        } else if (getTipoPantalla() == CONSULTAR_CLIENTE) {
+            consultar.setCliente(aux);
+            ctl.muestraPantalla(contenido, consultar);
+            consultar.cargarCliente();
+        }
+
+        dispose();
     }
 
 }

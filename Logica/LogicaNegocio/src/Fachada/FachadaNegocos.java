@@ -5,7 +5,12 @@
  */
 package Fachada;
 
+import Control.ControlCliente;
+import Control.ControlProducto;
+import ControlEmpleado.ControlEmpleado;
 import Dominio.Cliente;
+import Dominio.Empleado;
+import Dominio.Producto;
 import java.util.ArrayList;
 
 /**
@@ -14,29 +19,106 @@ import java.util.ArrayList;
  */
 public class FachadaNegocos implements INegocios {
 
+    private ControlEmpleado ctlEmpleado = new ControlEmpleado();
+    private ControlCliente ctlCliente = new ControlCliente();
+    private ControlProducto ctlProducto = new ControlProducto();
+
     @Override
     public void registrarClienteNuevo(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ctlCliente.agregarCliente(cliente);
     }
 
     @Override
-    public Cliente consultarCliente(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Cliente> consultarClienteNombre(String nombre) {
+        if (nombre != null && !nombre.isEmpty()) {
+            return ctlCliente.consultarClienteByNombre(nombre);
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<Cliente> consultarCliente(String campo, String parametro) {
+        return ctlCliente.consultarClientePersonalizado(parametro, campo);
     }
 
     @Override
     public ArrayList<Cliente> obtenerClientes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ctlCliente.consultaTodoCliente();
     }
 
     @Override
     public void actualizarCliente(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (cliente.getId_cliente() != null && cliente.getId_cliente() > 0) {
+            ctlCliente.actualizarCliente(cliente);
+
+        }
     }
 
     @Override
     public void eliminarCliente(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (cliente.getId_cliente() != null && cliente.getId_cliente() > 0) {
+            ctlCliente.eliminarCliente(cliente.getId_cliente());
+        }
+    }
+
+    @Override
+    public Empleado obtenEmpleado(String username, String password) {
+        if (!username.isEmpty() || !password.isEmpty()) {
+            return ctlEmpleado.obtenEmpleado(username, password);
+        }
+        return null;
+    }
+
+    @Override
+    public Cliente consultarClienteByRFC(String RFC) {
+        if (!RFC.isEmpty()) {
+            return ctlCliente.consultarClienteByRFC(RFC);
+        }
+        return null;
+    }
+
+    @Override
+    public void registrarProductoNuevo(Producto producto) {
+        if (producto != null) {
+            ctlProducto.agregar(producto);
+        }
+    }
+
+    @Override
+    public Producto consultarProducto(Producto producto) {
+        if (producto != null) {
+            return null;
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<Producto> consultarTodoProducto() {
+        return ctlProducto.consultarTodo();
+    }
+
+    @Override
+    public void actualizarProducto(Producto prodcuto) {
+        if (prodcuto != null) {
+            ctlProducto.actualizar(prodcuto);
+        }
+    }
+
+    @Override
+    public void eliminarProdcuto(Producto producto) {
+        if (producto != null) {
+            ctlProducto.eliminar(producto.getIdProducto());
+        }
+    }
+
+    @Override
+    public ArrayList<Producto> consultarPersonalizadoProducto(String tipo, String marca, String modelo, int anio) {
+        return ctlProducto.consultarProductoCompleto(tipo, marca, modelo, anio);        
+    }
+    
+    @Override
+    public Producto consultarProductoById(int id){
+        return ctlProducto.consultarProductoById(id);
     }
 
 }

@@ -6,8 +6,14 @@
 package IAdministrarCliente;
 //
 //import DAO.ClienteDAO;
+
+import Control.Control;
 import Dominio.Cliente;
+import Fachada.FabricaNegocios;
+import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
+import javax.swing.Icon;
+import javax.swing.JOptionPane;
 //import javax.swing.JOptionPane;
 
 /**
@@ -16,28 +22,21 @@ import PanelesGlobales.PnContenido;
  */
 public class PnEditarCliente extends javax.swing.JPanel {
 
-//    private Cliente clEditar;
-//    private final ClienteDAO clDao;
-
+    private Cliente clEditar;
     private PnContenido pnContenido = PnContenido.getInstance();
+    private INegocios iNegocios;
 
     /**
      * Creates new form PnEditarCliente
      */
     public PnEditarCliente() {
         initComponents();
-//        clDao = new ClienteDAO();
     }
 
-    /**
-     * Creates new form PnEditarCliente
-     *
-     * @param clEditar
-     */
     public PnEditarCliente(Cliente clEditar) {
-//        initComponents();
-//        clDao = new ClienteDAO();
-//        this.clEditar = clEditar;
+        initComponents();
+        iNegocios = FabricaNegocios.getInstance();
+        this.clEditar = clEditar;
     }
 
     /**
@@ -104,11 +103,6 @@ public class PnEditarCliente extends javax.swing.JPanel {
         txtNombreCliente.setBackground(new java.awt.Color(255, 255, 255));
         txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtNombreCliente.setBorder(null);
-        txtNombreCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreClienteActionPerformed(evt);
-            }
-        });
 
         txtCorreo.setBackground(new java.awt.Color(255, 255, 255));
         txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
@@ -146,28 +140,31 @@ public class PnEditarCliente extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTextoRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator13, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
-                            .addComponent(txtRFC)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(lblTextoEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblTextoTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblTextoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSeparator8)
-                            .addComponent(txtCorreo)
-                            .addComponent(jSeparator7)
-                            .addComponent(txtTelefono)
+                            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSeparator9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jSeparator8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jSeparator9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                                    .addComponent(txtNombreCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))))))
                 .addContainerGap(159, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -183,7 +180,7 @@ public class PnEditarCliente extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGap(0, 0, 0)))
                 .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -214,38 +211,13 @@ public class PnEditarCliente extends javax.swing.JPanel {
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         PnMenuClientes pnMnCliente = new PnMenuClientes();
-        pnContenido.removeAll();
-        pnMnCliente.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
-        pnMnCliente.setLocation(0, -40);
-        pnContenido.add(pnMnCliente);
-        pnContenido.revalidate();
-        pnContenido.repaint();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnCliente);
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-//        String nombre = txtNombreCliente.getText();
-//        //TODO
-////        String apellidos = txtApellidosCliente.getText();
-//        String email = txtCorreo.getText();
-//        String telefono = txtTelefono.getText();
-//        String RFC = txtRFC.getText();
-//
-//        if (nombre.isEmpty() || email.isEmpty() || telefono.isEmpty() || RFC.isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Favor de llenar todas las casillas.", "No se pudo editar el cliente.", JOptionPane.ERROR_MESSAGE);
-//        } else {
-//            try {
-//                Cliente cl = new Cliente(nombre, "", email, RFC, telefono);
-//                clDao.actualizar(cl);
-//                JOptionPane.showMessageDialog(this, "Error al intentar editar al cliente.", "ERROR: Editar cliente", JOptionPane.INFORMATION_MESSAGE);
-//            } catch (Exception e) {
-//                JOptionPane.showMessageDialog(this, "Error al intentar editar al cliente.", "ERROR: Editar cliente", JOptionPane.ERROR_MESSAGE);
-//            }
-//        }
+        actualizar();
     }//GEN-LAST:event_btnActualizarActionPerformed
-
-    private void txtNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -265,4 +237,35 @@ public class PnEditarCliente extends javax.swing.JPanel {
     private javax.swing.JTextField txtRFC;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+
+    public void actualizar() {
+        String nombre = txtNombreCliente.getText();
+        String email = txtCorreo.getText();
+        String telefono = txtTelefono.getText();
+        String RFC = txtRFC.getText();
+        Control ctl = new Control();
+        if (nombre.isEmpty() || email.isEmpty() || telefono.isEmpty() || RFC.isEmpty()) {
+            ctl.muestraMsj("Favor de llenar todas las casillas.", "No se pudo editar el cliente.", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+        } else {
+            Cliente cl = new Cliente(nombre, email, RFC, telefono);
+            if (!clEditar.getNombre().equalsIgnoreCase(nombre) || !clEditar.getCorreo().equals(email)|| !clEditar.getRfc().equals(RFC)|| !clEditar.getTelefono().equals(telefono)) {                
+                cl.setId_cliente(clEditar.getId_cliente());
+                iNegocios.actualizarCliente(cl);
+                ctl.muestraMsj("El cliente fue editado correctamente.", "Editar cliente", JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");
+            } else {
+                ctl.muestraMsj("El cliente que intenta actualizar no ha sido modificado.\nVuelva a intentarlo", "No hay cambios en el cliente", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+            }
+        }
+    }
+
+    public void cargarCliente() {
+        if (clEditar != null) {
+            txtNombreCliente.setText(clEditar.getNombre());
+            txtCorreo.setText(clEditar.getCorreo());
+            txtRFC.setText(clEditar.getRfc());
+            txtTelefono.setText(clEditar.getTelefono());
+        }
+
+    }
+
 }

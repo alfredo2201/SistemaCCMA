@@ -145,7 +145,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" + "tipo=" + tipo + ", marca=" + marca + ", modelo=" + modelo + ", anio=" + anio + ", precio=" + precio + '}';
+        return tipo +" - "+marca+" - "+modelo+" - "+anio+" - Disp: "+disponible+" - Costo: $"+precio;
     }
     
 }
