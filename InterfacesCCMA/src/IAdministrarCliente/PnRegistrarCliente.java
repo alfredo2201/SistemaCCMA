@@ -6,6 +6,7 @@
 package IAdministrarCliente;
 
 //import DAO.ClienteDAO;
+import Control.Control;
 import Dominio.Cliente;
 import Fachada.FabricaNegocios;
 import Fachada.INegocios;
@@ -221,27 +222,12 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         PnMenuClientes pnMnCliente = new PnMenuClientes();
-        pnContenido.removeAll();
-        pnMnCliente.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
-        pnMnCliente.setLocation(0, -40);
-        pnContenido.add(pnMnCliente);
-        pnContenido.revalidate();
-        pnContenido.repaint();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnCliente);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
-        // TODO add your handling code here:
-        String nombre = txtNombreCliente.getText();
-        String apellidos = txtApellidosCliente.getText();
-        String email = txtCorreo.getText();
-        String telefono = txtTelefono.getText();
-        String RFC = txtRFC.getText();
-        if (nombre.isEmpty() || apellidos.isEmpty() || email.isEmpty() || telefono.isEmpty() || RFC.isEmpty()) {
-            negocios.muestraMsj("Campos vacios. Verifique su información", "Error de campos de entrada", JOptionPane.INFORMATION_MESSAGE,"src/iconos/warning.png");
-        } else {
-            Cliente cl = new Cliente(nombre + " " + apellidos, email, RFC, telefono);
-            negocios.registrarClienteNuevo(cl);
-        }
+        agregarCliente();
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
 
@@ -265,4 +251,29 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
     private javax.swing.JTextField txtRFC;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+
+    private void agregarCliente() {
+        Control ctl = new Control();
+        String nombre = txtNombreCliente.getText();
+        String apellidos = txtApellidosCliente.getText();
+        String email = txtCorreo.getText();
+        String telefono = txtTelefono.getText();
+        String RFC = txtRFC.getText();
+        if (nombre.isEmpty() || apellidos.isEmpty() || email.isEmpty() || telefono.isEmpty() || RFC.isEmpty()) {
+            ctl.muestraMsj("Campos vacios. Verifique su información", "Error de campos de entrada", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+        } else {
+            Cliente cl = new Cliente(nombre + " " + apellidos, email, RFC, telefono);
+            negocios.registrarClienteNuevo(cl);
+            ctl.muestraMsj("Se eliminaron los clientes seleccionados.", "No se elimino el cliente", JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");   
+            limpiarCampos();
+        }
+    }
+
+    private void limpiarCampos() {
+        txtNombreCliente.setText("");
+        txtApellidosCliente.setText("");
+        txtCorreo.setText("");
+        txtTelefono.setText("");
+        txtRFC.setText("");
+    }
 }

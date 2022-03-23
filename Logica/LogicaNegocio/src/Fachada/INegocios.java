@@ -29,9 +29,6 @@ public interface INegocios {
 
     public void eliminarCliente(Cliente cliente);
     
-    public ArrayList<Cliente> consultarCliente(String campo, String parametro);
-
-    public void muestraMsj(String mensaje, String titulo, int tipo, String urlImagen);
-        
+    public ArrayList<Cliente> consultarCliente(String campo, String parametro);    
 
 }

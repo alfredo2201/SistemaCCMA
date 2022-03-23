@@ -5,7 +5,13 @@
  */
 package IAdministrarCliente;
 
+import Control.Control;
+import Dominio.Cliente;
+import Fachada.FabricaNegocios;
+import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,10 +22,15 @@ public class PnActualizarCliente extends javax.swing.JPanel {
     /**
      * Creates new form PnActualizarCliente
      */
-    private PnContenido pnContenido = PnContenido.getInstance();    
+    private PnContenido pnContenido = PnContenido.getInstance();
+    private PnEditarCliente pnEditarCliente;
+    private INegocios negocios = FabricaNegocios.getInstance();
+    private DefaultTableModel dtm;
 
     public PnActualizarCliente() {
         initComponents();
+        this.dtm = (DefaultTableModel) tblCliente.getModel();
+        cargarClientes();
     }
 
     /**
@@ -58,7 +69,7 @@ public class PnActualizarCliente extends javax.swing.JPanel {
         tblCliente.setBackground(new java.awt.Color(255, 255, 255));
         tblCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.darkGray, null, null));
         tblCliente.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        tblCliente.setForeground(new java.awt.Color(255, 255, 255));
+        tblCliente.setForeground(new java.awt.Color(0, 0, 0));
         tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -170,16 +181,12 @@ public class PnActualizarCliente extends javax.swing.JPanel {
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         PnMenuClientes pnMnCliente = new PnMenuClientes();
-        pnContenido.removeAll();
-        pnMnCliente.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
-        pnMnCliente.setLocation(0, -40);
-        pnContenido.add(pnMnCliente);
-        pnContenido.revalidate();
-        pnContenido.repaint();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnCliente);
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        editarCliente();
     }//GEN-LAST:event_btnEditarActionPerformed
 
 
@@ -194,4 +201,26 @@ public class PnActualizarCliente extends javax.swing.JPanel {
     private javax.swing.JTable tblCliente;
     private javax.swing.JTextField txtClienteActualizar;
     // End of variables declaration//GEN-END:variables
+    private void editarCliente() {
+        Control ctl = new Control();
+        Integer selectedRow = tblCliente.getSelectedRow();
+        String val[] = new String[tblCliente.getColumnCount()];
+        for (int i = 0; i < tblCliente.getColumnCount(); i++) {
+            val[i] = tblCliente.getModel().getValueAt(selectedRow, i).toString();
+        }
+        Cliente cl = new Cliente(Integer.parseInt(val[0]), val[1], val[2], val[3], val[4]);
+        pnEditarCliente = new PnEditarCliente(cl);
+        ctl.muestraPantalla(pnContenido, pnEditarCliente);
+        pnEditarCliente.cargarCliente();
+    }
+
+    private void cargarClientes() {
+        ArrayList<Cliente> cLista = new ArrayList<>();
+        dtm.setRowCount(0);
+        cLista = negocios.obtenerClientes();
+        cLista.forEach(cl -> {
+            dtm.addRow(new Object[]{cl.getId_cliente(),cl.getNombre(), cl.getCorreo(),cl.getTelefono(), cl.getRfc()});
+        });
+    }
+
 }

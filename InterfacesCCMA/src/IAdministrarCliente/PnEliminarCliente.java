@@ -8,7 +8,16 @@ package IAdministrarCliente;
 //import DAO.ClienteDAO;
 //import Dominio.Cliente;
 //import Exceptions.DAOException;
+import Control.Control;
+import Dominio.Cliente;
+import Exceptions.DAOException;
+import Fachada.FabricaNegocios;
+import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 //import java.util.ArrayList;
 //import java.util.Vector;
 //import javax.swing.JOptionPane;
@@ -20,10 +29,9 @@ import PanelesGlobales.PnContenido;
  */
 public class PnEliminarCliente extends javax.swing.JPanel {
 
-//    private final ClienteDAO clDao;
-//    ArrayList<Cliente> cLIsta;
-//    ArrayList<Cliente> cLIstaEliminar;    
-
+    ArrayList<Cliente> cLIsta;
+    ArrayList<Cliente> cLIstaEliminar;
+    private INegocios iNegocios;
     private PnContenido pnContenido = PnContenido.getInstance();
 
     /**
@@ -31,24 +39,8 @@ public class PnEliminarCliente extends javax.swing.JPanel {
      */
     public PnEliminarCliente() {
         initComponents();
-//        clDao = new ClienteDAO();
-//        DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
-//        try {
-//            cLIsta = clDao.obtenerTodo();
-//            if (cLIsta.isEmpty()) {
-//                // No hay carnales
-//                JOptionPane.showMessageDialog(this, "No se ha encontrado ningun cliente", "No se encontro el cliente", JOptionPane.INFORMATION_MESSAGE);
-//                return;
-//            }
-//            cLIsta.forEach(cl -> {
-//                dtm.addRow(new Object[]{cl.getId_cliente(), cl.getNombre(),
-//                    cl.getApellidos(), cl.getCorreo(), cl.getTelefono(), cl.getRfc(), false});
-//            });
-//        } catch (Exception e) {
-//            // No se pudo obtener
-//            JOptionPane.showMessageDialog(this, "No se han podido recuperar los usuarios.", "Error al buscar clientes", JOptionPane.ERROR_MESSAGE);
-//        }
-
+        iNegocios = FabricaNegocios.getInstance();
+        cargarClienteTabla();
     }
 
     /**
@@ -83,14 +75,14 @@ public class PnEliminarCliente extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Nombre", "Apellido", "Correo electrónico", "Teléfono", "RFC", "Eliminar"
+                "ID", "Nombre", "Correo electrónico", "Teléfono", "RFC", "Eliminar"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
+                false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -116,7 +108,7 @@ public class PnEliminarCliente extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTablaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         btnEliminar.setBackground(new java.awt.Color(255, 255, 0));
@@ -179,44 +171,20 @@ public class PnEliminarCliente extends javax.swing.JPanel {
                         .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(0, 0, 0)))
+                    .addComponent(pnTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-//        // TODO add your handling code here:
-//        DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
-//        for (int i = 0; i < dtm.getRowCount(); i++) {
-//            if (((Vector) dtm.getDataVector().elementAt(i)).elementAt(6).equals(true)) {
-//                cLIstaEliminar.add(cLIsta.get(i));
-//            }
-//        }
-//
-//        if (cLIstaEliminar.isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "No se ha seleccionado ningun cliente", "No se selecciono ningun cliente", JOptionPane.INFORMATION_MESSAGE);
-//            return;
-//        }
-//        cLIstaEliminar.forEach(cl -> {
-//            try {
-//                clDao.eliminar(new Long(cl.getId_cliente()));
-//            } catch (DAOException e) {
-//                JOptionPane.showMessageDialog(this, ("No se ha podido eliminar el cliente del id: " + cl.getId_cliente().toString()), "No se elimino el cliente", JOptionPane.INFORMATION_MESSAGE);
-//            }
-//
-//        });
+        eliminarCliente();
+        cargarClienteTabla();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        PnMenuClientes pnMnCliente = new PnMenuClientes(); 
-        pnContenido.removeAll();
-        pnMnCliente.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
-        pnMnCliente.setLocation(0, -40);
-        pnContenido.add(pnMnCliente);
-        pnContenido.revalidate();
-        pnContenido.repaint();
+        PnMenuClientes pnMnCliente = new PnMenuClientes();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnCliente);
     }//GEN-LAST:event_btnMenuActionPerformed
 
 
@@ -229,4 +197,41 @@ public class PnEliminarCliente extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnTabla;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarClienteTabla() {
+        DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
+        Control ctl = new Control();
+        clienteTable.removeAll();
+        cLIsta = iNegocios.obtenerClientes(); // No se pudo obtener
+        if (cLIsta.isEmpty()) {
+            // No hay carnales
+            ctl.muestraMsj("No se ha encontrado ningun cliente", "No se encontro el cliente", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+            return;
+        }
+        cLIsta.forEach(cl -> {
+            dtm.addRow(new Object[]{cl.getId_cliente(), cl.getNombre(), cl.getCorreo(), cl.getTelefono(), cl.getRfc(), false});
+        });
+    }
+
+    private void eliminarCliente() {
+        DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
+        cLIstaEliminar = new ArrayList<>();
+        Control ctl = new Control();
+        for (int i = 0; i < dtm.getRowCount(); i++) {
+            // TODO: Buscar que otro puede ser vector, ya esta deprecated
+            if (((Vector) dtm.getDataVector().elementAt(i)).elementAt(5).equals(true)) {
+                cLIstaEliminar.add(cLIsta.get(i));
+            }
+        }
+
+        if (cLIstaEliminar.isEmpty()) {
+            ctl.muestraMsj("No se ha seleccionado ningun cliente",  "No se selecciono ningun cliente", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");            
+            return;
+        }
+        cLIstaEliminar.forEach(cl -> {
+            iNegocios.eliminarCliente(cl);
+        });
+        ctl.muestraMsj("Se eliminaron los clientes seleccionados.", "No se elimino el cliente", JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");                    
+    }
+
 }

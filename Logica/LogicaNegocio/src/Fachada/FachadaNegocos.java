@@ -24,12 +24,7 @@ public class FachadaNegocos implements INegocios {
 
     @Override
     public void registrarClienteNuevo(Cliente cliente) {
-        String mensaje = ctlCliente.agregarCliente(cliente);
-        if (mensaje.contains("Error")) {
-            muestraMsj(mensaje, "Mensaje de error", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
-        } else {
-            muestraMsj(mensaje, "Cliente nuevo", JOptionPane.OK_OPTION, "src/iconos/comprobado.png");
-        }
+        ctlCliente.agregarCliente(cliente);
     }
 
     @Override
@@ -53,24 +48,15 @@ public class FachadaNegocos implements INegocios {
     @Override
     public void actualizarCliente(Cliente cliente) {
         if (cliente.getId_cliente() != null && cliente.getId_cliente() > 0) {
-            String mensaje = ctlCliente.actualizarCliente(cliente);
-            if (mensaje.contains("Error")) {
-                muestraMsj(mensaje, "Mensaje de error", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
-            } else {
-                muestraMsj(mensaje, "Cliente Actualizado", JOptionPane.OK_OPTION, "src/iconos/comprobado.png");
-            }
+            ctlCliente.actualizarCliente(cliente);
+
         }
     }
 
     @Override
     public void eliminarCliente(Cliente cliente) {
         if (cliente.getId_cliente() != null && cliente.getId_cliente() > 0) {
-            String mensaje = ctlCliente.eliminarCliente(cliente.getId_cliente());
-            if (mensaje.contains("Error")) {
-                muestraMsj(mensaje, "Mensaje de error", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
-            } else {
-                muestraMsj(mensaje, "Cliente Actualizado", JOptionPane.OK_OPTION, "src/iconos/comprobado.png");
-            }
+            ctlCliente.eliminarCliente(cliente.getId_cliente());
         }
     }
 
@@ -80,11 +66,6 @@ public class FachadaNegocos implements INegocios {
             return ctlEmpleado.obtenEmpleado(username, password);
         }
         return null;
-    }
-
-    @Override
-    public void muestraMsj(String mensaje, String titulo, int tipo, String urlImagen) {
-        JOptionPane.showMessageDialog(null, mensaje, titulo, tipo, new ImageIcon(urlImagen));
     }
 
     @Override

@@ -6,12 +6,14 @@
 package IAdministrarCliente;
 
 //import DAO.ClienteDAO;
+import Control.Control;
 import Dominio.Cliente;
 import Fachada.FabricaNegocios;
 import Fachada.INegocios;
 import IAdministrarVentas.RegistrarVenta;
 import PanelesGlobales.PnContenido;
 import java.util.ArrayList;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -38,6 +40,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         this.dtm = (DefaultTableModel) clienteTable.getModel();
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -261,32 +264,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-        int i = clienteTable.getSelectedRow();
-        Cliente aux = null;
-        if (i>=0) {
-            String c = (String) dtm.getValueAt(i, 1);
-            aux = negocios.consultarClienteByRFC(c);
-        }
-        if (getTipoPantalla() == REGISTRAR_VENTA) {
-            contenido.removeAll();
-            registrarVenta.setVisible(true);
-            registrarVenta.setSize(contenido.getSize().width, contenido.getSize().height);
-            registrarVenta.setLocation(0, 0);
-            contenido.add(registrarVenta);
-            contenido.revalidate();
-            contenido.repaint();
-        } else if (getTipoPantalla() == CONSULTAR_CLIENTE) {
-            contenido.removeAll();
-            consultar.setVisible(true);
-            consultar.setSize(contenido.getSize().width, contenido.getSize().height);
-            consultar.setLocation(0, 0);
-            consultar.setCliente(aux);            
-            contenido.add(consultar);
-            contenido.revalidate();
-            contenido.repaint();
-            consultar.cargarCliente();
-        }
-        dispose();
+        continuar();
     }//GEN-LAST:event_btnContinuarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -338,6 +316,25 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         cLista.forEach(cl -> {
             dtm.addRow(new Object[]{cl.getNombre(), cl.getRfc(), cl.getCorreo()});
         });
+    }
+
+    private void continuar() {
+        Control ctl = new Control();
+        int i = clienteTable.getSelectedRow();
+        Cliente aux = null;
+        if (i >= 0) {
+            String c = (String) dtm.getValueAt(i, 1);
+            aux = negocios.consultarClienteByRFC(c);
+        }
+        if (getTipoPantalla() == REGISTRAR_VENTA) {
+            ctl.muestraPantalla(contenido, registrarVenta);
+        } else if (getTipoPantalla() == CONSULTAR_CLIENTE) {
+            consultar.setCliente(aux);
+            ctl.muestraPantalla(contenido, consultar);
+            consultar.cargarCliente();
+        }
+
+        dispose();
     }
 
 }

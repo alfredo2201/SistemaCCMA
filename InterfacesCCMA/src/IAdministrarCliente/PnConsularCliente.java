@@ -5,6 +5,7 @@
  */
 package IAdministrarCliente;
 
+import Control.Control;
 import Dominio.Cliente;
 import PanelesGlobales.PnContenido;
 
@@ -187,12 +188,8 @@ public class PnConsularCliente extends javax.swing.JPanel {
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         PnMenuClientes pnMnCliente = new PnMenuClientes();
-        pnContenido.removeAll();
-        pnMnCliente.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
-        pnMnCliente.setLocation(0, -40);
-        pnContenido.add(pnMnCliente);
-        pnContenido.revalidate();
-        pnContenido.repaint();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnCliente);
     }//GEN-LAST:event_btnMenuActionPerformed
 
 
@@ -230,5 +227,6 @@ public class PnConsularCliente extends javax.swing.JPanel {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
 
 }

@@ -5,10 +5,12 @@
  */
 package InicioSesion;
 
+import Control.Control;
 import Dominio.Empleado;
 import Fachada.*;
 import Principal.FrmPrincipal;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -221,18 +223,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        String user = "", password = "";
-        user = txtNombreUsuario.getText();
-        password = pfContraseña.getText();
-        Empleado empleado = negocios.obtenEmpleado(user, password);
-        if (empleado.getIdUsuario() != null && user.equals(empleado.getUsername()) && password.equals(empleado.getPassword())) {
-            FrmPrincipal main = FrmPrincipal.getInstance();
-            main.setEmpleado(empleado);
-            main.setVisible(true);
-            this.dispose();
-        } else {
-            negocios.muestraMsj("Usuario y/o contraseña incorrecta. Vuelva intentarlo", "Credenciales Erroneas", JOptionPane.ERROR_MESSAGE,"src/iconos/warning.png");
-        }
+        comprovarCredenciales();
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -290,5 +281,19 @@ public class FrmInicioSesion extends javax.swing.JFrame {
     private javax.swing.JPanel pnTop;
     private javax.swing.JTextField txtNombreUsuario;
     // End of variables declaration//GEN-END:variables
-
+    private void comprovarCredenciales() {
+        String user = "", password = "";
+        Control ctl = new Control();
+        user = txtNombreUsuario.getText();
+        password = pfContraseña.getText();
+        Empleado empleado = negocios.obtenEmpleado(user, password);
+        if (empleado.getIdUsuario() != null && user.equals(empleado.getUsername()) && password.equals(empleado.getPassword())) {
+            FrmPrincipal main = FrmPrincipal.getInstance();
+            main.setEmpleado(empleado);
+            main.setVisible(true);
+            this.dispose();
+        } else {
+            ctl.muestraMsj("Usuario y/o contraseña incorrecta. Vuelva intentarlo", "Credenciales Erroneas", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+        }
+    }
 }

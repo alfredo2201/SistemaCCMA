@@ -5,6 +5,7 @@
  */
 package IAdministrarCliente;
 
+import Control.Control;
 import PanelesGlobales.PnContenido;
 
 /**
@@ -20,9 +21,10 @@ public class PnMenuClientes extends javax.swing.JPanel {
     private PnEliminarCliente eliminar = new PnEliminarCliente();
     private PnActualizarCliente actualizar = new PnActualizarCliente();
     private PnContenido contenido = PnContenido.getInstance();
-
+    private Control ctl;
     public PnMenuClientes() {
         initComponents();
+        ctl = new Control();
     }
 
     /**
@@ -131,34 +133,15 @@ public class PnMenuClientes extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOpcionRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionRegistrarClienteActionPerformed
-        contenido.removeAll();
-        registrar.setVisible(true);
-        registrar.setSize(contenido.getSize().width, contenido.getSize().height);
-        registrar.setLocation(0, 0);
-        contenido.add(registrar);
-        contenido.revalidate();
-        contenido.repaint();
+        ctl.muestraPantalla(contenido, registrar);
     }//GEN-LAST:event_btnOpcionRegistrarClienteActionPerformed
 
     private void btnOpcionActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionActualizarClienteActionPerformed
-        contenido.removeAll();
-        actualizar.setVisible(true);
-        actualizar.setSize(contenido.getSize().width, contenido.getSize().height);
-        actualizar.setLocation(0, 0);
-        contenido.add(actualizar);
-        contenido.revalidate();
-        contenido.repaint();
+        ctl.muestraPantalla(contenido, actualizar);
     }//GEN-LAST:event_btnOpcionActualizarClienteActionPerformed
 
     private void btnOpcionEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionEliminarClienteActionPerformed
-        contenido.removeAll();
-        eliminar.setVisible(true);
-        eliminar.setSize(contenido.getSize().width, contenido.getSize().height);
-        eliminar.setLocation(0, 0);
-        contenido.add(eliminar);
-        contenido.revalidate();
-        contenido.repaint();
-
+        ctl.muestraPantalla(contenido, eliminar);
     }//GEN-LAST:event_btnOpcionEliminarClienteActionPerformed
 
     private void btnOpcionConsultarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionConsultarClienteActionPerformed
@@ -175,4 +158,5 @@ public class PnMenuClientes extends javax.swing.JPanel {
     private javax.swing.JButton btnOpcionRegistrarCliente;
     private javax.swing.JLabel lblTextoMenuClientes;
     // End of variables declaration//GEN-END:variables
+
 }

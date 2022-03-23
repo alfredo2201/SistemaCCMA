@@ -10,7 +10,6 @@ import PanelesGlobales.PnContenido;
 import PanelesGlobales.PnMenu;
 import java.awt.Dimension;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,7 +27,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private FrmPrincipal() {
         initComponents();        
-        iniciarPantalla();        
+        iniciarPantalla();          
     }
 
     /**
