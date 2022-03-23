@@ -4,20 +4,36 @@
  */
 package IAdministrarVentas;
 
+import Dominio.Cliente;
+import Dominio.Producto;
+import Fachada.FabricaNegocios;
+import Fachada.INegocios;
+import IAdministrarProducto.PnConsultarProducto;
 import PanelesGlobales.PnContenido;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Samuel Medellin
  */
 public class PnEliminarVenta extends javax.swing.JPanel {
-
+    
+    private PnContenido contenido = PnContenido.getInstance();
+    private PnConsultarProducto consultar = new PnConsultarProducto();
+    private RegistrarVenta registrarVenta = new RegistrarVenta();
+    private INegocios negocios = FabricaNegocios.getInstance();
+    private int tipoPantalla;
+    private static int CONSULTAR_CLIENTE = 1;
+    private static int REGISTRAR_VENTA = 3;
+    private DefaultTableModel dtm;
     /**
      * Creates new form EliminarVenta
      */
     private PnContenido pnContenido = PnContenido.getInstance();
     public PnEliminarVenta() {
         initComponents();
+        this.dtm = (DefaultTableModel) tbVentas.getModel();
     }
 
     /**
@@ -252,6 +268,31 @@ public class PnEliminarVenta extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarVentaActionPerformed
 
+    public void buscarProductos(String nombre) {
+        ArrayList<Producto> pdLista = new ArrayList<>();
+        ArrayList<Cliente> cLista = new ArrayList<>();
+
+        // Borra todos los rows
+        dtm.setRowCount(0);
+        if (!nombre.isEmpty()) {
+            cLista = negocios.consultarClienteNombre(nombre);
+        } else {
+            pdLista = negocios.consultarTodoProducto();
+        }
+        pdLista.forEach(pd -> {
+            dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(), pd.getMarca(), pd.getModelo(), pd.getAnio(), 
+                pd.getPrecio(), pd.getDisponible()});
+        });
+    }
+    
+//    private void cargarProductos() {
+//        ArrayList<Producto> cLista = new ArrayList<>();
+//        dtm.setRowCount(0);
+//        cLista = negocios.obtenerClientes();
+//        cLista.forEach(cl -> {
+//            dtm.addRow(new Object[]{cl.getId_cliente(),cl.getNombre(), cl.getCorreo(),cl.getTelefono(), cl.getRfc()});
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarVenta;
