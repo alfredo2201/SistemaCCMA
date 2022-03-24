@@ -39,13 +39,19 @@ public interface INegocios {
     public void actualizarProducto(Producto prodcuto);
 
     public void eliminarProdcuto(Producto producto);
-    
-    public ArrayList<Producto>consultarPersonalizadoProducto(String tipo, String marca,String modelo, int anio);
-    
+
+    public ArrayList<Producto> consultarPersonalizadoProducto(String tipo, String marca, String modelo, int anio);
+
     public Producto consultarProductoById(int id);
-    
+
+    public void registrarVenta(Venta venta);
+
+    public Producto consultarVenta(Venta venta);
+
+    public ArrayList<Venta> consultarVentas();
+
+    public void actualizarVenta(Venta venta);
+
     public void eliminarVenta(Venta venta);
-    
-    
 
 }

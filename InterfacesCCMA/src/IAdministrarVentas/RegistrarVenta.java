@@ -4,7 +4,14 @@
  */
 package IAdministrarVentas;
 
+import Control.Control;
+import Dominio.Producto;
+import Fachada.FabricaNegocios;
+import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,12 +24,17 @@ public class RegistrarVenta extends javax.swing.JPanel {
      */
     private PnContenido pnContenido = PnContenido.getInstance();
     private PnAgregarProducto pnAgregarProducto = new PnAgregarProducto();
+    private ArrayList<Producto> pdLista;
+    private INegocios negocios;
+
     public RegistrarVenta() {
         initComponents();
-        
+
         txtIva.setEditable(false);
         txtSubTotal.setEditable(false);
         txtTotal.setEditable(false);
+        negocios = FabricaNegocios.getInstance();
+        pdLista = new ArrayList<>();
     }
 
     /**
@@ -362,7 +374,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarProductosActionPerformed
 
     private void btnCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCobrarActionPerformed
-        // TODO add your handling code here:
+
+
     }//GEN-LAST:event_btnCobrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -379,7 +392,28 @@ public class RegistrarVenta extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaActionPerformed
 
+    public void cargarProducto() {
+        DefaultTableModel dtm = (DefaultTableModel) tbProductos.getModel();
+        Control ctl = new Control();
+  
+        try {
+            pdLista = negocios.consultarTodoProducto();
+            if (pdLista.isEmpty()) {
+                ctl.muestraMsj("No se ha encontrado ningun producto", "Sin producto", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+                return;
+            }
+            pdLista.forEach(pd -> {
+                dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(),
+                    pd.getTipo(), pd.getMarca(), pd.getModelo(), pd.getAnio(), pd.getPrecio(), pd.getDisponible(), false});
+            });
+        } catch (Exception e) {
+            ctl.muestraMsj("No se han podido recuperar los productos.", "Error al buscar productos", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+        }
+    }
+    
+   
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProductos;
     private javax.swing.JButton btnCancelar;
@@ -407,4 +441,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
     private javax.swing.JTextField txtSubTotal;
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
+
+    
 }

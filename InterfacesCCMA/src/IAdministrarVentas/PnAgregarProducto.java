@@ -288,74 +288,10 @@ public class PnAgregarProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
-        ArrayList<String> productosSeleccionados = (ArrayList<String>) listArticulos.getSelectedValuesList();
-        DefaultListModel<String> listaProductos = (DefaultListModel<String>) listProductosSeleccionados.getModel();
-        Object[] productosEnLista = listaProductos.toArray();
-        ArrayList<Producto> productos = new ArrayList<Producto>();
-        if (productosSeleccionados != null) {
-            if (productosEnLista.length > 0) {
-                for (Object prod : productosEnLista) {
-                    String id[] = prod.toString().split("-");
-                    System.out.println("yes");
-                    Producto productoTemp = negocios.consultarProductoById(Integer.parseInt(id[0]));
-                    productos.add(productoTemp);
-                }
-            }
-            if (!(productos.isEmpty())) {
-                for (String string : productosSeleccionados) {
-
-                    System.out.println("yes1");
-                    String id[] = string.split("-");
-                    Producto productoTemp = negocios.consultarProductoById(Integer.parseInt(id[0]));
-                    for (int i = 0; i < productos.size(); i++) {
-                        if (!(productos.contains(productoTemp))) {
-                            productos.add(productoTemp);
-                        }
-                    }
-                }
-            } else {
-                for (String string : productosSeleccionados) {
-
-                    System.out.println("yes2");
-                    String id[] = string.split("-");
-                    Producto productoTemp = negocios.consultarProductoById(Integer.parseInt(id[0]));
-                    productos.add(productoTemp);
-                }
-            }
-            DefaultListModel<String> modelo = new DefaultListModel<>();
-            for (Producto product : productos) {
-                System.out.println("yes3");
-                modelo.addElement(product.getIdProducto() + "-" + product.toString().trim());
-            }
-            listProductosSeleccionados.setModel(modelo);
-        } else {
-            JOptionPane.showConfirmDialog(null, "", "Por favor seleccióne uno o mas articulos", JOptionPane.OK_CANCEL_OPTION);
-        }
-        System.out.println(productosSeleccionados);
+        agregarProducto();
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
-    private void mostrarArticulos() {
-        ArrayList<Producto> productos = negocios.consultarTodo();
-        if (productos != null) {
-            DefaultListModel<String> modelo = new DefaultListModel<>();
-            for (Producto producto : productos) {
-                modelo.addElement(producto.getIdProducto() + "-" + producto.toString().trim());
-            }
-            listArticulos.setModel(modelo);
-        } else {
-            System.out.println("No sirve");
-        }
-    }
-
-    private boolean confirmarListaVacia() {
-        if (listProductosSeleccionados.getComponentCount() == 0) {
-            System.out.println("ta con datos");
-            return true;
-        } else {
-            System.out.println("trai datos");
-            return false;
-        }
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProducto;
@@ -379,4 +315,77 @@ public class PnAgregarProducto extends javax.swing.JPanel {
     private javax.swing.JList<String> listProductosSeleccionados;
     private javax.swing.JTextField txtNombreCliente;
     // End of variables declaration//GEN-END:variables
+ 
+    
+    private void agregarProducto() {
+
+        ArrayList<String> productosSeleccionados = (ArrayList<String>) listArticulos.getSelectedValuesList();
+        DefaultListModel<String> listaProductos = (DefaultListModel<String>) listProductosSeleccionados.getModel();
+        Object[] productosEnLista = listaProductos.toArray();
+        ArrayList<Producto> productos = new ArrayList<Producto>();
+        if (productosSeleccionados != null) {
+            if (productosEnLista.length > 0) {
+                for (Object prod : productosEnLista) {
+                    String id[] = prod.toString().split("-");
+                    System.out.println("");
+                    Producto productoTemp = negocios.consultarProductoById(Integer.parseInt(id[0]));
+                    productos.add(productoTemp);
+                }
+            }
+            if (!(productos.isEmpty())) {
+                for (String string : productosSeleccionados) {
+
+                    System.out.println("");
+                    String id[] = string.split("-");
+                    Producto productoTemp = negocios.consultarProductoById(Integer.parseInt(id[0]));
+                    for (int i = 0; i < productos.size(); i++) {
+                        if (!(productos.contains(productoTemp))) {
+                            productos.add(productoTemp);
+                        }
+                    }
+                }
+            } else {
+                for (String string : productosSeleccionados) {
+
+                    System.out.println("");
+                    String id[] = string.split("-");
+                    Producto productoTemp = negocios.consultarProductoById(Integer.parseInt(id[0]));
+                    productos.add(productoTemp);
+                }
+            }
+            DefaultListModel<String> modelo = new DefaultListModel<>();
+            for (Producto product : productos) {
+                System.out.println("yes3");
+                modelo.addElement(product.getIdProducto() + "-" + product.toString().trim());
+            }
+            listProductosSeleccionados.setModel(modelo);
+        } else {
+            JOptionPane.showConfirmDialog(null, "", "Por favor seleccióne uno o mas articulos", JOptionPane.OK_CANCEL_OPTION);
+        }
+        System.out.println(productosSeleccionados);
+
+    }
+
+    private void mostrarArticulos() {
+        ArrayList<Producto> productos = negocios.consultarTodo();
+        if (productos != null) {
+            DefaultListModel<String> modelo = new DefaultListModel<>();
+            for (Producto producto : productos) {
+                modelo.addElement(producto.getIdProducto() + "-" + producto.toString().trim());
+            }
+            listArticulos.setModel(modelo);
+        } else {
+            System.out.println("No sirve");
+        }
+    }
+
+    private boolean confirmarListaVacia() {
+        if (listProductosSeleccionados.getComponentCount() == 0) {
+            System.out.println("ta con datos");
+            return true;
+        } else {
+            System.out.println("trai datos");
+            return false;
+        }
+    }
 }
