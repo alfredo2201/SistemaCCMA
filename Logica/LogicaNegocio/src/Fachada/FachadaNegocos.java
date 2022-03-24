@@ -7,10 +7,12 @@ package Fachada;
 
 import Control.ControlCliente;
 import Control.ControlProducto;
+import Control.ControlVenta;
 import ControlEmpleado.ControlEmpleado;
 import Dominio.Cliente;
 import Dominio.Empleado;
 import Dominio.Producto;
+import Dominio.Venta;
 import java.util.ArrayList;
 
 /**
@@ -22,6 +24,7 @@ public class FachadaNegocos implements INegocios {
     private ControlEmpleado ctlEmpleado = new ControlEmpleado();
     private ControlCliente ctlCliente = new ControlCliente();
     private ControlProducto ctlProducto = new ControlProducto();
+    private ControlVenta ctlVenta = new ControlVenta();
 
     @Override
     public void registrarClienteNuevo(Cliente cliente) {
@@ -119,6 +122,13 @@ public class FachadaNegocos implements INegocios {
     @Override
     public Producto consultarProductoById(int id){
         return ctlProducto.consultarProductoById(id);
+    }
+    
+    @Override
+    public void eliminarVenta(Venta venta) {
+        if (venta.getIdVenta() != null) {
+            ctlVenta.eliminar(venta.getIdVenta());
+        }
     }
 
 }

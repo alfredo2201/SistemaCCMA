@@ -4,13 +4,17 @@
  */
 package IAdministrarVentas;
 
+import Control.Control;
 import Dominio.Cliente;
 import Dominio.Producto;
+import Dominio.Venta;
 import Fachada.FabricaNegocios;
 import Fachada.INegocios;
-import IAdministrarProducto.PnConsultarProducto;
+import IDatos.FabricaDatos;
 import PanelesGlobales.PnContenido;
 import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,21 +23,23 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PnEliminarVenta extends javax.swing.JPanel {
     
-    private PnContenido contenido = PnContenido.getInstance();
-    private PnConsultarProducto consultar = new PnConsultarProducto();
-    private RegistrarVenta registrarVenta = new RegistrarVenta();
-    private INegocios negocios = FabricaNegocios.getInstance();
-    private int tipoPantalla;
-    private static int CONSULTAR_CLIENTE = 1;
-    private static int REGISTRAR_VENTA = 3;
-    private DefaultTableModel dtm;
+    
+//    private PnConsultarProducto consultar = new PnConsultarProducto();
+//    private INegocios negocios = FabricaNegocios.getInstance();
+//    private int tipoPantalla;
+//    private DefaultTableModel dtm;
+    ArrayList<Venta> cLIsta;
+    ArrayList<Venta> cLIstaEliminar;
+    private INegocios iNegocios;
+    private PnContenido pnContenido = PnContenido.getInstance();
     /**
      * Creates new form EliminarVenta
      */
-    private PnContenido pnContenido = PnContenido.getInstance();
+
     public PnEliminarVenta() {
         initComponents();
-        this.dtm = (DefaultTableModel) tbVentas.getModel();
+        iNegocios = FabricaNegocios.getInstance();
+//        this.dtm = (DefaultTableModel) tbVentas.getModel();
     }
 
     /**
@@ -64,25 +70,19 @@ public class PnEliminarVenta extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Cliente:");
 
-        txtCliente.setBackground(new java.awt.Color(255, 255, 255));
         txtCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtCliente.setForeground(new java.awt.Color(0, 0, 0));
         txtCliente.setBorder(null);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Fecha:");
 
         txtFecha.setEditable(false);
         txtFecha.setBackground(new java.awt.Color(255, 255, 255));
         txtFecha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtFecha.setForeground(new java.awt.Color(0, 0, 0));
 
-        tbVentas.setBackground(new java.awt.Color(255, 255, 255));
         tbVentas.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         tbVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,7 +105,6 @@ public class PnEliminarVenta extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tbVentas);
 
-        tbVentasEliminar.setBackground(new java.awt.Color(255, 255, 255));
         tbVentasEliminar.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         tbVentasEliminar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,13 +129,16 @@ public class PnEliminarVenta extends javax.swing.JPanel {
 
         btnEliminarVenta.setBackground(new java.awt.Color(204, 102, 0));
         btnEliminarVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnEliminarVenta.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminarVenta.setText("Eliminar");
         btnEliminarVenta.setBorder(null);
+        btnEliminarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarVentaActionPerformed(evt);
+            }
+        });
 
         btnMenuPrincipal.setBackground(new java.awt.Color(204, 204, 0));
         btnMenuPrincipal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnMenuPrincipal.setForeground(new java.awt.Color(0, 0, 0));
         btnMenuPrincipal.setText("Regresar al menú");
         btnMenuPrincipal.setBorder(null);
         btnMenuPrincipal.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +149,6 @@ public class PnEliminarVenta extends javax.swing.JPanel {
 
         btnCancelarVenta.setBackground(new java.awt.Color(153, 153, 153));
         btnCancelarVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCancelarVenta.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelarVenta.setText("Cancelar");
         btnCancelarVenta.setBorder(null);
         btnCancelarVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -157,10 +158,8 @@ public class PnEliminarVenta extends javax.swing.JPanel {
         });
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 0));
-        jPanel3.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Venta seleccionada");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -181,7 +180,6 @@ public class PnEliminarVenta extends javax.swing.JPanel {
         );
 
         lblEliminarVenta.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
-        lblEliminarVenta.setForeground(new java.awt.Color(0, 0, 0));
         lblEliminarVenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEliminarVenta.setText("Eliminar venta");
 
@@ -268,31 +266,57 @@ public class PnEliminarVenta extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarVentaActionPerformed
 
-    public void buscarProductos(String nombre) {
-        ArrayList<Producto> pdLista = new ArrayList<>();
-        ArrayList<Cliente> cLista = new ArrayList<>();
+    private void btnEliminarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarVentaActionPerformed
+        eliminarVenta();
+    }//GEN-LAST:event_btnEliminarVentaActionPerformed
 
-        // Borra todos los rows
-        dtm.setRowCount(0);
-        if (!nombre.isEmpty()) {
-            cLista = negocios.consultarClienteNombre(nombre);
-        } else {
-            pdLista = negocios.consultarTodoProducto();
-        }
-        pdLista.forEach(pd -> {
-            dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(), pd.getMarca(), pd.getModelo(), pd.getAnio(), 
-                pd.getPrecio(), pd.getDisponible()});
-        });
-    }
-    
-//    private void cargarProductos() {
-//        ArrayList<Producto> cLista = new ArrayList<>();
+//    public void buscarProductos(String nombre) {
+//        ArrayList<Producto> pdLista = new ArrayList<>();
+//        ArrayList<Cliente> cLista = new ArrayList<>();
+//
+//        // Borra todos los rows
 //        dtm.setRowCount(0);
-//        cLista = negocios.obtenerClientes();
-//        cLista.forEach(cl -> {
-//            dtm.addRow(new Object[]{cl.getId_cliente(),cl.getNombre(), cl.getCorreo(),cl.getTelefono(), cl.getRfc()});
+//        if (!nombre.isEmpty()) {
+//            cLista = negocios.consultarClienteNombre(nombre);
+//        } else {
+//            pdLista = negocios.consultarTodoProducto();
+//        }
+//        pdLista.forEach(pd -> {
+//            dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(), pd.getMarca(), pd.getModelo(), pd.getAnio(), 
+//                pd.getPrecio(), pd.getDisponible()});
 //        });
 //    }
+    
+//    private void cargarProductos() {
+//        ArrayList<Producto> pdLista = new ArrayList<>();
+//        dtm.setRowCount(0);
+//        pdLista = negocios.consultarTodoProducto();
+//        pdLista.forEach(pd -> {
+//            dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(), pd.getMarca(), pd.getModelo(), pd.getAnio(), 
+//                pd.getPrecio(), pd.getDisponible()});
+//        });
+//    }
+    
+    private void eliminarVenta() {
+        DefaultTableModel dtm = (DefaultTableModel) tbVentas.getModel();
+        cLIstaEliminar = new ArrayList<>();
+        Control ctl = new Control();
+        for (int i = 0; i < dtm.getRowCount(); i++) {
+            // TODO: Buscar que otro puede ser vector, ya esta deprecated
+            if (((Vector) dtm.getDataVector().elementAt(i)).elementAt(7).equals(true)) {
+                cLIstaEliminar.add(cLIsta.get(i));
+            }
+        }
+
+        if (cLIstaEliminar.isEmpty()) {
+            ctl.muestraMsj("No se ha seleccionado ninguna venta",  "No se seleccionó ninguna venta", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");            
+            return;
+        }
+        cLIstaEliminar.forEach(cl -> {
+            iNegocios.eliminarVenta(cl);
+        });
+        ctl.muestraMsj("Se eliminaron las ventas seleccionadas.", "No se eliminó la venta", JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");                    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarVenta;

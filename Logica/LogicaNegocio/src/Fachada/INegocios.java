@@ -43,5 +43,9 @@ public interface INegocios {
     public ArrayList<Producto>consultarPersonalizadoProducto(String tipo, String marca,String modelo, int anio);
     
     public Producto consultarProductoById(int id);
+    
+    public void eliminarVenta(Venta venta);
+    
+    
 
 }
