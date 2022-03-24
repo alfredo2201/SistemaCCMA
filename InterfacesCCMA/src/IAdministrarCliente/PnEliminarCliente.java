@@ -10,7 +10,6 @@ package IAdministrarCliente;
 //import Exceptions.DAOException;
 import Control.Control;
 import Dominio.Cliente;
-import Exceptions.DAOException;
 import Fachada.FabricaNegocios;
 import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
