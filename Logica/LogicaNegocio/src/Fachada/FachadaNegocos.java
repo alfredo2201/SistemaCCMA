@@ -13,6 +13,7 @@ import Dominio.Cliente;
 import Dominio.Empleado;
 import Dominio.Producto;
 import Dominio.Venta;
+import Dominio.VentaProducto;
 import java.util.ArrayList;
 
 /**
@@ -116,19 +117,36 @@ public class FachadaNegocos implements INegocios {
 
     @Override
     public ArrayList<Producto> consultarPersonalizadoProducto(String tipo, String marca, String modelo, int anio) {
-        return ctlProducto.consultarProductoCompleto(tipo, marca, modelo, anio);        
+        return ctlProducto.consultarProductoCompleto(tipo, marca, modelo, anio);
     }
-    
+
     @Override
-    public Producto consultarProductoById(int id){
+    public Producto consultarProductoById(int id) {
         return ctlProducto.consultarProductoById(id);
     }
-    
+
+    @Override
+    public void registrarVenta(Venta venta, ArrayList<VentaProducto> listaProductos) {
+        if (venta != null & listaProductos != null) {
+            ctlVenta.agregar(venta, listaProductos);
+        }
+    }
+
     @Override
     public void eliminarVenta(Venta venta) {
         if (venta.getIdVenta() != null) {
             ctlVenta.eliminar(venta.getIdVenta());
         }
+    }
+
+    @Override
+    public ArrayList<Venta> consultarVenta(int dias) {
+        return ctlVenta.consultaVentaPeriodoDeterminado(dias);
+    }
+
+    @Override
+    public ArrayList<Venta> consultarVentas() {
+        return ctlVenta.consultarTodo();
     }
 
 }

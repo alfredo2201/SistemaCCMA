@@ -34,10 +34,11 @@ public class Pruebas {
 //            System.out.println(venta);
 //        }
 
-    Producto p = new Producto("hola", "como", "estas", "bro", 2000, 150f);
-    p.setDisponible(3);
-    ProductosDAO pa = new ProductosDAO();
-    pa.insertar(p);
+        // Producto p = new Producto("hola", "como", "estas", "bro", 2000, 150f);
+//    p.setDisponible(3);
+        ProductosDAO pa = new ProductosDAO();
+//    pa.insertar(p);
+        pa.eliminar(1);
 
     }
 

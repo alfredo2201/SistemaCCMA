@@ -44,13 +44,11 @@ public interface INegocios {
 
     public Producto consultarProductoById(int id);
 
-    public void registrarVenta(Venta venta);
+    public void registrarVenta(Venta venta, ArrayList<VentaProducto> listaProductos);
 
-    public Producto consultarVenta(Venta venta);
+    public ArrayList<Venta> consultarVenta(int dias);
 
     public ArrayList<Venta> consultarVentas();
-
-    public void actualizarVenta(Venta venta);
 
     public void eliminarVenta(Venta venta);
 

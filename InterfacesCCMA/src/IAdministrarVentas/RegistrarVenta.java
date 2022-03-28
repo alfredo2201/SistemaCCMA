@@ -26,6 +26,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
     private PnAgregarProducto pnAgregarProducto = new PnAgregarProducto();
     private ArrayList<Producto> pdLista;
     private INegocios negocios;
+    float subToal = 0;
 
     public RegistrarVenta() {
         initComponents();
@@ -35,6 +36,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
         txtTotal.setEditable(false);
         negocios = FabricaNegocios.getInstance();
         pdLista = new ArrayList<>();
+        
     }
 
     /**
@@ -75,7 +77,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Cliente:");
 
         txtCliente.setEditable(false);
@@ -84,10 +85,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
         txtCliente.setBorder(null);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Fecha:");
 
-        txtFecha.setBackground(new java.awt.Color(255, 255, 255));
         txtFecha.setBorder(null);
         txtFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,7 +95,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Cliente temporal");
 
         rbClienteTemporal.setBackground(new java.awt.Color(255, 255, 255));
@@ -131,32 +129,24 @@ public class RegistrarVenta extends javax.swing.JPanel {
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Subtotal:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Descuento:");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("IVA (16%):");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Total:");
 
-        txtSubTotal.setBackground(new java.awt.Color(255, 255, 255));
         txtSubTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtSubTotal.setEnabled(false);
 
-        txtDescuento.setBackground(new java.awt.Color(255, 255, 255));
         txtDescuento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        txtIva.setBackground(new java.awt.Color(255, 255, 255));
         txtIva.setEnabled(false);
 
-        txtTotal.setBackground(new java.awt.Color(255, 255, 255));
         txtTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtTotal.setEnabled(false);
 
@@ -204,7 +194,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
         btnMetodoPago.setBackground(new java.awt.Color(153, 153, 0));
         btnMetodoPago.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnMetodoPago.setForeground(new java.awt.Color(0, 0, 0));
         btnMetodoPago.setText("Método de pago");
         btnMetodoPago.setBorder(null);
         btnMetodoPago.addActionListener(new java.awt.event.ActionListener() {
@@ -215,7 +204,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
         btnAgregarProductos.setBackground(new java.awt.Color(255, 204, 0));
         btnAgregarProductos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAgregarProductos.setForeground(new java.awt.Color(0, 0, 0));
         btnAgregarProductos.setText("Agregar producto");
         btnAgregarProductos.setBorder(null);
         btnAgregarProductos.addActionListener(new java.awt.event.ActionListener() {
@@ -226,7 +214,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
         btnCobrar.setBackground(new java.awt.Color(255, 255, 0));
         btnCobrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCobrar.setForeground(new java.awt.Color(0, 0, 0));
         btnCobrar.setText("Cobrar");
         btnCobrar.setBorder(null);
         btnCobrar.addActionListener(new java.awt.event.ActionListener() {
@@ -237,7 +224,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
         btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(null);
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -247,12 +233,10 @@ public class RegistrarVenta extends javax.swing.JPanel {
         });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Consultar producto");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Nueva venta");
 
@@ -395,7 +379,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
     public void cargarProducto() {
         DefaultTableModel dtm = (DefaultTableModel) tbProductos.getModel();
         Control ctl = new Control();
-  
+        Integer[] precios;
+
         try {
             pdLista = negocios.consultarTodoProducto();
             if (pdLista.isEmpty()) {
@@ -405,15 +390,35 @@ public class RegistrarVenta extends javax.swing.JPanel {
             pdLista.forEach(pd -> {
                 dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(),
                     pd.getTipo(), pd.getMarca(), pd.getModelo(), pd.getAnio(), pd.getPrecio(), pd.getDisponible(), false});
+                
+                
+
             });
+            
+            //float sumaPrecios =Integer.pa sumaSubTotal(pdLista);
+            
+           // txtSubTotal.setText(Float.parseFloat(sumaPrecios));
+            txtDescuento.setText("$100");
+            txtIva.setText("%16");
+            
+
+            //txtSubTotal.setText(dtm.getValueAt(0, 5).toString());
         } catch (Exception e) {
             ctl.muestraMsj("No se han podido recuperar los productos.", "Error al buscar productos", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
         }
     }
-    
-   
 
-    
+    public float sumaSubTotal(ArrayList<Producto> precios) {
+        
+        precios.forEach(pd ->{
+          subToal += pd.getPrecio();
+     
+        });
+        
+        return subToal;
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProductos;
     private javax.swing.JButton btnCancelar;
@@ -442,5 +447,4 @@ public class RegistrarVenta extends javax.swing.JPanel {
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 
-    
 }
