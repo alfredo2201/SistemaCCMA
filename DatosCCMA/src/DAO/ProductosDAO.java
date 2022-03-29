@@ -162,34 +162,34 @@ public class ProductosDAO extends BaseDAO<Producto> {
             Statement comando = conexion.createStatement();
             String consultaSQL = null;
             if (tipo != null && marca != null && (modelo == null || modelo.isEmpty()) && año <= 0) {
-                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio FROM productos WHERE tipo ='%s' AND marca ='%s'", tipo, marca);
+                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio,disponible FROM productos WHERE tipo ='%s' AND marca ='%s'", tipo, marca);
                 //tipo y marca
             } else if (tipo != null && (marca == null || marca.isEmpty()) && modelo != null && año <= 0) {
-                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio FROM productos WHERE tipo ='%s' AND modelo ='%s' ", tipo, modelo);
+                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio,disponible FROM productos WHERE tipo ='%s' AND modelo ='%s' ", tipo, modelo);
                 //tipo y modelo
             } else if (tipo != null && (marca == null || marca.isEmpty()) && (modelo == null || modelo.isEmpty()) && año >= 0) {
-                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio FROM productos WHERE tipo ='%s' AND año=='%s' ", tipo, año);
+                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio,disponible FROM productos WHERE tipo ='%s' AND año=='%s' ", tipo, año);
                 //tipo y año
             } else if ((tipo == null || tipo.isEmpty()) && marca != null && modelo != null && año <= 0) {
-                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio FROM productos WHERE marca ='%s' AND modelo='%s' ", marca, modelo);
+                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio,disponible FROM productos WHERE marca ='%s' AND modelo='%s' ", marca, modelo);
                 //marca y modelo
             } else if (tipo == null && marca != null && (marca == null || marca.isEmpty()) && año >= 0) {
-                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio FROM productos WHERE marca ='%s' AND año='%s' ", marca, año);
+                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio,disponible FROM productos WHERE marca ='%s' AND año='%s' ", marca, año);
                 //marca y año
             } else if ((tipo == null || tipo.isEmpty()) && marca == null && modelo != null && año >= 0) {
-                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio FROM productos WHERE modelo ='%s' AND año='%s' ", modelo, año);
+                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio,disponible FROM productos WHERE modelo ='%s' AND año='%s' ", modelo, año);
                 //modelo y año
             } else if (tipo != null && marca != null && modelo != null && año <= 0) {
-                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio FROM productos WHERE tipo ='%s' AND marca ='%s' AND modelo='%s", tipo, marca, modelo);
+                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio,disponible FROM productos WHERE tipo ='%s' AND marca ='%s' AND modelo='%s", tipo, marca, modelo);
                 //tipo, marca y modelo
             } else if (tipo != null && (marca == null || marca.isEmpty()) && modelo != null && año >= 0) {
-                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio FROM productos WHERE tipo ='%s' AND modelo ='%s' AND año='%s", tipo, modelo, año);
+                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio,disponible FROM productos WHERE tipo ='%s' AND modelo ='%s' AND año='%s", tipo, modelo, año);
                 //tipo, modelo y año
             } else if (tipo != null && marca != null && (modelo == null || modelo.isEmpty()) && año >= 0) {
-                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio FROM productos WHERE tipo ='%s' AND marca ='%s' AND año='%s", tipo, marca, año);
+                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio,disponible FROM productos WHERE tipo ='%s' AND marca ='%s' AND año='%s", tipo, marca, año);
                 //tipo, marca y año
             } else if ((tipo == null || tipo.isEmpty()) && marca != null && modelo != null && año <= 0) {
-                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio FROM productos WHERE marca ='%s' AND modelo ='%s' AND año='%s", marca, modelo, año);
+                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio,disponible FROM productos WHERE marca ='%s' AND modelo ='%s' AND año='%s", marca, modelo, año);
                 //marca, modelo y año
             } else {
                 throw new DAOException("Año no disponible");
@@ -203,6 +203,7 @@ public class ProductosDAO extends BaseDAO<Producto> {
                 producto.setModelo(resultadoConsulta.getString("modelo"));
                 producto.setAnio(resultadoConsulta.getInt("año"));
                 producto.setPrecio(resultadoConsulta.getFloat("precio"));
+                    producto.setDisponible(resultadoConsulta.getInt("disponible"));
                 listaProductos.add(producto);
             }
 
@@ -223,7 +224,7 @@ public class ProductosDAO extends BaseDAO<Producto> {
             try (Connection conexion = this.generarConexion()) {
                 Statement comando = conexion.createStatement();
                 String consultaSQL;
-                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio FROM productos WHERE tipo ='%d'", tipo);
+                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio,disponible FROM productos WHERE tipo ='%s'", tipo);
                 ResultSet resultadoConsulta = comando.executeQuery(consultaSQL);
                 if (resultadoConsulta.next()) {
                     producto.setIdProducto(resultadoConsulta.getInt("idProducto"));
@@ -233,6 +234,8 @@ public class ProductosDAO extends BaseDAO<Producto> {
                     producto.setModelo(resultadoConsulta.getString("modelo"));
                     producto.setAnio(resultadoConsulta.getInt("año"));
                     producto.setPrecio(resultadoConsulta.getFloat("precio"));
+                    producto.setDisponible(resultadoConsulta.getInt("disponible"));
+                    listaProductos.add(producto);
                 }
             }
             return listaProductos;
@@ -252,8 +255,8 @@ public class ProductosDAO extends BaseDAO<Producto> {
             try (Connection conexion = this.generarConexion()) {
                 Statement comando = conexion.createStatement();
                 String consultaSQL;
-                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio FROM productos WHERE marca ='%d'", marca);
-                ResultSet resultadoConsulta = comando.executeQuery(consultaSQL);
+                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio,disponible FROM productos WHERE marca ='%s'", marca);
+                ResultSet resultadoConsulta = comando.executeQuery(consultaSQL);                                                
                 if (resultadoConsulta.next()) {
                     producto.setIdProducto(resultadoConsulta.getInt("idProducto"));
                     producto.setTipo(resultadoConsulta.getString("tipo"));
@@ -262,6 +265,8 @@ public class ProductosDAO extends BaseDAO<Producto> {
                     producto.setModelo(resultadoConsulta.getString("modelo"));
                     producto.setAnio(resultadoConsulta.getInt("año"));
                     producto.setPrecio(resultadoConsulta.getFloat("precio"));
+                    producto.setDisponible(resultadoConsulta.getInt("disponible"));
+                    listaProductos.add(producto);
                 }
             }
             return listaProductos;
@@ -281,7 +286,7 @@ public class ProductosDAO extends BaseDAO<Producto> {
             try (Connection conexion = this.generarConexion()) {
                 Statement comando = conexion.createStatement();
                 String consultaSQL;
-                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio FROM productos WHERE modelo ='%d'", modelo);
+                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio,disponible FROM productos WHERE modelo ='%s'", modelo);
                 ResultSet resultadoConsulta = comando.executeQuery(consultaSQL);
                 if (resultadoConsulta.next()) {
                     producto.setIdProducto(resultadoConsulta.getInt("idProducto"));
@@ -291,6 +296,8 @@ public class ProductosDAO extends BaseDAO<Producto> {
                     producto.setModelo(resultadoConsulta.getString("modelo"));
                     producto.setAnio(resultadoConsulta.getInt("año"));
                     producto.setPrecio(resultadoConsulta.getFloat("precio"));
+                    producto.setDisponible(resultadoConsulta.getInt("disponible"));
+                    listaProductos.add(producto);
                 }
             }
             return listaProductos;
@@ -310,7 +317,7 @@ public class ProductosDAO extends BaseDAO<Producto> {
             try (Connection conexion = this.generarConexion()) {
                 Statement comando = conexion.createStatement();
                 String consultaSQL;
-                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio FROM productos WHERE año ='%d'", año);
+                consultaSQL = String.format("SELECT idProducto,tipo,descripcion,marca,modelo,año,precio,disponible FROM productos WHERE año ='%s'", año);
                 ResultSet resultadoConsulta = comando.executeQuery(consultaSQL);
                 if (resultadoConsulta.next()) {
                     producto.setIdProducto(resultadoConsulta.getInt("idProducto"));
@@ -320,6 +327,8 @@ public class ProductosDAO extends BaseDAO<Producto> {
                     producto.setModelo(resultadoConsulta.getString("modelo"));
                     producto.setAnio(resultadoConsulta.getInt("año"));
                     producto.setPrecio(resultadoConsulta.getFloat("precio"));
+                    producto.setDisponible(resultadoConsulta.getInt("disponible"));
+                    listaProductos.add(producto);
                 }
             }
             return listaProductos;
