@@ -140,13 +140,18 @@ public class FachadaNegocos implements INegocios {
     }
 
     @Override
-    public ArrayList<Venta> consultarVenta(int dias) {
+    public ArrayList<Venta> consultarVentasByDias(int dias) {
         return ctlVenta.consultaVentaPeriodoDeterminado(dias);
     }
 
     @Override
     public ArrayList<Venta> consultarVentas() {
         return ctlVenta.consultarTodo();
+    }
+
+    @Override
+    public Venta consultarVentaById(Integer id) {
+       return ctlVenta.consultarVentaById(id);
     }
 
 }

@@ -44,9 +44,12 @@ public interface INegocios {
 
     public Producto consultarProductoById(int id);
 
+    //Ventas//
     public void registrarVenta(Venta venta, ArrayList<VentaProducto> listaProductos);
 
-    public ArrayList<Venta> consultarVenta(int dias);
+    public ArrayList<Venta> consultarVentasByDias(int dias);
+    
+    public Venta consultarVentaById(Integer id);
 
     public ArrayList<Venta> consultarVentas();
 
