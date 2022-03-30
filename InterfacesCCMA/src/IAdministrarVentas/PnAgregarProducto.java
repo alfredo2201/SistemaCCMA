@@ -18,12 +18,13 @@ import javax.swing.JOptionPane;
 public class PnAgregarProducto extends javax.swing.JPanel {
 
     private ControlProducto negocios = new ControlProducto();
+    public DefaultListModel<String> modelo;
+    public static ArrayList<Producto> auxProducts;
 
     public PnAgregarProducto() {
         initComponents();
         txtNombreCliente.setEditable(false);
         mostrarArticulos();
-        DefaultListModel<String> modelo = new DefaultListModel<>();
         listProductosSeleccionados.setModel(modelo);
     }
 
@@ -313,7 +314,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarProductoActionPerformed
 
     private void btnContinuarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarVentaActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnContinuarVentaActionPerformed
 
     private void cmbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoActionPerformed
@@ -371,12 +372,12 @@ public class PnAgregarProducto extends javax.swing.JPanel {
         String marca = (String) cmbMarca.getSelectedItem();
         String model = (String) cmbModelos.getSelectedItem();
         String anio = (String) cmbAnios.getSelectedItem();
-        
+
         System.out.println(tipo);
         System.out.println(marca);
         System.out.println(model);
         System.out.println(anio);
-        
+
         int conjunto = 0;
 
         if (tipo.equalsIgnoreCase("seleccione")) {
@@ -407,7 +408,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
             JOptionPane.showConfirmDialog(null, "Por favor seleccióne al menos un parametro de busqueda", "ERROR", JOptionPane.OK_OPTION);
             return;
         } else if (conjunto == 1) {
-            if (tipo!=null) {
+            if (tipo != null) {
                 ArrayList<Producto> productos = negocios.consultarProductoByTipo(tipo);
                 if (productos != null) {
                     DefaultListModel<String> modelo = new DefaultListModel<>();
@@ -418,7 +419,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
                 } else {
                     JOptionPane.showConfirmDialog(null, "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
                 }
-            } else if (marca!=null) {
+            } else if (marca != null) {
                 ArrayList<Producto> productos = negocios.consultarProductoByMarca(marca);
                 if (productos != null) {
                     System.out.println(productos);
@@ -430,7 +431,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
                 } else {
                     JOptionPane.showConfirmDialog(null, "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
                 }
-            } else if (model!=null) {
+            } else if (model != null) {
                 ArrayList<Producto> productos = negocios.consultarProductoByModelo(model);
                 System.out.println(productos);
                 if (productos != null) {
@@ -443,7 +444,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
                 } else {
                     JOptionPane.showConfirmDialog(null, "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
                 }
-            } else if (anio!=null) {
+            } else if (anio != null) {
                 int anioActualizado = Integer.parseInt(anio);
                 ArrayList<Producto> productos = negocios.consultarProductoByAnio(anioActualizado);
                 if (productos != null) {
@@ -458,7 +459,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
             }
         } else {
             int anioActualizado = Integer.parseInt(anio);
-            ArrayList<Producto> productos = negocios.consultarProductoCompleto(tipo,marca,model,anioActualizado);
+            ArrayList<Producto> productos = negocios.consultarProductoCompleto(tipo, marca, model, anioActualizado);
             if (productos != null) {
                 DefaultListModel<String> modelo = new DefaultListModel<>();
                 for (Producto producto : productos) {
@@ -524,7 +525,9 @@ public class PnAgregarProducto extends javax.swing.JPanel {
             for (Producto product : productos) {
                 modelo.addElement(product.getIdProducto() + "-" + product.toString().trim());
             }
+            auxProducts = productos;
             listProductosSeleccionados.setModel(modelo);
+         
         }
         listArticulos.clearSelection();
         listProductosSeleccionados.clearSelection();

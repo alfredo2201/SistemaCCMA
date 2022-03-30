@@ -340,6 +340,9 @@
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSubTotalActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDescuento">
           <Properties>
@@ -400,7 +403,7 @@
     <Component class="javax.swing.JButton" name="btnCobrar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="ff" red="ff" type="rgb"/>
+          <Color blue="0" green="66" red="66" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>

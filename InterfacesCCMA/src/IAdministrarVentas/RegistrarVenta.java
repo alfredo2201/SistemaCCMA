@@ -5,11 +5,17 @@
 package IAdministrarVentas;
 
 import Control.Control;
+import Control.ControlVenta;
+import Dominio.Cliente;
+import Dominio.Empleado;
 import Dominio.Producto;
+import Dominio.Venta;
 import Fachada.FabricaNegocios;
 import Fachada.INegocios;
+import static IAdministrarVentas.PnAgregarProducto.auxProducts;
 import PanelesGlobales.PnContenido;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,21 +28,25 @@ public class RegistrarVenta extends javax.swing.JPanel {
     /**
      * Creates new form RegistrarVenta
      */
+    private ControlVenta negocios = new ControlVenta();
     private PnContenido pnContenido = PnContenido.getInstance();
     private PnAgregarProducto pnAgregarProducto = new PnAgregarProducto();
     private ArrayList<Producto> pdLista;
-    private INegocios negocios;
-    float subToal = 0;
+    //private INegocios negocios;
+
+    float subTotal = 0f;
+    float totalIva = 0f;
+    float totalVenta = 0f;
 
     public RegistrarVenta() {
         initComponents();
-
         txtIva.setEditable(false);
         txtSubTotal.setEditable(false);
         txtTotal.setEditable(false);
-        negocios = FabricaNegocios.getInstance();
+        //negocios = FabricaNegocios.getInstance();
         pdLista = new ArrayList<>();
-        
+        mostrarVenta();
+
     }
 
     /**
@@ -142,6 +152,11 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
         txtSubTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtSubTotal.setEnabled(false);
+        txtSubTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSubTotalActionPerformed(evt);
+            }
+        });
 
         txtDescuento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -212,7 +227,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
             }
         });
 
-        btnCobrar.setBackground(new java.awt.Color(255, 255, 0));
+        btnCobrar.setBackground(new java.awt.Color(102, 102, 0));
         btnCobrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnCobrar.setText("Cobrar");
         btnCobrar.setBorder(null);
@@ -359,7 +374,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
     private void btnCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCobrarActionPerformed
 
-
     }//GEN-LAST:event_btnCobrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -376,13 +390,17 @@ public class RegistrarVenta extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaActionPerformed
 
-    public void cargarProducto() {
+    private void txtSubTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSubTotalActionPerformed
+
+    public void mostrarVenta() {
+
         DefaultTableModel dtm = (DefaultTableModel) tbProductos.getModel();
         Control ctl = new Control();
-        Integer[] precios;
 
         try {
-            pdLista = negocios.consultarTodoProducto();
+            pdLista = auxProducts; //<---productos agregados previamente
             if (pdLista.isEmpty()) {
                 ctl.muestraMsj("No se ha encontrado ningun producto", "Sin producto", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
                 return;
@@ -390,32 +408,45 @@ public class RegistrarVenta extends javax.swing.JPanel {
             pdLista.forEach(pd -> {
                 dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(),
                     pd.getTipo(), pd.getMarca(), pd.getModelo(), pd.getAnio(), pd.getPrecio(), pd.getDisponible(), false});
-                
-                
-
             });
-            
-            //float sumaPrecios =Integer.pa sumaSubTotal(pdLista);
-            
-           // txtSubTotal.setText(Float.parseFloat(sumaPrecios));
-            txtDescuento.setText("$100");
-            txtIva.setText("%16");
-            
+            totalVenta = calcularVenta(pdLista);
+            txtSubTotal.setText(Float.toString(subTotal));
+            txtIva.setText(Float.toString(totalIva));
+            txtTotal.setText(Float.toString(totalVenta));
 
-            //txtSubTotal.setText(dtm.getValueAt(0, 5).toString());
         } catch (Exception e) {
             ctl.muestraMsj("No se han podido recuperar los productos.", "Error al buscar productos", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
         }
     }
 
-    public float sumaSubTotal(ArrayList<Producto> precios) {
-        
-        precios.forEach(pd ->{
-          subToal += pd.getPrecio();
-     
+//    public void registrarVenta() {
+//        Cliente cli = new Cliente();
+//        Empleado emp = new Empleado();
+//        Date fecha = new Date();
+//        Venta venta = new Venta(pdLista, cli, fecha, emp);
+//      
+//      
+//        
+//    }
+
+    public float calcularVenta(ArrayList<Producto> precios) {
+
+        Integer descuento = Integer.parseInt(txtDescuento.getText());
+        float iva = 0.16f;
+        float total = 0f;
+
+        precios.forEach(pd -> {
+            subTotal += pd.getPrecio();
         });
-        
-        return subToal;
+        if (descuento > 0) {
+            subTotal = subTotal - descuento;
+            totalIva = subTotal * iva;
+            total = subTotal + totalIva;
+        } else {
+            total = subTotal + (subTotal * iva);
+        }
+
+        return total;
     }
 
 

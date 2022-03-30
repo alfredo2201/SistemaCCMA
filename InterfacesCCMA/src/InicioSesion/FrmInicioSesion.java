@@ -281,6 +281,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
     private javax.swing.JPanel pnTop;
     private javax.swing.JTextField txtNombreUsuario;
     // End of variables declaration//GEN-END:variables
+    
     private void comprovarCredenciales() {
         String user = "", password = "";
         Control ctl = new Control();
