@@ -401,7 +401,6 @@ public class PnAgregarProducto extends javax.swing.JPanel {
             anio = null;
         } else {
             conjunto++;
-
         }
 
         if (conjunto == 0) {
