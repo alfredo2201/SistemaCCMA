@@ -5,8 +5,10 @@
  */
 package IAdministrarVentas;
 
+import Control.Control;
 import Control.ControlProducto;
 import Dominio.Producto;
+import PanelesGlobales.PnContenido;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -18,6 +20,7 @@ import javax.swing.JOptionPane;
 public class PnAgregarProducto extends javax.swing.JPanel {
 
     private ControlProducto negocios = new ControlProducto();
+    private PnContenido pnContenido =  PnContenido.getInstance();
     public DefaultListModel<String> modelo;
     public static ArrayList<Producto> auxProducts;
 
@@ -25,6 +28,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
         initComponents();
         txtNombreCliente.setEditable(false);
         mostrarArticulos();
+        modelo = new DefaultListModel<>();
         listProductosSeleccionados.setModel(modelo);
     }
 
@@ -314,7 +318,11 @@ public class PnAgregarProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarProductoActionPerformed
 
     private void btnContinuarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarVentaActionPerformed
-
+        RegistrarVenta venta = new RegistrarVenta();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, venta);
+        venta.setPdLista(auxProducts);
+        venta.mostrarVenta();
     }//GEN-LAST:event_btnContinuarVentaActionPerformed
 
     private void cmbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoActionPerformed

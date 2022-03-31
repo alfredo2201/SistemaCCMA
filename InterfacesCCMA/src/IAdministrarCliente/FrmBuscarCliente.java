@@ -24,7 +24,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
 
     private PnContenido contenido = PnContenido.getInstance();
     private PnConsularCliente consultar = new PnConsularCliente();
-    private RegistrarVenta registrarVenta = new RegistrarVenta();
+    private RegistrarVenta registrarVenta;
     private INegocios negocios = FabricaNegocios.getInstance();
     private int tipoPantalla;
     private static int CONSULTAR_CLIENTE = 1;
@@ -327,6 +327,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
             aux = negocios.consultarClienteByRFC(c);
         }
         if (getTipoPantalla() == REGISTRAR_VENTA) {
+            registrarVenta = new RegistrarVenta();
             ctl.muestraPantalla(contenido, registrarVenta);
         } else if (getTipoPantalla() == CONSULTAR_CLIENTE) {
             consultar.setCliente(aux);

@@ -28,9 +28,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
     /**
      * Creates new form RegistrarVenta
      */
-    private ControlVenta negocios = new ControlVenta();
     private PnContenido pnContenido = PnContenido.getInstance();
-    private PnAgregarProducto pnAgregarProducto = new PnAgregarProducto();
+    private PnAgregarProducto pnAgregarProducto;
     private ArrayList<Producto> pdLista;
     //private INegocios negocios;
 
@@ -45,7 +44,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
         txtTotal.setEditable(false);
         //negocios = FabricaNegocios.getInstance();
         pdLista = new ArrayList<>();
-        mostrarVenta();
+        //mostrarVenta();
 
     }
 
@@ -116,17 +115,14 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
         tbProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Código", "Descripción", "Marca", "Modelo", "Año", "Precio", "Cantidad", "Eliminar"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -364,12 +360,9 @@ public class RegistrarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMetodoPagoActionPerformed
 
     private void btnAgregarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductosActionPerformed
-        pnContenido.removeAll();
-        pnAgregarProducto.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
-        pnAgregarProducto.setLocation(0, -40);
-        pnContenido.add(pnAgregarProducto);
-        pnContenido.revalidate();
-        pnContenido.repaint();
+        pnAgregarProducto = new PnAgregarProducto();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnAgregarProducto);
     }//GEN-LAST:event_btnAgregarProductosActionPerformed
 
     private void btnCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCobrarActionPerformed
@@ -378,12 +371,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         PnMenuVenta pnMnVenta = new PnMenuVenta();
-        pnContenido.removeAll();
-        pnMnVenta.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
-        pnMnVenta.setLocation(0, -40);
-        pnContenido.add(pnMnVenta);
-        pnContenido.revalidate();
-        pnContenido.repaint();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnVenta);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
@@ -394,6 +383,14 @@ public class RegistrarVenta extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSubTotalActionPerformed
 
+    public ArrayList<Producto> getPdLista() {
+        return pdLista;
+    }
+
+    public void setPdLista(ArrayList<Producto> pdLista) {
+        this.pdLista = pdLista;
+    }
+    
     public void mostrarVenta() {
 
         DefaultTableModel dtm = (DefaultTableModel) tbProductos.getModel();
@@ -428,7 +425,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
 //      
 //        
 //    }
-
     public float calcularVenta(ArrayList<Producto> precios) {
 
         Integer descuento = Integer.parseInt(txtDescuento.getText());

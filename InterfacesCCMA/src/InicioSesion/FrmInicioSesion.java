@@ -287,6 +287,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         Control ctl = new Control();
         user = txtNombreUsuario.getText();
         password = pfContraseña.getText();
+        
         Empleado empleado = negocios.obtenEmpleado(user, password);
         if (empleado.getIdUsuario() != null && user.equals(empleado.getUsername()) && password.equals(empleado.getPassword())) {
             FrmPrincipal main = FrmPrincipal.getInstance();
