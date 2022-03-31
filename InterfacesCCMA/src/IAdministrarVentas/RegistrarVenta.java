@@ -14,6 +14,8 @@ import Fachada.FabricaNegocios;
 import Fachada.INegocios;
 import static IAdministrarVentas.PnAgregarProducto.auxProducts;
 import PanelesGlobales.PnContenido;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -129,6 +131,14 @@ public class RegistrarVenta extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tbProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tbProductosMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbProductosMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbProductos);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -147,6 +157,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
         jLabel7.setText("Total:");
 
         txtSubTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtSubTotal.setToolTipText("");
         txtSubTotal.setEnabled(false);
         txtSubTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,6 +166,11 @@ public class RegistrarVenta extends javax.swing.JPanel {
         });
 
         txtDescuento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtDescuento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtDescuentoMouseExited(evt);
+            }
+        });
 
         txtIva.setEnabled(false);
 
@@ -383,6 +399,53 @@ public class RegistrarVenta extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSubTotalActionPerformed
 
+    private void tbProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProductosMousePressed
+        int fila = this.tbProductos.getSelectedRow();
+        int columna = this.tbProductos.getSelectedColumn();
+        if (columna == 7) {
+            int resp = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere eliminar este producto?");
+            if (resp == 0) {
+                DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
+                modelo.removeRow(fila);
+                calcularTotal();
+                calcularTotali();
+            }
+
+        }
+    }//GEN-LAST:event_tbProductosMousePressed
+
+    private void tbProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProductosMouseExited
+        calcularTotal();
+        calcularTotali();
+    }//GEN-LAST:event_tbProductosMouseExited
+
+    private void txtDescuentoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDescuentoMouseExited
+        calcularTotali();
+    }//GEN-LAST:event_txtDescuentoMouseExited
+
+    public void calcularTotali() {
+        double iva = (subTotal * .16);
+        double total = (iva + subTotal);
+        txtIva.setText("" + iva);
+        txtTotal.setText("" + total);
+    }
+
+    public void cargarInformacion(String nombre) {
+        txtCliente.setText(nombre);
+        txtFecha.setText(new Date().toString());
+    }
+
+    public void calcularTotal() {
+        DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
+        txtSubTotal.setText("");
+        double precio = 0.0;
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            precio += Double.parseDouble(modelo.getValueAt(i, 6).toString()) * Double.parseDouble(modelo.getValueAt(i, 5).toString());
+        }
+        subTotal = (float) precio;
+        txtSubTotal.setText("" + precio);
+    }
+
     public ArrayList<Producto> getPdLista() {
         return pdLista;
     }
@@ -390,7 +453,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
     public void setPdLista(ArrayList<Producto> pdLista) {
         this.pdLista = pdLista;
     }
-    
+
     public void mostrarVenta() {
 
         DefaultTableModel dtm = (DefaultTableModel) tbProductos.getModel();
@@ -404,7 +467,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
             }
             pdLista.forEach(pd -> {
                 dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(),
-                    pd.getTipo(), pd.getMarca(), pd.getModelo(), pd.getAnio(), pd.getPrecio(), pd.getDisponible(), false});
+                    pd.getMarca(), pd.getModelo(), pd.getAnio(), pd.getPrecio(), 0, "ELIMINAR"});
             });
             totalVenta = calcularVenta(pdLista);
             txtSubTotal.setText(Float.toString(subTotal));
