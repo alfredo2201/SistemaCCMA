@@ -30,7 +30,7 @@ public class EmpleadosDAO extends BaseDAO<Empleado> {
             String insertarSLQ;
             insertarSLQ = String.format(
                     "INSERT INTO usuarios(nombre_completo, email, username, password, permiso) "
-                    + "VALUES('%s','%s','%s','%s','%s','%s')",
+                    + "VALUES('%s','%s','%s','%s','%s')",
                     empleado.getNombre(),
                     empleado.getCorreo(),
                     empleado.getUsername(),

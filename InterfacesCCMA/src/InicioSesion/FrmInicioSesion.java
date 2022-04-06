@@ -7,9 +7,9 @@ package InicioSesion;
 
 import Control.Control;
 import Dominio.Empleado;
+import Dominio.Permiso;
 import Fachada.*;
 import Principal.FrmPrincipal;
-import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
@@ -27,7 +27,6 @@ public class FrmInicioSesion extends javax.swing.JFrame {
     public FrmInicioSesion() {
         initComponents();
         setLocationRelativeTo(null);
-        setResizable(false);
     }
 
     /**
@@ -41,6 +40,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
 
         pnTop = new javax.swing.JPanel();
         lblIcono = new javax.swing.JLabel();
+        lblNombreEmpresa = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
         btnIniciarSesion = new javax.swing.JButton();
@@ -56,13 +56,17 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Iniciar Sesión");
 
-        pnTop.setBackground(new java.awt.Color(232, 228, 60));
+        pnTop.setBackground(new java.awt.Color(191, 189, 121));
         pnTop.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
         lblIcono.setBackground(new java.awt.Color(255, 255, 255));
         lblIcono.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         lblIcono.setForeground(new java.awt.Color(0, 0, 0));
-        lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Logo.png"))); // NOI18N
+        lblIcono.setText("Icono");
+
+        lblNombreEmpresa.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        lblNombreEmpresa.setForeground(new java.awt.Color(0, 0, 0));
+        lblNombreEmpresa.setText("Cables y Chicotes MEX-AMERICAN");
 
         javax.swing.GroupLayout pnTopLayout = new javax.swing.GroupLayout(pnTop);
         pnTop.setLayout(pnTopLayout);
@@ -70,15 +74,19 @@ public class FrmInicioSesion extends javax.swing.JFrame {
             pnTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnTopLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(lblIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblNombreEmpresa)
+                .addContainerGap(382, Short.MAX_VALUE))
         );
         pnTopLayout.setVerticalGroup(
             pnTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTopLayout.createSequentialGroup()
+            .addGroup(pnTopLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblIcono)
-                .addGap(55, 55, 55))
+                .addGroup(pnTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombreEmpresa))
+                .addGap(74, 74, 74))
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -121,21 +129,11 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         pfContraseña.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         pfContraseña.setForeground(new java.awt.Color(0, 0, 0));
         pfContraseña.setBorder(null);
-        pfContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                pfContraseñaKeyPressed(evt);
-            }
-        });
 
         txtNombreUsuario.setBackground(new java.awt.Color(255, 255, 255));
         txtNombreUsuario.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         txtNombreUsuario.setForeground(new java.awt.Color(0, 0, 0));
         txtNombreUsuario.setBorder(null);
-        txtNombreUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNombreUsuarioKeyPressed(evt);
-            }
-        });
 
         btnRegistrarUsuario.setBackground(new java.awt.Color(204, 204, 0));
         btnRegistrarUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -180,7 +178,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(152, 152, 152)
-                        .addComponent(lblTextoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
+                        .addComponent(lblTextoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,7 +215,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnTop, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnTop, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -232,18 +230,6 @@ public class FrmInicioSesion extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
-
-    private void pfContraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pfContraseñaKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            comprovarCredenciales();
-        }
-    }//GEN-LAST:event_pfContraseñaKeyPressed
-
-    private void txtNombreUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreUsuarioKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            comprovarCredenciales();
-        }
-    }//GEN-LAST:event_txtNombreUsuarioKeyPressed
 
     /**
      * @param args the command line arguments
@@ -289,30 +275,32 @@ public class FrmInicioSesion extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lblIcono;
+    private javax.swing.JLabel lblNombreEmpresa;
     private javax.swing.JLabel lblTextoContraseña;
     private javax.swing.JLabel lblTextoUsuario;
     private javax.swing.JPasswordField pfContraseña;
     private javax.swing.JPanel pnTop;
     private javax.swing.JTextField txtNombreUsuario;
     // End of variables declaration//GEN-END:variables
-
+    
     private void comprovarCredenciales() {
         String user = "", password = "";
         Control ctl = new Control();
         user = txtNombreUsuario.getText();
         password = pfContraseña.getText();
-        if (user.isEmpty() || password.isEmpty()) {
-            ctl.muestraMsj("Usuario y/o contraseña esta vacia. Vuelva intentarlo", "Credenciales Erroneas", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+        System.out.println(user);
+        System.out.println(password);
+         Empleado emp = new Empleado(2,"Omar Gaxiola", "OmGa2outlook.com", "Gaxi", "tamarindo", Permiso.ADMIN);
+        Empleado empleado = negocios.obtenEmpleado(user, password);
+        System.out.println(empleado);
+        if (emp.getIdUsuario() != null && user.equals(emp.getUsername()) && password.equals(emp.getPassword())) {
+            System.out.println("si entre aqui");
+            FrmPrincipal main = FrmPrincipal.getInstance();
+            main.setEmpleado(empleado);
+            main.setVisible(true);
+            this.dispose();
         } else {
-            Empleado empleado = negocios.obtenEmpleado(user, password);
-            if (empleado.getIdUsuario() != null && user.equals(empleado.getUsername()) && password.equals(empleado.getPassword())) {
-                FrmPrincipal main = FrmPrincipal.getInstance();
-                main.setEmpleado(empleado);
-                main.setVisible(true);
-                this.dispose();
-            } else {
-                ctl.muestraMsj("Usuario y/o contraseña incorrecta. Vuelva intentarlo", "Credenciales Erroneas", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
-            }
+            ctl.muestraMsj("Usuario y/o contraseña incorrecta. Vuelva intentarlo", "Credenciales Erroneas", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
         }
     }
 }

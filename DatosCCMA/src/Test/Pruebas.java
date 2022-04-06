@@ -22,8 +22,11 @@ public class Pruebas {
      */
     public static void main(String[] args) throws Exception {
 
-        ProductosDAO pa = new ProductosDAO();
-        System.out.println(pa.consultarByMarca("Nissan"));
+//        ProductosDAO pa = new ProductosDAO();
+//        System.out.println(pa.consultarByMarca("Nissan
+        Empleado emp = new Empleado("Omar Gaxiola", "OmGa2outlook.com", "Gaxi", "tamarindo", Permiso.ADMIN);
+        EmpleadosDAO emDao = new EmpleadosDAO();
+        emDao.insertar(emp);
 
     }
 
