@@ -24,12 +24,12 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnCerrarSesion1" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
-                  <Component id="btnProductos" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
-                  <Component id="btnVentas" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
-                  <Component id="btnClientes" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
-                  <Component id="btnInicio" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
-                  <Component id="btnPresupuestos" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
+                  <Component id="btnCerrarSesion1" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                  <Component id="btnProductos" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                  <Component id="btnVentas" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                  <Component id="btnClientes" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                  <Component id="btnInicio" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                  <Component id="btnPresupuestos" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
           </Group>
@@ -39,18 +39,18 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-              <Component id="btnInicio" min="-2" pref="53" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btnClientes" min="-2" pref="53" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Component id="btnProductos" min="-2" pref="53" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Component id="btnVentas" min="-2" pref="53" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Component id="btnPresupuestos" min="-2" pref="53" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Component id="btnCerrarSesion1" min="-2" pref="53" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <Component id="btnInicio" min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="btnClientes" min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="btnProductos" min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="btnVentas" min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="btnPresupuestos" min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="btnCerrarSesion1" min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

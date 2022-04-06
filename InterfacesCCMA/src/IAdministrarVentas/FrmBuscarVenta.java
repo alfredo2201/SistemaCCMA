@@ -51,7 +51,7 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pnTop.setBackground(new java.awt.Color(188, 186, 120));
+        pnTop.setBackground(new java.awt.Color(232, 228, 60));
 
         jLabel7.setText("Buscar venta");
         jLabel7.setFont(new java.awt.Font("Segoe UI", 2, 20)); // NOI18N

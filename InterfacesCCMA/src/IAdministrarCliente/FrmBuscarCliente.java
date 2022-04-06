@@ -13,6 +13,7 @@ import Fachada.INegocios;
 import IAdministrarVentas.RegistrarVenta;
 import PanelesGlobales.PnContenido;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
@@ -72,8 +73,9 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(188, 186, 120));
+        jPanel2.setBackground(new java.awt.Color(232, 228, 60));
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Buscar Cliente");
@@ -95,11 +97,11 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Nombre:");
 
-        lblTextoRFC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoRFC.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTextoRFC.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoRFC.setText("RFC:");
 
@@ -115,8 +117,10 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
 
         pnListaClientes.setBackground(new java.awt.Color(255, 255, 255));
 
+        clienteTable.setAutoCreateRowSorter(true);
         clienteTable.setBackground(new java.awt.Color(255, 255, 255));
-        clienteTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.gray, null, null));
+        clienteTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        clienteTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         clienteTable.setForeground(new java.awt.Color(0, 0, 0));
         clienteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -141,6 +145,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        clienteTable.setRowHeight(24);
         jScrollPane1.setViewportView(clienteTable);
 
         javax.swing.GroupLayout pnListaClientesLayout = new javax.swing.GroupLayout(pnListaClientes);
@@ -154,12 +159,13 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
         );
 
-        btnContinuar.setBackground(new java.awt.Color(153, 153, 0));
+        btnContinuar.setBackground(new java.awt.Color(255, 255, 0));
         btnContinuar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnContinuar.setForeground(new java.awt.Color(0, 0, 0));
         btnContinuar.setText("Continuar");
         btnContinuar.setBorder(null);
         btnContinuar.setBorderPainted(false);
+        btnContinuar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnContinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnContinuarActionPerformed(evt);
@@ -172,13 +178,14 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         btnCSinCliente.setText("Continuar sin cliente");
         btnCSinCliente.setBorder(null);
         btnCSinCliente.setBorderPainted(false);
+        btnCSinCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         btnBuscar.setBackground(new java.awt.Color(255, 255, 0));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(0, 0, 0));
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/buscarIcon.png"))); // NOI18N
         btnBuscar.setBorder(null);
         btnBuscar.setBorderPainted(false);
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -203,15 +210,15 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addGap(5, 5, 5)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jSeparator1)
+                                    .addComponent(txtNombreCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblTextoRFC)
                                 .addGap(5, 5, 5)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jSeparator2)
+                                    .addComponent(txtRFC, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -228,22 +235,22 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
-                            .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, 0)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTextoRFC)
-                    .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
+                    .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(pnListaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCSinCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                    .addComponent(btnContinuar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCSinCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(btnContinuar, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
 
@@ -299,6 +306,9 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
 
     public void setTipoPantalla(int tipoPantalla) {
         this.tipoPantalla = tipoPantalla;
+        if (tipoPantalla == CONSULTAR_CLIENTE) {
+            btnCSinCliente.setVisible(false);
+        }
     }
 
     public void buscarClientes(String nombre, String RFC) {
@@ -323,19 +333,22 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         int i = clienteTable.getSelectedRow();
         Cliente aux = null;
         if (i >= 0) {
-            String c = (String) dtm.getValueAt(i, 1);
-            aux = negocios.consultarClienteByRFC(c);
-        }
-        if (getTipoPantalla() == REGISTRAR_VENTA) {
-            registrarVenta = new RegistrarVenta();
-            ctl.muestraPantalla(contenido, registrarVenta);
-        } else if (getTipoPantalla() == CONSULTAR_CLIENTE) {
-            consultar.setCliente(aux);
-            ctl.muestraPantalla(contenido, consultar);
-            consultar.cargarCliente();
+            if (getTipoPantalla() == REGISTRAR_VENTA) {
+                registrarVenta = new RegistrarVenta();
+                ctl.muestraPantalla(contenido, registrarVenta);
+            } else if (getTipoPantalla() == CONSULTAR_CLIENTE) {
+                String c = (String) dtm.getValueAt(i, 1);
+                aux = negocios.consultarClienteByRFC(c);
+                consultar.setCliente(aux);
+                ctl.muestraPantalla(contenido, consultar);
+                consultar.cargarCliente();
+            }
+            dispose();
+        } else {
+            ctl.muestraMsj("Por favor seleccione un cliente.", "Cliente no seleccionado", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+            
         }
 
-        dispose();
     }
 
 }
