@@ -382,7 +382,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarProductosActionPerformed
 
     private void btnCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCobrarActionPerformed
-
+        calcularTotali();
     }//GEN-LAST:event_btnCobrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -407,7 +407,9 @@ public class RegistrarVenta extends javax.swing.JPanel {
             if (resp == 0) {
                 DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
                 modelo.removeRow(fila);
-                calcularTotal();
+               // borraDatos();
+                txtDescuento.setEnabled(true);
+                calcularSubTotal(pdLista);
                 calcularTotali();
             }
 
@@ -415,36 +417,13 @@ public class RegistrarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_tbProductosMousePressed
 
     private void tbProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProductosMouseExited
-        calcularTotal();
-        calcularTotali();
+        //calcularSubTotal();
+        //calcularTotali();
     }//GEN-LAST:event_tbProductosMouseExited
 
     private void txtDescuentoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDescuentoMouseExited
-        calcularTotali();
+        //calcularTotali();
     }//GEN-LAST:event_txtDescuentoMouseExited
-
-    public void calcularTotali() {
-        double iva = (subTotal * .16);
-        double total = (iva + subTotal);
-        txtIva.setText("" + iva);
-        txtTotal.setText("" + total);
-    }
-
-    public void cargarInformacion(String nombre) {
-        txtCliente.setText(nombre);
-        txtFecha.setText(new Date().toString());
-    }
-
-    public void calcularTotal() {
-        DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
-        txtSubTotal.setText("");
-        double precio = 0.0;
-        for (int i = 0; i < modelo.getRowCount(); i++) {
-            precio += Double.parseDouble(modelo.getValueAt(i, 6).toString()) * Double.parseDouble(modelo.getValueAt(i, 5).toString());
-        }
-        subTotal = (float) precio;
-        txtSubTotal.setText("" + precio);
-    }
 
     public ArrayList<Producto> getPdLista() {
         return pdLista;
@@ -454,60 +433,105 @@ public class RegistrarVenta extends javax.swing.JPanel {
         this.pdLista = pdLista;
     }
 
+    public void cargarInformacion(String nombre) {
+        txtCliente.setText(nombre);
+        txtFecha.setText(new Date().toString());
+    }
+
     public void mostrarVenta() {
 
         DefaultTableModel dtm = (DefaultTableModel) tbProductos.getModel();
         Control ctl = new Control();
 
         try {
-            pdLista = auxProducts; //<---productos agregados previamente
+            pdLista = auxProducts;
             if (pdLista.isEmpty()) {
                 ctl.muestraMsj("No se ha encontrado ningun producto", "Sin producto", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
                 return;
             }
+
             pdLista.forEach(pd -> {
                 dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(),
                     pd.getMarca(), pd.getModelo(), pd.getAnio(), pd.getPrecio(), 0, "ELIMINAR"});
             });
-            totalVenta = calcularVenta(pdLista);
-            txtSubTotal.setText(Float.toString(subTotal));
-            txtIva.setText(Float.toString(totalIva));
-            txtTotal.setText(Float.toString(totalVenta));
 
+            // float totaVent = calcularVenta(pdLista);
+            //calcularVenta(pdLista);
+            //System.out.println("Ya estoy fuera del metodo caluclarVenta");
+            //totalVenta = totaVent;
+            //txtSubTotal.setText(Float.toString(subTotal));
+            //txtIva.setText(Float.toString(totalIva));
+            //Integer descuento = Integer.parseInt(txtDescuento.getText());
+            //totalVenta = totalVenta  - descuento;
+            //txtTotal.setText(Float.toString(totalVenta));
+            calcularSubTotal(pdLista);
         } catch (Exception e) {
-            ctl.muestraMsj("No se han podido recuperar los productos.", "Error al buscar productos", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+            //ctl.muestraMsj("No se han podido recuperar los productos.", "Error al buscar productos", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
         }
     }
 
-//    public void registrarVenta() {
-//        Cliente cli = new Cliente();
-//        Empleado emp = new Empleado();
-//        Date fecha = new Date();
-//        Venta venta = new Venta(pdLista, cli, fecha, emp);
-//      
-//      
-//        
-//    }
-    public float calcularVenta(ArrayList<Producto> precios) {
+    public void borraDatos() {
+        txtSubTotal.setText(" ");
+        txtDescuento.setText(" ");
+        txtIva.setText(" ");
+        txtTotal.setText(" ");
+        subTotal = 0f;
+        totalIva = 0f;
+        totalVenta = 0f;
+    }
 
-        Integer descuento = Integer.parseInt(txtDescuento.getText());
+    public void calcularSubTotal(ArrayList<Producto> precios) {
+
         float iva = 0.16f;
-        float total = 0f;
-
+        System.out.println("AQUI ANDAMOS EN CALCULAR VENTA");
+        System.out.println(precios);
+        borraDatos();
         precios.forEach(pd -> {
             subTotal += pd.getPrecio();
         });
-        if (descuento > 0) {
-            subTotal = subTotal - descuento;
-            totalIva = subTotal * iva;
-            total = subTotal + totalIva;
-        } else {
-            total = subTotal + (subTotal * iva);
-        }
+        totalIva = Math.round(subTotal * iva);
+        txtSubTotal.setText(Float.toString(subTotal));
+        txtIva.setText(Float.toString(totalIva));
 
-        return total;
+//        if (descuento > 0) {
+        // subTotal = subTotal - descuento;
+        //totalIva = subTotal * iva;
+        //total = subTotal + totalIva;
+        //} else {
+        //total = subTotal + (subTotal * iva);
+        // }
     }
 
+    public void calcularTotali() {
+        //float totalven = 0f;
+        //double iva = (subTotal * .16);
+        //double total = (totalIva + subTotal);
+        //txtIva.setText("" + iva);
+        try {
+            
+            Float descuento = Float.parseFloat(txtDescuento.getText());
+            totalVenta = subTotal - descuento - totalIva;
+            txtTotal.setText(Float.toString(totalVenta));
+            txtDescuento.setEnabled(false);
+
+        } catch (Exception ex) {
+            ex.printStackTrace(System.out);
+            JOptionPane.showConfirmDialog(null, "Debes ingresar una cantidad minima en descuento -> '$0' ", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+
+        }
+
+    }
+
+////    public void calcularTotal() {
+////        DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
+////        txtSubTotal.setText("");
+////        double precio = 0.0;
+////        for (int i = 0; i < modelo.getRowCount(); i++) {
+////            precio += Double.parseDouble(modelo.getValueAt(i, 5).toString()) * Double.parseDouble(modelo.getValueAt(i, 6).toString());
+////        }
+////        subTotal = (float) precio;
+////        txtSubTotal.setText("" + precio);
+////    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProductos;

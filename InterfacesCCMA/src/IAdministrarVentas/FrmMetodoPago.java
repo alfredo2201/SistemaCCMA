@@ -5,6 +5,9 @@
  */
 package IAdministrarVentas;
 
+import Control.Control;
+import PanelesGlobales.PnContenido;
+
 /**
  *
  * @author crist
@@ -14,6 +17,8 @@ public class FrmMetodoPago extends javax.swing.JFrame {
     /**
      * Creates new form FrmMetodoPago
      */
+    private PnContenido pnContenido = PnContenido.getInstance();
+    
     public FrmMetodoPago() {
         initComponents();
         setLocationRelativeTo(null);
@@ -149,6 +154,10 @@ public class FrmMetodoPago extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        RegistrarVenta venta = new RegistrarVenta();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, venta);
+        venta.calcularTotali();
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

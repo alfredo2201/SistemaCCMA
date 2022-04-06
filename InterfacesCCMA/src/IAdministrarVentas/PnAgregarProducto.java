@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class PnAgregarProducto extends javax.swing.JPanel {
 
     private ControlProducto negocios = new ControlProducto();
-    private PnContenido pnContenido =  PnContenido.getInstance();
+    private PnContenido pnContenido = PnContenido.getInstance();
     public DefaultListModel<String> modelo;
     public static ArrayList<Producto> auxProducts;
 
@@ -323,7 +323,11 @@ public class PnAgregarProducto extends javax.swing.JPanel {
         ctl.muestraPantalla(pnContenido, venta);
         venta.setPdLista(auxProducts);
         venta.mostrarVenta();
-        venta.calcularTotal();
+        //venta.calcularTotali();
+        //venta.calcularSubTotal();
+        //venta.calcularSubTotal(auxProducts);
+
+
     }//GEN-LAST:event_btnContinuarVentaActionPerformed
 
     private void cmbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoActionPerformed
@@ -536,7 +540,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
             }
             auxProducts = productos;
             listProductosSeleccionados.setModel(modelo);
-         
+
         }
         listArticulos.clearSelection();
         listProductosSeleccionados.clearSelection();

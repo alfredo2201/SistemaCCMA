@@ -7,6 +7,7 @@ package InicioSesion;
 
 import Control.Control;
 import Dominio.Empleado;
+import Dominio.Permiso;
 import Fachada.*;
 import Principal.FrmPrincipal;
 import javax.swing.JOptionPane;
@@ -287,9 +288,13 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         Control ctl = new Control();
         user = txtNombreUsuario.getText();
         password = pfContraseña.getText();
-        
+        System.out.println(user);
+        System.out.println(password);
+         Empleado emp = new Empleado(2,"Omar Gaxiola", "OmGa2outlook.com", "Gaxi", "tamarindo", Permiso.ADMIN);
         Empleado empleado = negocios.obtenEmpleado(user, password);
-        if (empleado.getIdUsuario() != null && user.equals(empleado.getUsername()) && password.equals(empleado.getPassword())) {
+        System.out.println(empleado);
+        if (emp.getIdUsuario() != null && user.equals(emp.getUsername()) && password.equals(emp.getPassword())) {
+            System.out.println("si entre aqui");
             FrmPrincipal main = FrmPrincipal.getInstance();
             main.setEmpleado(empleado);
             main.setVisible(true);

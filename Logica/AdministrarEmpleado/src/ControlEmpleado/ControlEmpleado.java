@@ -22,7 +22,7 @@ public class ControlEmpleado {
     public Empleado obtenEmpleado(String username, String password) {
         if (username != null || !username.isEmpty() && password != null || !password.isEmpty()) {
             try {
-                return iDatos.consultarByCredenciales(username, username);
+                return iDatos.consultarByCredenciales(username, password);
             } catch (DAOException ex) {
                 System.err.println(ex.getMessage());                
             }
