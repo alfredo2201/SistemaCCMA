@@ -10,9 +10,7 @@ import Dominio.Producto;
 import static IAdministrarVentas.PnAgregarProducto.auxProducts;
 import PanelesGlobales.PnContenido;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -30,13 +28,13 @@ public class RegistrarVenta extends javax.swing.JPanel {
     private PnAgregarProducto pnAgregarProducto;
     private ArrayList<Producto> pdLista;
     private Cliente cliente;
-    //private INegocios negocios;
+    private static RegistrarVenta instance;
 
     float subTotal = 0f;
     float totalIva = 0f;
     float totalVenta = 0f;
 
-    public RegistrarVenta() {
+    private RegistrarVenta() {
         initComponents();
         txtIva.setEditable(false);
         txtSubTotal.setEditable(false);
@@ -432,6 +430,13 @@ public class RegistrarVenta extends javax.swing.JPanel {
         //calcularTotali();
     }//GEN-LAST:event_txtDescuentoMouseExited
 
+    public static RegistrarVenta getInstance(){
+        if (instance == null) {
+            instance = new RegistrarVenta();
+        }
+        return instance;
+    }
+    
     public Cliente getCliente() {
         return cliente;
     }

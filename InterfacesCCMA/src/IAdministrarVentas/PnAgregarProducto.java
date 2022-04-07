@@ -353,7 +353,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarProductoActionPerformed
 
     private void btnContinuarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarVentaActionPerformed
-        RegistrarVenta venta = new RegistrarVenta();
+        RegistrarVenta venta = RegistrarVenta.getInstance();
         Control ctl = new Control();
         ctl.muestraPantalla(pnContenido, venta);
         venta.setPdLista(auxProducts);

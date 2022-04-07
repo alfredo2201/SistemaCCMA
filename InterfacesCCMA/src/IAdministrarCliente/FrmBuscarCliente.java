@@ -345,7 +345,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
             if (getTipoPantalla() == REGISTRAR_VENTA) {
                 String c = (String) dtm.getValueAt(i, 1);
                 aux = negocios.consultarClienteByRFC(c);
-                registrarVenta = new RegistrarVenta();
+                registrarVenta = RegistrarVenta.getInstance();
                 ctl.muestraPantalla(contenido, registrarVenta);
                 registrarVenta.setCliente(aux);
             } else if (getTipoPantalla() == CONSULTAR_CLIENTE) {
@@ -365,7 +365,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
 
     private void continuarSinVenta() {
         Control ctl = new Control();
-        registrarVenta = new RegistrarVenta();
+        registrarVenta = RegistrarVenta.getInstance();
         ctl.muestraPantalla(contenido, registrarVenta);
         registrarVenta.clienteAnonimo();
         dispose();

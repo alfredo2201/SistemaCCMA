@@ -155,7 +155,7 @@ public class FrmMetodoPago extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        RegistrarVenta venta = new RegistrarVenta();
+        RegistrarVenta venta = RegistrarVenta.getInstance();
         Control ctl = new Control();
         ctl.muestraPantalla(pnContenido, venta);
         venta.calcularTotali();
