@@ -21,23 +21,12 @@ public class Pruebas {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
-//           ClienteDAO c = new ClienteDAO();
-//           ArrayList<Cliente> clientes = c.obtenerTodo();
-//           clientes.forEach((cliente) -> {
-//               System.out.println(cliente);
-////        });
-//    VentasDAO v = new VentasDAO();
-////    Venta venta = v.consultarById(2);
-////        System.out.println(venta);
-//    ArrayList<Venta> ventas = v.obtenerTodo();
-//        for (Venta venta : ventas) {
-//            System.out.println(venta);
-//        }
 
-    Producto p = new Producto("hola", "como", "estas", "bro", 2000, 150f);
-    p.setDisponible(3);
-    ProductosDAO pa = new ProductosDAO();
-    pa.insertar(p);
+//        ProductosDAO pa = new ProductosDAO();
+//        System.out.println(pa.consultarByMarca("Nissan
+        Empleado emp = new Empleado("Omar Gaxiola", "OmGa2outlook.com", "Gaxi", "tamarindo", Permiso.ADMIN);
+        EmpleadosDAO emDao = new EmpleadosDAO();
+        emDao.insertar(emp);
 
     }
 

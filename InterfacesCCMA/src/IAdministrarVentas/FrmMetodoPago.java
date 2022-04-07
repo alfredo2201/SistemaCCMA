@@ -5,6 +5,9 @@
  */
 package IAdministrarVentas;
 
+import Control.Control;
+import PanelesGlobales.PnContenido;
+
 /**
  *
  * @author crist
@@ -14,6 +17,8 @@ public class FrmMetodoPago extends javax.swing.JFrame {
     /**
      * Creates new form FrmMetodoPago
      */
+    private PnContenido pnContenido = PnContenido.getInstance();
+    
     public FrmMetodoPago() {
         initComponents();
         setLocationRelativeTo(null);
@@ -39,8 +44,9 @@ public class FrmMetodoPago extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pnTop.setBackground(new java.awt.Color(188, 186, 120));
+        pnTop.setBackground(new java.awt.Color(232, 228, 60));
 
+        jLabel7.setBackground(new java.awt.Color(0, 0, 0));
         jLabel7.setFont(new java.awt.Font("Segoe UI", 2, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Método de pago");
@@ -144,13 +150,17 @@ public class FrmMetodoPago extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        RegistrarVenta venta = RegistrarVenta.getInstance();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, venta);
+        venta.calcularTotali();
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

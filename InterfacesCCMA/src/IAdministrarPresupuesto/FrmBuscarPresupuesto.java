@@ -55,7 +55,7 @@ public class FrmBuscarPresupuesto extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(188, 186, 120));
+        jPanel2.setBackground(new java.awt.Color(232, 228, 60));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));

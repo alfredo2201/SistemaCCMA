@@ -5,6 +5,7 @@
  */
 package Control;
 
+import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -13,8 +14,7 @@ import javax.swing.JPanel;
  *
  * @author crist
  */
-public class Control {
-
+public class Control {    
     public void muestraPantalla(JPanel contenido, JPanel lienzo) {
         contenido.removeAll();
         lienzo.setVisible(true);
@@ -25,7 +25,7 @@ public class Control {
         contenido.repaint();
     }
 
-    public void muestraMsj(String mensaje, String titulo, int tipo, String urlImagen) {
+    public void muestraMsj(String mensaje, String titulo, int tipo, String urlImagen) {                        
         JOptionPane.showMessageDialog(null, mensaje, titulo, tipo, new ImageIcon(urlImagen));
     }
 }

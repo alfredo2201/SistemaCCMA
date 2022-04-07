@@ -59,6 +59,7 @@ public class PnActualizarProducto extends javax.swing.JPanel {
 
         tblProductos.setBackground(new java.awt.Color(255, 255, 255));
         tblProductos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblProductos.setForeground(new java.awt.Color(0, 0, 0));
         tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -82,6 +83,8 @@ public class PnActualizarProducto extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tblProductos.setRowHeight(24);
         jScrollPane1.setViewportView(tblProductos);
 
         javax.swing.GroupLayout pnTablaLayout = new javax.swing.GroupLayout(pnTabla);
@@ -101,22 +104,24 @@ public class PnActualizarProducto extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        btnEditar.setBackground(new java.awt.Color(153, 153, 0));
+        btnEditar.setBackground(new java.awt.Color(232, 228, 60));
         btnEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnEditar.setForeground(new java.awt.Color(0, 0, 0));
         btnEditar.setText("Editar");
         btnEditar.setBorder(null);
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
             }
         });
 
-        btnMenu.setBackground(new java.awt.Color(204, 204, 0));
+        btnMenu.setBackground(new java.awt.Color(166, 166, 42));
         btnMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnMenu.setForeground(new java.awt.Color(0, 0, 0));
         btnMenu.setText("Regresar al menú");
         btnMenu.setBorder(null);
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuActionPerformed(evt);
@@ -154,7 +159,7 @@ public class PnActualizarProducto extends javax.swing.JPanel {
                         .addGap(30, 30, 30)
                         .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
+                        .addGap(70, 70, 70)
                         .addComponent(pnTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

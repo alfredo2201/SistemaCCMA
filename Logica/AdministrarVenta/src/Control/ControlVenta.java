@@ -93,5 +93,14 @@ public class ControlVenta {
             return null;
         }
     }
+    
+    public Venta consultarVentaById(int id){
+        try{
+            return iDatos.consultarVentaById(id);
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
 
 }

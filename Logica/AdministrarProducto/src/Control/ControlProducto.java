@@ -91,7 +91,7 @@ public class ControlProducto {
 
     public ArrayList<Producto> consultarProductoByMarca(String marca) {
         try {
-            return fachadaProduc.consultarProductoByTipo(marca);
+            return fachadaProduc.consultarProductoByMarca(marca);
         } catch (Exception e) {
             System.err.println(e.getMessage());
             return null;
@@ -100,7 +100,7 @@ public class ControlProducto {
 
     public ArrayList<Producto> consultarProductoByModelo(String modelo) {
         try {
-            return fachadaProduc.consultarProductoByTipo(modelo);
+            return fachadaProduc.consultarProductoByModelo(modelo);
         } catch (Exception e) {
             System.err.println(e.getMessage());
             return null;

@@ -49,7 +49,7 @@ public class PnMenuClientes extends javax.swing.JPanel {
         btnOpcionRegistrarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnOpcionRegistrarCliente.setText("Registrar Cliente Nuevo");
         btnOpcionRegistrarCliente.setBorder(null);
-        btnOpcionRegistrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnOpcionRegistrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnOpcionRegistrarCliente.setFocusPainted(false);
         btnOpcionRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,7 +67,7 @@ public class PnMenuClientes extends javax.swing.JPanel {
         btnOpcionActualizarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnOpcionActualizarCliente.setText("Actualizar Cliente ");
         btnOpcionActualizarCliente.setBorder(null);
-        btnOpcionActualizarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnOpcionActualizarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnOpcionActualizarCliente.setFocusPainted(false);
         btnOpcionActualizarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,7 +80,7 @@ public class PnMenuClientes extends javax.swing.JPanel {
         btnOpcionEliminarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnOpcionEliminarCliente.setText("Eliminar Cliente");
         btnOpcionEliminarCliente.setBorder(null);
-        btnOpcionEliminarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnOpcionEliminarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnOpcionEliminarCliente.setFocusPainted(false);
         btnOpcionEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +93,7 @@ public class PnMenuClientes extends javax.swing.JPanel {
         btnOpcionConsultarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnOpcionConsultarCliente.setText("Consultar Clientes");
         btnOpcionConsultarCliente.setBorder(null);
-        btnOpcionConsultarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnOpcionConsultarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnOpcionConsultarCliente.setFocusPainted(false);
         btnOpcionConsultarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,7 +120,7 @@ public class PnMenuClientes extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addComponent(lblTextoMenuClientes)
-                .addGap(55, 55, 55)
+                .addGap(75, 75, 75)
                 .addComponent(btnOpcionRegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(btnOpcionActualizarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)

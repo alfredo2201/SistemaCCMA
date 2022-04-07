@@ -95,60 +95,70 @@ public class PnEditarCliente extends javax.swing.JPanel {
             }
         });
 
-        lblTextoNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoNombre.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
         lblTextoNombre.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoNombre.setText("Nombre:");
 
         txtNombreCliente.setBackground(new java.awt.Color(255, 255, 255));
-        txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtNombreCliente.setForeground(new java.awt.Color(0, 0, 0));
         txtNombreCliente.setBorder(null);
+        txtNombreCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         txtCorreo.setBackground(new java.awt.Color(255, 255, 255));
-        txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtCorreo.setForeground(new java.awt.Color(0, 0, 0));
         txtCorreo.setBorder(null);
+        txtCorreo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
-        lblTextoEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoEmail.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
         lblTextoEmail.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoEmail.setText("Correo electrónico:");
 
-        lblTextoTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoTelefono.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
         lblTextoTelefono.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoTelefono.setText("Teléfono:");
 
         txtTelefono.setBackground(new java.awt.Color(255, 255, 255));
-        txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtTelefono.setForeground(new java.awt.Color(0, 0, 0));
         txtTelefono.setBorder(null);
+        txtTelefono.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
-        lblTextoRFC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTextoRFC.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
         lblTextoRFC.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoRFC.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoRFC.setText("RFC:");
 
         txtRFC.setBackground(new java.awt.Color(255, 255, 255));
-        txtRFC.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtRFC.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtRFC.setForeground(new java.awt.Color(0, 0, 0));
         txtRFC.setBorder(null);
+        txtRFC.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(86, Short.MAX_VALUE)
+                .addContainerGap(78, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblTextoRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(125, 125, 125)
+                            .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(115, 115, 115)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblTextoRFC, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                            .addGap(10, 10, 10)
+                            .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(lblTextoEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -165,7 +175,7 @@ public class PnEditarCliente extends javax.swing.JPanel {
                                     .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jSeparator9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
                                     .addComponent(txtNombreCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))))))
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,33 +189,30 @@ public class PnEditarCliente extends javax.swing.JPanel {
                         .addGap(1, 1, 1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)))
+                        .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTextoEmail))
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTextoTelefono)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
                 .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblTextoRFC)
-                        .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTextoRFC)
+                    .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -248,10 +255,11 @@ public class PnEditarCliente extends javax.swing.JPanel {
             ctl.muestraMsj("Favor de llenar todas las casillas.", "No se pudo editar el cliente.", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
         } else {
             Cliente cl = new Cliente(nombre, email, RFC, telefono);
-            if (!clEditar.getNombre().equalsIgnoreCase(nombre) || !clEditar.getCorreo().equals(email)|| !clEditar.getRfc().equals(RFC)|| !clEditar.getTelefono().equals(telefono)) {                
+            if (!clEditar.getNombre().equalsIgnoreCase(nombre) || !clEditar.getCorreo().equals(email) || !clEditar.getRfc().equals(RFC) || !clEditar.getTelefono().equals(telefono)) {
                 cl.setId_cliente(clEditar.getId_cliente());
                 iNegocios.actualizarCliente(cl);
                 ctl.muestraMsj("El cliente fue editado correctamente.", "Editar cliente", JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");
+                limpiarCampos();
             } else {
                 ctl.muestraMsj("El cliente que intenta actualizar no ha sido modificado.\nVuelva a intentarlo", "No hay cambios en el cliente", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
             }
@@ -266,6 +274,13 @@ public class PnEditarCliente extends javax.swing.JPanel {
             txtTelefono.setText(clEditar.getTelefono());
         }
 
+    }
+
+    private void limpiarCampos() {
+        txtNombreCliente.setText("");
+        txtCorreo.setText("");
+        txtRFC.setText("");
+        txtTelefono.setText("");
     }
 
 }

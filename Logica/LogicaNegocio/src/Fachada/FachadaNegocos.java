@@ -7,10 +7,13 @@ package Fachada;
 
 import Control.ControlCliente;
 import Control.ControlProducto;
+import Control.ControlVenta;
 import ControlEmpleado.ControlEmpleado;
 import Dominio.Cliente;
 import Dominio.Empleado;
 import Dominio.Producto;
+import Dominio.Venta;
+import Dominio.VentaProducto;
 import java.util.ArrayList;
 
 /**
@@ -22,6 +25,7 @@ public class FachadaNegocos implements INegocios {
     private ControlEmpleado ctlEmpleado = new ControlEmpleado();
     private ControlCliente ctlCliente = new ControlCliente();
     private ControlProducto ctlProducto = new ControlProducto();
+    private ControlVenta ctlVenta = new ControlVenta();
 
     @Override
     public void registrarClienteNuevo(Cliente cliente) {
@@ -113,12 +117,41 @@ public class FachadaNegocos implements INegocios {
 
     @Override
     public ArrayList<Producto> consultarPersonalizadoProducto(String tipo, String marca, String modelo, int anio) {
-        return ctlProducto.consultarProductoCompleto(tipo, marca, modelo, anio);        
+        return ctlProducto.consultarProductoCompleto(tipo, marca, modelo, anio);
     }
-    
+
     @Override
-    public Producto consultarProductoById(int id){
+    public Producto consultarProductoById(int id) {
         return ctlProducto.consultarProductoById(id);
+    }
+
+    @Override
+    public void registrarVenta(Venta venta, ArrayList<VentaProducto> listaProductos) {
+        if (venta != null & listaProductos != null) {
+            ctlVenta.agregar(venta, listaProductos);
+        }
+    }
+
+    @Override
+    public void eliminarVenta(Venta venta) {
+        if (venta.getIdVenta() != null) {
+            ctlVenta.eliminar(venta.getIdVenta());
+        }
+    }
+
+    @Override
+    public ArrayList<Venta> consultarVentasByDias(int dias) {
+        return ctlVenta.consultaVentaPeriodoDeterminado(dias);
+    }
+
+    @Override
+    public ArrayList<Venta> consultarVentas() {
+        return ctlVenta.consultarTodo();
+    }
+
+    @Override
+    public Venta consultarVentaById(Integer id) {
+       return ctlVenta.consultarVentaById(id);
     }
 
 }

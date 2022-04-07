@@ -51,11 +51,11 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pnTop.setBackground(new java.awt.Color(188, 186, 120));
+        pnTop.setBackground(new java.awt.Color(232, 228, 60));
 
-        jLabel7.setText("Buscar venta");
         jLabel7.setFont(new java.awt.Font("Segoe UI", 2, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Buscar venta");
 
         javax.swing.GroupLayout pnTopLayout = new javax.swing.GroupLayout(pnTop);
         pnTop.setLayout(pnTopLayout);
@@ -76,40 +76,40 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
 
         pnContent.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel8.setText("Fecha Inicio:");
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Fecha Inicio:");
 
-        jLabel9.setText("Fecha Fin:");
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Fecha Fin:");
 
-        rbMedioMes.setText("15 Días");
         rbMedioMes.setBackground(new java.awt.Color(255, 255, 255));
         rbMedioMes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rbMedioMes.setForeground(new java.awt.Color(0, 0, 0));
+        rbMedioMes.setText("15 Días");
         rbMedioMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbMedioMesActionPerformed(evt);
             }
         });
 
-        rbMesAnterior.setText("1 Mes");
         rbMesAnterior.setBackground(new java.awt.Color(255, 255, 255));
         rbMesAnterior.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rbMesAnterior.setForeground(new java.awt.Color(0, 0, 0));
+        rbMesAnterior.setText("1 Mes");
         rbMesAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbMesAnteriorActionPerformed(evt);
             }
         });
 
-        btnBuscar.setText("Buscar");
-        btnBuscar.setBackground(new java.awt.Color(153, 153, 0));
-        btnBuscar.setBorder(null);
-        btnBuscar.setBorderPainted(false);
+        btnBuscar.setBackground(new java.awt.Color(232, 228, 60));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        btnBuscar.setText("Buscar");
+        btnBuscar.setBorder(null);
+        btnBuscar.setBorderPainted(false);
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -117,8 +117,12 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
         });
 
         dpInicio.setBackground(new java.awt.Color(255, 255, 255));
+        dpInicio.setForeground(new java.awt.Color(0, 0, 0));
+        dpInicio.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
 
         dpFin.setBackground(new java.awt.Color(255, 255, 255));
+        dpFin.setForeground(new java.awt.Color(0, 0, 0));
+        dpFin.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
 
         javax.swing.GroupLayout pnContentLayout = new javax.swing.GroupLayout(pnContent);
         pnContent.setLayout(pnContentLayout);
