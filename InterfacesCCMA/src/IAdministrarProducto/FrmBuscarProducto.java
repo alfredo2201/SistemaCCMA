@@ -90,7 +90,7 @@ public class FrmBuscarProducto extends javax.swing.JFrame {
 
         clienteTable.setBackground(new java.awt.Color(255, 255, 255));
         clienteTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.gray, null, null));
-        clienteTable.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        clienteTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         clienteTable.setForeground(new java.awt.Color(0, 0, 0));
         clienteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

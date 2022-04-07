@@ -120,7 +120,7 @@ public class PnMenuClientes extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addComponent(lblTextoMenuClientes)
-                .addGap(55, 55, 55)
+                .addGap(75, 75, 75)
                 .addComponent(btnOpcionRegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(btnOpcionActualizarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)

@@ -55,13 +55,12 @@ public class PnEliminarProducto extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         pnTabla.setBackground(new java.awt.Color(255, 255, 255));
-        pnTabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         tbProducto.setBackground(new java.awt.Color(255, 255, 255));
-        tbProducto.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        tbProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbProducto.setForeground(new java.awt.Color(0, 0, 0));
         tbProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -86,19 +85,22 @@ public class PnEliminarProducto extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tbProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tbProducto.setRowHeight(24);
+        tbProducto.setSelectionBackground(new java.awt.Color(102, 102, 102));
         jScrollPane1.setViewportView(tbProducto);
 
         javax.swing.GroupLayout pnTablaLayout = new javax.swing.GroupLayout(pnTabla);
         pnTabla.setLayout(pnTablaLayout);
         pnTablaLayout.setHorizontalGroup(
             pnTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 707, Short.MAX_VALUE)
+            .addGap(0, 709, Short.MAX_VALUE)
             .addGroup(pnTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE))
         );
         pnTablaLayout.setVerticalGroup(
             pnTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 401, Short.MAX_VALUE)
+            .addGap(0, 403, Short.MAX_VALUE)
             .addGroup(pnTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE))
         );
@@ -108,6 +110,7 @@ public class PnEliminarProducto extends javax.swing.JPanel {
         btnEliminarProduc.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminarProduc.setText("Eliminar");
         btnEliminarProduc.setBorder(null);
+        btnEliminarProduc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminarProduc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarProducActionPerformed(evt);
@@ -119,6 +122,7 @@ public class PnEliminarProducto extends javax.swing.JPanel {
         btnCancelar.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(null);
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -134,6 +138,7 @@ public class PnEliminarProducto extends javax.swing.JPanel {
         btnMenu.setForeground(new java.awt.Color(0, 0, 0));
         btnMenu.setText("Regresar al menú");
         btnMenu.setBorder(null);
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuActionPerformed(evt);

@@ -179,6 +179,11 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         btnCSinCliente.setBorder(null);
         btnCSinCliente.setBorderPainted(false);
         btnCSinCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCSinCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCSinClienteActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setBackground(new java.awt.Color(255, 255, 0));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -281,6 +286,10 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         buscarClientes(nombre, RFC);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnCSinClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCSinClienteActionPerformed
+        continuarSinVenta();
+    }//GEN-LAST:event_btnCSinClienteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -334,8 +343,11 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         Cliente aux = null;
         if (i >= 0) {
             if (getTipoPantalla() == REGISTRAR_VENTA) {
+                String c = (String) dtm.getValueAt(i, 1);
+                aux = negocios.consultarClienteByRFC(c);
                 registrarVenta = new RegistrarVenta();
                 ctl.muestraPantalla(contenido, registrarVenta);
+                registrarVenta.setCliente(aux);
             } else if (getTipoPantalla() == CONSULTAR_CLIENTE) {
                 String c = (String) dtm.getValueAt(i, 1);
                 aux = negocios.consultarClienteByRFC(c);
@@ -346,9 +358,17 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
             dispose();
         } else {
             ctl.muestraMsj("Por favor seleccione un cliente.", "Cliente no seleccionado", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
-            
+
         }
 
+    }
+
+    private void continuarSinVenta() {
+        Control ctl = new Control();
+        registrarVenta = new RegistrarVenta();
+        ctl.muestraPantalla(contenido, registrarVenta);
+        registrarVenta.clienteAnonimo();
+        dispose();
     }
 
 }

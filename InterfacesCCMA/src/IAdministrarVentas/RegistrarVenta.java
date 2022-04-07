@@ -5,19 +5,15 @@
 package IAdministrarVentas;
 
 import Control.Control;
-import Control.ControlVenta;
 import Dominio.Cliente;
-import Dominio.Empleado;
 import Dominio.Producto;
-import Dominio.Venta;
-import Fachada.FabricaNegocios;
-import Fachada.INegocios;
 import static IAdministrarVentas.PnAgregarProducto.auxProducts;
 import PanelesGlobales.PnContenido;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,6 +29,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
     private PnContenido pnContenido = PnContenido.getInstance();
     private PnAgregarProducto pnAgregarProducto;
     private ArrayList<Producto> pdLista;
+    private Cliente cliente;
     //private INegocios negocios;
 
     float subTotal = 0f;
@@ -43,6 +40,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
         initComponents();
         txtIva.setEditable(false);
         txtSubTotal.setEditable(false);
+        txtFecha.setEditable(false);
         txtTotal.setEditable(false);
         //negocios = FabricaNegocios.getInstance();
         pdLista = new ArrayList<>();
@@ -82,12 +80,12 @@ public class RegistrarVenta extends javax.swing.JPanel {
         btnCancelar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Cliente:");
 
         txtCliente.setEditable(false);
@@ -96,8 +94,10 @@ public class RegistrarVenta extends javax.swing.JPanel {
         txtCliente.setBorder(null);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Fecha:");
 
+        txtFecha.setBackground(new java.awt.Color(255, 255, 255));
         txtFecha.setBorder(null);
         txtFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +106,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Cliente temporal");
 
         rbClienteTemporal.setBackground(new java.awt.Color(255, 255, 255));
@@ -115,6 +116,9 @@ public class RegistrarVenta extends javax.swing.JPanel {
             }
         });
 
+        tbProductos.setBackground(new java.awt.Color(255, 255, 255));
+        tbProductos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tbProductos.setForeground(new java.awt.Color(0, 0, 0));
         tbProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -131,6 +135,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tbProductos.setRowHeight(24);
         tbProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 tbProductosMouseExited(evt);
@@ -145,37 +150,43 @@ public class RegistrarVenta extends javax.swing.JPanel {
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Subtotal:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Descuento:");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("IVA (16%):");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Total:");
 
-        txtSubTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtSubTotal.setBackground(new java.awt.Color(255, 255, 255));
+        txtSubTotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtSubTotal.setToolTipText("");
-        txtSubTotal.setEnabled(false);
         txtSubTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSubTotalActionPerformed(evt);
             }
         });
 
-        txtDescuento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtDescuento.setBackground(new java.awt.Color(255, 255, 255));
+        txtDescuento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtDescuento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 txtDescuentoMouseExited(evt);
             }
         });
 
-        txtIva.setEnabled(false);
+        txtIva.setBackground(new java.awt.Color(255, 255, 255));
+        txtIva.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        txtTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtTotal.setEnabled(false);
+        txtTotal.setBackground(new java.awt.Color(255, 255, 255));
+        txtTotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -221,8 +232,10 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
         btnMetodoPago.setBackground(new java.awt.Color(153, 153, 0));
         btnMetodoPago.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnMetodoPago.setForeground(new java.awt.Color(0, 0, 0));
         btnMetodoPago.setText("Método de pago");
         btnMetodoPago.setBorder(null);
+        btnMetodoPago.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMetodoPago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMetodoPagoActionPerformed(evt);
@@ -231,18 +244,22 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
         btnAgregarProductos.setBackground(new java.awt.Color(255, 204, 0));
         btnAgregarProductos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAgregarProductos.setForeground(new java.awt.Color(0, 0, 0));
         btnAgregarProductos.setText("Agregar producto");
         btnAgregarProductos.setBorder(null);
+        btnAgregarProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAgregarProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarProductosActionPerformed(evt);
             }
         });
 
-        btnCobrar.setBackground(new java.awt.Color(102, 102, 0));
+        btnCobrar.setBackground(new java.awt.Color(232, 228, 60));
         btnCobrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCobrar.setForeground(new java.awt.Color(0, 0, 0));
         btnCobrar.setText("Cobrar");
         btnCobrar.setBorder(null);
+        btnCobrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCobrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCobrarActionPerformed(evt);
@@ -251,19 +268,18 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
         btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(null);
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Consultar producto");
-
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Nueva venta");
 
@@ -293,7 +309,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
                                     .addComponent(txtCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(117, 117, 117)
@@ -302,7 +318,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
                                         .addComponent(rbClienteTemporal))))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addComponent(jScrollPane1)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,11 +329,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
                             .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)))
                 .addGap(50, 50, 50))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(419, 419, 419)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(420, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,10 +340,10 @@ public class RegistrarVenta extends javax.swing.JPanel {
                         .addGap(50, 50, 50)
                         .addComponent(btnAgregarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel1))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3)
@@ -342,7 +353,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, 0)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20)
@@ -355,14 +366,9 @@ public class RegistrarVenta extends javax.swing.JPanel {
                         .addComponent(btnCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 44, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(351, 351, 351)
-                    .addComponent(jLabel8)
-                    .addContainerGap(368, Short.MAX_VALUE)))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -403,7 +409,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
         int fila = this.tbProductos.getSelectedRow();
         int columna = this.tbProductos.getSelectedColumn();
         if (columna == 7) {
-            int resp = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere eliminar este producto?");
+            int resp;
+            resp = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere eliminar este producto?","Eliminar Producto",JOptionPane.YES_NO_CANCEL_OPTION,1 ,new ImageIcon("src/iconos/signo-de-interrogacion.png"));
             if (resp == 0) {
                 DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
                 modelo.removeRow(fila);
@@ -425,6 +432,16 @@ public class RegistrarVenta extends javax.swing.JPanel {
         //calcularTotali();
     }//GEN-LAST:event_txtDescuentoMouseExited
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;        
+        cargarInformacion(cliente.getNombre());
+    }
+
+    
     public ArrayList<Producto> getPdLista() {
         return pdLista;
     }
@@ -435,7 +452,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
     public void cargarInformacion(String nombre) {
         txtCliente.setText(nombre);
-        txtFecha.setText(new Date().toString());
+        LocalDate fecha = LocalDate.now();
+        txtFecha.setText(fecha.toString());
     }
 
     public void mostrarVenta() {
@@ -533,6 +551,9 @@ public class RegistrarVenta extends javax.swing.JPanel {
 ////        txtSubTotal.setText("" + precio);
 ////    }
 
+    public void clienteAnonimo(){
+        rbClienteTemporal.setSelected(true);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProductos;
     private javax.swing.JButton btnCancelar;
@@ -545,7 +566,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
