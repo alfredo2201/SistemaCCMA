@@ -75,7 +75,6 @@ public class ControlVenta {
         LocalDate date = LocalDate.now();
         Date fechaFin = new Date();
         date = date.minusDays(dias);
-        System.out.println(date);
         Date fechaInicio = new Date(date.getYear() - 1900, date.getMonthValue() - 1, date.getDayOfMonth());
         try {
             return iDatos.consultarVentaByRangoFechas(fechaInicio, fechaFin);

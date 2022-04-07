@@ -4,8 +4,12 @@
  */
 package IGenerarReportes;
 
+import Dominio.Venta;
+import Fachada.FabricaNegocios;
+import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -19,7 +23,8 @@ public class PnGenerarReporte extends javax.swing.JPanel {
      * Creates new form GenerarReporte
      */
     private PnContenido contenido = PnContenido.getInstance();
-    private PnReporteGenerado reporte = new PnReporteGenerado();
+    private PnReporteGenerado reporte = null;
+    private INegocios negocios = FabricaNegocios.getInstance();
 
     public PnGenerarReporte() {
         initComponents();
@@ -75,7 +80,7 @@ public class PnGenerarReporte extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Genear Reporte");
+        jLabel1.setText("Generar Reporte");
 
         dcFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
         dcFechaInicio.setForeground(new java.awt.Color(0, 0, 0));
@@ -123,7 +128,7 @@ public class PnGenerarReporte extends javax.swing.JPanel {
                                 .addComponent(jLabel5)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(75, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(190, 190, 190)
                         .addComponent(rbMedioMes)
@@ -143,7 +148,7 @@ public class PnGenerarReporte extends javax.swing.JPanel {
                     .addComponent(dcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rbMesAnterior)
                     .addComponent(rbMedioMes))
                 .addGap(34, 34, 34)
@@ -155,14 +160,27 @@ public class PnGenerarReporte extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenReporteActionPerformed
-//        // TODO add your handling code here:
-//        Date fechaI = dcFechaInicio.getDate();
-//        Date fechaF = dcFechaFin.getDate();
-//
-//        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
-//        JOptionPane.showMessageDialog(null, "La fecha es del: " + formato.format(fechaI) + " al " + formato.format(fechaF));
+        // TODO add your handling code here:
+        ArrayList<Venta> ventas = null;
+
+        if (!dcFechaInicio.isEnabled() || !dcFechaFin.isEnabled()) {
+            boolean medioMes = rbMedioMes.isSelected();
+            boolean mesAnterior = rbMesAnterior.isSelected();
+            if(medioMes){
+                ventas = negocios.consultarVentasByDias(15);
+            } else if(mesAnterior){
+                ventas = negocios.consultarVentasByDias(30);
+            }
+        } else {
+            Date fechaI = dcFechaInicio.getDate();
+            Date fechaF = dcFechaFin.getDate();
+            ventas = negocios.consultarVentaRangoFechas(fechaI, fechaF);
+        }
+        
+        System.out.println("Vent: "+ventas);
 
         contenido.removeAll();
+        reporte = new PnReporteGenerado(ventas);
         reporte.setVisible(true);
         reporte.setSize(contenido.getSize().width, contenido.getSize().height);
         reporte.setLocation(0, 0);
@@ -172,7 +190,6 @@ public class PnGenerarReporte extends javax.swing.JPanel {
     }//GEN-LAST:event_btnGenReporteActionPerformed
 
     private void rbMesAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMesAnteriorActionPerformed
-
         if (rbMesAnterior.isSelected()) {
             rbMedioMes.setSelected(false);
             dcFechaInicio.setEnabled(false);

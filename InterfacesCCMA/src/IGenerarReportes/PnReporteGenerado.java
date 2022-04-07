@@ -4,15 +4,21 @@
  */
 package IGenerarReportes;
 
+import Dominio.Venta;
+import Dominio.VentaProducto;
 import IAdministrarCliente.PnMenuClientes;
 import IAdministrarVentas.PnMenuVenta;
 import PanelesGlobales.PnContenido;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Samuel Medellin
  */
 public class PnReporteGenerado extends javax.swing.JPanel {
+
+    ArrayList<Venta> ventas;
 
     /**
      * Creates new form ReporteGenerado
@@ -21,6 +27,21 @@ public class PnReporteGenerado extends javax.swing.JPanel {
 
     public PnReporteGenerado() {
         initComponents();
+    }
+
+    public PnReporteGenerado(ArrayList<Venta> ventas) {
+        initComponents();
+        this.ventas = ventas;
+        incializarTabla();
+    }
+
+    private void incializarTabla() {
+        DefaultTableModel dtm = (DefaultTableModel) tbReporteVentas.getModel();
+        dtm.setRowCount(0);
+
+        ventas.forEach(cl -> {
+            dtm.addRow(new Object[]{cl.getCliente().getNombre(), cl.getTotal(), cl.getEmpleado().getNombre(), cl.getFecha()});
+        });
     }
 
     /**
@@ -123,6 +144,7 @@ public class PnReporteGenerado extends javax.swing.JPanel {
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         PnMenuVenta pnMnVenta = new PnMenuVenta();
         pnContenido.removeAll();
+        ventas = null;
         pnMnVenta.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
         pnMnVenta.setLocation(0, -40);
         pnContenido.add(pnMnVenta);

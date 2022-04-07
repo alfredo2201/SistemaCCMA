@@ -15,6 +15,7 @@ import Dominio.Producto;
 import Dominio.Venta;
 import Dominio.VentaProducto;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -142,6 +143,11 @@ public class FachadaNegocos implements INegocios {
     @Override
     public ArrayList<Venta> consultarVentasByDias(int dias) {
         return ctlVenta.consultaVentaPeriodoDeterminado(dias);
+    }
+    
+    @Override
+    public ArrayList<Venta> consultarVentaRangoFechas(Date inicio, Date fin) {
+        return ctlVenta.consultarVentaRangoFechas(inicio, fin);
     }
 
     @Override

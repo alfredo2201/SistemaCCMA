@@ -39,7 +39,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="dcFechaFin" min="-2" pref="166" max="-2" attributes="0"/>
-                      <EmptySpace pref="75" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
@@ -65,9 +65,9 @@
                   <Component id="dcFechaInicio" min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="rbMesAnterior" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="rbMedioMes" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="rbMedioMes" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="btnGenReporte" min="-2" pref="40" max="-2" attributes="0"/>
@@ -148,7 +148,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Genear Reporte"/>
+        <Property name="text" type="java.lang.String" value="Generar Reporte"/>
       </Properties>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="dcFechaInicio">
