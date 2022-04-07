@@ -5,9 +5,6 @@
  */
 package IAdministrarCliente;
 
-//import DAO.ClienteDAO;
-//import Dominio.Cliente;
-//import Exceptions.DAOException;
 import Control.Control;
 import Dominio.Cliente;
 import Fachada.FabricaNegocios;
@@ -17,10 +14,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-//import java.util.ArrayList;
-//import java.util.Vector;
-//import javax.swing.JOptionPane;
-//import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -208,7 +202,7 @@ public class PnEliminarCliente extends javax.swing.JPanel {
     private void cargarClienteTabla() {
         DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
         Control ctl = new Control();
-        clienteTable.removeAll();
+        dtm.setRowCount(0);
         cLIsta = iNegocios.obtenerClientes(); // No se pudo obtener
         if (cLIsta.isEmpty()) {
             // No hay carnales

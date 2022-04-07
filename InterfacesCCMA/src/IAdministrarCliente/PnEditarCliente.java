@@ -255,10 +255,11 @@ public class PnEditarCliente extends javax.swing.JPanel {
             ctl.muestraMsj("Favor de llenar todas las casillas.", "No se pudo editar el cliente.", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
         } else {
             Cliente cl = new Cliente(nombre, email, RFC, telefono);
-            if (!clEditar.getNombre().equalsIgnoreCase(nombre) || !clEditar.getCorreo().equals(email)|| !clEditar.getRfc().equals(RFC)|| !clEditar.getTelefono().equals(telefono)) {                
+            if (!clEditar.getNombre().equalsIgnoreCase(nombre) || !clEditar.getCorreo().equals(email) || !clEditar.getRfc().equals(RFC) || !clEditar.getTelefono().equals(telefono)) {
                 cl.setId_cliente(clEditar.getId_cliente());
                 iNegocios.actualizarCliente(cl);
                 ctl.muestraMsj("El cliente fue editado correctamente.", "Editar cliente", JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");
+                limpiarCampos();
             } else {
                 ctl.muestraMsj("El cliente que intenta actualizar no ha sido modificado.\nVuelva a intentarlo", "No hay cambios en el cliente", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
             }
@@ -273,6 +274,13 @@ public class PnEditarCliente extends javax.swing.JPanel {
             txtTelefono.setText(clEditar.getTelefono());
         }
 
+    }
+
+    private void limpiarCampos() {
+        txtNombreCliente.setText("");
+        txtCorreo.setText("");
+        txtRFC.setText("");
+        txtTelefono.setText("");
     }
 
 }

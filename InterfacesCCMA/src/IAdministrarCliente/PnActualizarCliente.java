@@ -182,7 +182,7 @@ public class PnActualizarCliente extends javax.swing.JPanel {
         for (int i = 0; i < tblCliente.getColumnCount(); i++) {
             val[i] = tblCliente.getModel().getValueAt(selectedRow, i).toString();
         }
-        Cliente cl = new Cliente(Integer.parseInt(val[0]), val[1], val[2], val[3], val[4]);
+        Cliente cl = new Cliente(Integer.parseInt(val[0]), val[1], val[4], val[2], val[3]);
         pnEditarCliente = new PnEditarCliente(cl);
         ctl.muestraPantalla(pnContenido, pnEditarCliente);
         pnEditarCliente.cargarCliente();
@@ -195,6 +195,6 @@ public class PnActualizarCliente extends javax.swing.JPanel {
         cLista.forEach(cl -> {
             dtm.addRow(new Object[]{cl.getId_cliente(),cl.getNombre(), cl.getCorreo(),cl.getTelefono(), cl.getRfc()});
         });
-    }
+    }    
 
 }
