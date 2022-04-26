@@ -475,7 +475,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
             pdLista.forEach(pd -> {
                 dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(),
-                    pd.getMarca(), pd.getModelo(), pd.getAnio(), pd.getPrecio(), 0, "ELIMINAR"});
+                    pd.getMarca(), pd.getModelo(), pd.getAnio(), pd.getPrecio(), pd.getDisponible(), "ELIMINAR"});
             });
 
             // float totaVent = calcularVenta(pdLista);
