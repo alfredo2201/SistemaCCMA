@@ -48,7 +48,6 @@ public class PnGenerarReporte extends javax.swing.JPanel {
 
         btnGenReporte.setBackground(new java.awt.Color(153, 153, 0));
         btnGenReporte.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnGenReporte.setForeground(new java.awt.Color(0, 0, 0));
         btnGenReporte.setText("Generar reporte");
         btnGenReporte.setBorder(null);
         btnGenReporte.setBorderPainted(false);
@@ -60,32 +59,25 @@ public class PnGenerarReporte extends javax.swing.JPanel {
 
         txtCancelar.setBackground(new java.awt.Color(153, 153, 153));
         txtCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtCancelar.setForeground(new java.awt.Color(0, 0, 0));
         txtCancelar.setText("Cancelar");
         txtCancelar.setBorder(null);
         txtCancelar.setBorderPainted(false);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Fecha Inicio:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Fecha fin:");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Genear Reporte");
 
         dcFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
-        dcFechaInicio.setForeground(new java.awt.Color(0, 0, 0));
 
         dcFechaFin.setBackground(new java.awt.Color(255, 255, 255));
-        dcFechaFin.setForeground(new java.awt.Color(0, 0, 0));
 
         rbMesAnterior.setBackground(new java.awt.Color(255, 255, 255));
         rbMesAnterior.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rbMesAnterior.setForeground(new java.awt.Color(0, 0, 0));
         rbMesAnterior.setText("1 Mes");
         rbMesAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +87,6 @@ public class PnGenerarReporte extends javax.swing.JPanel {
 
         rbMedioMes.setBackground(new java.awt.Color(255, 255, 255));
         rbMedioMes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rbMedioMes.setForeground(new java.awt.Color(0, 0, 0));
         rbMedioMes.setText("15 Días");
         rbMedioMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +114,7 @@ public class PnGenerarReporte extends javax.swing.JPanel {
                                 .addComponent(jLabel5)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(75, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(190, 190, 190)
                         .addComponent(rbMedioMes)
@@ -143,7 +134,7 @@ public class PnGenerarReporte extends javax.swing.JPanel {
                     .addComponent(dcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rbMesAnterior)
                     .addComponent(rbMedioMes))
                 .addGap(34, 34, 34)
