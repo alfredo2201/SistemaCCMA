@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Dominio.TipoPago;
 import Dominio.Venta;
 import Exceptions.DAOException;
 import java.sql.Connection;
@@ -13,7 +14,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
@@ -31,12 +31,13 @@ public class VentasDAO extends BaseDAO<Venta> {
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String time = formato.format(venta.getFecha());
             insertarSLQ = String.format(
-                    "INSERT INTO ventas(idCliente, fecha, subtotal, total, idUsuario) "
+                    "INSERT INTO ventas(idCliente, fecha, subtotal, total, metodoPago, idUsuario)"
                     + "VALUES('%s','%s','%s','%s','%s')",
                     venta.getCliente().getId_cliente(),
                     time,
                     venta.getSubtotal(),
                     venta.getTotal(),
+                    venta.getPago(),
                     venta.getEmpleado().getIdUsuario());
             comando.executeUpdate(insertarSLQ);
 
@@ -58,13 +59,14 @@ public class VentasDAO extends BaseDAO<Venta> {
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String time = formato.format(venta.getFecha());
             actualizarSQL = String.format("UPDATE ventas "
-                    + "SET idCliente='%s', fecha='%s',subtotal='%s',total='%s',idUsuario='%s' "
+                    + "SET idCliente='%s', fecha='%s',subtotal='%s',total='%s',idUsuario='%s', metodoPago = '%s' "
                     + "WHERE id = '%d' ",
                     venta.getCliente().getId_cliente(),
                     time,
                     venta.getSubtotal(),
                     venta.getTotal(),
                     venta.getEmpleado().getIdUsuario(),
+                    venta.getPago(),
                     venta.getIdVenta());
             int conteoRegistrosAfectados = comando.executeUpdate(actualizarSQL);
             if (conteoRegistrosAfectados == 1) {
@@ -89,7 +91,8 @@ public class VentasDAO extends BaseDAO<Venta> {
             Connection conexion = this.generarConexion();
             Statement comando = conexion.createStatement();
             String consultarSQL;
-            consultarSQL = String.format("SELECT idventa, idCliente, fecha, subtotal, total, idUsuario FROM ventas WHERE idventa='%d'",
+            consultarSQL = String.format("SELECT idventa, idCliente, fecha, subtotal, total, metodoPago, idUsuario "
+                    + "FROM ventas WHERE idventa='%d'",
                     id);
             ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
             if (resultadoConsulta.next()) {
@@ -97,7 +100,12 @@ public class VentasDAO extends BaseDAO<Venta> {
                 venta.setCliente(clt.consultarById(resultadoConsulta.getInt("idCliente")));
                 venta.setFecha(resultadoConsulta.getTimestamp("fecha"));
                 venta.setSubtotal(resultadoConsulta.getFloat("subtotal"));
-                venta.setTotal(resultadoConsulta.getFloat("total"));
+                int i = resultadoConsulta.getInt("metodoPago");
+                if (TipoPago.EFECTIVO.equals(i)) {
+                    venta.setPago(TipoPago.EFECTIVO);
+                } else {
+                    venta.setPago(TipoPago.TARJETA);
+                }
                 venta.setEmpleado(empl.consultarById(resultadoConsulta.getInt("idUsuario")));
             }
             return venta;
@@ -144,6 +152,12 @@ public class VentasDAO extends BaseDAO<Venta> {
                 venta.setFecha(resultadoConsulta.getTimestamp("fecha"));
                 venta.setSubtotal(resultadoConsulta.getFloat("subtotal"));
                 venta.setTotal(resultadoConsulta.getFloat("total"));
+                int i = resultadoConsulta.getInt("metodoPago");
+                if (TipoPago.EFECTIVO.equals(i)) {
+                    venta.setPago(TipoPago.EFECTIVO);
+                } else {
+                    venta.setPago(TipoPago.TARJETA);
+                }
                 venta.setEmpleado(empl.consultarById(resultadoConsulta.getInt("idUsuario")));
 
                 listaVentas.add(venta);
@@ -167,7 +181,7 @@ public class VentasDAO extends BaseDAO<Venta> {
             Connection conexion = this.generarConexion();
             Statement comando = conexion.createStatement();
             String consultarSQL;
-            consultarSQL = String.format("SELECT idventa, idCliente, fecha, subtotal, total, idUsuario FROM ventas WHERE fecha='%s'",
+            consultarSQL = String.format("SELECT idventa, idCliente, fecha, subtotal, total, metodoPago, idUsuario FROM ventas WHERE fecha='%s'",
                     fecha);
             ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
             while (resultadoConsulta.next()) {
@@ -177,6 +191,12 @@ public class VentasDAO extends BaseDAO<Venta> {
                 venta.setFecha(resultadoConsulta.getTimestamp("fecha"));
                 venta.setSubtotal(resultadoConsulta.getFloat("subtotal"));
                 venta.setTotal(resultadoConsulta.getFloat("total"));
+                                int i = resultadoConsulta.getInt("metodoPago");
+                if (TipoPago.EFECTIVO.equals(i)) {
+                    venta.setPago(TipoPago.EFECTIVO);
+                } else {
+                    venta.setPago(TipoPago.TARJETA);
+                }
                 venta.setEmpleado(empl.consultarById(resultadoConsulta.getInt("idUsuario")));
                 ventas.add(venta);
             }
@@ -198,7 +218,8 @@ public class VentasDAO extends BaseDAO<Venta> {
             Connection conexion = this.generarConexion();
             Statement comando = conexion.createStatement();
             String consultarSQL;
-            consultarSQL = String.format("SELECT idventa, idCliente, fecha, subtotal, total, idUsuario FROM ventas WHERE fecha BETWEEN '%s' AND '%s'",
+            consultarSQL = String.format("SELECT idventa, idCliente, fecha, subtotal, total, metodoPago, idUsuario "
+                    + "FROM ventas WHERE fecha BETWEEN '%s' AND '%s'",
                     inicio, fin);
             ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
             while (resultadoConsulta.next()) {
@@ -208,6 +229,12 @@ public class VentasDAO extends BaseDAO<Venta> {
                 venta.setFecha(resultadoConsulta.getTimestamp("fecha"));
                 venta.setSubtotal(resultadoConsulta.getFloat("subtotal"));
                 venta.setTotal(resultadoConsulta.getFloat("total"));
+                int i = resultadoConsulta.getInt("metodoPago");
+                if (TipoPago.EFECTIVO.equals(i)) {
+                    venta.setPago(TipoPago.EFECTIVO);
+                } else {
+                    venta.setPago(TipoPago.TARJETA);
+                }
                 venta.setEmpleado(empl.consultarById(resultadoConsulta.getInt("idUsuario")));
                 listaVentas.add(venta);
             }

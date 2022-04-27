@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Projects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/PnRegistrarCliente.java</file>
-            <file>file:/D:/Projects/SistemaCCMA/InterfacesCCMA/src/IGenerarReportes/PnReporteGenerado.java</file>
-            <file>file:/D:/Projects/SistemaCCMA/InterfacesCCMA/src/IAdministrarCliente/FrmBuscarCliente.java</file>
-            <file>file:/D:/Projects/SistemaCCMA/InterfacesCCMA/src/InicioSesion/FrmInicioSesion.java</file>
-            <file>file:/D:/Projects/SistemaCCMA/InterfacesCCMA/src/IGenerarReportes/PnGenerarReporte.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/PnEliminarVenta.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IGenerarReportes/PnGenerarReporte.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/RegistrarVenta.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/SistemaCCMA/InterfacesCCMA/src/IAdministrarVentas/FrmMetodoPago.java</file>
         </group>
     </open-files>
 </project-private>

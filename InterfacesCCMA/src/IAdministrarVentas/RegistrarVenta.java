@@ -39,10 +39,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
         txtIva.setEditable(false);
         txtSubTotal.setEditable(false);
         txtFecha.setEditable(false);
-        txtTotal.setEditable(false);
-        //negocios = FabricaNegocios.getInstance();
-        pdLista = new ArrayList<>();
-        //mostrarVenta();
+        txtTotal.setEditable(false);       
+        pdLista = new ArrayList<>();        
 
     }
 
