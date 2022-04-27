@@ -49,12 +49,11 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
         dpInicio = new com.toedter.calendar.JDateChooser();
         dpFin = new com.toedter.calendar.JDateChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         pnTop.setBackground(new java.awt.Color(232, 228, 60));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 2, 20)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Buscar venta");
 
         javax.swing.GroupLayout pnTopLayout = new javax.swing.GroupLayout(pnTop);
@@ -77,16 +76,13 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
         pnContent.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Fecha Inicio:");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Fecha Fin:");
 
         rbMedioMes.setBackground(new java.awt.Color(255, 255, 255));
         rbMedioMes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rbMedioMes.setForeground(new java.awt.Color(0, 0, 0));
         rbMedioMes.setText("15 Días");
         rbMedioMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,7 +92,6 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
 
         rbMesAnterior.setBackground(new java.awt.Color(255, 255, 255));
         rbMesAnterior.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rbMesAnterior.setForeground(new java.awt.Color(0, 0, 0));
         rbMesAnterior.setText("1 Mes");
         rbMesAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +101,6 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
 
         btnBuscar.setBackground(new java.awt.Color(232, 228, 60));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(0, 0, 0));
         btnBuscar.setText("Buscar");
         btnBuscar.setBorder(null);
         btnBuscar.setBorderPainted(false);
@@ -117,11 +111,9 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
         });
 
         dpInicio.setBackground(new java.awt.Color(255, 255, 255));
-        dpInicio.setForeground(new java.awt.Color(0, 0, 0));
         dpInicio.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
 
         dpFin.setBackground(new java.awt.Color(255, 255, 255));
-        dpFin.setForeground(new java.awt.Color(0, 0, 0));
         dpFin.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
 
         javax.swing.GroupLayout pnContentLayout = new javax.swing.GroupLayout(pnContent);
@@ -192,7 +184,14 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rbMedioMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMedioMesActionPerformed
-        // TODO add your handling code here:
+        if (rbMedioMes.isSelected()) {
+            rbMesAnterior.setSelected(false);
+            dpInicio.setEnabled(false);
+            dpFin.setEnabled(false);
+        } else {
+            dpInicio.setEnabled(true);
+            dpFin.setEnabled(true);
+        }
     }//GEN-LAST:event_rbMedioMesActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -216,7 +215,14 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void rbMesAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMesAnteriorActionPerformed
-        // TODO add your handling code here:
+        if (rbMesAnterior.isSelected()) {
+            rbMedioMes.setSelected(false);
+            dpInicio.setEnabled(false);
+            dpFin.setEnabled(false);
+        } else {
+            dpInicio.setEnabled(true);
+            dpFin.setEnabled(true);
+        }
     }//GEN-LAST:event_rbMesAnteriorActionPerformed
 
 
