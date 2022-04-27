@@ -311,7 +311,6 @@ public class PnEditarProducto extends javax.swing.JPanel {
         Integer anio = Integer.parseInt(txtAnio.getText());
         Float precio = Float.parseFloat(txtPrecio.getText());
         Integer disponible = Integer.parseInt(txtCantidad.getText());
-
         if (descripcion.isEmpty() || tipo.isEmpty() || marca.isEmpty() || modelo.isEmpty() || anio == null || precio == null || disponible == null) {
             ctl.muestraMsj("Favor de llenar todas las casillas.", "No se pudo actualizar el producto.", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
         } else {
@@ -328,7 +327,7 @@ public class PnEditarProducto extends javax.swing.JPanel {
             }
         }
     }
-
+    
     private void limpiarCampos() {
         txtDesc.setText("");
         txtTipo.setText("");
@@ -339,14 +338,14 @@ public class PnEditarProducto extends javax.swing.JPanel {
         txtCantidad.setText("");
 
     }
-
+    
     public Producto getProducto() {
         return producto;
     }
-
+    
     public void setProducto(Producto producto) {
         this.producto = producto;
-    }
+    } 
     
     public void cargarProducto(){
         txtTipo.setText(getProducto().getTipo());
@@ -359,5 +358,4 @@ public class PnEditarProducto extends javax.swing.JPanel {
     
     }
     
-
 }

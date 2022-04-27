@@ -36,12 +36,12 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
      * Creates new form IBuscarCliente
      */
     public FrmBuscarCliente() {
-
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         this.dtm = (DefaultTableModel) clienteTable.getModel();
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        buscarClientes("","");
     }
 
     /**
@@ -287,7 +287,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCSinClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCSinClienteActionPerformed
-        continuarSinVenta();
+        continuarSinCliente();
     }//GEN-LAST:event_btnCSinClienteActionPerformed
 
 
@@ -364,10 +364,12 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
 
     }
 
-    private void continuarSinVenta() {
+    private void continuarSinCliente() {
         Control ctl = new Control();
         registrarVenta = RegistrarVenta.getInstance();
+        Cliente cliente=new Cliente(1,"None","None@gmail.com","AAAA000000AAA","0000000000");
         ctl.muestraPantalla(contenido, registrarVenta);
+        registrarVenta.setCliente(cliente);
         registrarVenta.clienteAnonimo();
         dispose();
     }

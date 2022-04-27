@@ -6,11 +6,17 @@ package IAdministrarVentas;
 
 import Control.Control;
 import Dominio.Cliente;
+import Dominio.Empleado;
+import Dominio.Pago;
 import Dominio.Producto;
+import Dominio.TipoPago;
+import Dominio.Venta;
+import Dominio.VentaProducto;
 import static IAdministrarVentas.PnAgregarProducto.auxProducts;
 import PanelesGlobales.PnContenido;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -29,7 +35,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
     private ArrayList<Producto> pdLista;
     private Cliente cliente;
     private static RegistrarVenta instance;
-
+    private TipoPago tipoPago;
     float subTotal = 0f;
     float totalIva = 0f;
     float totalVenta = 0f;
@@ -42,6 +48,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
         txtTotal.setEditable(false);
         //negocios = FabricaNegocios.getInstance();
         pdLista = new ArrayList<>();
+        rbClienteTemporal.setSelected(false);
+        rbClienteTemporal.setEnabled(false);
         //mostrarVenta();
 
     }
@@ -386,7 +394,18 @@ public class RegistrarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarProductosActionPerformed
 
     private void btnCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCobrarActionPerformed
-        calcularTotali();
+//        //Este metodo calcula el total, es util <3 uwu calcularTotali();
+//        ArrayList<VentaProducto> productos = new ArrayList<>();
+//        for (int i = 0; i < pdLista.size(); i++) {
+//            VentaProducto prod=new VentaProducto();
+//            prod.setCantidad(WIDTH);
+//            prod.setPrecioVenta(totalVenta);
+//            prod.setProducto(producto);
+//            prod.setVenta(venta);
+//            productos.add(pdLista.get(i));
+//        }
+
+        Venta venta = new Venta(null, cliente, new Date(), subTotal, totalVenta, new Empleado(), new Pago(totalVenta,tipoPago));
     }//GEN-LAST:event_btnCobrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -408,11 +427,11 @@ public class RegistrarVenta extends javax.swing.JPanel {
         int columna = this.tbProductos.getSelectedColumn();
         if (columna == 7) {
             int resp;
-            resp = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere eliminar este producto?","Eliminar Producto",JOptionPane.YES_NO_CANCEL_OPTION,1 ,new ImageIcon("src/iconos/signo-de-interrogacion.png"));
+            resp = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere eliminar este producto?", "Eliminar Producto", JOptionPane.YES_NO_CANCEL_OPTION, 1, new ImageIcon("src/iconos/signo-de-interrogacion.png"));
             if (resp == 0) {
                 DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
                 modelo.removeRow(fila);
-               // borraDatos();
+                // borraDatos();
                 txtDescuento.setEnabled(true);
                 calcularSubTotal(pdLista);
                 calcularTotali();
@@ -430,23 +449,32 @@ public class RegistrarVenta extends javax.swing.JPanel {
         //calcularTotali();
     }//GEN-LAST:event_txtDescuentoMouseExited
 
-    public static RegistrarVenta getInstance(){
+    public static RegistrarVenta getInstance() {
         if (instance == null) {
             instance = new RegistrarVenta();
         }
         return instance;
     }
-    
+
     public Cliente getCliente() {
         return cliente;
     }
 
     public void setCliente(Cliente cliente) {
-        this.cliente = cliente;        
+        this.cliente = cliente;
         cargarInformacion(cliente.getNombre());
     }
 
-    
+    public void setMetodoPagoEfectivo() {
+        tipoPago = tipoPago.EFECTIVO;
+        System.out.println(tipoPago);
+    }
+
+    public void setMetodoPagoTarjeta() {
+        tipoPago = tipoPago.TARJETA;
+        System.out.println(tipoPago);
+    }
+
     public ArrayList<Producto> getPdLista() {
         return pdLista;
     }
@@ -531,7 +559,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
         //double total = (totalIva + subTotal);
         //txtIva.setText("" + iva);
         try {
-            
+
             Float descuento = Float.parseFloat(txtDescuento.getText());
             totalVenta = subTotal - descuento - totalIva;
             txtTotal.setText(Float.toString(totalVenta));
@@ -555,9 +583,9 @@ public class RegistrarVenta extends javax.swing.JPanel {
 ////        subTotal = (float) precio;
 ////        txtSubTotal.setText("" + precio);
 ////    }
-
-    public void clienteAnonimo(){
+    public void clienteAnonimo() {
         rbClienteTemporal.setSelected(true);
+        rbClienteTemporal.setEnabled(false);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProductos;
