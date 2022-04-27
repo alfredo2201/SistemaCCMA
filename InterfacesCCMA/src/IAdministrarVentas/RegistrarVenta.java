@@ -554,6 +554,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
     }
 
     public void calcularTotali() {
+        Control ctl = new Control();
         //float totalven = 0f;
         //double iva = (subTotal * .16);
         //double total = (totalIva + subTotal);
@@ -561,14 +562,15 @@ public class RegistrarVenta extends javax.swing.JPanel {
         try {
 
             Float descuento = Float.parseFloat(txtDescuento.getText());
+//          totalVenta = subTotal + totalIva - descuento;
             totalVenta = subTotal - descuento - totalIva;
             txtTotal.setText(Float.toString(totalVenta));
             txtDescuento.setEnabled(false);
 
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
-            JOptionPane.showConfirmDialog(null, "Debes ingresar una cantidad minima en descuento -> '$0' ", "ERROR", JOptionPane.INFORMATION_MESSAGE);
-
+//            JOptionPane.showConfirmDialog(null, "Debes ingresar una cantidad minima en descuento -> '$0' ", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            ctl.muestraMsj("Debes ingresar una cantidad minima en descuento -> '$0' ", "Catidad de descuento no ingresada",  JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
         }
 
     }
