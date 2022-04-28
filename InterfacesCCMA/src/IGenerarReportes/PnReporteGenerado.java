@@ -70,26 +70,24 @@ public class PnReporteGenerado extends javax.swing.JPanel {
         btnExportar.setForeground(new java.awt.Color(0, 0, 0));
         btnExportar.setText("Exportar");
         btnExportar.setBorder(null);
-        btnExportar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExportar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btnMenu.setBackground(new java.awt.Color(153, 153, 0));
         btnMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnMenu.setForeground(new java.awt.Color(0, 0, 0));
         btnMenu.setText("Regresar al menú");
         btnMenu.setBorder(null);
-        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuActionPerformed(evt);
             }
         });
 
+        tbReporteVentas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbReporteVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Cliente", "Precio de productos/servicios", "Vendedor", "Fecha"

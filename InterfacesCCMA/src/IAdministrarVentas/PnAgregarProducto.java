@@ -358,11 +358,6 @@ public class PnAgregarProducto extends javax.swing.JPanel {
         ctl.muestraPantalla(pnContenido, venta);
         venta.setPdLista(auxProducts);
         venta.mostrarVenta();
-        //venta.calcularTotali();
-        //venta.calcularSubTotal();
-        //venta.calcularSubTotal(auxProducts);
-
-
     }//GEN-LAST:event_btnContinuarVentaActionPerformed
 
     private void cmbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoActionPerformed
