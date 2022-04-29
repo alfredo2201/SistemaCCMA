@@ -6,13 +6,20 @@ package IAdministrarVentas;
 
 import Control.Control;
 import Dominio.Cliente;
+import Dominio.Empleado;
 import Dominio.Producto;
 import Dominio.TipoPago;
+import Dominio.Venta;
+import Dominio.VentaProducto;
+import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
+import Principal.FrmPrincipal;
 import java.awt.event.KeyEvent;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -26,6 +33,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
     /**
      * Creates new form RegistrarVenta
      */
+    private FrmPrincipal main = FrmPrincipal.getInstance();
+    private Empleado empleado = main.getEmpleado();
     private PnContenido pnContenido = PnContenido.getInstance();
     private PnAgregarProducto pnAgregarProducto;
     private ArrayList<Producto> pdLista;
@@ -46,6 +55,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
         txtFecha.setEditable(false);
         txtTotal.setEditable(false);
         pdLista = new ArrayList<>();
+        System.out.println(empleado);
     }
 
     /**
@@ -394,8 +404,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_rbClienteTemporalActionPerformed
 
     private void btnMetodoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMetodoPagoActionPerformed
-        FrmMetodoPago metodoPago = new FrmMetodoPago();
-        metodoPago.setVisible(true);
+        FrmMetodoPago pnMetodoPago = new FrmMetodoPago();
+        pnMetodoPago.setVisible(true);
     }//GEN-LAST:event_btnMetodoPagoActionPerformed
 
     private void btnAgregarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductosActionPerformed
@@ -433,12 +443,9 @@ public class RegistrarVenta extends javax.swing.JPanel {
             if (resp == 0) {
                 DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
                 modelo.removeRow(fila);
-                // borraDatos();
                 txtDescuento.setEnabled(true);
                 calcularSubTotal(pdLista);
-                //calcularTotali();
             }
-
         }
     }//GEN-LAST:event_tbProductosMousePressed
 
@@ -586,8 +593,27 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
     private void registrarVenta() {
         Control ctl = new Control();
+        INegocios negocio = Fachada.FabricaNegocios.getInstance();
         if (tbProductos.getRowCount() != 0 && this.metodoPago != null) {
+            Date time = Date.from(Instant.now());
+            Venta venta;
+            venta = new Venta(new ArrayList<VentaProducto>(), this.cliente, time, this.subTotal, this.totalVenta, this.empleado, this.metodoPago);
+            ArrayList<VentaProducto> ventaProducto = new ArrayList<>();
+            for (int i = 0; i < tbProductos.getRowCount(); i++) {
+                //   Producto producto, Venta venta, Integer cantidad, Float precioVenta
+                Producto prod = negocio.consultarProductoById(pdLista.get(i).getIdProducto());
+                DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
+                int cantidad = (int) modelo.getValueAt(i, 6);
+                VentaProducto produ = new VentaProducto();
+                produ.setProducto(prod);
+                produ.setCantidad(cantidad);
+                produ.setVenta(venta);
+                produ.setPrecioVenta(prod.getPrecio() * cantidad);
+                ventaProducto.add(produ);
+            }
+            negocio.registrarVenta(venta, ventaProducto);
             System.out.println("Se puede registrar");
+
         } else {
             ctl.muestraMsj("Debes ingresar una cantidad minima en descuento -> '$0' ", "Catidad de descuento no ingresada", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
         }

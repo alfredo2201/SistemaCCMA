@@ -24,8 +24,8 @@ public class ControlVenta {
         if (venta != null) {
             try {
                 iDatos.insertarVenta(venta);
-                ArrayList<Venta> ventas = iDatos.consultarVentaByFecha(venta.getFecha());
-                Venta aux = ventas.get(0);
+                ArrayList<Venta> ventas = iDatos.obtenerTodoVenta();
+                Venta aux = ventas.get(ventas.size()-1);
                 Venta ventaAux = iDatos.consultarVentaById(aux.getIdVenta());
                 for (VentaProducto producto : listaProductos) {
                     producto.setVenta(ventaAux);
