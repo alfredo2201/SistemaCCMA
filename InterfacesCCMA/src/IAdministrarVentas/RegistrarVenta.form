@@ -211,7 +211,7 @@
                 <Column editable="false" title="Modelo" type="java.lang.Object"/>
                 <Column editable="false" title="A&#xf1;o" type="java.lang.Object"/>
                 <Column editable="false" title="Precio" type="java.lang.Object"/>
-                <Column editable="true" title="Cantidad" type="java.lang.Object"/>
+                <Column editable="true" title="Cantidad" type="java.lang.Integer"/>
                 <Column editable="true" title="Eliminar" type="java.lang.Object"/>
               </Table>
             </Property>
@@ -221,8 +221,9 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbProductosMousePressed"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbProductosMouseExited"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbProductosMousePressed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tbProductosKeyPressed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
