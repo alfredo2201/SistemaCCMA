@@ -203,14 +203,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
         cargarEmpleado();
     }
     
+    public Empleado getEmpleado() {
+        return this.empleado;
+    }
+    
     private void cargarEmpleado(){
         lblNombreUsuario.setText(this.empleado.getNombre());
     }
-
-    public Empleado getEmpleado() {
-        return empleado;
-    }
-       
-    
     
 }
