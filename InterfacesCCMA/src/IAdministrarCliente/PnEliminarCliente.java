@@ -22,10 +22,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PnEliminarCliente extends javax.swing.JPanel {
 
-    ArrayList<Cliente> cLIsta;
-    ArrayList<Cliente> cLIstaEliminar;
-    private INegocios iNegocios;
     private PnContenido pnContenido = PnContenido.getInstance();
+    private ArrayList<Cliente> cLIsta;
+    private ArrayList<Cliente> cLIstaEliminar;
+    private INegocios iNegocios;
+    
 
     /**
      * Creates new form PnEliminarCliente
@@ -33,6 +34,8 @@ public class PnEliminarCliente extends javax.swing.JPanel {
     public PnEliminarCliente() {
         initComponents();
         iNegocios = FabricaNegocios.getInstance();
+        cLIsta = new ArrayList<>();
+        cLIstaEliminar = new ArrayList<>();
         cargarClienteTabla();
     }
 
@@ -56,7 +59,6 @@ public class PnEliminarCliente extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setText("Eliminar cliente");
 
         pnTabla.setBackground(new java.awt.Color(255, 255, 255));
@@ -111,7 +113,6 @@ public class PnEliminarCliente extends javax.swing.JPanel {
 
         btnEliminar.setBackground(new java.awt.Color(255, 255, 0));
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorder(null);
         btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -123,14 +124,17 @@ public class PnEliminarCliente extends javax.swing.JPanel {
 
         btnCancelar1.setBackground(new java.awt.Color(153, 153, 153));
         btnCancelar1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCancelar1.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelar1.setText("Cancelar");
         btnCancelar1.setBorder(null);
         btnCancelar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelar1ActionPerformed(evt);
+            }
+        });
 
         btnMenu.setBackground(new java.awt.Color(153, 153, 0));
         btnMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnMenu.setForeground(new java.awt.Color(0, 0, 0));
         btnMenu.setText("Regresar al menú");
         btnMenu.setBorder(null);
         btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -188,6 +192,12 @@ public class PnEliminarCliente extends javax.swing.JPanel {
         ctl.muestraPantalla(pnContenido, pnMnCliente);
     }//GEN-LAST:event_btnMenuActionPerformed
 
+    private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
+        PnMenuClientes pnMnCliente = new PnMenuClientes();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnCliente);
+    }//GEN-LAST:event_btnCancelar1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar1;
@@ -199,7 +209,25 @@ public class PnEliminarCliente extends javax.swing.JPanel {
     private javax.swing.JPanel pnTabla;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarClienteTabla() {
+//    public void cargarClientesTabla() {
+//        DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
+//        Control ctl = new Control();
+////        limpiarTabla();
+//        try {
+//            cLIsta = iNegocios.obtenerClientes();
+//            if (cLIsta.isEmpty()) {
+//                ctl.muestraMsj("No se ha encontrado ningun cliente", "Sin cliente", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+//                return;
+//            }
+//            cLIsta.forEach(cl -> {
+//                dtm.addRow(new Object[]{cl.getId_cliente(), cl.getNombre(),cl.getCorreo(), cl.getTelefono(),cl.getRfc(), false});
+//            });
+//        } catch (Exception e) {
+//            ctl.muestraMsj("No se han podido recuperar los clientes.", "Error al buscar clientes", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+//        }
+//    }
+    
+    public void cargarClienteTabla() {
         DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
         Control ctl = new Control();
         dtm.setRowCount(0);
@@ -234,5 +262,14 @@ public class PnEliminarCliente extends javax.swing.JPanel {
         });
         ctl.muestraMsj("Se eliminaron los clientes seleccionados.", "No se elimino el cliente", JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");                    
     }
+    
+//     private void limpiarTabla() {
+//        DefaultTableModel temp = (DefaultTableModel) clienteTable.getModel();
+//        int filas = clienteTable.getRowCount();
+//
+//        for (int a = 0; filas > a; a++) {
+//            temp.removeRow(0);
+//        }
+//    }
 
 }

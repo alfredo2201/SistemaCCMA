@@ -268,7 +268,7 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
         } else {
             Cliente cl = new Cliente(nombre + " " + apellidos, email, RFC, telefono);
             negocios.registrarClienteNuevo(cl);
-            ctl.muestraMsj("Se eliminaron los clientes seleccionados.", "No se elimino el cliente", JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");   
+            ctl.muestraMsj("Se registró al cliente con éxito.", "Cliente registrado con éxito", JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");   
             limpiarCampos();
         }
     }

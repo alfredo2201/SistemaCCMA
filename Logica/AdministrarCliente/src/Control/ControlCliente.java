@@ -59,6 +59,12 @@ public class ControlCliente {
     }
 
     public ArrayList<Cliente> consultaTodoCliente() {
+//        try {
+//            return iDatos.obtenerTodoClientes();
+//        } catch (Exception e) {
+//            System.err.println(e.getMessage());
+//            return null;
+//        }
         try {
             return iDatos.obtenerTodoClientes();
         } catch (Exception ex) {

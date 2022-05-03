@@ -5,6 +5,7 @@
  */
 package PanelesGlobales;
 
+import IAdministrarCliente.PnEliminarCliente;
 import IAdministrarProducto.PnMenuProducto;
 import IAdministrarCliente.PnMenuClientes;
 import IAdministrarPresupuesto.PnMenuPresupuesto;
@@ -26,6 +27,7 @@ public class PnMenu extends javax.swing.JPanel {
 
     public PnMenu() {
         initComponents();
+         
     }
 
     /**

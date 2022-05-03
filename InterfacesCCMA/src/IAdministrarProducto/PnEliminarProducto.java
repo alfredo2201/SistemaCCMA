@@ -190,7 +190,9 @@ public class PnEliminarProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEliminarProducActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        cargarProducto();
+        PnMenuProducto pnMnProducto = new PnMenuProducto();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnProducto);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed

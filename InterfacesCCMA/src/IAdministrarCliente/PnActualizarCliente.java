@@ -188,7 +188,7 @@ public class PnActualizarCliente extends javax.swing.JPanel {
         pnEditarCliente.cargarCliente();
     }
 
-    private void cargarClientes() {
+    public void cargarClientes() {
         ArrayList<Cliente> cLista = new ArrayList<>();
         dtm.setRowCount(0);
         cLista = negocios.obtenerClientes();

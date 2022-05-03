@@ -41,7 +41,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         setResizable(false);
         this.dtm = (DefaultTableModel) clienteTable.getModel();
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        buscarClientes("","");
+//      buscarClientes("","");
     }
 
     /**
