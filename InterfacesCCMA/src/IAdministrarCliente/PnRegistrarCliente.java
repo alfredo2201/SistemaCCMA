@@ -28,7 +28,7 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
      */
     public PnRegistrarCliente() {
         initComponents();
-        //clDao = new ClienteDAO();
+
     }
 
     /**
@@ -263,12 +263,18 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
         String email = txtCorreo.getText();
         String telefono = txtTelefono.getText();
         String RFC = txtRFC.getText();
-        if (nombre.isEmpty() || apellidos.isEmpty() || email.isEmpty() || telefono.isEmpty() || RFC.isEmpty()) {
-            ctl.muestraMsj("Campos vacios. Verifique su información", "Error de campos de entrada", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+        
+        if (nombre.isEmpty() || apellidos.isEmpty() || email.isEmpty()
+                || telefono.isEmpty() || RFC.isEmpty()) {
+            ctl.muestraMsj("Campos vacios. Verifique su información",
+                    "Error de campos de entrada", JOptionPane.INFORMATION_MESSAGE,
+                    "src/iconos/warning.png");
         } else {
             Cliente cl = new Cliente(nombre + " " + apellidos, email, RFC, telefono);
             negocios.registrarClienteNuevo(cl);
-            ctl.muestraMsj("Se registró al cliente con éxito.", "Cliente registrado con éxito", JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");   
+            ctl.muestraMsj("Se registró al cliente con éxito.",
+                    "Cliente registrado con éxito", JOptionPane.INFORMATION_MESSAGE,
+                    "src/iconos/comprobado.png");
             limpiarCampos();
         }
     }

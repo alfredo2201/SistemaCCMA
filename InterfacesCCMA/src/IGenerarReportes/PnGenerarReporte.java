@@ -146,43 +146,16 @@ public class PnGenerarReporte extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenReporteActionPerformed
-//        // TODO add your handling code here:
-//        Date fechaI = dcFechaInicio.getDate();
-//        Date fechaF = dcFechaFin.getDate();
-//
-//        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
-//        JOptionPane.showMessageDialog(null, "La fecha es del: " + formato.format(fechaI) + " al " + formato.format(fechaF));
-
-        contenido.removeAll();
-        reporte.setVisible(true);
-        reporte.setSize(contenido.getSize().width, contenido.getSize().height);
-        reporte.setLocation(0, 0);
-        contenido.add(reporte);
-        contenido.revalidate();
-        contenido.repaint();
+        generarReporte();
     }//GEN-LAST:event_btnGenReporteActionPerformed
 
     private void rbMesAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMesAnteriorActionPerformed
 
-        if (rbMesAnterior.isSelected()) {
-            rbMedioMes.setSelected(false);
-            dcFechaInicio.setEnabled(false);
-            dcFechaFin.setEnabled(false);
-        } else {
-            dcFechaInicio.setEnabled(true);
-            dcFechaFin.setEnabled(true);
-        }
+        reportesMesAnterior();
     }//GEN-LAST:event_rbMesAnteriorActionPerformed
 
     private void rbMedioMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMedioMesActionPerformed
-        if (rbMedioMes.isSelected()) {
-            rbMesAnterior.setSelected(false);
-            dcFechaInicio.setEnabled(false);
-            dcFechaFin.setEnabled(false);
-        } else {
-            dcFechaInicio.setEnabled(true);
-            dcFechaFin.setEnabled(true);
-        }
+        reportesMedioMes();
     }//GEN-LAST:event_rbMedioMesActionPerformed
 
 
@@ -197,4 +170,39 @@ public class PnGenerarReporte extends javax.swing.JPanel {
     private javax.swing.JRadioButton rbMesAnterior;
     private javax.swing.JButton txtCancelar;
     // End of variables declaration//GEN-END:variables
+
+    public void generarReporte() {
+
+        contenido.removeAll();
+        reporte.setVisible(true);
+        reporte.setSize(contenido.getSize().width, contenido.getSize().height);
+        reporte.setLocation(0, 0);
+        contenido.add(reporte);
+        contenido.revalidate();
+        contenido.repaint();
+    }
+
+    public void reportesMesAnterior() {
+
+        if (rbMesAnterior.isSelected()) {
+            rbMedioMes.setSelected(false);
+            dcFechaInicio.setEnabled(false);
+            dcFechaFin.setEnabled(false);
+        } else {
+            dcFechaInicio.setEnabled(true);
+            dcFechaFin.setEnabled(true);
+        }
+    }
+
+    public void reportesMedioMes() {
+        if (rbMedioMes.isSelected()) {
+            rbMesAnterior.setSelected(false);
+            dcFechaInicio.setEnabled(false);
+            dcFechaFin.setEnabled(false);
+        } else {
+            dcFechaInicio.setEnabled(true);
+            dcFechaFin.setEnabled(true);
+        }
+    }
+
 }

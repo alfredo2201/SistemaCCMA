@@ -184,45 +184,15 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rbMedioMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMedioMesActionPerformed
-        if (rbMedioMes.isSelected()) {
-            rbMesAnterior.setSelected(false);
-            dpInicio.setEnabled(false);
-            dpFin.setEnabled(false);
-        } else {
-            dpInicio.setEnabled(true);
-            dpFin.setEnabled(true);
-        }
+        buscarVentaMedioMes();
     }//GEN-LAST:event_rbMedioMesActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        if (getTipoPantalla() == CONSULTAR) {
-            contenido.removeAll();
-            pnConsultar.setSize(contenido.getSize().width, contenido.getSize().height);
-            pnConsultar.setLocation(0, -40);
-            contenido.add(pnConsultar);
-            contenido.revalidate();
-            contenido.repaint();
-            dispose();
-        } else if (getTipoPantalla() == ELIMINAR) {
-            contenido.removeAll();
-            pnEliminar.setSize(contenido.getSize().width, contenido.getSize().height);
-            pnEliminar.setLocation(0, -40);
-            contenido.add(pnEliminar);
-            contenido.revalidate();
-            contenido.repaint();
-            dispose();
-        }
+        buscarVenta();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void rbMesAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMesAnteriorActionPerformed
-        if (rbMesAnterior.isSelected()) {
-            rbMedioMes.setSelected(false);
-            dpInicio.setEnabled(false);
-            dpFin.setEnabled(false);
-        } else {
-            dpInicio.setEnabled(true);
-            dpFin.setEnabled(true);
-        }
+        buscarVentaMesAnterior();
     }//GEN-LAST:event_rbMesAnteriorActionPerformed
 
 
@@ -245,6 +215,53 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
 
     public void setTipoPantalla(int tipoPantalla) {
         this.tipoPantalla = tipoPantalla;
+    }
+
+    public void buscarVentaMedioMes() {
+
+        if (rbMedioMes.isSelected()) {
+            rbMesAnterior.setSelected(false);
+            dpInicio.setEnabled(false);
+            dpFin.setEnabled(false);
+        } else {
+            dpInicio.setEnabled(true);
+            dpFin.setEnabled(true);
+        }
+    }
+
+    public void buscarVentaMesAnterior() {
+
+        if (rbMesAnterior.isSelected()) {
+            rbMedioMes.setSelected(false);
+            dpInicio.setEnabled(false);
+            dpFin.setEnabled(false);
+        } else {
+            dpInicio.setEnabled(true);
+            dpFin.setEnabled(true);
+        }
+    }
+
+    public void buscarVenta() {
+
+        if (getTipoPantalla() == CONSULTAR) {
+            contenido.removeAll();
+            pnConsultar.setSize(contenido.getSize().width,
+                    contenido.getSize().height);
+            pnConsultar.setLocation(0, -40);
+            contenido.add(pnConsultar);
+            contenido.revalidate();
+            contenido.repaint();
+            dispose();
+        } else if (getTipoPantalla() == ELIMINAR) {
+            contenido.removeAll();
+            pnEliminar.setSize(contenido.getSize().width,
+                    contenido.getSize().height);
+            pnEliminar.setLocation(0, -40);
+            contenido.add(pnEliminar);
+            contenido.revalidate();
+            contenido.repaint();
+            dispose();
+        }
     }
 
 }

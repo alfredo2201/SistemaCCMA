@@ -400,7 +400,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
     private void btnCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCobrarActionPerformed
         registrarVenta();
-        
+
     }//GEN-LAST:event_btnCobrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -489,7 +489,10 @@ public class RegistrarVenta extends javax.swing.JPanel {
         int columna = this.tbProductos.getSelectedColumn();
         if (columna == 7) {
             int resp;
-            resp = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere eliminar este producto?", "Eliminar Producto", JOptionPane.YES_NO_CANCEL_OPTION, 1, new ImageIcon("src/iconos/signo-de-interrogacion.png"));
+            resp = JOptionPane.showConfirmDialog(null,
+                    "¿Seguro que quiere eliminar este producto?", "Eliminar Producto",
+                    JOptionPane.YES_NO_CANCEL_OPTION, 1,
+                    new ImageIcon("src/iconos/signo-de-interrogacion.png"));
             if (resp == 0) {
                 DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
                 modelo.removeRow(fila);
@@ -508,7 +511,9 @@ public class RegistrarVenta extends javax.swing.JPanel {
         try {
             pdLista = PnAgregarProducto.auxProducts;
             if (pdLista.isEmpty()) {
-                ctl.muestraMsj("No se ha encontrado ningun producto", "Sin producto", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+                ctl.muestraMsj("No se ha encontrado ningun producto",
+                        "Sin producto", JOptionPane.INFORMATION_MESSAGE,
+                        "src/iconos/warning.png");
                 return;
             }
             for (int i = 0; i < tbProductos.getRowCount(); i++) {
@@ -516,7 +521,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
                 int idProducto = (int) modelo.getValueAt(i, 0);
                 lista.add(negocios.consultarProductoById(idProducto));
             }
-            
+
             pdLista.removeAll(lista);
             pdLista.forEach(pd -> {
                 dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(),
@@ -526,7 +531,9 @@ public class RegistrarVenta extends javax.swing.JPanel {
             calcularSubTotal(pdLista);
             calcularTotal();
         } catch (Exception e) {
-            ctl.muestraMsj("No se han podido recuperar los productos.", "Error al buscar productos", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+            ctl.muestraMsj("No se han podido recuperar los productos.",
+                    "Error al buscar productos", JOptionPane.INFORMATION_MESSAGE,
+                    "src/iconos/warning.png");
         }
     }
 
@@ -566,7 +573,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
         Control ctl = new Control();
         if (tbProductos.getRowCount() != 0 && this.metodoPago != null) {
             System.out.println(this.empleado + " ES EL EMPLEADO");
-            Venta venta = new Venta(new ArrayList<>(), this.cliente, new Date(), this.subTotal, this.totalVenta, this.empleado, new Pago(totalVenta, metodoPago));
+            Venta venta = new Venta(new ArrayList<>(), this.cliente, new Date(),
+                    this.subTotal, this.totalVenta, this.empleado, new Pago(totalVenta, metodoPago));
             ArrayList<VentaProducto> ventaProducto = new ArrayList<>();
             for (int i = 0; i < tbProductos.getRowCount(); i++) {
                 //   Producto producto, Venta venta, Integer cantidad, Float precioVenta
@@ -582,19 +590,22 @@ public class RegistrarVenta extends javax.swing.JPanel {
             }
             venta.setListaProductos(ventaProducto);
             negocios.registrarVenta(venta, ventaProducto);
-            ctl.muestraMsj("Venta registrada con exito", "Venta registrada", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+            ctl.muestraMsj("Venta registrada con exito", "Venta registrada",
+                    JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
             regresar();
 
         } else {
-            ctl.muestraMsj("Debes ingresar una cantidad minima en descuento -> '$0' ", "Catidad de descuento no ingresada", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+            ctl.muestraMsj("Debes ingresar una cantidad minima en descuento -> '$0' ",
+                    "Catidad de descuento no ingresada", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
         }
     }
 
-    public void regresar(){
+    public void regresar() {
         PnMenuVenta pnMnVenta = new PnMenuVenta();
         Control ctl = new Control();
         ctl.muestraPantalla(pnContenido, pnMnVenta);
     }
+
     public void calcularTotal() {
         Control ctl = new Control();
         try {
@@ -610,12 +621,9 @@ public class RegistrarVenta extends javax.swing.JPanel {
             }
         } catch (NumberFormatException ex) {
             ex.printStackTrace(System.out);
-
-//            JOptionPane.showConfirmDialog(null, "Debes ingresar una cantidad minima en descuento -> '$0' ", "ERROR", JOptionPane.INFORMATION_MESSAGE);
-            ctl.muestraMsj("Debes ingresar una cantidad minima en descuento -> '$0' ", "Cantidad de descuento no ingresada",  JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
-
-//            ctl.muestraMsj("Debes ingresar una cantidad mayor a 0% ", "Catidad de descuento no ingresada", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
-
+            ctl.muestraMsj("Debes ingresar una cantidad minima en descuento -> '$0' ",
+                    "Cantidad de descuento no ingresada", JOptionPane.ERROR_MESSAGE,
+                    "src/iconos/warning.png");
         }
 
     }
@@ -624,19 +632,12 @@ public class RegistrarVenta extends javax.swing.JPanel {
         rbClienteTemporal.setSelected(true);
         rbClienteTemporal.setEnabled(false);
     }
-    
-    public void limpiarTabla(){
+
+    public void limpiarTabla() {
         tbProductos.removeAll();
     }
 
-    private void borrarCampos() {
-        txtCliente.setText("");
-        rbClienteTemporal.setSelected(false);
-        rbClienteTemporal.setEnabled(true);
-        txtCliente.setEnabled(true);
-        borraDatos();
-        tbProductos.removeAll();
-    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProductos;
     private javax.swing.JButton btnCancelar;

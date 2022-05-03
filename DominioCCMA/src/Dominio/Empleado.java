@@ -34,6 +34,7 @@ public class Empleado extends Persona{
         this.password = password;
         this.permiso = permiso;
     }
+    
 
     public Empleado(String nombre_completo, String correo,String username, String password, Permiso permiso ) {
         super(nombre_completo, correo);

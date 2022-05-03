@@ -22,24 +22,19 @@ import javax.swing.table.DefaultTableModel;
  * @author Samuel Medellin
  */
 public class PnEliminarVenta extends javax.swing.JPanel {
-    
-    
-//    private PnConsultarProducto consultar = new PnConsultarProducto();
-//    private INegocios negocios = FabricaNegocios.getInstance();
-//    private int tipoPantalla;
-//    private DefaultTableModel dtm;
+
     ArrayList<Venta> cLIsta;
     ArrayList<Venta> cLIstaEliminar;
     private INegocios iNegocios;
     private PnContenido pnContenido = PnContenido.getInstance();
+
     /**
      * Creates new form EliminarVenta
      */
-
     public PnEliminarVenta() {
         initComponents();
         iNegocios = FabricaNegocios.getInstance();
-//        this.dtm = (DefaultTableModel) tbVentas.getModel();
+//        
     }
 
     /**
@@ -270,54 +265,6 @@ public class PnEliminarVenta extends javax.swing.JPanel {
         eliminarVenta();
     }//GEN-LAST:event_btnEliminarVentaActionPerformed
 
-//    public void buscarProductos(String nombre) {
-//        ArrayList<Producto> pdLista = new ArrayList<>();
-//        ArrayList<Cliente> cLista = new ArrayList<>();
-//
-//        // Borra todos los rows
-//        dtm.setRowCount(0);
-//        if (!nombre.isEmpty()) {
-//            cLista = negocios.consultarClienteNombre(nombre);
-//        } else {
-//            pdLista = negocios.consultarTodoProducto();
-//        }
-//        pdLista.forEach(pd -> {
-//            dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(), pd.getMarca(), pd.getModelo(), pd.getAnio(), 
-//                pd.getPrecio(), pd.getDisponible()});
-//        });
-//    }
-    
-//    private void cargarProductos() {
-//        ArrayList<Producto> pdLista = new ArrayList<>();
-//        dtm.setRowCount(0);
-//        pdLista = negocios.consultarTodoProducto();
-//        pdLista.forEach(pd -> {
-//            dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(), pd.getMarca(), pd.getModelo(), pd.getAnio(), 
-//                pd.getPrecio(), pd.getDisponible()});
-//        });
-//    }
-    
-    private void eliminarVenta() {
-        DefaultTableModel dtm = (DefaultTableModel) tbVentas.getModel();
-        cLIstaEliminar = new ArrayList<>();
-        Control ctl = new Control();
-        for (int i = 0; i < dtm.getRowCount(); i++) {
-            // TODO: Buscar que otro puede ser vector, ya esta deprecated
-            if (((Vector) dtm.getDataVector().elementAt(i)).elementAt(7).equals(true)) {
-                cLIstaEliminar.add(cLIsta.get(i));
-            }
-        }
-
-        if (cLIstaEliminar.isEmpty()) {
-            ctl.muestraMsj("No se ha seleccionado ninguna venta",  "No se seleccionó ninguna venta", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");            
-            return;
-        }
-        cLIstaEliminar.forEach(cl -> {
-            iNegocios.eliminarVenta(cl);
-        });
-        ctl.muestraMsj("Se eliminaron las ventas seleccionadas.", "No se eliminó la venta", JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");                    
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarVenta;
     private javax.swing.JButton btnEliminarVenta;
@@ -335,4 +282,30 @@ public class PnEliminarVenta extends javax.swing.JPanel {
     private javax.swing.JTextField txtCliente;
     private javax.swing.JTextField txtFecha;
     // End of variables declaration//GEN-END:variables
+
+    private void eliminarVenta() {
+        DefaultTableModel dtm = (DefaultTableModel) tbVentas.getModel();
+        cLIstaEliminar = new ArrayList<>();
+        Control ctl = new Control();
+        for (int i = 0; i < dtm.getRowCount(); i++) {
+            // TODO: Buscar que otro puede ser vector, ya esta deprecated
+            if (((Vector) dtm.getDataVector().elementAt(i)).elementAt(7).equals(true)) {
+                cLIstaEliminar.add(cLIsta.get(i));
+            }
+        }
+
+        if (cLIstaEliminar.isEmpty()) {
+            ctl.muestraMsj("No se ha seleccionado ninguna venta",
+                    "No se seleccionó ninguna venta", JOptionPane.ERROR_MESSAGE,
+                    "src/iconos/warning.png");
+            return;
+        }
+        cLIstaEliminar.forEach(cl -> {
+            iNegocios.eliminarVenta(cl);
+        });
+        ctl.muestraMsj("Se eliminaron las ventas seleccionadas.",
+                "No se eliminó la venta", JOptionPane.INFORMATION_MESSAGE,
+                "src/iconos/comprobado.png");
+    }
+
 }

@@ -15,7 +15,6 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author crist
@@ -26,7 +25,6 @@ public class PnEliminarCliente extends javax.swing.JPanel {
     private ArrayList<Cliente> cLIsta;
     private ArrayList<Cliente> cLIstaEliminar;
     private INegocios iNegocios;
-    
 
     /**
      * Creates new form PnEliminarCliente
@@ -209,24 +207,6 @@ public class PnEliminarCliente extends javax.swing.JPanel {
     private javax.swing.JPanel pnTabla;
     // End of variables declaration//GEN-END:variables
 
-//    public void cargarClientesTabla() {
-//        DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
-//        Control ctl = new Control();
-////        limpiarTabla();
-//        try {
-//            cLIsta = iNegocios.obtenerClientes();
-//            if (cLIsta.isEmpty()) {
-//                ctl.muestraMsj("No se ha encontrado ningun cliente", "Sin cliente", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
-//                return;
-//            }
-//            cLIsta.forEach(cl -> {
-//                dtm.addRow(new Object[]{cl.getId_cliente(), cl.getNombre(),cl.getCorreo(), cl.getTelefono(),cl.getRfc(), false});
-//            });
-//        } catch (Exception e) {
-//            ctl.muestraMsj("No se han podido recuperar los clientes.", "Error al buscar clientes", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
-//        }
-//    }
-    
     public void cargarClienteTabla() {
         DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
         Control ctl = new Control();
@@ -234,14 +214,18 @@ public class PnEliminarCliente extends javax.swing.JPanel {
         cLIsta = iNegocios.obtenerClientes(); // No se pudo obtener
         if (cLIsta.isEmpty()) {
             // No hay carnales
-            ctl.muestraMsj("No se ha encontrado ningun cliente", "No se encontro el cliente", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+            ctl.muestraMsj("No se ha encontrado ningun cliente",
+                    "No se encontro el cliente", JOptionPane.INFORMATION_MESSAGE,
+                    "src/iconos/warning.png");
             return;
         }
         cLIsta.forEach(cl -> {
-            dtm.addRow(new Object[]{cl.getId_cliente(), cl.getNombre(), cl.getCorreo(), cl.getTelefono(), cl.getRfc(), false});
+            dtm.addRow(new Object[]{cl.getId_cliente(), cl.getNombre(),
+                cl.getCorreo(), cl.getTelefono(), cl.getRfc(), false});
         });
     }
 
+    
     private void eliminarCliente() {
         DefaultTableModel dtm = (DefaultTableModel) clienteTable.getModel();
         cLIstaEliminar = new ArrayList<>();
@@ -252,24 +236,17 @@ public class PnEliminarCliente extends javax.swing.JPanel {
                 cLIstaEliminar.add(cLIsta.get(i));
             }
         }
-
         if (cLIstaEliminar.isEmpty()) {
-            ctl.muestraMsj("No se ha seleccionado ningun cliente",  "No se selecciono ningun cliente", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");            
+            ctl.muestraMsj("No se ha seleccionado ningun cliente",
+                    "No se selecciono ningun cliente", JOptionPane.ERROR_MESSAGE,
+                    "src/iconos/warning.png");
             return;
         }
         cLIstaEliminar.forEach(cl -> {
             iNegocios.eliminarCliente(cl);
         });
-        ctl.muestraMsj("Se eliminaron los clientes seleccionados.", "No se elimino el cliente", JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");                    
+        ctl.muestraMsj("Se eliminaron los clientes seleccionados.",
+                "No se elimino el cliente", JOptionPane.INFORMATION_MESSAGE,
+                "src/iconos/comprobado.png");
     }
-    
-//     private void limpiarTabla() {
-//        DefaultTableModel temp = (DefaultTableModel) clienteTable.getModel();
-//        int filas = clienteTable.getRowCount();
-//
-//        for (int a = 0; filas > a; a++) {
-//            temp.removeRow(0);
-//        }
-//    }
-
 }

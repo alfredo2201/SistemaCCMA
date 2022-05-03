@@ -299,6 +299,7 @@ public class PnRegistrarProducto extends javax.swing.JPanel {
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
+    
     private void agregarProducto() {
         Control ctl = new Control();
         String descripcion = txtDesc.getText();
@@ -309,21 +310,26 @@ public class PnRegistrarProducto extends javax.swing.JPanel {
         Float precio = Float.parseFloat(txtPrecio.getText());
         Integer disponible = Integer.parseInt(txtCantidad.getText());
 
-        if (descripcion.isEmpty() || tipo.isEmpty() || marca.isEmpty() || modelo.isEmpty() || anio == null || precio == null || disponible == null) {
-            ctl.muestraMsj("Favor de llenar todas las casillas.", "No se pudo registrar el producto.", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+        if (descripcion.isEmpty() || tipo.isEmpty() || marca.isEmpty()
+                || modelo.isEmpty() || anio == null || precio == null || disponible == null) {
+            ctl.muestraMsj("Favor de llenar todas las casillas.",
+                    "No se pudo registrar el producto.", JOptionPane.ERROR_MESSAGE,
+                    "src/iconos/warning.png");
         } else {
             try {
                 Producto producto = new Producto(descripcion, tipo, marca, modelo, anio, precio);
                 producto.setDisponible(disponible);
                 negocios.registrarProductoNuevo(producto);
-                ctl.muestraMsj("Se registro un nuevo producto.", "Producto agregado", JOptionPane.ERROR_MESSAGE, "src/iconos/comprobado.png");
+                ctl.muestraMsj("Se registro un nuevo producto.",
+                        "Producto agregado", JOptionPane.ERROR_MESSAGE, "src/iconos/comprobado.png");
                 limpiarCampos();
             } catch (Error e) {
-                ctl.muestraMsj("Error al intentar registrar el producto.", "Error al registrar producto", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+                ctl.muestraMsj("Error al intentar registrar el producto.",
+                        "Error al registrar producto", JOptionPane.ERROR_MESSAGE,
+                        "src/iconos/warning.png");
             }
         }
     }
-
     private void limpiarCampos() {
         txtDesc.setText("");
         txtTipo.setText("");
@@ -334,5 +340,4 @@ public class PnRegistrarProducto extends javax.swing.JPanel {
         txtCantidad.setText("");
 
     }
-
 }

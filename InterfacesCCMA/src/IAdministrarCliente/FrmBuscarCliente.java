@@ -337,7 +337,6 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         });
     }
 
-
     private void continuar() {
         Control ctl = new Control();
         int i = clienteTable.getSelectedRow();
@@ -359,7 +358,8 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
             }
             dispose();
         } else {
-            ctl.muestraMsj("Por favor seleccione un cliente.", "Cliente no seleccionado", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+            ctl.muestraMsj("Por favor seleccione un cliente.",
+                    "Cliente no seleccionado", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
 
         }
 
@@ -368,7 +368,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
     private void continuarSinCliente() {
         Control ctl = new Control();
         registrarVenta = RegistrarVenta.getInstance();
-        Cliente cliente=new Cliente(1,"None","None@gmail.com","AAAA000000AAA","0000000000");
+        Cliente cliente = new Cliente(1, "None", "None@gmail.com", "AAAA000000AAA", "0000000000");
         ctl.muestraPantalla(contenido, registrarVenta);
         registrarVenta.setCliente(cliente);
         registrarVenta.clienteAnonimo();
