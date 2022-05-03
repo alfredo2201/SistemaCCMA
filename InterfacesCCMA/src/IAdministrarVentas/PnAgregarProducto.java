@@ -357,6 +357,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
         Control ctl = new Control();
         ctl.muestraPantalla(pnContenido, venta);
         venta.setPdLista(auxProducts);
+        venta.verificarProductosRepetidos(auxProducts);
         venta.mostrarVenta();
         //venta.calcularTotali();
         //venta.calcularSubTotal();

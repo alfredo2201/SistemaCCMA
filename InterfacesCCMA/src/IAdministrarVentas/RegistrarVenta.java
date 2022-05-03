@@ -12,10 +12,14 @@ import Dominio.Producto;
 import Dominio.TipoPago;
 import Dominio.Venta;
 import Dominio.VentaProducto;
-import static IAdministrarVentas.PnAgregarProducto.auxProducts;
+import Fachada.FabricaNegocios;
+import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
+import Principal.FrmPrincipal;
+import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -30,27 +34,30 @@ public class RegistrarVenta extends javax.swing.JPanel {
     /**
      * Creates new form RegistrarVenta
      */
+    FrmPrincipal main = FrmPrincipal.getInstance();
+    Empleado empleado = main.getEmpleado();
     private PnContenido pnContenido = PnContenido.getInstance();
     private PnAgregarProducto pnAgregarProducto;
     private ArrayList<Producto> pdLista;
     private Cliente cliente;
     private static RegistrarVenta instance;
-    private TipoPago tipoPago;
-    float subTotal = 0f;
-    float totalIva = 0f;
-    float totalVenta = 0f;
+    private TipoPago metodoPago;
+    private INegocios negocios;
+    private float subTotal = 0f;
+    private float totalIva = 0f;
+    private float totalVenta = 0f;
 
     private RegistrarVenta() {
+
         initComponents();
         txtIva.setEditable(false);
         txtSubTotal.setEditable(false);
         txtFecha.setEditable(false);
         txtTotal.setEditable(false);
-        //negocios = FabricaNegocios.getInstance();
+        negocios = FabricaNegocios.getInstance();
         pdLista = new ArrayList<>();
         rbClienteTemporal.setSelected(false);
         rbClienteTemporal.setEnabled(false);
-        //mostrarVenta();
 
     }
 
@@ -91,7 +98,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Cliente:");
 
         txtCliente.setEditable(false);
@@ -100,10 +106,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
         txtCliente.setBorder(null);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Fecha:");
 
-        txtFecha.setBackground(new java.awt.Color(255, 255, 255));
         txtFecha.setBorder(null);
         txtFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +116,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Cliente temporal");
 
         rbClienteTemporal.setBackground(new java.awt.Color(255, 255, 255));
@@ -122,9 +125,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
             }
         });
 
-        tbProductos.setBackground(new java.awt.Color(255, 255, 255));
         tbProductos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tbProductos.setForeground(new java.awt.Color(0, 0, 0));
         tbProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -133,9 +134,16 @@ public class RegistrarVenta extends javax.swing.JPanel {
                 "Código", "Descripción", "Marca", "Modelo", "Año", "Precio", "Cantidad", "Eliminar"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, true, true
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -143,11 +151,16 @@ public class RegistrarVenta extends javax.swing.JPanel {
         });
         tbProductos.setRowHeight(24);
         tbProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbProductosMousePressed(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 tbProductosMouseExited(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tbProductosMousePressed(evt);
+        });
+        tbProductos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbProductosKeyPressed(evt);
             }
         });
         jScrollPane1.setViewportView(tbProductos);
@@ -156,22 +169,17 @@ public class RegistrarVenta extends javax.swing.JPanel {
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Subtotal:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Descuento:");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("IVA (16%):");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Total:");
 
-        txtSubTotal.setBackground(new java.awt.Color(255, 255, 255));
         txtSubTotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtSubTotal.setToolTipText("");
         txtSubTotal.addActionListener(new java.awt.event.ActionListener() {
@@ -180,18 +188,20 @@ public class RegistrarVenta extends javax.swing.JPanel {
             }
         });
 
-        txtDescuento.setBackground(new java.awt.Color(255, 255, 255));
         txtDescuento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtDescuento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 txtDescuentoMouseExited(evt);
             }
         });
+        txtDescuento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescuentoActionPerformed(evt);
+            }
+        });
 
-        txtIva.setBackground(new java.awt.Color(255, 255, 255));
         txtIva.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        txtTotal.setBackground(new java.awt.Color(255, 255, 255));
         txtTotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -238,7 +248,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
         btnMetodoPago.setBackground(new java.awt.Color(153, 153, 0));
         btnMetodoPago.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnMetodoPago.setForeground(new java.awt.Color(0, 0, 0));
         btnMetodoPago.setText("Método de pago");
         btnMetodoPago.setBorder(null);
         btnMetodoPago.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -250,7 +259,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
         btnAgregarProductos.setBackground(new java.awt.Color(255, 204, 0));
         btnAgregarProductos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAgregarProductos.setForeground(new java.awt.Color(0, 0, 0));
         btnAgregarProductos.setText("Agregar producto");
         btnAgregarProductos.setBorder(null);
         btnAgregarProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -262,7 +270,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
         btnCobrar.setBackground(new java.awt.Color(232, 228, 60));
         btnCobrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCobrar.setForeground(new java.awt.Color(0, 0, 0));
         btnCobrar.setText("Cobrar");
         btnCobrar.setBorder(null);
         btnCobrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -274,7 +281,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
         btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(null);
         btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -285,7 +291,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
         });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Nueva venta");
 
@@ -383,8 +388,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_rbClienteTemporalActionPerformed
 
     private void btnMetodoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMetodoPagoActionPerformed
-        FrmMetodoPago metodoPago = new FrmMetodoPago();
-        metodoPago.setVisible(true);
+        FrmMetodoPago frmMetodoPago = new FrmMetodoPago();
+        frmMetodoPago.setVisible(true);
     }//GEN-LAST:event_btnMetodoPagoActionPerformed
 
     private void btnAgregarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductosActionPerformed
@@ -394,18 +399,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarProductosActionPerformed
 
     private void btnCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCobrarActionPerformed
-//        //Este metodo calcula el total, es util <3 uwu calcularTotali();
-//        ArrayList<VentaProducto> productos = new ArrayList<>();
-//        for (int i = 0; i < pdLista.size(); i++) {
-//            VentaProducto prod=new VentaProducto();
-//            prod.setCantidad(WIDTH);
-//            prod.setPrecioVenta(totalVenta);
-//            prod.setProducto(producto);
-//            prod.setVenta(venta);
-//            productos.add(pdLista.get(i));
-//        }
-
-        Venta venta = new Venta(null, cliente, new Date(), subTotal, totalVenta, new Empleado(), new Pago(totalVenta,tipoPago));
+        registrarVenta();
+        
     }//GEN-LAST:event_btnCobrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -423,31 +418,27 @@ public class RegistrarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSubTotalActionPerformed
 
     private void tbProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProductosMousePressed
-        int fila = this.tbProductos.getSelectedRow();
-        int columna = this.tbProductos.getSelectedColumn();
-        if (columna == 7) {
-            int resp;
-            resp = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere eliminar este producto?", "Eliminar Producto", JOptionPane.YES_NO_CANCEL_OPTION, 1, new ImageIcon("src/iconos/signo-de-interrogacion.png"));
-            if (resp == 0) {
-                DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
-                modelo.removeRow(fila);
-                // borraDatos();
-                txtDescuento.setEnabled(true);
-                calcularSubTotal(pdLista);
-                calcularTotali();
-            }
-
-        }
+        eliminarProducto();
     }//GEN-LAST:event_tbProductosMousePressed
 
     private void tbProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProductosMouseExited
-        //calcularSubTotal();
-        //calcularTotali();
+        calcularSubTotal(pdLista);
+        calcularTotal();
     }//GEN-LAST:event_tbProductosMouseExited
 
     private void txtDescuentoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDescuentoMouseExited
-        //calcularTotali();
+        calcularTotal();
     }//GEN-LAST:event_txtDescuentoMouseExited
+
+    private void tbProductosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbProductosKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            calcularSubTotal(pdLista);
+        }
+    }//GEN-LAST:event_tbProductosKeyPressed
+
+    private void txtDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescuentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescuentoActionPerformed
 
     public static RegistrarVenta getInstance() {
         if (instance == null) {
@@ -466,13 +457,13 @@ public class RegistrarVenta extends javax.swing.JPanel {
     }
 
     public void setMetodoPagoEfectivo() {
-        tipoPago = tipoPago.EFECTIVO;
-        System.out.println(tipoPago);
+        metodoPago = TipoPago.EFECTIVO;
+        System.out.println(metodoPago);
     }
 
     public void setMetodoPagoTarjeta() {
-        tipoPago = tipoPago.TARJETA;
-        System.out.println(tipoPago);
+        metodoPago = TipoPago.TARJETA;
+        System.out.println(metodoPago);
     }
 
     public ArrayList<Producto> getPdLista() {
@@ -489,35 +480,53 @@ public class RegistrarVenta extends javax.swing.JPanel {
         txtFecha.setText(fecha.toString());
     }
 
-    public void mostrarVenta() {
+    public void verificarProductosRepetidos(ArrayList<Producto> productos) {
 
+    }
+
+    private void eliminarProducto() {
+        int fila = this.tbProductos.getSelectedRow();
+        int columna = this.tbProductos.getSelectedColumn();
+        if (columna == 7) {
+            int resp;
+            resp = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere eliminar este producto?", "Eliminar Producto", JOptionPane.YES_NO_CANCEL_OPTION, 1, new ImageIcon("src/iconos/signo-de-interrogacion.png"));
+            if (resp == 0) {
+                DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
+                modelo.removeRow(fila);
+                txtDescuento.setEnabled(true);
+                calcularSubTotal(pdLista);
+                calcularTotal();
+            }
+
+        }
+    }
+
+    public void mostrarVenta() {
         DefaultTableModel dtm = (DefaultTableModel) tbProductos.getModel();
         Control ctl = new Control();
-
+        ArrayList<Producto> lista = new ArrayList<>();
         try {
-            pdLista = auxProducts;
+            pdLista = PnAgregarProducto.auxProducts;
             if (pdLista.isEmpty()) {
                 ctl.muestraMsj("No se ha encontrado ningun producto", "Sin producto", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
                 return;
             }
-
+            for (int i = 0; i < tbProductos.getRowCount(); i++) {
+                DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
+                int idProducto = (int) modelo.getValueAt(i, 0);
+                lista.add(negocios.consultarProductoById(idProducto));
+            }
+            
+            pdLista.removeAll(lista);
             pdLista.forEach(pd -> {
                 dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(),
-                    pd.getMarca(), pd.getModelo(), pd.getAnio(), pd.getPrecio(), pd.getDisponible(), "ELIMINAR"});
+                    pd.getMarca(), pd.getModelo(), pd.getAnio(), pd.getPrecio(), 1, "ELIMINAR"});
             });
 
-            // float totaVent = calcularVenta(pdLista);
-            //calcularVenta(pdLista);
-            //System.out.println("Ya estoy fuera del metodo caluclarVenta");
-            //totalVenta = totaVent;
-            //txtSubTotal.setText(Float.toString(subTotal));
-            //txtIva.setText(Float.toString(totalIva));
-            //Integer descuento = Integer.parseInt(txtDescuento.getText());
-            //totalVenta = totalVenta  - descuento;
-            //txtTotal.setText(Float.toString(totalVenta));
             calcularSubTotal(pdLista);
+            calcularTotal();
         } catch (Exception e) {
-            //ctl.muestraMsj("No se han podido recuperar los productos.", "Error al buscar productos", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+            ctl.muestraMsj("No se han podido recuperar los productos.", "Error al buscar productos", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
         }
     }
 
@@ -532,62 +541,101 @@ public class RegistrarVenta extends javax.swing.JPanel {
     }
 
     public void calcularSubTotal(ArrayList<Producto> precios) {
-
         float iva = 0.16f;
         System.out.println("AQUI ANDAMOS EN CALCULAR VENTA");
         System.out.println(precios);
+        String desc = txtDescuento.getText();
         borraDatos();
-        precios.forEach(pd -> {
-            subTotal += pd.getPrecio();
-        });
+        int[] cantidades;
+        cantidades = new int[tbProductos.getRowCount()];
+        for (int i = 0; i < tbProductos.getRowCount(); i++) {
+            cantidades[i] = (int) tbProductos.getValueAt(i, 6);
+        }
+        System.out.println(Arrays.toString(cantidades));
+        for (int i = 0; i < tbProductos.getRowCount(); i++) {
+            subTotal += (float) tbProductos.getValueAt(i, 5) * cantidades[i];
+        }
+        txtDescuento.setText(desc);
         totalIva = Math.round(subTotal * iva);
         txtSubTotal.setText(Float.toString(subTotal));
         txtIva.setText(Float.toString(totalIva));
-
-//        if (descuento > 0) {
-        // subTotal = subTotal - descuento;
-        //totalIva = subTotal * iva;
-        //total = subTotal + totalIva;
-        //} else {
-        //total = subTotal + (subTotal * iva);
-        // }
+        calcularTotal();
     }
 
-    public void calcularTotali() {
+    private void registrarVenta() {
         Control ctl = new Control();
-        //float totalven = 0f;
-        //double iva = (subTotal * .16);
-        //double total = (totalIva + subTotal);
-        //txtIva.setText("" + iva);
+        if (tbProductos.getRowCount() != 0 && this.metodoPago != null) {
+            System.out.println(this.empleado + " ES EL EMPLEADO");
+            Venta venta = new Venta(new ArrayList<>(), this.cliente, new Date(), this.subTotal, this.totalVenta, this.empleado, new Pago(totalVenta, metodoPago));
+            ArrayList<VentaProducto> ventaProducto = new ArrayList<>();
+            for (int i = 0; i < tbProductos.getRowCount(); i++) {
+                //   Producto producto, Venta venta, Integer cantidad, Float precioVenta
+                Producto prod = negocios.consultarProductoById(pdLista.get(i).getIdProducto());
+                DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
+                int cantidad = (int) modelo.getValueAt(i, 6);
+                VentaProducto produ = new VentaProducto();
+                produ.setProducto(prod);
+                produ.setCantidad(cantidad);
+                produ.setVenta(venta);
+                produ.setPrecioVenta(prod.getPrecio() * cantidad);
+                ventaProducto.add(produ);
+            }
+            venta.setListaProductos(ventaProducto);
+            negocios.registrarVenta(venta, ventaProducto);
+            ctl.muestraMsj("Venta registrada con exito", "Venta registrada", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+            regresar();
+
+        } else {
+            ctl.muestraMsj("Debes ingresar una cantidad minima en descuento -> '$0' ", "Catidad de descuento no ingresada", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+        }
+    }
+
+    public void regresar(){
+        PnMenuVenta pnMnVenta = new PnMenuVenta();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnVenta);
+    }
+    public void calcularTotal() {
+        Control ctl = new Control();
         try {
-
-            Float descuento = Float.parseFloat(txtDescuento.getText());
-//          totalVenta = subTotal + totalIva - descuento;
-            totalVenta = subTotal - descuento - totalIva;
-            txtTotal.setText(Float.toString(totalVenta));
-            txtDescuento.setEnabled(false);
-
-        } catch (Exception ex) {
+            System.out.println(":" + txtDescuento.getText() + "<<<<");
+            if (!" ".equals(txtDescuento.getText()) && !txtDescuento.getText().isEmpty()) {
+                Float descuento = Float.parseFloat(txtDescuento.getText());
+                descuento = subTotal * (descuento / 100);
+                totalVenta = subTotal - descuento + totalIva;
+                txtTotal.setText(Float.toString(totalVenta));
+            } else {
+                totalVenta = subTotal + totalIva;
+                txtTotal.setText(Float.toString(totalVenta));
+            }
+        } catch (NumberFormatException ex) {
             ex.printStackTrace(System.out);
+<<<<<<< HEAD
 //            JOptionPane.showConfirmDialog(null, "Debes ingresar una cantidad minima en descuento -> '$0' ", "ERROR", JOptionPane.INFORMATION_MESSAGE);
             ctl.muestraMsj("Debes ingresar una cantidad minima en descuento -> '$0' ", "Cantidad de descuento no ingresada",  JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+=======
+            ctl.muestraMsj("Debes ingresar una cantidad mayor a 0% ", "Catidad de descuento no ingresada", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+>>>>>>> 7573ab43b9a4eee69b9b771fab7a8ed761db10a4
         }
 
     }
 
-////    public void calcularTotal() {
-////        DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
-////        txtSubTotal.setText("");
-////        double precio = 0.0;
-////        for (int i = 0; i < modelo.getRowCount(); i++) {
-////            precio += Double.parseDouble(modelo.getValueAt(i, 5).toString()) * Double.parseDouble(modelo.getValueAt(i, 6).toString());
-////        }
-////        subTotal = (float) precio;
-////        txtSubTotal.setText("" + precio);
-////    }
     public void clienteAnonimo() {
         rbClienteTemporal.setSelected(true);
         rbClienteTemporal.setEnabled(false);
+    }
+    
+    public void limpiarTabla(){
+        tbProductos.removeAll();
+    }
+
+    private void borrarCampos() {
+        txtCliente.setText("");
+        rbClienteTemporal.setSelected(false);
+        rbClienteTemporal.setEnabled(true);
+        txtCliente.setEnabled(true);
+        borraDatos();
+        tbProductos.removeAll();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProductos;
