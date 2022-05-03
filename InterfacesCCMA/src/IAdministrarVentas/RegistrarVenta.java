@@ -41,9 +41,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
     private ArrayList<Producto> pdLista;
     private Cliente cliente;
     private static RegistrarVenta instance;
-    private TipoPago metodoPago = null;
+    private TipoPago metodoPago;
     private INegocios negocios;
-
     private float subTotal = 0f;
     private float totalIva = 0f;
     private float totalVenta = 0f;
@@ -152,11 +151,11 @@ public class RegistrarVenta extends javax.swing.JPanel {
         });
         tbProductos.setRowHeight(24);
         tbProductos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                tbProductosMouseExited(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tbProductosMousePressed(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tbProductosMouseExited(evt);
             }
         });
         tbProductos.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -193,6 +192,11 @@ public class RegistrarVenta extends javax.swing.JPanel {
         txtDescuento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 txtDescuentoMouseExited(evt);
+            }
+        });
+        txtDescuento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescuentoActionPerformed(evt);
             }
         });
 
@@ -396,6 +400,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
     private void btnCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCobrarActionPerformed
         registrarVenta();
+        
     }//GEN-LAST:event_btnCobrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -430,6 +435,10 @@ public class RegistrarVenta extends javax.swing.JPanel {
             calcularSubTotal(pdLista);
         }
     }//GEN-LAST:event_tbProductosKeyPressed
+
+    private void txtDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescuentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescuentoActionPerformed
 
     public static RegistrarVenta getInstance() {
         if (instance == null) {
@@ -471,6 +480,10 @@ public class RegistrarVenta extends javax.swing.JPanel {
         txtFecha.setText(fecha.toString());
     }
 
+    public void verificarProductosRepetidos(ArrayList<Producto> productos) {
+
+    }
+
     private void eliminarProducto() {
         int fila = this.tbProductos.getSelectedRow();
         int columna = this.tbProductos.getSelectedColumn();
@@ -479,7 +492,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
             resp = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere eliminar este producto?", "Eliminar Producto", JOptionPane.YES_NO_CANCEL_OPTION, 1, new ImageIcon("src/iconos/signo-de-interrogacion.png"));
             if (resp == 0) {
                 DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
-                modelo.removeRow(fila);                
+                modelo.removeRow(fila);
                 txtDescuento.setEnabled(true);
                 calcularSubTotal(pdLista);
                 calcularTotal();
@@ -491,14 +504,20 @@ public class RegistrarVenta extends javax.swing.JPanel {
     public void mostrarVenta() {
         DefaultTableModel dtm = (DefaultTableModel) tbProductos.getModel();
         Control ctl = new Control();
-
+        ArrayList<Producto> lista = new ArrayList<>();
         try {
             pdLista = PnAgregarProducto.auxProducts;
             if (pdLista.isEmpty()) {
                 ctl.muestraMsj("No se ha encontrado ningun producto", "Sin producto", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
                 return;
             }
-
+            for (int i = 0; i < tbProductos.getRowCount(); i++) {
+                DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
+                int idProducto = (int) modelo.getValueAt(i, 0);
+                lista.add(negocios.consultarProductoById(idProducto));
+            }
+            
+            pdLista.removeAll(lista);
             pdLista.forEach(pd -> {
                 dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(),
                     pd.getMarca(), pd.getModelo(), pd.getAnio(), pd.getPrecio(), 1, "ELIMINAR"});
@@ -525,6 +544,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
         float iva = 0.16f;
         System.out.println("AQUI ANDAMOS EN CALCULAR VENTA");
         System.out.println(precios);
+        String desc = txtDescuento.getText();
         borraDatos();
         int[] cantidades;
         cantidades = new int[tbProductos.getRowCount()];
@@ -535,6 +555,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
         for (int i = 0; i < tbProductos.getRowCount(); i++) {
             subTotal += (float) tbProductos.getValueAt(i, 5) * cantidades[i];
         }
+        txtDescuento.setText(desc);
         totalIva = Math.round(subTotal * iva);
         txtSubTotal.setText(Float.toString(subTotal));
         txtIva.setText(Float.toString(totalIva));
@@ -545,7 +566,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
         Control ctl = new Control();
         if (tbProductos.getRowCount() != 0 && this.metodoPago != null) {
             System.out.println(this.empleado + " ES EL EMPLEADO");
-            Venta venta = new Venta(new ArrayList<VentaProducto>(), this.cliente, new Date(), this.subTotal, this.totalVenta, this.empleado, new Pago(totalVenta, metodoPago));
+            Venta venta = new Venta(new ArrayList<>(), this.cliente, new Date(), this.subTotal, this.totalVenta, this.empleado, new Pago(totalVenta, metodoPago));
             ArrayList<VentaProducto> ventaProducto = new ArrayList<>();
             for (int i = 0; i < tbProductos.getRowCount(); i++) {
                 //   Producto producto, Venta venta, Integer cantidad, Float precioVenta
@@ -561,16 +582,19 @@ public class RegistrarVenta extends javax.swing.JPanel {
             }
             venta.setListaProductos(ventaProducto);
             negocios.registrarVenta(venta, ventaProducto);
-            System.out.println(venta);
-            System.out.println(venta.getPago());
-            System.out.println(ventaProducto);
-            System.out.println("Se puede registrar");
+            ctl.muestraMsj("Venta registrada con exito", "Venta registrada", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+            regresar();
 
         } else {
             ctl.muestraMsj("Debes ingresar una cantidad minima en descuento -> '$0' ", "Catidad de descuento no ingresada", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
         }
     }
 
+    public void regresar(){
+        PnMenuVenta pnMnVenta = new PnMenuVenta();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnVenta);
+    }
     public void calcularTotal() {
         Control ctl = new Control();
         try {
@@ -594,6 +618,10 @@ public class RegistrarVenta extends javax.swing.JPanel {
     public void clienteAnonimo() {
         rbClienteTemporal.setSelected(true);
         rbClienteTemporal.setEnabled(false);
+    }
+    
+    public void limpiarTabla(){
+        tbProductos.removeAll();
     }
 
     private void borrarCampos() {

@@ -347,6 +347,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
                 String c = (String) dtm.getValueAt(i, 1);
                 aux = negocios.consultarClienteByRFC(c);
                 registrarVenta = RegistrarVenta.getInstance();
+                registrarVenta.limpiarTabla();
                 ctl.muestraPantalla(contenido, registrarVenta);
                 registrarVenta.setCliente(aux);
             } else if (getTipoPantalla() == CONSULTAR_CLIENTE) {
