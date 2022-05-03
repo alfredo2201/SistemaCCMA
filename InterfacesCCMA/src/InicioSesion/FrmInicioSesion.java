@@ -301,11 +301,8 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         Control ctl = new Control();
         user = txtNombreUsuario.getText();
         password = pfContraseña.getText();
-<<<<<<< HEAD
+        
         Empleado emp = new Empleado(6,"Alberto Hernández","ahg@outlook.com","alberthg","sesamo",Permiso.ADMIN);
-=======
-        Empleado emp = new Empleado(1,"user","123@prueba.com","user","1234",Permiso.ADMIN);
->>>>>>> 7573ab43b9a4eee69b9b771fab7a8ed761db10a4
         Empleado empleado = negocios.obtenEmpleado(user, password);
             if (emp.getIdUsuario() != null && user.equals(emp.getUsername()) && password.equals(emp.getPassword())) {
 //            if (empleado.getIdUsuario() != null && user.equals(empleado.getUsername()) && password.equals(empleado.getPassword())) {

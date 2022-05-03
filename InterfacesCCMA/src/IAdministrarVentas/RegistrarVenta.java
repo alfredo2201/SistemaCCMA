@@ -610,12 +610,12 @@ public class RegistrarVenta extends javax.swing.JPanel {
             }
         } catch (NumberFormatException ex) {
             ex.printStackTrace(System.out);
-<<<<<<< HEAD
+
 //            JOptionPane.showConfirmDialog(null, "Debes ingresar una cantidad minima en descuento -> '$0' ", "ERROR", JOptionPane.INFORMATION_MESSAGE);
             ctl.muestraMsj("Debes ingresar una cantidad minima en descuento -> '$0' ", "Cantidad de descuento no ingresada",  JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
-=======
-            ctl.muestraMsj("Debes ingresar una cantidad mayor a 0% ", "Catidad de descuento no ingresada", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
->>>>>>> 7573ab43b9a4eee69b9b771fab7a8ed761db10a4
+
+//            ctl.muestraMsj("Debes ingresar una cantidad mayor a 0% ", "Catidad de descuento no ingresada", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+
         }
 
     }
