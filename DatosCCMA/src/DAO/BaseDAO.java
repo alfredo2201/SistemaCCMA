@@ -17,8 +17,8 @@ public abstract class BaseDAO<T> {
     private static final String CADENA_CONEXION = "jdbc:mysql://127.0.0.1:3306/bd_ccma?useSSL=false";
     private static final String USUARIO = "root";
    // private static final String CONTRASENIA = "ElCochaLoquis300";
-//    private static final String CONTRASENIA = "1602";
-    private static final String CONTRASENIA = "root123";
+    private static final String CONTRASENIA = "1602";
+//    private static final String CONTRASENIA = "root123";
 
     public Connection generarConexion() throws SQLException {
         return DriverManager.getConnection(CADENA_CONEXION, USUARIO, CONTRASENIA);

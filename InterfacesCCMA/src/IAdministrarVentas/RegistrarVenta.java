@@ -7,7 +7,7 @@ package IAdministrarVentas;
 import Control.Control;
 import Dominio.Cliente;
 import Dominio.Empleado;
-import Dominio.Pago;
+import Dominio.TipoPago;
 import Dominio.Producto;
 import Dominio.TipoPago;
 import Dominio.Venta;
@@ -574,7 +574,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
         if (tbProductos.getRowCount() != 0 && this.metodoPago != null) {
             System.out.println(this.empleado + " ES EL EMPLEADO");
             Venta venta = new Venta(new ArrayList<>(), this.cliente, new Date(),
-                    this.subTotal, this.totalVenta, this.empleado, new Pago(totalVenta, metodoPago));
+                    this.subTotal, this.totalVenta, this.empleado, metodoPago);
             ArrayList<VentaProducto> ventaProducto = new ArrayList<>();
             for (int i = 0; i < tbProductos.getRowCount(); i++) {
                 //   Producto producto, Venta venta, Integer cantidad, Float precioVenta

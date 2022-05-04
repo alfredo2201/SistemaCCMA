@@ -304,7 +304,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         Empleado emp = new Empleado(6,"Alberto Hernandez","ahg@outlook.com","alberthg","sesamo", Permiso.ADMIN);
 //        System.out.println(Permiso.ADMIN.ordinal());
         Empleado empleado = negocios.obtenEmpleado(user, password);
-            if (emp.getIdUsuario() != null && user.equals(emp.getUsername()) && password.equals(emp.getPassword())) {
+            if (empleado.getIdUsuario() != null && user.equals(empleado.getUsername()) && password.equals(empleado.getPassword())) {
                 FrmPrincipal main = FrmPrincipal.getInstance();
                 main.setEmpleado(empleado);
                 main.setVisible(true);

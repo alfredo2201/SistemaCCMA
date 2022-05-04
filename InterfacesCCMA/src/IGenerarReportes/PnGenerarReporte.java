@@ -4,8 +4,11 @@
  */
 package IGenerarReportes;
 
+import Dominio.Venta;
+import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -20,6 +23,7 @@ public class PnGenerarReporte extends javax.swing.JPanel {
      */
     private PnContenido contenido = PnContenido.getInstance();
     private PnReporteGenerado reporte = new PnReporteGenerado();
+    private INegocios negocios = Fachada.FabricaNegocios.getInstance();
 
     public PnGenerarReporte() {
         initComponents();
@@ -150,7 +154,6 @@ public class PnGenerarReporte extends javax.swing.JPanel {
     }//GEN-LAST:event_btnGenReporteActionPerformed
 
     private void rbMesAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMesAnteriorActionPerformed
-
         reportesMesAnterior();
     }//GEN-LAST:event_rbMesAnteriorActionPerformed
 
@@ -172,7 +175,25 @@ public class PnGenerarReporte extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     public void generarReporte() {
+        ArrayList<Venta> ventas = null;
 
+        if (!dcFechaInicio.isEnabled() || !dcFechaFin.isEnabled()) {
+            boolean medioMes = rbMedioMes.isSelected();
+            boolean mesAnterior = rbMesAnterior.isSelected();
+            if (medioMes) {
+                ventas = negocios.consultarVentasByDias(15);
+            } else if (mesAnterior) {
+                ventas = negocios.consultarVentasByDias(30);
+            }
+        } else {
+            Date fechaI = dcFechaInicio.getDate();
+            Date fechaF = dcFechaFin.getDate();
+            ventas = negocios.consultarVentaRangoFechas(fechaI, fechaF);
+        }
+
+        System.out.println("vnt" + ventas);
+
+        reporte = new PnReporteGenerado(ventas);
         contenido.removeAll();
         reporte.setVisible(true);
         reporte.setSize(contenido.getSize().width, contenido.getSize().height);

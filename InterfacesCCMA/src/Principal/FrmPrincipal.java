@@ -7,10 +7,19 @@ package Principal;
 
 import Control.Control;
 import Dominio.Empleado;
+import Dominio.Permiso;
 import PanelesGlobales.PnContenido;
 import PanelesGlobales.PnMenu;
 import java.awt.Dimension;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -28,8 +37,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private Empleado empleado;
 
     private FrmPrincipal() {
-        initComponents();        
-        iniciarPantalla();          
+        initComponents();
+        iniciarPantalla();
     }
 
     /**
@@ -65,31 +74,23 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         lblFotoUsuario.setBackground(new java.awt.Color(255, 255, 255));
         lblFotoUsuario.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        lblFotoUsuario.setForeground(new java.awt.Color(0, 0, 0));
-        lblFotoUsuario.setText("Foto Usuario");
 
         lblHoraTexto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblHoraTexto.setForeground(new java.awt.Color(0, 0, 0));
         lblHoraTexto.setText("Fecha:");
 
         lblHora.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        lblHora.setForeground(new java.awt.Color(0, 0, 0));
         lblHora.setText("set hora");
 
         lblTextoVentas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblTextoVentas.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoVentas.setText("Ventas:");
 
         lblTextoUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblTextoUsuario.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoUsuario.setText("Usuario:");
 
         lblNombreUsuario.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        lblNombreUsuario.setForeground(new java.awt.Color(0, 0, 0));
         lblNombreUsuario.setText("Nombre Usuario");
 
         lblVentasEstado.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        lblVentasEstado.setForeground(new java.awt.Color(0, 0, 0));
         lblVentasEstado.setText("En linea");
 
         javax.swing.GroupLayout pnTopLayout = new javax.swing.GroupLayout(pnTop);
@@ -159,13 +160,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblHoraTexto;
     private javax.swing.JLabel lblIcono;
-    private javax.swing.JLabel lblNombreUsuario;
+    public javax.swing.JLabel lblNombreUsuario;
     private javax.swing.JLabel lblTextoUsuario;
     private javax.swing.JLabel lblTextoVentas;
     private javax.swing.JLabel lblVentasEstado;
     private javax.swing.JPanel pnTop;
     // End of variables declaration//GEN-END:variables
-  
+
     public static FrmPrincipal getInstance() {
         if (instance == null) {
             instance = new FrmPrincipal();
@@ -182,7 +183,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         Dimension screenSize = new Dimension(getSize().width, getSize().width);
         Control ctl = new Control();
         this.getSize(screenSize);
-        setLocationRelativeTo(null);        
+        setLocationRelativeTo(null);
         pnMenu.setVisible(true);
         pnMenu.setLocation(0, 143);
         int h = screenSize.height;
@@ -193,7 +194,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pnContenido.setSize(w - 321, h - 143);
         this.setTitle("Sismema de Punto de Venta");
         this.add(pnMenu);
-        this.add(pnContenido);               
+        this.add(pnContenido);
         LocalDate fecha = LocalDate.now();
         lblHora.setText(fecha.toString());
     }
@@ -202,13 +203,30 @@ public class FrmPrincipal extends javax.swing.JFrame {
         this.empleado = empleado;
         cargarEmpleado();
     }
-    
+
     public Empleado getEmpleado() {
         return this.empleado;
     }
-    
-    private void cargarEmpleado(){
+
+    private void cargarEmpleado() {
         lblNombreUsuario.setText(this.empleado.getNombre());
+
+        try {
+            Icon imageIcon = null;
+            if (empleado.getPermiso() == Permiso.ADMIN) {
+                File file = new File("src/iconos/administrador.png");
+                BufferedImage bufferedImage = ImageIO.read(file);
+                imageIcon = new ImageIcon(bufferedImage);
+            } else {
+                File file = new File("src/iconos/empleado.png");
+                BufferedImage bufferedImage = ImageIO.read(file);
+                imageIcon = new ImageIcon(bufferedImage);
+            }
+            lblFotoUsuario.setIcon(imageIcon);
+        } catch (IOException ex) {
+            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-    
+
 }
