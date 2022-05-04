@@ -9,6 +9,7 @@ import Dominio.*;
 import IDatos.FabricaDatos;
 import IDatos.IDatos;
 import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -73,10 +74,10 @@ public class ControlVenta {
 
     public ArrayList<Venta> consultaVentaPeriodoDeterminado(int dias) {
         LocalDate date = LocalDate.now();
-        Date fechaFin = new Date();
-        date = date.minusDays(dias);
-        System.out.println(date);
-        Date fechaInicio = new Date(date.getYear() - 1900, date.getMonthValue() - 1, date.getDayOfMonth());
+        
+        Date fechaFin = Date.from(date.minusDays(dias).atStartOfDay().toInstant(ZoneOffset.UTC));
+        
+        Date fechaInicio = Date.from(date.plusDays(dias).atStartOfDay().toInstant(ZoneOffset.UTC));
         try {
             return iDatos.consultarVentaByRangoFechas(fechaInicio, fechaFin);
         } catch (Exception ex) {

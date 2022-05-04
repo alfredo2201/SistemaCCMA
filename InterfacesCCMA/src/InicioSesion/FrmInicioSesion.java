@@ -301,21 +301,16 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         Control ctl = new Control();
         user = txtNombreUsuario.getText();
         password = pfContraseña.getText();
-
-        
-        //Empleado emp = new Empleado(6, "Alberto Hernández", "ahg@outlook.com", "alberthg", "sesamo", Permiso.ADMIN);
-         Empleado emp = new Empleado(8, "Samuel Medellin", "samc@outlook.com", "sam", "1234", Permiso.ADMIN);
+        Empleado emp = new Empleado(6,"Alberto Hernandez","ahg@outlook.com","alberthg","sesamo", Permiso.ADMIN);
+//        System.out.println(Permiso.ADMIN.ordinal());
         Empleado empleado = negocios.obtenEmpleado(user, password);
-        //System.out.println(empleado);
-        if (emp.getIdUsuario() != null && user.equals(emp.getUsername()) && password.equals(emp.getPassword())) {
-//            if (empleado.getIdUsuario() != null && user.equals(empleado.getUsername()) && password.equals(empleado.getPassword())) {
-            FrmPrincipal main = FrmPrincipal.getInstance();
-            main.setEmpleado(emp);
-//           main.setEmpleado(empleado);
-            main.setVisible(true);
-            this.dispose();
-        } else {
-            ctl.muestraMsj("Usuario y/o contraseña incorrecta. Vuelva intentarlo", "Credenciales Erroneas", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
-        }
+            if (emp.getIdUsuario() != null && user.equals(emp.getUsername()) && password.equals(emp.getPassword())) {
+                FrmPrincipal main = FrmPrincipal.getInstance();
+                main.setEmpleado(empleado);
+                main.setVisible(true);
+                this.dispose();
+            } else {
+                ctl.muestraMsj("Usuario y/o contraseña incorrecta. Vuelva intentarlo", "Credenciales Erroneas", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+            }
     }
 }

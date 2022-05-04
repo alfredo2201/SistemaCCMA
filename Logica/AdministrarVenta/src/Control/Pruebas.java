@@ -5,9 +5,7 @@
  */
 package Control;
 
-import DAO.EmpleadosDAO;
 import Dominio.*;
-import static Dominio.Permiso.EMPLEADO;
 import Dominio.Venta;
 import IDatos.FabricaDatos;
 import IDatos.IDatos;
@@ -26,18 +24,15 @@ public class Pruebas {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         ControlVenta cv = new ControlVenta();
-//        
-//        ArrayList<Venta> lista = cv.consultaVentaPeriodoDeterminado(15);
-//        
-//        lista.forEach((venta) -> {
-//            System.out.println(venta);
-//        });
-//
-        Empleado emp = new Empleado("Alfredo gutierrez", "afgutierrez@hotmail.com", "afgutierrez", "alfreditog", EMPLEADO);
-        EmpleadosDAO ed = new EmpleadosDAO();
-        ed.insertar(emp);
+        
+        ArrayList<Venta> lista = cv.consultaVentaPeriodoDeterminado(15);
+        
+        lista.forEach((venta) -> {
+            System.out.println(venta);
+        });
+        
    }
 
 }
