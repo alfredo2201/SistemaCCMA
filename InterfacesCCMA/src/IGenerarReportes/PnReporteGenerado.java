@@ -4,15 +4,31 @@
  */
 package IGenerarReportes;
 
-import IAdministrarCliente.PnMenuClientes;
+import Dominio.Venta;
 import IAdministrarVentas.PnMenuVenta;
 import PanelesGlobales.PnContenido;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
  * @author Samuel Medellin
  */
 public class PnReporteGenerado extends javax.swing.JPanel {
+
+    ArrayList<Venta> ventas;
 
     /**
      * Creates new form ReporteGenerado
@@ -21,6 +37,21 @@ public class PnReporteGenerado extends javax.swing.JPanel {
 
     public PnReporteGenerado() {
         initComponents();
+    }
+
+    public PnReporteGenerado(ArrayList<Venta> ventas) {
+        initComponents();
+        this.ventas = ventas;
+        incializarTabla();
+    }
+
+    private void incializarTabla() {
+        DefaultTableModel dtm = (DefaultTableModel) tbReporteVentas.getModel();
+        dtm.setRowCount(0);
+
+        ventas.forEach(cl -> {
+            dtm.addRow(new Object[]{cl.getCliente().getNombre(), cl.getTotal(), cl.getEmpleado().getNombre(), cl.getFecha()});
+        });
     }
 
     /**
@@ -49,14 +80,19 @@ public class PnReporteGenerado extends javax.swing.JPanel {
         btnExportar.setForeground(new java.awt.Color(0, 0, 0));
         btnExportar.setText("Exportar");
         btnExportar.setBorder(null);
-        btnExportar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExportar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportarActionPerformed(evt);
+            }
+        });
 
         btnMenu.setBackground(new java.awt.Color(153, 153, 0));
         btnMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnMenu.setForeground(new java.awt.Color(0, 0, 0));
         btnMenu.setText("Regresar al menú");
         btnMenu.setBorder(null);
-        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuActionPerformed(evt);
@@ -123,6 +159,7 @@ public class PnReporteGenerado extends javax.swing.JPanel {
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         PnMenuVenta pnMnVenta = new PnMenuVenta();
         pnContenido.removeAll();
+        ventas = null;
         pnMnVenta.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
         pnMnVenta.setLocation(0, -40);
         pnContenido.add(pnMnVenta);
@@ -130,6 +167,82 @@ public class PnReporteGenerado extends javax.swing.JPanel {
         pnContenido.repaint();
     }//GEN-LAST:event_btnMenuActionPerformed
 
+    private void guardarAExcel() {
+        // TODO add your handling code here:
+        // workbook object
+        XSSFWorkbook workbook = new XSSFWorkbook();
+
+        // spreadsheet object
+        XSSFSheet spreadsheet
+                = workbook.createSheet("Reporte Ventas");
+
+        // creating a row object
+        XSSFRow row;
+
+        // This data needs to be written (Object[])
+        Map<String, Object[]> studentData
+                = new TreeMap<>();
+
+        int currentRow = 1;
+
+        studentData.put(
+                "" + currentRow,
+                new Object[]{"Cliente", "Precio de productos/servicios", "Vendedor", "Fecha"});
+        currentRow++;
+
+        for (Venta venta : ventas) {
+            studentData.put("" + currentRow, new Object[]{venta.getCliente().getNombre(), "" + venta.getTotal(), venta.getEmpleado().getNombre(), venta.getFecha().toString()});
+            currentRow++;
+        }
+
+        Set<String> keyid = studentData.keySet();
+
+        int rowid = 0;
+
+        // writing the data into the sheets...
+        for (String key : keyid) {
+
+            row = spreadsheet.createRow(rowid++);
+            Object[] objectArr = studentData.get(key);
+            int cellid = 0;
+
+            for (Object obj : objectArr) {
+                Cell cell = row.createCell(cellid++);
+                cell.setCellValue((String) obj);
+            }
+        }
+
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Specify a file to save");
+        fileChooser.setSelectedFile(new File("Reporte Ventas.xlsx"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("xlsx file", "xlsx"));
+
+        int userSelection = fileChooser.showSaveDialog(this);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fileChooser.getSelectedFile();
+            // .xlsx is the format for Excel Sheets...
+            // writing the workbook into the file...
+            String filename = fileChooser.getSelectedFile().toString();
+            if (!filename.endsWith(".xlsx")) {
+                filename += ".xlsx";
+            }
+            try ( FileOutputStream out = new FileOutputStream(filename)) {
+                workbook.write(out);
+                JOptionPane.showMessageDialog(this, "Se ha guardado el archivo.", "Generar Reporte", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "No se ha podido guardar el archivo.", "Generar Reporte", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
+        guardarAExcel();
+    }//GEN-LAST:event_btnExportarActionPerformed
+
+    public void setVentas(ArrayList<Venta> ventas) {
+        this.ventas = ventas;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExportar;

@@ -26,13 +26,13 @@ public class Pruebas {
      */
     public static void main(String[] args) {
         ControlVenta cv = new ControlVenta();
-//        
-//        ArrayList<Venta> lista = cv.consultaVentaPeriodoDeterminado(15);
-//        
-//        lista.forEach((venta) -> {
-//            System.out.println(venta);
-//        });
-//
+        
+        ArrayList<Venta> lista = cv.consultaVentaPeriodoDeterminado(15);
+        
+        lista.forEach((venta) -> {
+            System.out.println(venta);
+        });
+        
    }
 
 }

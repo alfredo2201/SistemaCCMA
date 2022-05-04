@@ -7,6 +7,7 @@ package Fachada;
 
 import Dominio.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -48,6 +49,8 @@ public interface INegocios {
     public void registrarVenta(Venta venta, ArrayList<VentaProducto> listaProductos);
 
     public ArrayList<Venta> consultarVentasByDias(int dias);
+    
+    public ArrayList<Venta> consultarVentaRangoFechas(Date inicio, Date fin);
     
     public Venta consultarVentaById(Integer id);
 

@@ -337,6 +337,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         });
     }
 
+
     private void continuar() {
         Control ctl = new Control();
         int i = clienteTable.getSelectedRow();
