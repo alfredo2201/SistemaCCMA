@@ -11,7 +11,7 @@ import java.util.Objects;
 
 /**
  *
- * @author crist
+ * @author Isai Perez
  */
 public class Venta {
     private Integer idVenta;
@@ -21,7 +21,7 @@ public class Venta {
     private Float subtotal;
     private Float total;
     private Empleado empleado;
-    private Pago pago;
+    private TipoPago pago;
 
     public Venta() {
     }
@@ -33,7 +33,7 @@ public class Venta {
         this.empleado = empleado;
     }
 
-    public Venta(Integer idVenta, ArrayList<VentaProducto> listaProductos, Cliente cliente, Date fecha, Float subtotal, Float total, Empleado empleado, Pago pago) {
+    public Venta(Integer idVenta, ArrayList<VentaProducto> listaProductos, Cliente cliente, Date fecha, Float subtotal, Float total, Empleado empleado, TipoPago pago) {
         this.idVenta = idVenta;
         this.listaProductos = listaProductos;
         this.cliente = cliente;
@@ -44,7 +44,7 @@ public class Venta {
         this.pago = pago;
     }
 
-    public Venta(ArrayList<VentaProducto> listaProductos, Cliente cliente, Date fecha, Float subtotal, Float total, Empleado empleado, Pago pago) {
+    public Venta(ArrayList<VentaProducto> listaProductos, Cliente cliente, Date fecha, Float subtotal, Float total, Empleado empleado, TipoPago pago) {
         this.listaProductos = listaProductos;
         this.cliente = cliente;
         this.fecha = fecha;
@@ -110,11 +110,11 @@ public class Venta {
         this.empleado = empleado;
     }
 
-    public Pago getPago() {
+    public TipoPago getPago() {
         return pago;
     }
 
-    public void setPago(Pago pago) {
+    public void setPago(TipoPago pago) {
         this.pago = pago;
     }
     

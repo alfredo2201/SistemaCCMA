@@ -10,7 +10,6 @@ import Exceptions.DAOException;
 import IDatos.FabricaDatos;
 import IDatos.IDatos;
 
-
 /**
  *
  * @author Isai Perez
@@ -24,23 +23,23 @@ public class ControlEmpleado {
             try {
                 return iDatos.consultarByCredenciales(username, password);
             } catch (DAOException ex) {
-                System.err.println(ex.getMessage());                
+                System.err.println(ex.getMessage());
             }
         }
         return null;
     }
-    
-    public String crearNuevoEmpleaedo(Empleado empleado){
+
+    public String crearNuevoEmpleaedo(Empleado empleado) {
         try {
             if (empleado != null) {
-             iDatos.insertarEmpleado(empleado);   
-             return "Empleado creado con éxito.";
-            }            
+                iDatos.insertarEmpleado(empleado);
+                return "Empleado creado con éxito.";
+            }
         } catch (Exception ex) {
-            System.err.println(ex.getMessage());     
+            System.err.println(ex.getMessage());
             return "Error al crear un nuevo empleado";
         }
         return null;
-        
+
     }
 }

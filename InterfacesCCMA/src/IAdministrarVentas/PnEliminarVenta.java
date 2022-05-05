@@ -10,7 +10,6 @@ import Dominio.Producto;
 import Dominio.Venta;
 import Fachada.FabricaNegocios;
 import Fachada.INegocios;
-//import IDatos.FabricaDatos;
 import PanelesGlobales.PnContenido;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -22,24 +21,35 @@ import javax.swing.table.DefaultTableModel;
  * @author Samuel Medellin
  */
 public class PnEliminarVenta extends javax.swing.JPanel {
-    
-    
-//    private PnConsultarProducto consultar = new PnConsultarProducto();
-//    private INegocios negocios = FabricaNegocios.getInstance();
-//    private int tipoPantalla;
-//    private DefaultTableModel dtm;
+
     ArrayList<Venta> cLIsta;
     ArrayList<Venta> cLIstaEliminar;
     private INegocios iNegocios;
     private PnContenido pnContenido = PnContenido.getInstance();
+    private ArrayList<Venta> ventas;
+
     /**
      * Creates new form EliminarVenta
      */
-
     public PnEliminarVenta() {
         initComponents();
         iNegocios = FabricaNegocios.getInstance();
-//        this.dtm = (DefaultTableModel) tbVentas.getModel();
+    }
+
+    public PnEliminarVenta(ArrayList<Venta> ventas) {
+        initComponents();
+        iNegocios = FabricaNegocios.getInstance();
+        this.ventas = ventas;
+        incializarTabla();
+    }
+
+    private void incializarTabla() {
+        DefaultTableModel dtm = (DefaultTableModel) tbConsultaVentas.getModel();
+        dtm.setRowCount(0);
+
+        ventas.forEach(cl -> {
+            dtm.addRow(new Object[]{cl.getCliente().getNombre(), cl.getTotal(), cl.getEmpleado().getNombre(), cl.getFecha()});
+        });
     }
 
     /**
@@ -51,12 +61,6 @@ public class PnEliminarVenta extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        txtCliente = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        txtFecha = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbVentas = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbVentasEliminar = new javax.swing.JTable();
         btnEliminarVenta = new javax.swing.JButton();
@@ -64,54 +68,16 @@ public class PnEliminarVenta extends javax.swing.JPanel {
         btnCancelarVenta = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         lblEliminarVenta = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tbConsultaVentas = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Cliente:");
-
-        txtCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtCliente.setBorder(null);
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Fecha:");
-
-        txtFecha.setEditable(false);
-        txtFecha.setBackground(new java.awt.Color(255, 255, 255));
-        txtFecha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        tbVentas.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        tbVentas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Código", "Descripción", "Marca", "Modelo", "Año", "Precio", "Cantidad", "Eliminar"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tbVentas);
 
         tbVentasEliminar.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         tbVentasEliminar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "ID", "Fecha"
@@ -183,25 +149,40 @@ public class PnEliminarVenta extends javax.swing.JPanel {
         lblEliminarVenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEliminarVenta.setText("Eliminar venta");
 
+        jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setForeground(new java.awt.Color(0, 0, 0));
+
+        tbConsultaVentas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tbConsultaVentas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cliente", "Precio de productos/servicios", "Vendedor", "Fecha"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tbConsultaVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbConsultaVentasMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tbConsultaVentas);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -223,116 +204,91 @@ public class PnEliminarVenta extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(lblEliminarVenta)
-                .addGap(45, 45, 45)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(71, 71, 71))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
                         .addComponent(btnEliminarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addComponent(btnMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addComponent(btnCancelarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(50, 50, 50))
+                        .addGap(25, 25, 25))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(btnMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(btnCancelarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuPrincipalActionPerformed
         PnMenuVenta pnMnVenta = new PnMenuVenta();
-        pnContenido.removeAll();
-        pnMnVenta.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
-        pnMnVenta.setLocation(0, -40);
-        pnContenido.add(pnMnVenta);
-        pnContenido.revalidate();
-        pnContenido.repaint();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnVenta);
     }//GEN-LAST:event_btnMenuPrincipalActionPerformed
 
     private void btnCancelarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarVentaActionPerformed
-        // TODO add your handling code here:
+        PnMenuVenta pnMnVenta = new PnMenuVenta();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnVenta);
     }//GEN-LAST:event_btnCancelarVentaActionPerformed
 
     private void btnEliminarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarVentaActionPerformed
         eliminarVenta();
     }//GEN-LAST:event_btnEliminarVentaActionPerformed
 
-//    public void buscarProductos(String nombre) {
-//        ArrayList<Producto> pdLista = new ArrayList<>();
-//        ArrayList<Cliente> cLista = new ArrayList<>();
-//
-//        // Borra todos los rows
-//        dtm.setRowCount(0);
-//        if (!nombre.isEmpty()) {
-//            cLista = negocios.consultarClienteNombre(nombre);
-//        } else {
-//            pdLista = negocios.consultarTodoProducto();
-//        }
-//        pdLista.forEach(pd -> {
-//            dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(), pd.getMarca(), pd.getModelo(), pd.getAnio(), 
-//                pd.getPrecio(), pd.getDisponible()});
-//        });
-//    }
-    
-//    private void cargarProductos() {
-//        ArrayList<Producto> pdLista = new ArrayList<>();
-//        dtm.setRowCount(0);
-//        pdLista = negocios.consultarTodoProducto();
-//        pdLista.forEach(pd -> {
-//            dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(), pd.getMarca(), pd.getModelo(), pd.getAnio(), 
-//                pd.getPrecio(), pd.getDisponible()});
-//        });
-//    }
-    
-    private void eliminarVenta() {
-        DefaultTableModel dtm = (DefaultTableModel) tbVentas.getModel();
-        cLIstaEliminar = new ArrayList<>();
-        Control ctl = new Control();
-        for (int i = 0; i < dtm.getRowCount(); i++) {
-            // TODO: Buscar que otro puede ser vector, ya esta deprecated
-            if (((Vector) dtm.getDataVector().elementAt(i)).elementAt(7).equals(true)) {
-                cLIstaEliminar.add(cLIsta.get(i));
-            }
-        }
-
-        if (cLIstaEliminar.isEmpty()) {
-            ctl.muestraMsj("No se ha seleccionado ninguna venta",  "No se seleccionó ninguna venta", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");            
-            return;
-        }
-        cLIstaEliminar.forEach(cl -> {
-            iNegocios.eliminarVenta(cl);
-        });
-        ctl.muestraMsj("Se eliminaron las ventas seleccionadas.", "No se eliminó la venta", JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");                    
-    }
+    private void tbConsultaVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbConsultaVentasMouseClicked
+        agregarVentasEliminar();
+    }//GEN-LAST:event_tbConsultaVentasMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarVenta;
     private javax.swing.JButton btnEliminarVenta;
     private javax.swing.JButton btnMenuPrincipal;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblEliminarVenta;
-    private javax.swing.JTable tbVentas;
+    private javax.swing.JTable tbConsultaVentas;
     private javax.swing.JTable tbVentasEliminar;
-    private javax.swing.JTextField txtCliente;
-    private javax.swing.JTextField txtFecha;
     // End of variables declaration//GEN-END:variables
+
+    private void eliminarVenta() {
+        DefaultTableModel dtm = (DefaultTableModel) tbVentasEliminar.getModel();        
+        Control ctl = new Control();
+        if (cLIstaEliminar.isEmpty()) {
+            ctl.muestraMsj("No se ha seleccionado ninguna venta",
+                    "No se seleccionó ninguna venta", JOptionPane.ERROR_MESSAGE,
+                    "src/iconos/warning.png");
+            return;
+        }
+        cLIsta = new ArrayList<>();
+        cLIstaEliminar.forEach(cl -> {
+            iNegocios.eliminarVenta(cl);
+            cLIsta.add(cl);
+        });
+        ctl.muestraMsj("Se eliminaron las ventas seleccionadas.",
+                "No se eliminó la venta", JOptionPane.INFORMATION_MESSAGE,
+                "src/iconos/comprobado.png");
+        cLIsta.forEach((venta) -> {
+            ventas.remove(venta);
+        });
+        dtm.setRowCount(0);
+        incializarTabla();
+    }
+
+    private void agregarVentasEliminar() {
+        DefaultTableModel dtm = (DefaultTableModel) tbVentasEliminar.getModel();
+        cLIstaEliminar = new ArrayList<>();
+        int index = tbConsultaVentas.getSelectedRow();
+        if (index >= 0) {
+            if (!cLIstaEliminar.contains(ventas.get(index))) {
+                cLIstaEliminar.add(ventas.get(index));
+                dtm.addRow(new Object[]{ventas.get(index).getIdVenta(), ventas.get(index).getFecha()});
+            }
+        }
+    }
 }

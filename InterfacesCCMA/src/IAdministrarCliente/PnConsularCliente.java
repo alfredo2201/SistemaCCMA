@@ -209,15 +209,6 @@ public class PnConsularCliente extends javax.swing.JPanel {
     private javax.swing.JTextField txtRFC;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
-    public void cargarCliente() {
-        if (getCliente() != null) {
-            txtNombreCliente.setText(getCliente().getNombre());
-            txtCorreo.setText(getCliente().getCorreo());
-            txtRFC.setText(getCliente().getRfc());
-            txtTelefono.setText(getCliente().getTelefono());
-        }
-
-    }
 
     public Cliente getCliente() {
         return cliente;
@@ -227,5 +218,14 @@ public class PnConsularCliente extends javax.swing.JPanel {
         this.cliente = cliente;
     }
 
+    public void cargarCliente() {
+        if (getCliente() != null) {
+            txtNombreCliente.setText(getCliente().getNombre());
+            txtCorreo.setText(getCliente().getCorreo());
+            txtRFC.setText(getCliente().getRfc());
+            txtTelefono.setText(getCliente().getTelefono());
+        }
+
+    }
 
 }

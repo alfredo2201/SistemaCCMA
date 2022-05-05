@@ -4,8 +4,11 @@
  */
 package IGenerarReportes;
 
+import Dominio.Venta;
+import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -20,6 +23,7 @@ public class PnGenerarReporte extends javax.swing.JPanel {
      */
     private PnContenido contenido = PnContenido.getInstance();
     private PnReporteGenerado reporte = new PnReporteGenerado();
+    private INegocios negocios = Fachada.FabricaNegocios.getInstance();
 
     public PnGenerarReporte() {
         initComponents();
@@ -146,43 +150,15 @@ public class PnGenerarReporte extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenReporteActionPerformed
-//        // TODO add your handling code here:
-//        Date fechaI = dcFechaInicio.getDate();
-//        Date fechaF = dcFechaFin.getDate();
-//
-//        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
-//        JOptionPane.showMessageDialog(null, "La fecha es del: " + formato.format(fechaI) + " al " + formato.format(fechaF));
-
-        contenido.removeAll();
-        reporte.setVisible(true);
-        reporte.setSize(contenido.getSize().width, contenido.getSize().height);
-        reporte.setLocation(0, 0);
-        contenido.add(reporte);
-        contenido.revalidate();
-        contenido.repaint();
+        generarReporte();
     }//GEN-LAST:event_btnGenReporteActionPerformed
 
     private void rbMesAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMesAnteriorActionPerformed
-
-        if (rbMesAnterior.isSelected()) {
-            rbMedioMes.setSelected(false);
-            dcFechaInicio.setEnabled(false);
-            dcFechaFin.setEnabled(false);
-        } else {
-            dcFechaInicio.setEnabled(true);
-            dcFechaFin.setEnabled(true);
-        }
+        reportesMesAnterior();
     }//GEN-LAST:event_rbMesAnteriorActionPerformed
 
     private void rbMedioMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMedioMesActionPerformed
-        if (rbMedioMes.isSelected()) {
-            rbMesAnterior.setSelected(false);
-            dcFechaInicio.setEnabled(false);
-            dcFechaFin.setEnabled(false);
-        } else {
-            dcFechaInicio.setEnabled(true);
-            dcFechaFin.setEnabled(true);
-        }
+        reportesMedioMes();
     }//GEN-LAST:event_rbMedioMesActionPerformed
 
 
@@ -197,4 +173,57 @@ public class PnGenerarReporte extends javax.swing.JPanel {
     private javax.swing.JRadioButton rbMesAnterior;
     private javax.swing.JButton txtCancelar;
     // End of variables declaration//GEN-END:variables
+
+    public void generarReporte() {
+        ArrayList<Venta> ventas = null;
+
+        if (!dcFechaInicio.isEnabled() || !dcFechaFin.isEnabled()) {
+            boolean medioMes = rbMedioMes.isSelected();
+            boolean mesAnterior = rbMesAnterior.isSelected();
+            if (medioMes) {
+                ventas = negocios.consultarVentasByDias(15);
+            } else if (mesAnterior) {
+                ventas = negocios.consultarVentasByDias(30);
+            }
+        } else {
+            Date fechaI = dcFechaInicio.getDate();
+            Date fechaF = dcFechaFin.getDate();
+            ventas = negocios.consultarVentaRangoFechas(fechaI, fechaF);
+        }
+
+        System.out.println("vnt" + ventas);
+
+        reporte = new PnReporteGenerado(ventas);
+        contenido.removeAll();
+        reporte.setVisible(true);
+        reporte.setSize(contenido.getSize().width, contenido.getSize().height);
+        reporte.setLocation(0, 0);
+        contenido.add(reporte);
+        contenido.revalidate();
+        contenido.repaint();
+    }
+
+    public void reportesMesAnterior() {
+
+        if (rbMesAnterior.isSelected()) {
+            rbMedioMes.setSelected(false);
+            dcFechaInicio.setEnabled(false);
+            dcFechaFin.setEnabled(false);
+        } else {
+            dcFechaInicio.setEnabled(true);
+            dcFechaFin.setEnabled(true);
+        }
+    }
+
+    public void reportesMedioMes() {
+        if (rbMedioMes.isSelected()) {
+            rbMesAnterior.setSelected(false);
+            dcFechaInicio.setEnabled(false);
+            dcFechaFin.setEnabled(false);
+        } else {
+            dcFechaInicio.setEnabled(true);
+            dcFechaFin.setEnabled(true);
+        }
+    }
+
 }

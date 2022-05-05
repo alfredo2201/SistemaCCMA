@@ -208,24 +208,9 @@ public class FrmBuscarPresupuesto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnContinuarPresupuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarPresupuestoActionPerformed
-        // TODO add your handling code here:        
-        if (getTipoPantalla() == CONSULTAR) {
-            pnContenido.removeAll();
-            consultar.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
-            consultar.setLocation(0, -40);
-            pnContenido.add(consultar);
-            pnContenido.revalidate();
-            pnContenido.repaint();
-        } else if (getTipoPantalla() == EDITAR) {
-            pnContenido.removeAll();
-            editar.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
-            editar.setLocation(0, -40);
-            pnContenido.add(editar);
-            pnContenido.revalidate();
-            pnContenido.repaint();
-        }
 
-        dispose();
+        continuarPresupuesto();
+
     }//GEN-LAST:event_btnContinuarPresupuestoActionPerformed
 
 
@@ -250,6 +235,29 @@ public class FrmBuscarPresupuesto extends javax.swing.JFrame {
 
     public void setTipoPantalla(int tipoPantalla) {
         this.tipoPantalla = tipoPantalla;
+    }
+
+    public void continuarPresupuesto() {
+
+        if (getTipoPantalla() == CONSULTAR) {
+            pnContenido.removeAll();
+            consultar.setSize(pnContenido.getSize().width,
+                    pnContenido.getSize().height);
+            consultar.setLocation(0, -40);
+            pnContenido.add(consultar);
+            pnContenido.revalidate();
+            pnContenido.repaint();
+        } else if (getTipoPantalla() == EDITAR) {
+            pnContenido.removeAll();
+            editar.setSize(pnContenido.getSize().width,
+                    pnContenido.getSize().height);
+            editar.setLocation(0, -40);
+            pnContenido.add(editar);
+            pnContenido.revalidate();
+            pnContenido.repaint();
+        }
+
+        dispose();
     }
 
 }

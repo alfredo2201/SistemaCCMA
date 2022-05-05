@@ -177,6 +177,9 @@ public class PnActualizarCliente extends javax.swing.JPanel {
     private javax.swing.JPanel pnTabla;
     private javax.swing.JTable tblCliente;
     // End of variables declaration//GEN-END:variables
+    
+    
+    
     private void editarCliente() {
         Control ctl = new Control();
         Integer selectedRow = tblCliente.getSelectedRow();
