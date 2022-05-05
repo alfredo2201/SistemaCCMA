@@ -4,8 +4,11 @@
  */
 package IGenerarReportes;
 
+import Dominio.Venta;
+import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -20,6 +23,7 @@ public class PnGenerarReporte extends javax.swing.JPanel {
      */
     private PnContenido contenido = PnContenido.getInstance();
     private PnReporteGenerado reporte = new PnReporteGenerado();
+    private INegocios negocios = Fachada.FabricaNegocios.getInstance();
 
     public PnGenerarReporte() {
         initComponents();
@@ -48,7 +52,6 @@ public class PnGenerarReporte extends javax.swing.JPanel {
 
         btnGenReporte.setBackground(new java.awt.Color(153, 153, 0));
         btnGenReporte.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnGenReporte.setForeground(new java.awt.Color(0, 0, 0));
         btnGenReporte.setText("Generar reporte");
         btnGenReporte.setBorder(null);
         btnGenReporte.setBorderPainted(false);
@@ -60,32 +63,25 @@ public class PnGenerarReporte extends javax.swing.JPanel {
 
         txtCancelar.setBackground(new java.awt.Color(153, 153, 153));
         txtCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtCancelar.setForeground(new java.awt.Color(0, 0, 0));
         txtCancelar.setText("Cancelar");
         txtCancelar.setBorder(null);
         txtCancelar.setBorderPainted(false);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Fecha Inicio:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Fecha fin:");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Genear Reporte");
 
         dcFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
-        dcFechaInicio.setForeground(new java.awt.Color(0, 0, 0));
 
         dcFechaFin.setBackground(new java.awt.Color(255, 255, 255));
-        dcFechaFin.setForeground(new java.awt.Color(0, 0, 0));
 
         rbMesAnterior.setBackground(new java.awt.Color(255, 255, 255));
         rbMesAnterior.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rbMesAnterior.setForeground(new java.awt.Color(0, 0, 0));
         rbMesAnterior.setText("1 Mes");
         rbMesAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +91,6 @@ public class PnGenerarReporte extends javax.swing.JPanel {
 
         rbMedioMes.setBackground(new java.awt.Color(255, 255, 255));
         rbMedioMes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rbMedioMes.setForeground(new java.awt.Color(0, 0, 0));
         rbMedioMes.setText("15 Días");
         rbMedioMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +118,7 @@ public class PnGenerarReporte extends javax.swing.JPanel {
                                 .addComponent(jLabel5)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(75, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(190, 190, 190)
                         .addComponent(rbMedioMes)
@@ -143,7 +138,7 @@ public class PnGenerarReporte extends javax.swing.JPanel {
                     .addComponent(dcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rbMesAnterior)
                     .addComponent(rbMedioMes))
                 .addGap(34, 34, 34)
@@ -155,43 +150,15 @@ public class PnGenerarReporte extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenReporteActionPerformed
-//        // TODO add your handling code here:
-//        Date fechaI = dcFechaInicio.getDate();
-//        Date fechaF = dcFechaFin.getDate();
-//
-//        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
-//        JOptionPane.showMessageDialog(null, "La fecha es del: " + formato.format(fechaI) + " al " + formato.format(fechaF));
-
-        contenido.removeAll();
-        reporte.setVisible(true);
-        reporte.setSize(contenido.getSize().width, contenido.getSize().height);
-        reporte.setLocation(0, 0);
-        contenido.add(reporte);
-        contenido.revalidate();
-        contenido.repaint();
+        generarReporte();
     }//GEN-LAST:event_btnGenReporteActionPerformed
 
     private void rbMesAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMesAnteriorActionPerformed
-
-        if (rbMesAnterior.isSelected()) {
-            rbMedioMes.setSelected(false);
-            dcFechaInicio.setEnabled(false);
-            dcFechaFin.setEnabled(false);
-        } else {
-            dcFechaInicio.setEnabled(true);
-            dcFechaFin.setEnabled(true);
-        }
+        reportesMesAnterior();
     }//GEN-LAST:event_rbMesAnteriorActionPerformed
 
     private void rbMedioMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMedioMesActionPerformed
-        if (rbMedioMes.isSelected()) {
-            rbMesAnterior.setSelected(false);
-            dcFechaInicio.setEnabled(false);
-            dcFechaFin.setEnabled(false);
-        } else {
-            dcFechaInicio.setEnabled(true);
-            dcFechaFin.setEnabled(true);
-        }
+        reportesMedioMes();
     }//GEN-LAST:event_rbMedioMesActionPerformed
 
 
@@ -206,4 +173,57 @@ public class PnGenerarReporte extends javax.swing.JPanel {
     private javax.swing.JRadioButton rbMesAnterior;
     private javax.swing.JButton txtCancelar;
     // End of variables declaration//GEN-END:variables
+
+    public void generarReporte() {
+        ArrayList<Venta> ventas = null;
+
+        if (!dcFechaInicio.isEnabled() || !dcFechaFin.isEnabled()) {
+            boolean medioMes = rbMedioMes.isSelected();
+            boolean mesAnterior = rbMesAnterior.isSelected();
+            if (medioMes) {
+                ventas = negocios.consultarVentasByDias(15);
+            } else if (mesAnterior) {
+                ventas = negocios.consultarVentasByDias(30);
+            }
+        } else {
+            Date fechaI = dcFechaInicio.getDate();
+            Date fechaF = dcFechaFin.getDate();
+            ventas = negocios.consultarVentaRangoFechas(fechaI, fechaF);
+        }
+
+        System.out.println("vnt" + ventas);
+
+        reporte = new PnReporteGenerado(ventas);
+        contenido.removeAll();
+        reporte.setVisible(true);
+        reporte.setSize(contenido.getSize().width, contenido.getSize().height);
+        reporte.setLocation(0, 0);
+        contenido.add(reporte);
+        contenido.revalidate();
+        contenido.repaint();
+    }
+
+    public void reportesMesAnterior() {
+
+        if (rbMesAnterior.isSelected()) {
+            rbMedioMes.setSelected(false);
+            dcFechaInicio.setEnabled(false);
+            dcFechaFin.setEnabled(false);
+        } else {
+            dcFechaInicio.setEnabled(true);
+            dcFechaFin.setEnabled(true);
+        }
+    }
+
+    public void reportesMedioMes() {
+        if (rbMedioMes.isSelected()) {
+            rbMesAnterior.setSelected(false);
+            dcFechaInicio.setEnabled(false);
+            dcFechaFin.setEnabled(false);
+        } else {
+            dcFechaInicio.setEnabled(true);
+            dcFechaFin.setEnabled(true);
+        }
+    }
+
 }

@@ -353,16 +353,8 @@ public class PnAgregarProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarProductoActionPerformed
 
     private void btnContinuarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarVentaActionPerformed
-        RegistrarVenta venta = RegistrarVenta.getInstance();
-        Control ctl = new Control();
-        ctl.muestraPantalla(pnContenido, venta);
-        venta.setPdLista(auxProducts);
-        venta.mostrarVenta();
-        //venta.calcularTotali();
-        //venta.calcularSubTotal();
-        //venta.calcularSubTotal(auxProducts);
 
-
+        continuarVenta();
     }//GEN-LAST:event_btnContinuarVentaActionPerformed
 
     private void cmbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoActionPerformed
@@ -416,6 +408,16 @@ public class PnAgregarProducto extends javax.swing.JPanel {
     private javax.swing.JTextField txtNombreCliente;
     // End of variables declaration//GEN-END:variables
 
+    public void continuarVenta() {
+
+        RegistrarVenta venta = RegistrarVenta.getInstance();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, venta);
+        venta.setPdLista(auxProducts);
+        venta.verificarProductosRepetidos(auxProducts);
+        venta.mostrarVenta();
+    }
+
     private void buscarArituclo() {
         String tipo = (String) cmbTipo.getSelectedItem();
         String marca = (String) cmbMarca.getSelectedItem();
@@ -454,7 +456,9 @@ public class PnAgregarProducto extends javax.swing.JPanel {
         }
 
         if (conjunto == 0) {
-            JOptionPane.showConfirmDialog(null, "Por favor seleccióne al menos un parametro de busqueda", "ERROR", JOptionPane.OK_OPTION);
+            JOptionPane.showConfirmDialog(null,
+                    "Por favor seleccióne al menos un parametro de busqueda",
+                    "ERROR", JOptionPane.OK_OPTION);
             return;
         } else if (conjunto == 1) {
             if (tipo != null) {
@@ -466,7 +470,8 @@ public class PnAgregarProducto extends javax.swing.JPanel {
                     }
                     listArticulos.setModel(modelo);
                 } else {
-                    JOptionPane.showConfirmDialog(null, "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
+                    JOptionPane.showConfirmDialog(null,
+                            "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
                 }
             } else if (marca != null) {
                 ArrayList<Producto> productos = negocios.consultarProductoByMarca(marca);
@@ -474,11 +479,13 @@ public class PnAgregarProducto extends javax.swing.JPanel {
                     System.out.println(productos);
                     DefaultListModel<String> modelo = new DefaultListModel<>();
                     for (Producto producto : productos) {
-                        modelo.addElement(producto.getIdProducto() + "-" + producto.toString().trim());
+                        modelo.addElement(producto.getIdProducto()
+                                + "-" + producto.toString().trim());
                     }
                     listArticulos.setModel(modelo);
                 } else {
-                    JOptionPane.showConfirmDialog(null, "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
+                    JOptionPane.showConfirmDialog(null,
+                            "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
                 }
             } else if (model != null) {
                 ArrayList<Producto> productos = negocios.consultarProductoByModelo(model);
@@ -491,7 +498,8 @@ public class PnAgregarProducto extends javax.swing.JPanel {
                     }
                     listArticulos.setModel(modelo);
                 } else {
-                    JOptionPane.showConfirmDialog(null, "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
+                    JOptionPane.showConfirmDialog(null,
+                            "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
                 }
             } else if (anio != null) {
                 int anioActualizado = Integer.parseInt(anio);
@@ -503,7 +511,8 @@ public class PnAgregarProducto extends javax.swing.JPanel {
                     }
                     listArticulos.setModel(modelo);
                 } else {
-                    JOptionPane.showConfirmDialog(null, "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
+                    JOptionPane.showConfirmDialog(null,
+                            "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
                 }
             }
         } else {
@@ -516,7 +525,8 @@ public class PnAgregarProducto extends javax.swing.JPanel {
                 }
                 listArticulos.setModel(modelo);
             } else {
-                JOptionPane.showConfirmDialog(null, "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
+                JOptionPane.showConfirmDialog(null,
+                        "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
             }
         }
     }
@@ -526,7 +536,8 @@ public class PnAgregarProducto extends javax.swing.JPanel {
         try {
             productoSeleccionado = listProductosSeleccionados.getSelectedIndex();
         } catch (Exception e) {
-            JOptionPane.showConfirmDialog(null, "Por favor seleccióne uno o mas articulos", "ERROR", JOptionPane.OK_OPTION);
+            JOptionPane.showConfirmDialog(null,
+                    "Por favor seleccióne uno o mas articulos", "ERROR", JOptionPane.OK_OPTION);
         }
         DefaultListModel model = (DefaultListModel) listProductosSeleccionados.getModel();
         model.remove(productoSeleccionado);
@@ -540,7 +551,8 @@ public class PnAgregarProducto extends javax.swing.JPanel {
             listaProductos = (ArrayList<String>) listArticulos.getSelectedValuesList();
         } catch (Exception e) {
 
-            JOptionPane.showConfirmDialog(null, "Por favor seleccióne uno o mas articulos", "ERROR", JOptionPane.OK_OPTION);
+            JOptionPane.showConfirmDialog(null,
+                    "Por favor seleccióne uno o mas articulos", "ERROR", JOptionPane.OK_OPTION);
         }
         DefaultListModel<String> listaProductosSeleccionados = (DefaultListModel<String>) listProductosSeleccionados.getModel();
         Object[] productosEnLista = listaProductosSeleccionados.toArray();

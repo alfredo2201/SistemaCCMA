@@ -190,7 +190,9 @@ public class PnEliminarProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEliminarProducActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        cargarProducto();
+        PnMenuProducto pnMnProducto = new PnMenuProducto();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnProducto);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
@@ -209,6 +211,7 @@ public class PnEliminarProducto extends javax.swing.JPanel {
     private javax.swing.JPanel pnTabla;
     private javax.swing.JTable tbProducto;
     // End of variables declaration//GEN-END:variables
+
     public void cargarProducto() {
         DefaultTableModel dtm = (DefaultTableModel) tbProducto.getModel();
         Control ctl = new Control();
@@ -216,15 +219,20 @@ public class PnEliminarProducto extends javax.swing.JPanel {
         try {
             pdLista = negocios.consultarTodoProducto();
             if (pdLista.isEmpty()) {
-                ctl.muestraMsj("No se ha encontrado ningun producto", "Sin producto", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+                ctl.muestraMsj("No se ha encontrado ningun producto",
+                        "Sin producto", JOptionPane.INFORMATION_MESSAGE,
+                        "src/iconos/warning.png");
                 return;
             }
             pdLista.forEach(pd -> {
                 dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(),
-                    pd.getTipo(), pd.getMarca(), pd.getModelo(), pd.getAnio(), pd.getPrecio(), pd.getDisponible(), false});
+                    pd.getTipo(), pd.getMarca(), pd.getModelo(),
+                    pd.getAnio(), pd.getPrecio(), pd.getDisponible(), false});
             });
         } catch (Exception e) {
-            ctl.muestraMsj("No se han podido recuperar los productos.", "Error al buscar productos", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+            ctl.muestraMsj("No se han podido recuperar los productos.",
+                    "Error al buscar productos", JOptionPane.INFORMATION_MESSAGE,
+                    "src/iconos/warning.png");
         }
     }
 
@@ -238,15 +246,21 @@ public class PnEliminarProducto extends javax.swing.JPanel {
         }
 
         if (pdListaEliminar.isEmpty()) {
-            ctl.muestraMsj("No se ha seleccionado ningun producto", "Error de productos", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+            ctl.muestraMsj("No se ha seleccionado ningun producto",
+                    "Error de productos", JOptionPane.INFORMATION_MESSAGE,
+                    "src/iconos/warning.png");
             return;
         }
         pdListaEliminar.forEach(pd -> {
             try {
                 negocios.eliminarProdcuto(pd);
-                ctl.muestraMsj("Los productos se eliminaron correctamente", "Productos eliminados", JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");
+                ctl.muestraMsj("Los productos se eliminaron correctamente",
+                        "Productos eliminados", JOptionPane.INFORMATION_MESSAGE,
+                        "src/iconos/comprobado.png");
             } catch (Error e) {
-                ctl.muestraMsj(("No se ha podido eliminar el producto seleccionado: " + pd.getIdProducto().toString()), "Error al buscar productos", JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+                ctl.muestraMsj(("No se ha podido eliminar el producto seleccionado: "
+                        + pd.getIdProducto().toString()), "Error al buscar productos",
+                        JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
             }
 
         });

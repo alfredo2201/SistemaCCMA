@@ -15,6 +15,7 @@ import Dominio.Producto;
 import Dominio.Venta;
 import Dominio.VentaProducto;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -143,6 +144,11 @@ public class FachadaNegocos implements INegocios {
     public ArrayList<Venta> consultarVentasByDias(int dias) {
         return ctlVenta.consultaVentaPeriodoDeterminado(dias);
     }
+    
+    @Override
+    public ArrayList<Venta> consultarVentaRangoFechas(Date inicio, Date fin) {
+        return ctlVenta.consultarVentaRangoFechas(inicio, fin);
+    }
 
     @Override
     public ArrayList<Venta> consultarVentas() {
@@ -154,4 +160,9 @@ public class FachadaNegocos implements INegocios {
        return ctlVenta.consultarVentaById(id);
     }
 
+    @Override
+    public ArrayList<VentaProducto> consultarVentaProductoByIdVenta(Integer id) {
+        return ctlVenta.consultarVentaProductosByIdVenta(id);
+    }
+    
 }

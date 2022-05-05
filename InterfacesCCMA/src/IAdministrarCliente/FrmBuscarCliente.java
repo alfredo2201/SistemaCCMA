@@ -36,12 +36,12 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
      * Creates new form IBuscarCliente
      */
     public FrmBuscarCliente() {
-
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         this.dtm = (DefaultTableModel) clienteTable.getModel();
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+//      buscarClientes("","");
     }
 
     /**
@@ -287,7 +287,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCSinClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCSinClienteActionPerformed
-        continuarSinVenta();
+        continuarSinCliente();
     }//GEN-LAST:event_btnCSinClienteActionPerformed
 
 
@@ -337,6 +337,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         });
     }
 
+
     private void continuar() {
         Control ctl = new Control();
         int i = clienteTable.getSelectedRow();
@@ -346,6 +347,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
                 String c = (String) dtm.getValueAt(i, 1);
                 aux = negocios.consultarClienteByRFC(c);
                 registrarVenta = RegistrarVenta.getInstance();
+                registrarVenta.limpiarTabla();
                 ctl.muestraPantalla(contenido, registrarVenta);
                 registrarVenta.setCliente(aux);
             } else if (getTipoPantalla() == CONSULTAR_CLIENTE) {
@@ -357,16 +359,19 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
             }
             dispose();
         } else {
-            ctl.muestraMsj("Por favor seleccione un cliente.", "Cliente no seleccionado", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+            ctl.muestraMsj("Por favor seleccione un cliente.",
+                    "Cliente no seleccionado", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
 
         }
 
     }
 
-    private void continuarSinVenta() {
+    private void continuarSinCliente() {
         Control ctl = new Control();
         registrarVenta = RegistrarVenta.getInstance();
+        Cliente cliente = new Cliente(1, "None", "None@gmail.com", "AAAA000000AAA", "0000000000");
         ctl.muestraPantalla(contenido, registrarVenta);
+        registrarVenta.setCliente(cliente);
         registrarVenta.clienteAnonimo();
         dispose();
     }

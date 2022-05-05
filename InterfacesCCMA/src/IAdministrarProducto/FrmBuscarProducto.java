@@ -24,7 +24,7 @@ public class FrmBuscarProducto extends javax.swing.JFrame {
 
     private PnContenido contenido = PnContenido.getInstance();
     private PnConsultarProducto consultar = new PnConsultarProducto();
-    private INegocios negocios = FabricaNegocios.getInstance();    
+    private INegocios negocios = FabricaNegocios.getInstance();
     private ArrayList<Producto> cLista;
 
     private DefaultTableModel dtm;
@@ -39,7 +39,7 @@ public class FrmBuscarProducto extends javax.swing.JFrame {
         this.dtm = (DefaultTableModel) clienteTable.getModel();
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         cLista = new ArrayList<>();
-        buscarProducto();        
+        buscarProducto();
     }
 
     /**
@@ -205,7 +205,8 @@ public class FrmBuscarProducto extends javax.swing.JFrame {
         dtm.setRowCount(0);
         cLista = negocios.consultarTodoProducto();
         cLista.forEach(pr -> {
-            dtm.addRow(new Object[]{pr.getTipo(), pr.getMarca(), pr.getModelo(), pr.getAnio()});
+            dtm.addRow(new Object[]{pr.getTipo(), pr.getMarca(),
+                pr.getModelo(), pr.getAnio()});
         });
     }
 
@@ -221,7 +222,9 @@ public class FrmBuscarProducto extends javax.swing.JFrame {
             consultar.cargarProducto();
             dispose();
         } else {
-            ctl.muestraMsj("Seleccione un producto para continuar.", "Producto no seleccionado", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+            ctl.muestraMsj("Seleccione un producto para continuar.",
+                    "Producto no seleccionado", JOptionPane.ERROR_MESSAGE,
+                    "src/iconos/warning.png");
         }
     }
 

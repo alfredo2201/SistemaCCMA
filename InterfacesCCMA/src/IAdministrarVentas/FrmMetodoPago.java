@@ -7,6 +7,7 @@ package IAdministrarVentas;
 
 import Control.Control;
 import PanelesGlobales.PnContenido;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -18,11 +19,13 @@ public class FrmMetodoPago extends javax.swing.JFrame {
      * Creates new form FrmMetodoPago
      */
     private PnContenido pnContenido = PnContenido.getInstance();
+    private RegistrarVenta registrarVenta;
     
     public FrmMetodoPago() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -150,15 +153,14 @@ public class FrmMetodoPago extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        registrarVenta = RegistrarVenta.getInstance();
+        registrarVenta.setMetodoPagoTarjeta();
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        RegistrarVenta venta = RegistrarVenta.getInstance();
-        Control ctl = new Control();
-        ctl.muestraPantalla(pnContenido, venta);
-        venta.calcularTotali();
+        registrarVenta = RegistrarVenta.getInstance();
+        registrarVenta.setMetodoPagoEfectivo();
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

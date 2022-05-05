@@ -9,6 +9,7 @@ import Dominio.*;
 import IDatos.FabricaDatos;
 import IDatos.IDatos;
 import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -72,11 +73,16 @@ public class ControlVenta {
     }
 
     public ArrayList<Venta> consultaVentaPeriodoDeterminado(int dias) {
-        LocalDate date = LocalDate.now();
-        Date fechaFin = new Date();
-        date = date.minusDays(dias);
-        System.out.println(date);
-        Date fechaInicio = new Date(date.getYear() - 1900, date.getMonthValue() - 1, date.getDayOfMonth());
+        LocalDate date = LocalDate.now(); 
+           Date fechaFin;
+            Date fechaInicio;
+        if (dias == 15) {
+           fechaInicio = Date.from(date.minusDays(dias).atStartOfDay().toInstant(ZoneOffset.UTC));
+           fechaFin = Date.from(date.atStartOfDay().toInstant(ZoneOffset.UTC));        
+        }else{
+            fechaFin = Date.from(date.atStartOfDay().toInstant(ZoneOffset.UTC));       
+            fechaInicio = Date.from(date.minusDays(dias).atStartOfDay().toInstant(ZoneOffset.UTC));
+        }        
         try {
             return iDatos.consultarVentaByRangoFechas(fechaInicio, fechaFin);
         } catch (Exception ex) {
@@ -101,6 +107,15 @@ public class ControlVenta {
             System.out.println(ex.getMessage());
             return null;
         }
+    }
+    
+    public ArrayList<VentaProducto> consultarVentaProductosByIdVenta(int id){
+        try {
+            return iDatos.consultarVentaProductoByIdVenta(id);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }        
     }
 
 }

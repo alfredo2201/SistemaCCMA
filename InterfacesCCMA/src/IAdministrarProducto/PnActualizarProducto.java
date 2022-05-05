@@ -30,7 +30,7 @@ public class PnActualizarProducto extends javax.swing.JPanel {
 
     public PnActualizarProducto() {
         initComponents();
-        this.dtm = (DefaultTableModel) tblProductos.getModel();        
+        this.dtm = (DefaultTableModel) tblProductos.getModel();
     }
 
     /**
@@ -185,12 +185,15 @@ public class PnActualizarProducto extends javax.swing.JPanel {
     private javax.swing.JTable tblProductos;
     // End of variables declaration//GEN-END:variables
 
+   
     public void buscarProducto() {
         // Borra todos los rows
         dtm.setRowCount(0);
         cLista = negocios.consultarTodoProducto();
         cLista.forEach(pr -> {
-            dtm.addRow(new Object[]{pr.getIdProducto(),pr.getDescripcion(),pr.getTipo(), pr.getMarca(), pr.getModelo(), pr.getAnio(),pr.getPrecio(),pr.getDisponible()});
+            dtm.addRow(new Object[]{pr.getIdProducto(), pr.getDescripcion(),
+                pr.getTipo(), pr.getMarca(), pr.getModelo(), pr.getAnio(),
+                pr.getPrecio(), pr.getDisponible()});
         });
     }
 
@@ -205,7 +208,9 @@ public class PnActualizarProducto extends javax.swing.JPanel {
             ctl.muestraPantalla(pnContenido, editar);
             editar.cargarProducto();
         } else {
-            ctl.muestraMsj("Seleccione un producto para continuar.", "Producto no seleccionado", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+            ctl.muestraMsj("Seleccione un producto para continuar.",
+            "Producto no seleccionado", JOptionPane.ERROR_MESSAGE,
+            "src/iconos/warning.png");
         }
     }
 

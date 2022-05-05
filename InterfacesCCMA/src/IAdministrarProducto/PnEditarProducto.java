@@ -302,6 +302,15 @@ public class PnEditarProducto extends javax.swing.JPanel {
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
     private void actualizarProducto() {
         Control ctl = new Control();
         String descripcion = txtDesc.getText();
@@ -311,22 +320,43 @@ public class PnEditarProducto extends javax.swing.JPanel {
         Integer anio = Integer.parseInt(txtAnio.getText());
         Float precio = Float.parseFloat(txtPrecio.getText());
         Integer disponible = Integer.parseInt(txtCantidad.getText());
+        if (descripcion.isEmpty() || tipo.isEmpty() || marca.isEmpty()
+                || modelo.isEmpty() || anio == null || precio == null
+                || disponible == null) {
 
-        if (descripcion.isEmpty() || tipo.isEmpty() || marca.isEmpty() || modelo.isEmpty() || anio == null || precio == null || disponible == null) {
-            ctl.muestraMsj("Favor de llenar todas las casillas.", "No se pudo actualizar el producto.", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+            ctl.muestraMsj("Favor de llenar todas las casillas.",
+                    "No se pudo actualizar el producto.", JOptionPane.ERROR_MESSAGE,
+                    "src/iconos/warning.png");
+
         } else {
             try {
-                Producto producto = new Producto(descripcion, tipo, marca, modelo, anio, precio);
-                
+                Producto producto = new Producto(descripcion, tipo, marca,
+                        modelo, anio, precio);
+
                 producto.setIdProducto(getProducto().getIdProducto());
                 producto.setDisponible(disponible);
                 negocios.actualizarProducto(producto);
-                ctl.muestraMsj("Se actualizó un producto.", "Producto actualizado", JOptionPane.ERROR_MESSAGE, "src/iconos/comprobado.png");
+                ctl.muestraMsj("Se actualizó un producto.",
+                        "Producto actualizado", JOptionPane.ERROR_MESSAGE,
+                        "src/iconos/comprobado.png");
                 limpiarCampos();
             } catch (Error e) {
-                ctl.muestraMsj("Error al intentar actualizar el producto.", "Error al actualizar producto", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+                ctl.muestraMsj("Error al intentar actualizar el producto.",
+                        "Error al actualizar producto", JOptionPane.ERROR_MESSAGE,
+                        "src/iconos/warning.png");
             }
         }
+    }
+
+    public void cargarProducto() {
+        txtTipo.setText(getProducto().getTipo());
+        txtDesc.setText(getProducto().getDescripcion());
+        txtMarca.setText(getProducto().getMarca());
+        txtModel.setText(getProducto().getModelo());
+        txtAnio.setText(getProducto().getAnio() + "");
+        txtPrecio.setText(getProducto().getPrecio() + "");
+        txtCantidad.setText(getProducto().getDisponible() + "");
+
     }
 
     private void limpiarCampos() {
@@ -339,25 +369,5 @@ public class PnEditarProducto extends javax.swing.JPanel {
         txtCantidad.setText("");
 
     }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
-    
-    public void cargarProducto(){
-        txtTipo.setText(getProducto().getTipo());
-        txtDesc.setText(getProducto().getDescripcion());
-        txtMarca.setText(getProducto().getMarca());
-        txtModel.setText(getProducto().getModelo());
-        txtAnio.setText(getProducto().getAnio()+"");
-        txtPrecio.setText(getProducto().getPrecio()+"");
-        txtCantidad.setText(getProducto().getDisponible()+"");
-    
-    }
-    
 
 }

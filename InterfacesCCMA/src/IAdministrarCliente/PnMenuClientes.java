@@ -137,11 +137,15 @@ public class PnMenuClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_btnOpcionRegistrarClienteActionPerformed
 
     private void btnOpcionActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionActualizarClienteActionPerformed
+        actualizar = new PnActualizarCliente();
         ctl.muestraPantalla(contenido, actualizar);
+        actualizar.cargarClientes();
     }//GEN-LAST:event_btnOpcionActualizarClienteActionPerformed
 
     private void btnOpcionEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionEliminarClienteActionPerformed
+        eliminar = new PnEliminarCliente();
         ctl.muestraPantalla(contenido, eliminar);
+        eliminar.cargarClienteTabla();
     }//GEN-LAST:event_btnOpcionEliminarClienteActionPerformed
 
     private void btnOpcionConsultarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionConsultarClienteActionPerformed

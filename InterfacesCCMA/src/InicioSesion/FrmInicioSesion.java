@@ -300,9 +300,9 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         String user = "", password = "";
         Control ctl = new Control();
         user = txtNombreUsuario.getText();
-        password = pfContraseña.getText();        
-        if (!user.isEmpty() || !password.isEmpty()) {
-            Empleado empleado = negocios.obtenEmpleado(user, password);
+        password = pfContraseña.getText();
+//        Empleado emp = new Empleado(6,"Alberto Hernandez","ahg@outlook.com","user","1234", Permiso.ADMIN);
+        Empleado empleado = negocios.obtenEmpleado(user, password);
             if (empleado.getIdUsuario() != null && user.equals(empleado.getUsername()) && password.equals(empleado.getPassword())) {
                 FrmPrincipal main = FrmPrincipal.getInstance();
                 main.setEmpleado(empleado);
@@ -311,9 +311,5 @@ public class FrmInicioSesion extends javax.swing.JFrame {
             } else {
                 ctl.muestraMsj("Usuario y/o contraseña incorrecta. Vuelva intentarlo", "Credenciales Erroneas", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
             }
-        }else{
-            ctl.muestraMsj("Usuario y/o contraseña estan vacios. Vuelva intentarlo", "Campos no llenos", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
-        }
-
     }
 }

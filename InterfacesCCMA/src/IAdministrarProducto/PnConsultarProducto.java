@@ -287,15 +287,4 @@ public class PnConsultarProducto extends javax.swing.JPanel {
         txtCantidad.setText(getProducto().getDisponible()+"");
     
     }
-    
-    private void limpiarCampos(){
-       txtTipo.setText("");
-        txtDesc.setText("");
-        txtMarca.setText("");
-        txtModel.setText("");
-        txtAnio.setText("");
-        txtPrecio.setText("");
-        txtCantidad.setText("");
-    }
-
 }
