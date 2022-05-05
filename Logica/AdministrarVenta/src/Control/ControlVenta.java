@@ -73,11 +73,16 @@ public class ControlVenta {
     }
 
     public ArrayList<Venta> consultaVentaPeriodoDeterminado(int dias) {
-        LocalDate date = LocalDate.now();
-        
-        Date fechaFin = Date.from(date.minusDays(dias).atStartOfDay().toInstant(ZoneOffset.UTC));
-        
-        Date fechaInicio = Date.from(date.plusDays(dias).atStartOfDay().toInstant(ZoneOffset.UTC));
+        LocalDate date = LocalDate.now(); 
+           Date fechaFin;
+            Date fechaInicio;
+        if (dias == 15) {
+           fechaInicio = Date.from(date.minusDays(dias).atStartOfDay().toInstant(ZoneOffset.UTC));
+           fechaFin = Date.from(date.atStartOfDay().toInstant(ZoneOffset.UTC));        
+        }else{
+            fechaFin = Date.from(date.atStartOfDay().toInstant(ZoneOffset.UTC));       
+            fechaInicio = Date.from(date.minusDays(dias).atStartOfDay().toInstant(ZoneOffset.UTC));
+        }        
         try {
             return iDatos.consultarVentaByRangoFechas(fechaInicio, fechaFin);
         } catch (Exception ex) {

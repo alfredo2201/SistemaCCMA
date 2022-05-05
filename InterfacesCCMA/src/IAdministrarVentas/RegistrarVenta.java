@@ -600,11 +600,11 @@ public class RegistrarVenta extends javax.swing.JPanel {
     private void registrarVenta() {
         Control ctl = new Control();
         float pago = 0;
-        try{
-            if(metodoPago.equals(TipoPago.EFECTIVO)){
+        try {
+            if (metodoPago.equals(TipoPago.EFECTIVO)) {
                 int cantidadPagada = Integer.parseInt(txtPago.getText());
                 pago = Float.parseFloat(String.valueOf(cantidadPagada));
-                pago = totalVenta - pago;
+                pago = pago - totalVenta;
                 System.out.println(pago);
             }
         } catch (NumberFormatException ex) {
@@ -613,8 +613,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
                     "Cantidad de pago no ingresada", JOptionPane.ERROR_MESSAGE,
                     "src/iconos/warning.png");
         }
-        
-        
+
         if (tbProductos.getRowCount() != 0 && this.metodoPago != null) {
             Venta venta = new Venta(new ArrayList<>(), this.cliente, new Date(),
                     this.subTotal, this.totalVenta, this.empleado, metodoPago);
@@ -632,9 +631,11 @@ public class RegistrarVenta extends javax.swing.JPanel {
                 ventaProducto.add(produ);
             }
             venta.setListaProductos(ventaProducto);
+            ctl.muestraMsj("Cambio: $" + pago + " ", "Venta registrada",
+                    JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");
             negocios.registrarVenta(venta, ventaProducto);
-            ctl.muestraMsj("Venta registrada con exito, por favor regrese un total de $"+pago+" al cliente", "Venta registrada",
-                    JOptionPane.INFORMATION_MESSAGE, "src/iconos/warning.png");
+                        ctl.muestraMsj("Venta registrada con exito", "Venta registrada",
+                    JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");
             regresar();
 
         } else {

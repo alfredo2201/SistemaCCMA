@@ -4,6 +4,7 @@
  */
 package IGenerarReportes;
 
+import Control.Control;
 import Dominio.Venta;
 import IAdministrarVentas.PnMenuVenta;
 import PanelesGlobales.PnContenido;
@@ -159,13 +160,8 @@ public class PnReporteGenerado extends javax.swing.JPanel {
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         PnMenuVenta pnMnVenta = new PnMenuVenta();
-        pnContenido.removeAll();
-        ventas = null;
-        pnMnVenta.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
-        pnMnVenta.setLocation(0, -40);
-        pnContenido.add(pnMnVenta);
-        pnContenido.revalidate();
-        pnContenido.repaint();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnVenta);
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void guardarAExcel() {

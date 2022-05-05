@@ -255,7 +255,7 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
             ctl.muestraPantalla(pnContenido, pnConsultar);            
             dispose();
         } else if (getTipoPantalla() == ELIMINAR) {
-            pnEliminar = new PnEliminarVenta();
+            pnEliminar = new PnEliminarVenta(consultarVentas());
             ctl.muestraPantalla(pnContenido,pnEliminar);            
             dispose();
             dispose();

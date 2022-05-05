@@ -164,7 +164,7 @@ public class PnConsultarVenta extends javax.swing.JPanel {
     private void obtenVenta() {
         Control ctl = new Control();
         int i = tbReporteVentas.getSelectedRow();
-        if (i > 0) {
+        if (i >= 0) {
             Venta ventaSelec = ventas.get(i);
             ArrayList<VentaProducto> ventasProdu = negocios.consultarVentaProductoByIdVenta(ventaSelec.getIdVenta());
             ArrayList<Producto>productos;
