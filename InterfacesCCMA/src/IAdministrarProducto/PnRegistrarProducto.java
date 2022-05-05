@@ -314,16 +314,10 @@ public class PnRegistrarProducto extends javax.swing.JPanel {
         
         
 
-<<<<<<< HEAD
+
         if (descripcion.isEmpty() || tipo.isEmpty() || marca.isEmpty() || modelo.isEmpty() || anio==null|| precio==null || disponible==null) {
             ctl.muestraMsj("Favor de llenar todos los campos.", "No se pudo registrar el producto.", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
-=======
-        if (descripcion.isEmpty() || tipo.isEmpty() || marca.isEmpty()
-                || modelo.isEmpty() || anio == null || precio == null || disponible == null) {
-            ctl.muestraMsj("Favor de llenar todas las casillas.",
-                    "No se pudo registrar el producto.", JOptionPane.ERROR_MESSAGE,
-                    "src/iconos/warning.png");
->>>>>>> c250d48b8d06c0c74b7a0ea9bd387c90befdccf2
+
         } else {
             try {
                 Producto producto = new Producto(descripcion, tipo, marca, modelo, anio, precio);

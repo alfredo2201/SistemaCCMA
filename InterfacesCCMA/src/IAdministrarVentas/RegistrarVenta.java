@@ -639,12 +639,9 @@ public class RegistrarVenta extends javax.swing.JPanel {
             regresar();
 
         } else {
-<<<<<<< HEAD
+
             ctl.muestraMsj("Debes ingresar una cantidad minima en descuento -> '$0' ", "Cantidad de descuento no ingresada", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
-=======
-            ctl.muestraMsj("Debes ingresar una cantidad minima en descuento -> '$0' ",
-                    "Catidad de descuento no ingresada", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
->>>>>>> c250d48b8d06c0c74b7a0ea9bd387c90befdccf2
+
         }
     }
 
