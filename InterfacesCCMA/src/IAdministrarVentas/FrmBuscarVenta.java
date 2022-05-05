@@ -5,7 +5,13 @@
  */
 package IAdministrarVentas;
 
+import Control.Control;
+import Dominio.Venta;
+import Fachada.INegocios;
+import IGenerarReportes.PnReporteGenerado;
 import PanelesGlobales.PnContenido;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -15,10 +21,11 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
 
     /**
      * Creates new form FrmBuscarVenta
-     */
-    private PnConsultarVenta pnConsultar = new PnConsultarVenta();
-    private PnEliminarVenta pnEliminar = new PnEliminarVenta();
-    private PnContenido contenido = PnContenido.getInstance();
+     */    
+    private PnEliminarVenta pnEliminar;
+    private PnContenido pnContenido = PnContenido.getInstance();
+    private INegocios negocios = Fachada.FabricaNegocios.getInstance();
+    private PnConsultarVenta pnConsultar;
     private int tipoPantalla;
     private static int CONSULTAR = 0;
     private static int ELIMINAR = 1;
@@ -46,8 +53,8 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
         rbMedioMes = new javax.swing.JRadioButton();
         rbMesAnterior = new javax.swing.JRadioButton();
         btnBuscar = new javax.swing.JButton();
-        dpInicio = new com.toedter.calendar.JDateChooser();
-        dpFin = new com.toedter.calendar.JDateChooser();
+        dcFechaInicio = new com.toedter.calendar.JDateChooser();
+        dcFechaFin = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -110,11 +117,11 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
             }
         });
 
-        dpInicio.setBackground(new java.awt.Color(255, 255, 255));
-        dpInicio.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        dcFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
+        dcFechaInicio.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
 
-        dpFin.setBackground(new java.awt.Color(255, 255, 255));
-        dpFin.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        dcFechaFin.setBackground(new java.awt.Color(255, 255, 255));
+        dcFechaFin.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
 
         javax.swing.GroupLayout pnContentLayout = new javax.swing.GroupLayout(pnContent);
         pnContent.setLayout(pnContentLayout);
@@ -132,8 +139,8 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
                                 .addComponent(jLabel8)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(dpInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                            .addComponent(dpFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(dcFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                            .addComponent(dcFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(pnContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnContentLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -154,12 +161,12 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
                     .addGroup(pnContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel8)
                         .addComponent(rbMedioMes))
-                    .addComponent(dpInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addGroup(pnContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(rbMesAnterior)
-                    .addComponent(dpFin, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(62, 62, 62)
                 .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                 .addContainerGap(97, Short.MAX_VALUE))
@@ -198,8 +205,8 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
-    private com.toedter.calendar.JDateChooser dpFin;
-    private com.toedter.calendar.JDateChooser dpInicio;
+    private com.toedter.calendar.JDateChooser dcFechaFin;
+    private com.toedter.calendar.JDateChooser dcFechaInicio;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -221,11 +228,11 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
 
         if (rbMedioMes.isSelected()) {
             rbMesAnterior.setSelected(false);
-            dpInicio.setEnabled(false);
-            dpFin.setEnabled(false);
+            dcFechaInicio.setEnabled(false);
+            dcFechaFin.setEnabled(false);
         } else {
-            dpInicio.setEnabled(true);
-            dpFin.setEnabled(true);
+            dcFechaInicio.setEnabled(true);
+            dcFechaFin.setEnabled(true);
         }
     }
 
@@ -233,35 +240,44 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
 
         if (rbMesAnterior.isSelected()) {
             rbMedioMes.setSelected(false);
-            dpInicio.setEnabled(false);
-            dpFin.setEnabled(false);
+            dcFechaInicio.setEnabled(false);
+            dcFechaFin.setEnabled(false);
         } else {
-            dpInicio.setEnabled(true);
-            dpFin.setEnabled(true);
+            dcFechaInicio.setEnabled(true);
+            dcFechaFin.setEnabled(true);
         }
     }
 
     public void buscarVenta() {
-
+        Control ctl = new Control();
         if (getTipoPantalla() == CONSULTAR) {
-            contenido.removeAll();
-            pnConsultar.setSize(contenido.getSize().width,
-                    contenido.getSize().height);
-            pnConsultar.setLocation(0, -40);
-            contenido.add(pnConsultar);
-            contenido.revalidate();
-            contenido.repaint();
+            pnConsultar = new PnConsultarVenta(consultarVentas());
+            ctl.muestraPantalla(pnContenido, pnConsultar);            
             dispose();
         } else if (getTipoPantalla() == ELIMINAR) {
-            contenido.removeAll();
-            pnEliminar.setSize(contenido.getSize().width,
-                    contenido.getSize().height);
-            pnEliminar.setLocation(0, -40);
-            contenido.add(pnEliminar);
-            contenido.revalidate();
-            contenido.repaint();
+            pnEliminar = new PnEliminarVenta();
+            ctl.muestraPantalla(pnContenido,pnEliminar);            
+            dispose();
             dispose();
         }
+    }
+
+    private ArrayList<Venta> consultarVentas() {        
+        ArrayList<Venta> ventas = null;
+        if (!dcFechaInicio.isEnabled() || !dcFechaFin.isEnabled()) {
+            boolean medioMes = rbMedioMes.isSelected();
+            boolean mesAnterior = rbMesAnterior.isSelected();
+            if (medioMes) {
+                ventas = negocios.consultarVentasByDias(15);
+            } else if (mesAnterior) {
+                ventas = negocios.consultarVentasByDias(30);
+            }
+        } else {
+            Date fechaI = dcFechaInicio.getDate();
+            Date fechaF = dcFechaFin.getDate();
+            ventas = negocios.consultarVentaRangoFechas(fechaI, fechaF);
+        }
+        return ventas;
     }
 
 }

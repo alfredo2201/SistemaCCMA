@@ -3,7 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package IAdministrarVentas;
+
+import Control.Control;
+import Dominio.Producto;
+import Dominio.Venta;
+import Dominio.VentaProducto;
+import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,8 +23,28 @@ public class PnConsultarVenta extends javax.swing.JPanel {
      * Creates new form ConsultarVenta
      */
     private PnContenido pnContenido = PnContenido.getInstance();
+    private INegocios negocios = Fachada.FabricaNegocios.getInstance();
+
+    private ArrayList<Venta> ventas;
+
     public PnConsultarVenta() {
         initComponents();
+        incializarTabla();
+    }
+
+    public PnConsultarVenta(ArrayList<Venta> ventas) {
+        initComponents();
+        this.ventas = ventas;
+        incializarTabla();
+    }
+
+    private void incializarTabla() {
+        DefaultTableModel dtm = (DefaultTableModel) tbReporteVentas.getModel();
+        dtm.setRowCount(0);
+
+        ventas.forEach(cl -> {
+            dtm.addRow(new Object[]{cl.getCliente().getNombre(), cl.getTotal(), cl.getEmpleado().getNombre(), cl.getFecha()});
+        });
     }
 
     /**
@@ -28,51 +56,63 @@ public class PnConsultarVenta extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbVentas = new javax.swing.JTable();
-        btnMenu = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbReporteVentas = new javax.swing.JTable();
+        btnMenu1 = new javax.swing.JButton();
+        btnConsultar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-
-        tbVentas.setBackground(new java.awt.Color(153, 153, 153));
-        tbVentas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tbVentas.setForeground(new java.awt.Color(0, 0, 0));
-        tbVentas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Código", "Descripción", "Marca", "Modelo", "Año", "Precio", "Cantidad", "Eliminar"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tbVentas);
-
-        btnMenu.setBackground(new java.awt.Color(153, 153, 0));
-        btnMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnMenu.setForeground(new java.awt.Color(0, 0, 0));
-        btnMenu.setText("Regresar al menú");
-        btnMenu.setBorder(null);
-        btnMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenuActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Consultar Ventas");
+
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setForeground(new java.awt.Color(0, 0, 0));
+
+        tbReporteVentas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tbReporteVentas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cliente", "Precio de productos/servicios", "Vendedor", "Fecha"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tbReporteVentas);
+
+        btnMenu1.setBackground(new java.awt.Color(153, 153, 0));
+        btnMenu1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnMenu1.setForeground(new java.awt.Color(0, 0, 0));
+        btnMenu1.setText("Regresar al menú");
+        btnMenu1.setBorder(null);
+        btnMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenu1ActionPerformed(evt);
+            }
+        });
+
+        btnConsultar.setBackground(new java.awt.Color(255, 255, 0));
+        btnConsultar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnConsultar.setForeground(new java.awt.Color(0, 0, 0));
+        btnConsultar.setText("Consultar");
+        btnConsultar.setBorder(null);
+        btnConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -81,43 +121,68 @@ public class PnConsultarVenta extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
-                        .addGap(44, 44, 44)
-                        .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(360, 360, 360)
-                        .addComponent(jLabel1)))
-                .addGap(27, 27, 27))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnMenu1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnConsultar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(70, 70, 70))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jLabel1)
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 244, Short.MAX_VALUE)
+                        .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(btnMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(218, 218, 218))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(160, 160, 160))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+    private void btnMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenu1ActionPerformed
         PnMenuVenta pnMnVenta = new PnMenuVenta();
-        pnContenido.removeAll();
-        pnMnVenta.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
-        pnMnVenta.setLocation(0, -40);
-        pnContenido.add(pnMnVenta);
-        pnContenido.revalidate();
-        pnContenido.repaint();
-    }//GEN-LAST:event_btnMenuActionPerformed
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnVenta);
+    }//GEN-LAST:event_btnMenu1ActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        obtenVenta();
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void obtenVenta() {
+        Control ctl = new Control();
+        int i = tbReporteVentas.getSelectedRow();
+        if (i > 0) {
+            Venta ventaSelec = ventas.get(i);
+            ArrayList<VentaProducto> ventasProdu = negocios.consultarVentaProductoByIdVenta(ventaSelec.getIdVenta());
+            ArrayList<Producto>productos;
+            productos = new ArrayList<>();
+            ventasProdu.stream().map((ventaProducto) -> negocios.consultarProductoById(ventaProducto.getProducto().getIdProducto())).forEachOrdered((p) -> {
+                productos.add(p);
+            });
+            PnVentaConsultada pnVentaConsul = new PnVentaConsultada(ventasProdu, productos);
+            ctl.muestraPantalla(pnContenido, pnVentaConsul);        
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMenu;
+    private javax.swing.JButton btnConsultar;
+    private javax.swing.JButton btnMenu1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbVentas;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tbReporteVentas;
     // End of variables declaration//GEN-END:variables
 }

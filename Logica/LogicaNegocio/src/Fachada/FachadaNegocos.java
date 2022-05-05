@@ -160,4 +160,9 @@ public class FachadaNegocos implements INegocios {
        return ctlVenta.consultarVentaById(id);
     }
 
+    @Override
+    public ArrayList<VentaProducto> consultarVentaProductoByIdVenta(Integer id) {
+        return ctlVenta.consultarVentaProductosByIdVenta(id);
+    }
+    
 }

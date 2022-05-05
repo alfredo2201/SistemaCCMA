@@ -99,12 +99,13 @@ public class PnReporteGenerado extends javax.swing.JPanel {
             }
         });
 
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setForeground(new java.awt.Color(0, 0, 0));
+
+        tbReporteVentas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbReporteVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Cliente", "Precio de productos/servicios", "Vendedor", "Fecha"
@@ -183,8 +184,7 @@ public class PnReporteGenerado extends javax.swing.JPanel {
         Map<String, Object[]> studentData
                 = new TreeMap<>();
 
-        int currentRow = 1;
-
+        int currentRow = 1;        
         studentData.put(
                 "" + currentRow,
                 new Object[]{"Cliente", "Precio de productos/servicios", "Vendedor", "Fecha"});
@@ -194,6 +194,7 @@ public class PnReporteGenerado extends javax.swing.JPanel {
             studentData.put("" + currentRow, new Object[]{venta.getCliente().getNombre(), "" + venta.getTotal(), venta.getEmpleado().getNombre(), venta.getFecha().toString()});
             currentRow++;
         }
+
 
         Set<String> keyid = studentData.keySet();
 
@@ -213,7 +214,7 @@ public class PnReporteGenerado extends javax.swing.JPanel {
         }
 
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Specify a file to save");
+        fileChooser.setDialogTitle("Especifique la ruta ");
         fileChooser.setSelectedFile(new File("Reporte Ventas.xlsx"));
         fileChooser.setFileFilter(new FileNameExtensionFilter("xlsx file", "xlsx"));
 
@@ -227,7 +228,7 @@ public class PnReporteGenerado extends javax.swing.JPanel {
             if (!filename.endsWith(".xlsx")) {
                 filename += ".xlsx";
             }
-            try ( FileOutputStream out = new FileOutputStream(filename)) {
+            try (FileOutputStream out = new FileOutputStream(filename)) {
                 workbook.write(out);
                 JOptionPane.showMessageDialog(this, "Se ha guardado el archivo.", "Generar Reporte", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception e) {

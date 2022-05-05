@@ -101,8 +101,8 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="dpInicio" pref="166" max="32767" attributes="0"/>
-                              <Component id="dpFin" max="32767" attributes="0"/>
+                              <Component id="dcFechaInicio" pref="166" max="32767" attributes="0"/>
+                              <Component id="dcFechaFin" max="32767" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
@@ -133,13 +133,13 @@
                           <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="rbMedioMes" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="dpInicio" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="dcFechaInicio" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rbMesAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dpFin" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="dcFechaFin" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                   <Component id="btnBuscar" pref="43" max="32767" attributes="0"/>
@@ -211,7 +211,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="dpInicio">
+        <Component class="com.toedter.calendar.JDateChooser" name="dcFechaInicio">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -221,7 +221,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="dpFin">
+        <Component class="com.toedter.calendar.JDateChooser" name="dcFechaFin">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>

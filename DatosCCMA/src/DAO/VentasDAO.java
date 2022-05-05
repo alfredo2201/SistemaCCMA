@@ -100,8 +100,8 @@ public class VentasDAO extends BaseDAO<Venta> {
                 venta.setCliente(clt.consultarById(resultadoConsulta.getInt("idCliente")));
                 venta.setFecha(resultadoConsulta.getTimestamp("fecha"));
                 venta.setSubtotal(resultadoConsulta.getFloat("subtotal"));
-                int i = resultadoConsulta.getInt("metodoPago");
-                if (TipoPago.EFECTIVO.equals(i)) {
+                String i = resultadoConsulta.getString("metodoPago");
+                if (i.equalsIgnoreCase("EFECTIVO")) {
                     venta.setPago(TipoPago.EFECTIVO);
                 } else {
                     venta.setPago(TipoPago.TARJETA);
@@ -152,8 +152,8 @@ public class VentasDAO extends BaseDAO<Venta> {
                 venta.setFecha(resultadoConsulta.getTimestamp("fecha"));
                 venta.setSubtotal(resultadoConsulta.getFloat("subtotal"));
                 venta.setTotal(resultadoConsulta.getFloat("total"));
-                int i = resultadoConsulta.getInt("metodoPago");
-                if (TipoPago.EFECTIVO.equals(i)) {
+                String i = resultadoConsulta.getString("metodoPago");
+                if (i.equalsIgnoreCase("EFECTIVO")) {
                     venta.setPago(TipoPago.EFECTIVO);
                 } else {
                     venta.setPago(TipoPago.TARJETA);
@@ -191,8 +191,8 @@ public class VentasDAO extends BaseDAO<Venta> {
                 venta.setFecha(resultadoConsulta.getTimestamp("fecha"));
                 venta.setSubtotal(resultadoConsulta.getFloat("subtotal"));
                 venta.setTotal(resultadoConsulta.getFloat("total"));
-                                int i = resultadoConsulta.getInt("metodoPago");
-                if (TipoPago.EFECTIVO.equals(i)) {
+                String i = resultadoConsulta.getString("metodoPago");
+                if (i.equalsIgnoreCase("EFECTIVO")) {
                     venta.setPago(TipoPago.EFECTIVO);
                 } else {
                     venta.setPago(TipoPago.TARJETA);
@@ -229,8 +229,8 @@ public class VentasDAO extends BaseDAO<Venta> {
                 venta.setFecha(resultadoConsulta.getTimestamp("fecha"));
                 venta.setSubtotal(resultadoConsulta.getFloat("subtotal"));
                 venta.setTotal(resultadoConsulta.getFloat("total"));
-                int i = resultadoConsulta.getInt("metodoPago");
-                if (TipoPago.EFECTIVO.equals(i)) {
+                String i = resultadoConsulta.getString("metodoPago");
+                if (i.equalsIgnoreCase("EFECTIVO")) {
                     venta.setPago(TipoPago.EFECTIVO);
                 } else {
                     venta.setPago(TipoPago.TARJETA);

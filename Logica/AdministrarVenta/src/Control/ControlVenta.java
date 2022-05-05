@@ -103,5 +103,14 @@ public class ControlVenta {
             return null;
         }
     }
+    
+    public ArrayList<VentaProducto> consultarVentaProductosByIdVenta(int id){
+        try {
+            return iDatos.consultarVentaProductoByIdVenta(id);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }        
+    }
 
 }

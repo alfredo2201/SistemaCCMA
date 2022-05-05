@@ -57,5 +57,7 @@ public interface INegocios {
     public ArrayList<Venta> consultarVentas();
 
     public void eliminarVenta(Venta venta);
+    
+    public ArrayList<VentaProducto> consultarVentaProductoByIdVenta(Integer id);    
 
 }
