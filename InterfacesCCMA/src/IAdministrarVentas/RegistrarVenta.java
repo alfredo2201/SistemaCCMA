@@ -16,6 +16,7 @@ import Fachada.FabricaNegocios;
 import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
 import Principal.FrmPrincipal;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import java.util.Arrays;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -58,7 +60,9 @@ public class RegistrarVenta extends javax.swing.JPanel {
         pdLista = new ArrayList<>();
         rbClienteTemporal.setSelected(false);
         rbClienteTemporal.setEnabled(false);
-        txtPago.disable();
+        txtPago.setEnabled(false);
+        validaCampo(txtDescuento);
+        validaCampo(txtPago);
     }
 
     /**
@@ -455,18 +459,52 @@ public class RegistrarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_txtDescuentoMouseExited
 
     private void tbProductosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbProductosKeyPressed
+        for (int i = 0; i < tbProductos.getRowCount(); i++) {
+            DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
+            String cantidad =  (String) modelo.getValueAt(i, 6);
+            if (!isNumeric(cantidad)) {
+                Control ctl = new Control();
+                ctl.muestraMsj("Por favor ingrese datos numericos",
+                        "Error", JOptionPane.INFORMATION_MESSAGE,
+                        "src/iconos/warning.png");
+                evt.consume();
+            }
+        }
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             calcularSubTotal(pdLista);
         }
+
     }//GEN-LAST:event_tbProductosKeyPressed
 
     private void txtDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescuentoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtDescuentoActionPerformed
 
     private void txtPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPagoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPagoActionPerformed
+
+    private static boolean isNumeric(String cadena){
+    	try {
+    		Integer.parseInt(cadena);
+    		return true;
+    	} catch (NumberFormatException nfe){
+    		return false;
+    	}
+    }
+    private void validaCampo(JTextField a) {
+        a.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isDigit(c) && c != '.') {
+                    e.consume();
+                }
+                if (c == '.' && txtDescuento.getText().contains(".")) {
+                    e.consume();
+                }
+            }
+        });
+    }
 
     public static RegistrarVenta getInstance() {
         if (instance == null) {
@@ -486,12 +524,12 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
     public void setMetodoPagoEfectivo() {
         metodoPago = TipoPago.EFECTIVO;
-        txtPago.enable();
+        txtPago.setEnabled(true);
     }
 
     public void setMetodoPagoTarjeta() {
         metodoPago = TipoPago.TARJETA;
-        txtPago.disable();
+        txtPago.setEnabled(false);
     }
 
     public ArrayList<Producto> getPdLista() {
@@ -506,10 +544,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
         txtCliente.setText(nombre);
         LocalDate fecha = LocalDate.now();
         txtFecha.setText(fecha.toString());
-    }
-
-    public void verificarProductosRepetidos(ArrayList<Producto> productos) {
-
     }
 
     private void eliminarProducto() {
@@ -634,8 +668,9 @@ public class RegistrarVenta extends javax.swing.JPanel {
             ctl.muestraMsj("Cambio: $" + pago + " ", "Venta registrada",
                     JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");
             negocios.registrarVenta(venta, ventaProducto);
-                        ctl.muestraMsj("Venta registrada con exito", "Venta registrada",
+            ctl.muestraMsj("Venta registrada con exito", "Venta registrada",
                     JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");
+
             regresar();
 
         } else {
