@@ -53,43 +53,38 @@ public class PnConsularCliente extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Consultar cliente");
 
         lblTextoNombre.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
-        lblTextoNombre.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoNombre.setText("Nombre:");
 
-        txtNombreCliente.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombreCliente.setEditable(false);
         txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtNombreCliente.setBorder(null);
 
         lblTextoEmail.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
-        lblTextoEmail.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoEmail.setText("Correo electrónico:");
 
-        txtCorreo.setBackground(new java.awt.Color(255, 255, 255));
+        txtCorreo.setEditable(false);
         txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtCorreo.setBorder(null);
 
         lblTextoTelefono.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
-        lblTextoTelefono.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoTelefono.setText("Teléfono:");
 
-        txtTelefono.setBackground(new java.awt.Color(255, 255, 255));
+        txtTelefono.setEditable(false);
         txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtTelefono.setBorder(null);
 
         lblTextoRFC.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
-        lblTextoRFC.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoRFC.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoRFC.setText("RFC:");
 
-        txtRFC.setBackground(new java.awt.Color(255, 255, 255));
+        txtRFC.setEditable(false);
         txtRFC.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtRFC.setBorder(null);
         txtRFC.addActionListener(new java.awt.event.ActionListener() {
@@ -100,14 +95,12 @@ public class PnConsularCliente extends javax.swing.JPanel {
 
         btnSalir.setBackground(new java.awt.Color(255, 255, 0));
         btnSalir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnSalir.setForeground(new java.awt.Color(0, 0, 0));
         btnSalir.setText("Salir");
         btnSalir.setBorder(null);
         btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         btnMenu.setBackground(new java.awt.Color(153, 153, 0));
         btnMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnMenu.setForeground(new java.awt.Color(0, 0, 0));
         btnMenu.setText("Regresar al menú");
         btnMenu.setBorder(null);
         btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

@@ -11,6 +11,7 @@ import Fachada.FabricaNegocios;
 import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,6 +27,7 @@ public class PnActualizarCliente extends javax.swing.JPanel {
     private PnEditarCliente pnEditarCliente;
     private INegocios negocios = FabricaNegocios.getInstance();
     private DefaultTableModel dtm;
+    private ArrayList<Cliente> cLista;
 
     public PnActualizarCliente() {
         initComponents();
@@ -178,6 +180,8 @@ public class PnActualizarCliente extends javax.swing.JPanel {
     private void editarCliente() {
         Control ctl = new Control();
         Integer selectedRow = tblCliente.getSelectedRow();
+        int i2 = tblCliente.getSelectedRow();
+        if (i2>=0){
         String val[] = new String[tblCliente.getColumnCount()];
         for (int i = 0; i < tblCliente.getColumnCount(); i++) {
             val[i] = tblCliente.getModel().getValueAt(selectedRow, i).toString();
@@ -186,7 +190,11 @@ public class PnActualizarCliente extends javax.swing.JPanel {
         pnEditarCliente = new PnEditarCliente(cl);
         ctl.muestraPantalla(pnContenido, pnEditarCliente);
         pnEditarCliente.cargarCliente();
+        }else{
+            ctl.muestraMsj("Seleccione un cliente para continuar.", "Cliente no seleccionado", JOptionPane.ERROR_MESSAGE, "src/iconos/warning.png");
+        }
     }
+   
 
     public void cargarClientes() {
         ArrayList<Cliente> cLista = new ArrayList<>();
@@ -195,6 +203,7 @@ public class PnActualizarCliente extends javax.swing.JPanel {
         cLista.forEach(cl -> {
             dtm.addRow(new Object[]{cl.getId_cliente(),cl.getNombre(), cl.getCorreo(),cl.getTelefono(), cl.getRfc()});
         });
-    }    
+    }  
+    
 
 }

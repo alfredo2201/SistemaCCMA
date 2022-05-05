@@ -260,7 +260,7 @@ public class PnEliminarCliente extends javax.swing.JPanel {
         cLIstaEliminar.forEach(cl -> {
             iNegocios.eliminarCliente(cl);
         });
-        ctl.muestraMsj("Se eliminaron los clientes seleccionados.", "No se elimino el cliente", JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");                    
+        ctl.muestraMsj("Se eliminaron los clientes seleccionados.", "se eliminó al cliente", JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");                    
     }
     
 //     private void limpiarTabla() {
