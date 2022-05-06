@@ -10,6 +10,8 @@ import Dominio.Venta;
 import Fachada.INegocios;
 import IGenerarReportes.PnReporteGenerado;
 import PanelesGlobales.PnContenido;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -34,8 +36,14 @@ public class FrmBuscarVenta extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        setIconImage(getIconImage());
     }
-
+    
+    @Override
+    public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("iconos/pos-terminal.png"));
+        return retValue;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

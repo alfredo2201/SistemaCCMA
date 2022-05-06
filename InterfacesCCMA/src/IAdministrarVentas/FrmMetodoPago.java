@@ -7,6 +7,8 @@ package IAdministrarVentas;
 
 import Control.Control;
 import PanelesGlobales.PnContenido;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.WindowConstants;
 
 /**
@@ -26,6 +28,13 @@ public class FrmMetodoPago extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+           setIconImage(getIconImage());
+    }
+    
+    @Override
+    public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("iconos/pos-terminal.png"));
+        return retValue;
     }
 
     /**

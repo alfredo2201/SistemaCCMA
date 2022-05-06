@@ -11,6 +11,8 @@ import Dominio.Producto;
 import Fachada.FabricaNegocios;
 import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
@@ -40,6 +42,13 @@ public class FrmBuscarProducto extends javax.swing.JFrame {
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         cLista = new ArrayList<>();
         buscarProducto();
+        setIconImage(getIconImage());
+    }
+
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("iconos/pos-terminal.png"));
+        return retValue;
     }
 
     /**

@@ -10,6 +10,8 @@ import Dominio.Empleado;
 import Dominio.Permiso;
 import Fachada.*;
 import Principal.FrmPrincipal;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
@@ -28,6 +30,13 @@ public class FrmInicioSesion extends javax.swing.JFrame {
     public FrmInicioSesion() {
         initComponents();
         setLocationRelativeTo(null);
+        setIconImage(getIconImage());
+    }
+    
+    @Override
+    public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("iconos/pos-terminal.png"));
+        return retValue;
     }
 
     /**

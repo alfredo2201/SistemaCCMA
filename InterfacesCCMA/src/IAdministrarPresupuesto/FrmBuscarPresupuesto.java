@@ -6,6 +6,8 @@
 package IAdministrarPresupuesto;
 
 import PanelesGlobales.PnContenido;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 /**
  *
@@ -27,6 +29,13 @@ public class FrmBuscarPresupuesto extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        setIconImage(getIconImage());
+    }
+
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("iconos/pos-terminal.png"));
+        return retValue;
     }
 
     /**

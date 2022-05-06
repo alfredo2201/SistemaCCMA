@@ -12,6 +12,8 @@ import Fachada.FabricaNegocios;
 import Fachada.INegocios;
 import IAdministrarVentas.RegistrarVenta;
 import PanelesGlobales.PnContenido;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
@@ -41,7 +43,13 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         setResizable(false);
         this.dtm = (DefaultTableModel) clienteTable.getModel();
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-//      buscarClientes("","");
+        setIconImage(getIconImage());
+    }
+    
+    @Override
+    public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("iconos/pos-terminal.png"));
+        return retValue;
     }
 
     /**

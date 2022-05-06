@@ -58,7 +58,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
         pdLista = new ArrayList<>();
         rbClienteTemporal.setSelected(false);
         rbClienteTemporal.setEnabled(false);
-        txtPago.disable();
+        txtPago.disable();        
+        txtDescuento.setText("0");
     }
 
     /**
@@ -486,7 +487,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
     public void setMetodoPagoEfectivo() {
         metodoPago = TipoPago.EFECTIVO;
-        txtPago.enable();
+        txtPago.setEnabled(true);        
     }
 
     public void setMetodoPagoTarjeta() {

@@ -11,6 +11,8 @@ import Dominio.Permiso;
 import PanelesGlobales.PnContenido;
 import PanelesGlobales.PnMenu;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -39,8 +41,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private FrmPrincipal() {
         initComponents();
         iniciarPantalla();
+         setIconImage(getIconImage());
     }
-
+    
+    @Override
+    public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("iconos/pos-terminal.png"));
+        return retValue;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

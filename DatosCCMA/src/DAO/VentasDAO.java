@@ -32,7 +32,7 @@ public class VentasDAO extends BaseDAO<Venta> {
             String time = formato.format(venta.getFecha());
             insertarSLQ = String.format(
                     "INSERT INTO ventas(idCliente, fecha, subtotal, total, metodoPago, idUsuario)"
-                    + "VALUES('%s','%s','%s','%s','%s')",
+                    + "VALUES('%s','%s','%s','%s','%s','%s')",
                     venta.getCliente().getId_cliente(),
                     time,
                     venta.getSubtotal(),
