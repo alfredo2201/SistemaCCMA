@@ -62,28 +62,25 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Registrar Cliente Nuevo");
 
         btnAgregarCliente.setBackground(new java.awt.Color(255, 255, 0));
         btnAgregarCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAgregarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnAgregarCliente.setText("Guardar Cliente Nuevo");
         btnAgregarCliente.setBorder(null);
-        btnAgregarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarClienteActionPerformed(evt);
             }
         });
 
-        btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
+        btnCancelar.setBackground(new java.awt.Color(153, 153, 0));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(0, 0, 0));
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText("Regresar al menú");
         btnCancelar.setBorder(null);
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -91,47 +88,37 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
         });
 
         lblTextoNombre.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
-        lblTextoNombre.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoNombre.setText("Nombre:");
 
-        txtNombreCliente.setBackground(new java.awt.Color(255, 255, 255));
         txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtNombreCliente.setBorder(null);
 
         lblTextoEmail.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
-        lblTextoEmail.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoEmail.setText("Correo electrónico:");
 
-        txtCorreo.setBackground(new java.awt.Color(255, 255, 255));
         txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtCorreo.setBorder(null);
 
         lblTextoTelefono.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
-        lblTextoTelefono.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoTelefono.setText("Teléfono:");
 
-        txtTelefono.setBackground(new java.awt.Color(255, 255, 255));
         txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtTelefono.setBorder(null);
 
         lblTextoRFC.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
-        lblTextoRFC.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoRFC.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoRFC.setText("RFC:");
 
-        txtRFC.setBackground(new java.awt.Color(255, 255, 255));
         txtRFC.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtRFC.setBorder(null);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Apellidos:");
 
-        txtApellidosCliente.setBackground(new java.awt.Color(255, 255, 255));
         txtApellidosCliente.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtApellidosCliente.setBorder(null);
 

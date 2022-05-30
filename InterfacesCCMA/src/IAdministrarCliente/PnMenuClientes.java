@@ -17,11 +17,11 @@ public class PnMenuClientes extends javax.swing.JPanel {
     /**
      * Creates new form PnMenuClientes
      */
-    private PnRegistrarCliente registrar = new PnRegistrarCliente();
+    private final PnRegistrarCliente registrar = new PnRegistrarCliente();
     private PnEliminarCliente eliminar = new PnEliminarCliente();
     private PnActualizarCliente actualizar = new PnActualizarCliente();
-    private PnContenido contenido = PnContenido.getInstance();
-    private Control ctl;
+    private final PnContenido contenido = PnContenido.getInstance();
+    private final Control ctl;
     public PnMenuClientes() {
         initComponents();
         ctl = new Control();
@@ -46,10 +46,9 @@ public class PnMenuClientes extends javax.swing.JPanel {
 
         btnOpcionRegistrarCliente.setBackground(new java.awt.Color(204, 204, 0));
         btnOpcionRegistrarCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnOpcionRegistrarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnOpcionRegistrarCliente.setText("Registrar Cliente Nuevo");
         btnOpcionRegistrarCliente.setBorder(null);
-        btnOpcionRegistrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOpcionRegistrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnOpcionRegistrarCliente.setFocusPainted(false);
         btnOpcionRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,16 +57,14 @@ public class PnMenuClientes extends javax.swing.JPanel {
         });
 
         lblTextoMenuClientes.setFont(new java.awt.Font("Segoe UI", 2, 26)); // NOI18N
-        lblTextoMenuClientes.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoMenuClientes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTextoMenuClientes.setText("Menú de Clientes");
 
         btnOpcionActualizarCliente.setBackground(new java.awt.Color(204, 204, 0));
         btnOpcionActualizarCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnOpcionActualizarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnOpcionActualizarCliente.setText("Actualizar Cliente ");
         btnOpcionActualizarCliente.setBorder(null);
-        btnOpcionActualizarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOpcionActualizarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnOpcionActualizarCliente.setFocusPainted(false);
         btnOpcionActualizarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,10 +74,9 @@ public class PnMenuClientes extends javax.swing.JPanel {
 
         btnOpcionEliminarCliente.setBackground(new java.awt.Color(204, 204, 0));
         btnOpcionEliminarCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnOpcionEliminarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnOpcionEliminarCliente.setText("Eliminar Cliente");
         btnOpcionEliminarCliente.setBorder(null);
-        btnOpcionEliminarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOpcionEliminarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnOpcionEliminarCliente.setFocusPainted(false);
         btnOpcionEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,10 +86,9 @@ public class PnMenuClientes extends javax.swing.JPanel {
 
         btnOpcionConsultarCliente.setBackground(new java.awt.Color(204, 204, 0));
         btnOpcionConsultarCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnOpcionConsultarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnOpcionConsultarCliente.setText("Consultar Clientes");
         btnOpcionConsultarCliente.setBorder(null);
-        btnOpcionConsultarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOpcionConsultarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnOpcionConsultarCliente.setFocusPainted(false);
         btnOpcionConsultarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,14 +101,14 @@ public class PnMenuClientes extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(282, Short.MAX_VALUE)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnOpcionRegistrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblTextoMenuClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                     .addComponent(btnOpcionActualizarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnOpcionEliminarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnOpcionConsultarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(319, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

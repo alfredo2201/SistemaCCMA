@@ -33,15 +33,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form FrmPrincipal
      */
-    private PnMenu pnMenu = new PnMenu();
-    private PnContenido pnContenido = PnContenido.getInstance();
+    private final PnMenu pnMenu = new PnMenu();
+    private final PnContenido pnContenido = PnContenido.getInstance();
     private static FrmPrincipal instance = null;
     private Empleado empleado;
 
     private FrmPrincipal() {
         initComponents();
         iniciarPantalla();
-         setIconImage(getIconImage());
+        setIconImage(getIconImage());
     }
     
     @Override
@@ -188,18 +188,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void iniciarPantalla() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        Dimension screenSize = new Dimension(getSize().width, getSize().width);
-        Control ctl = new Control();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();        
         this.getSize(screenSize);
         setLocationRelativeTo(null);
         pnMenu.setVisible(true);
         pnMenu.setLocation(0, 143);
         int h = screenSize.height;
         int w = screenSize.width;
-        pnMenu.setSize(321, h - 143);
+        System.out.println("heigh: "+h);
+        System.out.println("width: "+w);
+        pnMenu.setSize(281, h - 143);
         pnContenido.setVisible(true);
-        pnContenido.setLocation(320, 143);
-        pnContenido.setSize(w - 321, h - 143);
+        pnContenido.setLocation(280, 143);
+        pnContenido.setSize(w - 281, h - 143);
         this.setTitle("Sismema de Punto de Venta");
         this.add(pnMenu);
         this.add(pnContenido);

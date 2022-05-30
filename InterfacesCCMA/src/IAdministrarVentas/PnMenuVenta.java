@@ -5,9 +5,13 @@
  */
 package IAdministrarVentas;
 
+import Control.Control;
+import Dominio.Permiso;
 import IAdministrarCliente.FrmBuscarCliente;
 import IGenerarReportes.PnGenerarReporte;
 import PanelesGlobales.PnContenido;
+import Principal.FrmPrincipal;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -145,9 +149,19 @@ public class PnMenuVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_btnOpcionConsultarVentaActionPerformed
 
     private void btnOpcionEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionEliminarProductoActionPerformed
-        FrmBuscarVenta buscarVenta = new FrmBuscarVenta();
-        buscarVenta.setVisible(true);
-        buscarVenta.setTipoPantalla(1);
+        FrmPrincipal princi = FrmPrincipal.getInstance();
+        Permiso permiso = princi.getEmpleado().getPermiso();
+        if (permiso.equals(Permiso.ADMIN)) {
+            FrmBuscarVenta buscarVenta = new FrmBuscarVenta();
+            buscarVenta.setVisible(true);
+            buscarVenta.setTipoPantalla(1);
+        }
+        else{
+        Control ctl = new Control();
+                    ctl.muestraMsj("Usted no tiene acceso a este apartado.",
+                    "Permiso denegado", JOptionPane.ERROR_MESSAGE,
+                    "src/iconos/warning.png");
+        }
     }//GEN-LAST:event_btnOpcionEliminarProductoActionPerformed
 
     private void btnOpcionGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionGenerarReporteActionPerformed

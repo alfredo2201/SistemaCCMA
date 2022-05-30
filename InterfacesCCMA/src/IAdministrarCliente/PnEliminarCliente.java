@@ -47,7 +47,6 @@ public class PnEliminarCliente extends javax.swing.JPanel {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
-        pnTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         clienteTable = new javax.swing.JTable();
         btnEliminar = new javax.swing.JButton();
@@ -58,8 +57,6 @@ public class PnEliminarCliente extends javax.swing.JPanel {
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
         lblTitulo.setText("Eliminar cliente");
-
-        pnTabla.setBackground(new java.awt.Color(255, 255, 255));
 
         clienteTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         clienteTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -88,32 +85,16 @@ public class PnEliminarCliente extends javax.swing.JPanel {
         });
         clienteTable.setGridColor(new java.awt.Color(232, 228, 60));
         clienteTable.setRowHeight(24);
-        clienteTable.setSelectionBackground(new java.awt.Color(102, 102, 102));
+        clienteTable.setSelectionBackground(new java.awt.Color(255, 153, 0));
         clienteTable.setSelectionForeground(new java.awt.Color(0, 0, 0));
         clienteTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(clienteTable);
-
-        javax.swing.GroupLayout pnTablaLayout = new javax.swing.GroupLayout(pnTabla);
-        pnTabla.setLayout(pnTablaLayout);
-        pnTablaLayout.setHorizontalGroup(
-            pnTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnTablaLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
-        );
-        pnTablaLayout.setVerticalGroup(
-            pnTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnTablaLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
-        );
 
         btnEliminar.setBackground(new java.awt.Color(255, 255, 0));
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorder(null);
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -124,7 +105,7 @@ public class PnEliminarCliente extends javax.swing.JPanel {
         btnCancelar1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnCancelar1.setText("Cancelar");
         btnCancelar1.setBorder(null);
-        btnCancelar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCancelar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelar1ActionPerformed(evt);
@@ -135,7 +116,7 @@ public class PnEliminarCliente extends javax.swing.JPanel {
         btnMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnMenu.setText("Regresar al menú");
         btnMenu.setBorder(null);
-        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuActionPerformed(evt);
@@ -151,13 +132,13 @@ public class PnEliminarCliente extends javax.swing.JPanel {
                 .addComponent(lblTitulo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(pnTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(50, 50, 50)
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
@@ -165,17 +146,16 @@ public class PnEliminarCliente extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(lblTitulo)
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pnTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(50, 50, 50))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))
+                .addGap(150, 150, 150))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -204,7 +184,6 @@ public class PnEliminarCliente extends javax.swing.JPanel {
     private javax.swing.JTable clienteTable;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JPanel pnTabla;
     // End of variables declaration//GEN-END:variables
 
     public void cargarClienteTabla() {

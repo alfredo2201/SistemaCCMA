@@ -107,6 +107,7 @@ public class VentasDAO extends BaseDAO<Venta> {
                     venta.setPago(TipoPago.TARJETA);
                 }
                 venta.setEmpleado(empl.consultarById(resultadoConsulta.getInt("idUsuario")));
+                venta.setTotal(resultadoConsulta.getFloat("total"));
             }
             return venta;
         } catch (Exception e) {

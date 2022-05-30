@@ -43,7 +43,6 @@ public class PnActualizarCliente extends javax.swing.JPanel {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
-        pnTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCliente = new javax.swing.JTable();
         btnMenu = new javax.swing.JButton();
@@ -52,15 +51,10 @@ public class PnActualizarCliente extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setText("Actualizar cliente");
 
-        pnTabla.setBackground(new java.awt.Color(255, 255, 255));
-
-        tblCliente.setBackground(new java.awt.Color(255, 255, 255));
         tblCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.darkGray, null, null));
         tblCliente.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        tblCliente.setForeground(new java.awt.Color(0, 0, 0));
         tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -77,29 +71,15 @@ public class PnActualizarCliente extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tblCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tblCliente.setRowHeight(24);
         jScrollPane1.setViewportView(tblCliente);
 
-        javax.swing.GroupLayout pnTablaLayout = new javax.swing.GroupLayout(pnTabla);
-        pnTabla.setLayout(pnTablaLayout);
-        pnTablaLayout.setHorizontalGroup(
-            pnTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnTablaLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
-        );
-        pnTablaLayout.setVerticalGroup(
-            pnTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
         btnMenu.setBackground(new java.awt.Color(153, 153, 0));
         btnMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnMenu.setForeground(new java.awt.Color(0, 0, 0));
         btnMenu.setText("Regresar al menú");
         btnMenu.setBorder(null);
-        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuActionPerformed(evt);
@@ -108,10 +88,9 @@ public class PnActualizarCliente extends javax.swing.JPanel {
 
         btnEditar.setBackground(new java.awt.Color(255, 255, 0));
         btnEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnEditar.setForeground(new java.awt.Color(0, 0, 0));
         btnEditar.setText("Editar");
         btnEditar.setBorder(null);
-        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
@@ -123,15 +102,16 @@ public class PnActualizarCliente extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
+                .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(203, 203, 203)
+                        .addGap(250, 250, 250)
                         .addComponent(lblTitulo)
-                        .addGap(0, 491, Short.MAX_VALUE))
+                        .addGap(0, 454, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(35, 35, 35)
+                        .addGap(8, 8, 8)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -144,15 +124,15 @@ public class PnActualizarCliente extends javax.swing.JPanel {
                 .addComponent(lblTitulo)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(200, 200, 200))
+                        .addContainerGap(150, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(pnTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(68, Short.MAX_VALUE))))
+                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+                        .addGap(144, 144, 144))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -172,7 +152,6 @@ public class PnActualizarCliente extends javax.swing.JPanel {
     private javax.swing.JButton btnMenu;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JPanel pnTabla;
     private javax.swing.JTable tblCliente;
     // End of variables declaration//GEN-END:variables
     

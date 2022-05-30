@@ -5,7 +5,6 @@
  */
 package PanelesGlobales;
 
-import IAdministrarCliente.PnEliminarCliente;
 import IAdministrarProducto.PnMenuProducto;
 import IAdministrarCliente.PnMenuClientes;
 import IAdministrarPresupuesto.PnMenuPresupuesto;
@@ -19,11 +18,11 @@ import Principal.FrmPrincipal;
  */
 public class PnMenu extends javax.swing.JPanel {
 
-    private PnContenido pnContenido = PnContenido.getInstance();
-    private PnMenuClientes pnMnCliente = new PnMenuClientes();
-    private PnMenuVenta pnMnVentas = new PnMenuVenta();
-    private PnMenuProducto pnMnProducto = new PnMenuProducto();
-    private PnMenuPresupuesto pnMnPresupuesto = new PnMenuPresupuesto();
+    private final PnContenido pnContenido = PnContenido.getInstance();
+    private final PnMenuClientes pnMnCliente = new PnMenuClientes();
+    private final PnMenuVenta pnMnVentas = new PnMenuVenta();
+    private final PnMenuProducto pnMnProducto = new PnMenuProducto();
+    private final PnMenuPresupuesto pnMnPresupuesto = new PnMenuPresupuesto();
 
     public PnMenu() {
         initComponents();
@@ -46,14 +45,13 @@ public class PnMenu extends javax.swing.JPanel {
         btnCerrarSesion1 = new javax.swing.JButton();
         btnPresupuestos = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(255, 255, 153));
 
         btnInicio.setBackground(new java.awt.Color(153, 153, 0));
         btnInicio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnInicio.setForeground(new java.awt.Color(0, 0, 0));
         btnInicio.setText("Inicio");
         btnInicio.setBorder(null);
-        btnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnInicio.setFocusPainted(false);
         btnInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,10 +61,9 @@ public class PnMenu extends javax.swing.JPanel {
 
         btnClientes.setBackground(new java.awt.Color(153, 153, 0));
         btnClientes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnClientes.setForeground(new java.awt.Color(0, 0, 0));
         btnClientes.setText("Clientes");
         btnClientes.setBorder(null);
-        btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnClientes.setFocusPainted(false);
         btnClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,10 +73,9 @@ public class PnMenu extends javax.swing.JPanel {
 
         btnProductos.setBackground(new java.awt.Color(153, 153, 0));
         btnProductos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnProductos.setForeground(new java.awt.Color(0, 0, 0));
         btnProductos.setText("Productos");
         btnProductos.setBorder(null);
-        btnProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnProductos.setFocusPainted(false);
         btnProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,10 +85,9 @@ public class PnMenu extends javax.swing.JPanel {
 
         btnVentas.setBackground(new java.awt.Color(153, 153, 0));
         btnVentas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnVentas.setForeground(new java.awt.Color(0, 0, 0));
         btnVentas.setText("Ventas");
         btnVentas.setBorder(null);
-        btnVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnVentas.setFocusPainted(false);
         btnVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,10 +97,9 @@ public class PnMenu extends javax.swing.JPanel {
 
         btnCerrarSesion1.setBackground(new java.awt.Color(153, 153, 0));
         btnCerrarSesion1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCerrarSesion1.setForeground(new java.awt.Color(0, 0, 0));
         btnCerrarSesion1.setText("Cerrar Sesión");
         btnCerrarSesion1.setBorder(null);
-        btnCerrarSesion1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCerrarSesion1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCerrarSesion1.setFocusPainted(false);
         btnCerrarSesion1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,10 +109,9 @@ public class PnMenu extends javax.swing.JPanel {
 
         btnPresupuestos.setBackground(new java.awt.Color(153, 153, 0));
         btnPresupuestos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnPresupuestos.setForeground(new java.awt.Color(0, 0, 0));
         btnPresupuestos.setText("Presupuestos");
         btnPresupuestos.setBorder(null);
-        btnPresupuestos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPresupuestos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnPresupuestos.setFocusPainted(false);
         btnPresupuestos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,7 +124,7 @@ public class PnMenu extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCerrarSesion1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -139,7 +132,7 @@ public class PnMenu extends javax.swing.JPanel {
                     .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPresupuestos, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(93, 93, 93))
+                .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

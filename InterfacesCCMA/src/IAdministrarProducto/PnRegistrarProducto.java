@@ -9,6 +9,8 @@ import Dominio.Producto;
 import Fachada.FabricaNegocios;
 import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -299,38 +301,57 @@ public class PnRegistrarProducto extends javax.swing.JPanel {
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
-    
+
     private void agregarProducto() {
         Control ctl = new Control();
         String descripcion = txtDesc.getText();
         String tipo = txtTipo.getText();
         String marca = txtMarca.getText();
         String modelo = txtModel.getText();
-        Integer anio = Integer.parseInt(txtAnio.getText());
-        Float precio = Float.parseFloat(txtPrecio.getText());
-        Integer disponible = Integer.parseInt(txtCantidad.getText());
-
-        if (descripcion.isEmpty() || tipo.isEmpty() || marca.isEmpty()
-                || modelo.isEmpty() || anio == null || precio == null || disponible == null) {
-            ctl.muestraMsj("Favor de llenar todas las casillas.",
-                    "No se pudo registrar el producto.", JOptionPane.ERROR_MESSAGE,
-                    "src/iconos/warning.png");
-        } else {
-            try {
-                Producto producto = new Producto(descripcion, tipo, marca, modelo, anio, precio);
-                producto.setDisponible(disponible);
-                negocios.registrarProductoNuevo(producto);
-                ctl.muestraMsj("Se registro un nuevo producto.",
-                        "Producto agregado", JOptionPane.ERROR_MESSAGE, "src/iconos/comprobado.png");
-                limpiarCampos();
-            } catch (Error e) {
-                ctl.muestraMsj("Error al intentar registrar el producto.",
-                        "Error al registrar producto", JOptionPane.ERROR_MESSAGE,
+        Integer anio = null;
+        Float precio = null;
+        Integer disponible = null;
+        if (verificaTipoEntrada()) {
+            anio = Integer.parseInt(txtAnio.getText());
+            precio = Float.parseFloat(txtPrecio.getText());
+            disponible = Integer.parseInt(txtCantidad.getText());
+            if (descripcion.isEmpty() || tipo.isEmpty() || marca.isEmpty()
+                    || modelo.isEmpty() || anio == null || precio == null || disponible == null) {
+                ctl.muestraMsj("Favor de llenar todas las casillas.",
+                        "No se pudo registrar el producto.", JOptionPane.ERROR_MESSAGE,
                         "src/iconos/warning.png");
+            } else {
+                try {
+                    Producto producto = new Producto(tipo, descripcion, marca, modelo, anio, precio);
+                    producto.setDisponible(disponible);
+                    negocios.registrarProductoNuevo(producto);
+                    ctl.muestraMsj("Se registro un nuevo producto.",
+                            "Producto agregado", JOptionPane.ERROR_MESSAGE, "src/iconos/comprobado.png");
+                    limpiarCampos();
+                } catch (Error e) {
+                    ctl.muestraMsj("Error al intentar registrar el producto.",
+                            "Error al registrar producto", JOptionPane.ERROR_MESSAGE,
+                            "src/iconos/warning.png");
+                }
             }
         }
     }
+
     private void limpiarCampos() {
+        int option = JOptionPane.showConfirmDialog(null, "Desea agregar un nuevo producto?", "Agregar producto", JOptionPane.YES_NO_OPTION);
+        System.out.println(option);
+        if (option == 1) {
+            txtDesc.setText("");
+            txtTipo.setText("");
+            txtMarca.setText("");
+            txtModel.setText("");
+            txtAnio.setText("");
+            txtPrecio.setText("");
+            txtCantidad.setText("");
+            PnMenuProducto pnMnProducto = new PnMenuProducto();
+            Control ctl = new Control();
+            ctl.muestraPantalla(pnContenido, pnMnProducto);
+        }
         txtDesc.setText("");
         txtTipo.setText("");
         txtMarca.setText("");
@@ -338,6 +359,32 @@ public class PnRegistrarProducto extends javax.swing.JPanel {
         txtAnio.setText("");
         txtPrecio.setText("");
         txtCantidad.setText("");
+    }
 
+    private boolean verificaTipoEntrada() {
+        Control ctl = new Control();
+        Pattern pat = Pattern.compile("[0-9]+\\.?[0-9]*");
+        Matcher matAnio = pat.matcher(txtAnio.getText());
+        Matcher matPrecio = pat.matcher(txtPrecio.getText());
+        Matcher matDispo = pat.matcher(txtCantidad.getText());
+        if (!matAnio.matches()) {
+            ctl.muestraMsj("Campo de texto de años debe de ser numerico",
+                    "Error de conversión", JOptionPane.ERROR_MESSAGE,
+                    "src/iconos/warning.png");
+            return false;
+        }
+        if (!matPrecio.matches()) {
+            ctl.muestraMsj("Campo de texto de precio debe de ser numerico",
+                    "Error de conversión", JOptionPane.ERROR_MESSAGE,
+                    "src/iconos/warning.png");
+            return false;
+        }
+        if (!matDispo.matches()) {
+            ctl.muestraMsj("Campo de texto de cantidad debe de ser numerico",
+                    "Error de conversión", JOptionPane.ERROR_MESSAGE,
+                    "src/iconos/warning.png");
+            return false;
+        }
+        return true;
     }
 }
