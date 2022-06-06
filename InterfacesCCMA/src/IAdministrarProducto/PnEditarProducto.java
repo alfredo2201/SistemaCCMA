@@ -20,8 +20,8 @@ public class PnEditarProducto extends javax.swing.JPanel {
     /**
      * Creates new form EditarProducto
      */
-    private PnContenido pnContenido = PnContenido.getInstance();
-    private INegocios negocios;
+    private final PnContenido pnContenido = PnContenido.getInstance();
+    private final INegocios negocios;
     private Producto producto;
 
     public PnEditarProducto() {
@@ -118,7 +118,6 @@ public class PnEditarProducto extends javax.swing.JPanel {
 
         txtDesc.setBackground(new java.awt.Color(255, 255, 255));
         txtDesc.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtDesc.setForeground(new java.awt.Color(0, 0, 0));
         txtDesc.setBorder(null);
         txtDesc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,32 +127,26 @@ public class PnEditarProducto extends javax.swing.JPanel {
 
         txtTipo.setBackground(new java.awt.Color(255, 255, 255));
         txtTipo.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtTipo.setForeground(new java.awt.Color(0, 0, 0));
         txtTipo.setBorder(null);
 
         txtMarca.setBackground(new java.awt.Color(255, 255, 255));
         txtMarca.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtMarca.setForeground(new java.awt.Color(0, 0, 0));
         txtMarca.setBorder(null);
 
         txtModel.setBackground(new java.awt.Color(255, 255, 255));
         txtModel.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtModel.setForeground(new java.awt.Color(0, 0, 0));
         txtModel.setBorder(null);
 
         txtAnio.setBackground(new java.awt.Color(255, 255, 255));
         txtAnio.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtAnio.setForeground(new java.awt.Color(0, 0, 0));
         txtAnio.setBorder(null);
 
         txtPrecio.setBackground(new java.awt.Color(255, 255, 255));
         txtPrecio.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtPrecio.setForeground(new java.awt.Color(0, 0, 0));
         txtPrecio.setBorder(null);
 
         txtCantidad.setBackground(new java.awt.Color(255, 255, 255));
         txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtCantidad.setForeground(new java.awt.Color(0, 0, 0));
         txtCantidad.setBorder(null);
 
         btnMenu.setBackground(new java.awt.Color(153, 153, 0));

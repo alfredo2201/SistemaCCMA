@@ -17,14 +17,14 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author crist
+ * @author Isai Perez
  */
-public class PnEliminarCliente extends javax.swing.JPanel {
+public final class PnEliminarCliente extends javax.swing.JPanel {
 
-    private PnContenido pnContenido = PnContenido.getInstance();
+    private final PnContenido pnContenido = PnContenido.getInstance();
     private ArrayList<Cliente> cLIsta;
     private ArrayList<Cliente> cLIstaEliminar;
-    private INegocios iNegocios;
+    private final INegocios iNegocios;
 
     /**
      * Creates new form PnEliminarCliente
@@ -56,6 +56,7 @@ public class PnEliminarCliente extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setText("Eliminar cliente");
 
         clienteTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -92,6 +93,7 @@ public class PnEliminarCliente extends javax.swing.JPanel {
 
         btnEliminar.setBackground(new java.awt.Color(255, 255, 0));
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorder(null);
         btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -103,6 +105,7 @@ public class PnEliminarCliente extends javax.swing.JPanel {
 
         btnCancelar1.setBackground(new java.awt.Color(153, 153, 153));
         btnCancelar1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCancelar1.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelar1.setText("Cancelar");
         btnCancelar1.setBorder(null);
         btnCancelar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -114,6 +117,7 @@ public class PnEliminarCliente extends javax.swing.JPanel {
 
         btnMenu.setBackground(new java.awt.Color(153, 153, 0));
         btnMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnMenu.setForeground(new java.awt.Color(0, 0, 0));
         btnMenu.setText("Regresar al menú");
         btnMenu.setBorder(null);
         btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));

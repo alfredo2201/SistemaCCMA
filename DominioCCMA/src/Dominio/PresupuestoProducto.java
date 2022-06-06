@@ -9,7 +9,7 @@ import java.util.Objects;
 
 /**
  *
- * @author crist
+ * @author Isai Perez
  */
 public class PresupuestoProducto {
     private Integer idPresupuestoProducto;

@@ -42,13 +42,13 @@ public class RegistrarVenta extends javax.swing.JPanel {
     private Cliente cliente;
     private static RegistrarVenta instance;
     private TipoPago metodoPago;
-    private INegocios negocios;
+    private final INegocios negocios;
     private float subTotal = 0f;
     private float totalIva = 0f;
     private float totalVenta = 0f;
+    private float servicio = 0f;
 
     private RegistrarVenta() {
-
         initComponents();
         txtIva.setEditable(false);
         txtSubTotal.setEditable(false);
@@ -58,8 +58,9 @@ public class RegistrarVenta extends javax.swing.JPanel {
         pdLista = new ArrayList<>();
         rbClienteTemporal.setSelected(false);
         rbClienteTemporal.setEnabled(false);
-        txtPago.disable();        
+        txtPago.disable();
         txtDescuento.setText("0");
+        txtServicio.setText("0");
     }
 
     /**
@@ -90,7 +91,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
         txtTotal = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtPago = new javax.swing.JTextField();
-        txtTotal1 = new javax.swing.JTextField();
+        txtServicio = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         btnMetodoPago = new javax.swing.JButton();
         btnAgregarProductos = new javax.swing.JButton();
@@ -117,22 +118,12 @@ public class RegistrarVenta extends javax.swing.JPanel {
         jLabel2.setText("Fecha:");
 
         txtFecha.setBorder(null);
-        txtFecha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFechaActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Cliente temporal");
 
         rbClienteTemporal.setBackground(new java.awt.Color(255, 255, 255));
-        rbClienteTemporal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbClienteTemporalActionPerformed(evt);
-            }
-        });
 
         tbProductos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbProductos.setModel(new javax.swing.table.DefaultTableModel(
@@ -197,32 +188,17 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
         txtSubTotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtSubTotal.setToolTipText("");
-        txtSubTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSubTotalActionPerformed(evt);
-            }
-        });
 
         txtDescuento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtDescuento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtDescuentoMouseExited(evt);
-            }
-        });
-        txtDescuento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescuentoActionPerformed(evt);
+        txtDescuento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDescuentoKeyPressed(evt);
             }
         });
 
         txtIva.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         txtTotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTotalActionPerformed(evt);
-            }
-        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
@@ -230,13 +206,13 @@ public class RegistrarVenta extends javax.swing.JPanel {
         jLabel8.setText("Pago:");
 
         txtPago.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtPago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPagoActionPerformed(evt);
+
+        txtServicio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtServicio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtServicioKeyPressed(evt);
             }
         });
-
-        txtTotal1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
@@ -272,7 +248,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
                                 .addComponent(txtSubTotal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                                 .addComponent(txtDescuento, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -293,7 +269,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
                     .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -395,16 +371,13 @@ public class RegistrarVenta extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnMetodoPago, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCobrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnMetodoPago, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCobrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60))
         );
         layout.setVerticalGroup(
@@ -449,10 +422,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rbClienteTemporalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbClienteTemporalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbClienteTemporalActionPerformed
-
     private void btnMetodoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMetodoPagoActionPerformed
         FrmMetodoPago frmMetodoPago = new FrmMetodoPago();
         frmMetodoPago.setVisible(true);
@@ -466,7 +435,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
     private void btnCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCobrarActionPerformed
         registrarVenta();
-
     }//GEN-LAST:event_btnCobrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -474,14 +442,6 @@ public class RegistrarVenta extends javax.swing.JPanel {
         Control ctl = new Control();
         ctl.muestraPantalla(pnContenido, pnMnVenta);
     }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaActionPerformed
-
-    private void txtSubTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubTotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSubTotalActionPerformed
 
     private void tbProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProductosMousePressed
         eliminarProducto();
@@ -492,27 +452,23 @@ public class RegistrarVenta extends javax.swing.JPanel {
         calcularTotal();
     }//GEN-LAST:event_tbProductosMouseExited
 
-    private void txtDescuentoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDescuentoMouseExited
-        calcularTotal();
-    }//GEN-LAST:event_txtDescuentoMouseExited
-
     private void tbProductosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbProductosKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             calcularSubTotal(pdLista);
         }
     }//GEN-LAST:event_tbProductosKeyPressed
 
-    private void txtDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescuentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescuentoActionPerformed
+    private void txtServicioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtServicioKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            calcularTotal();
+        }
+    }//GEN-LAST:event_txtServicioKeyPressed
 
-    private void txtPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPagoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPagoActionPerformed
-
-    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTotalActionPerformed
+    private void txtDescuentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            calcularTotal();
+        }
+    }//GEN-LAST:event_txtDescuentoKeyPressed
 
     public static RegistrarVenta getInstance() {
         if (instance == null) {
@@ -532,7 +488,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
     public void setMetodoPagoEfectivo() {
         metodoPago = TipoPago.EFECTIVO;
-        txtPago.setEnabled(true);        
+        txtPago.setEnabled(true);
     }
 
     public void setMetodoPagoTarjeta() {
@@ -612,10 +568,11 @@ public class RegistrarVenta extends javax.swing.JPanel {
     }
 
     public void borraDatos() {
-        txtSubTotal.setText(" ");
-        txtDescuento.setText(" ");
-        txtIva.setText(" ");
-        txtTotal.setText(" ");
+        txtSubTotal.setText("");
+        txtDescuento.setText("");
+        txtIva.setText("");
+        txtTotal.setText("");
+        txtServicio.setText("");
         subTotal = 0f;
         totalIva = 0f;
         totalVenta = 0f;
@@ -623,9 +580,10 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
     public void calcularSubTotal(ArrayList<Producto> precios) {
         float iva = 0.16f;
-        System.out.println("AQUI ANDAMOS EN CALCULAR VENTA");
         System.out.println(precios);
         String desc = txtDescuento.getText();
+        String serv = txtServicio.getText();
+        servicio = Float.parseFloat(txtServicio.getText());
         borraDatos();
         int[] cantidades;
         cantidades = new int[tbProductos.getRowCount()];
@@ -637,6 +595,8 @@ public class RegistrarVenta extends javax.swing.JPanel {
             subTotal += (float) tbProductos.getValueAt(i, 5) * cantidades[i];
         }
         txtDescuento.setText(desc);
+        txtServicio.setText(serv);
+        float subtotal = subTotal * (1 - iva);
         totalIva = Math.round(subTotal * iva);
         txtSubTotal.setText(Float.toString(subTotal));
         txtIva.setText(Float.toString(totalIva));
@@ -659,13 +619,12 @@ public class RegistrarVenta extends javax.swing.JPanel {
                     "Cantidad de pago no ingresada", JOptionPane.ERROR_MESSAGE,
                     "src/iconos/warning.png");
         }
-
         if (tbProductos.getRowCount() != 0 && this.metodoPago != null) {
+
             Venta venta = new Venta(new ArrayList<>(), this.cliente, new Date(),
                     this.subTotal, this.totalVenta, this.empleado, metodoPago);
             ArrayList<VentaProducto> ventaProducto = new ArrayList<>();
             for (int i = 0; i < tbProductos.getRowCount(); i++) {
-                //   Producto producto, Venta venta, Integer cantidad, Float precioVenta
                 Producto prod = negocios.consultarProductoById(pdLista.get(i).getIdProducto());
                 DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
                 int cantidad = (int) modelo.getValueAt(i, 6);
@@ -677,10 +636,11 @@ public class RegistrarVenta extends javax.swing.JPanel {
                 ventaProducto.add(produ);
             }
             venta.setListaProductos(ventaProducto);
+            venta.setServicio(servicio);
             ctl.muestraMsj("Cambio: $" + pago + " ", "Venta registrada",
                     JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");
             negocios.registrarVenta(venta, ventaProducto);
-                        ctl.muestraMsj("Venta registrada con exito", "Venta registrada",
+            ctl.muestraMsj("Venta registrada con exito", "Venta registrada",
                     JOptionPane.INFORMATION_MESSAGE, "src/iconos/comprobado.png");
             regresar();
 
@@ -699,14 +659,17 @@ public class RegistrarVenta extends javax.swing.JPanel {
     public void calcularTotal() {
         Control ctl = new Control();
         try {
+            if (!txtServicio.getText().equalsIgnoreCase("") || !txtServicio.getText().equalsIgnoreCase("0")) {
+                servicio = Float.parseFloat(txtServicio.getText());
+            }
             System.out.println(":" + txtDescuento.getText() + "<<<<");
             if (!" ".equals(txtDescuento.getText()) && !txtDescuento.getText().isEmpty()) {
                 Float descuento = Float.parseFloat(txtDescuento.getText());
                 descuento = subTotal * (descuento / 100);
-                totalVenta = subTotal - descuento + totalIva;
+                totalVenta = subTotal - descuento + servicio;
                 txtTotal.setText(Float.toString(totalVenta));
             } else {
-                totalVenta = subTotal + totalIva;
+                totalVenta = subTotal + servicio;
                 txtTotal.setText(Float.toString(totalVenta));
             }
         } catch (NumberFormatException ex) {
@@ -754,9 +717,9 @@ public class RegistrarVenta extends javax.swing.JPanel {
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtIva;
     private javax.swing.JTextField txtPago;
+    private javax.swing.JTextField txtServicio;
     private javax.swing.JTextField txtSubTotal;
     private javax.swing.JTextField txtTotal;
-    private javax.swing.JTextField txtTotal1;
     // End of variables declaration//GEN-END:variables
 
 }

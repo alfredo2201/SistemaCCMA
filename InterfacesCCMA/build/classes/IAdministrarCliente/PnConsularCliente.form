@@ -27,39 +27,42 @@
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="97" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblTextoRFC" min="-2" pref="131" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtRFC" min="-2" pref="237" max="-2" attributes="0"/>
-                          <Component id="jSeparator13" min="-2" pref="237" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblTextoRFC" min="-2" pref="131" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtRFC" min="-2" pref="237" max="-2" attributes="0"/>
+                                  <Component id="jSeparator13" min="-2" pref="237" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="lblTextoEmail" max="32767" attributes="0"/>
+                                  <Component id="lblTextoNombre" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="lblTextoTelefono" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtTelefono" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
+                                  <Component id="txtCorreo" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
+                                  <Component id="txtNombreCliente" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
+                                  <Component id="jSeparator8" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
+                                  <Component id="jSeparator7" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
+                                  <Component id="jSeparator9" min="-2" pref="238" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
+                      <EmptySpace pref="264" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="lblTextoEmail" max="32767" attributes="0"/>
-                          <Component id="lblTextoNombre" alignment="1" max="32767" attributes="0"/>
-                          <Component id="lblTextoTelefono" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtTelefono" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
-                          <Component id="txtCorreo" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
-                          <Component id="txtNombreCliente" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
-                          <Component id="jSeparator8" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
-                          <Component id="jSeparator7" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
-                          <Component id="jSeparator9" min="-2" pref="238" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lblTitulo" min="-2" pref="377" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="264" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="lblTitulo" min="-2" pref="377" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

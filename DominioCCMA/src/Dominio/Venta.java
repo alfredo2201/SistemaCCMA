@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.Objects;
 
-/**
+/** Clase de dominio que representa una venta del negocio.
  *
  * @author Isai Perez
  */
@@ -22,6 +22,7 @@ public class Venta {
     private Float total;
     private Empleado empleado;
     private TipoPago pago;
+    private Float servicio;
 
     public Venta() {
     }
@@ -33,8 +34,7 @@ public class Venta {
         this.empleado = empleado;
     }
 
-    public Venta(Integer idVenta, ArrayList<VentaProducto> listaProductos, Cliente cliente, Date fecha, Float subtotal, Float total, Empleado empleado, TipoPago pago) {
-        this.idVenta = idVenta;
+    public Venta( ArrayList<VentaProducto> listaProductos, Cliente cliente, Date fecha, Float subtotal, Float total, Empleado empleado, TipoPago pago, Float servicio) {
         this.listaProductos = listaProductos;
         this.cliente = cliente;
         this.fecha = fecha;
@@ -42,7 +42,10 @@ public class Venta {
         this.total = total;
         this.empleado = empleado;
         this.pago = pago;
+        this.servicio = servicio;
     }
+
+
 
     public Venta(ArrayList<VentaProducto> listaProductos, Cliente cliente, Date fecha, Float subtotal, Float total, Empleado empleado, TipoPago pago) {
         this.listaProductos = listaProductos;
@@ -117,6 +120,15 @@ public class Venta {
     public void setPago(TipoPago pago) {
         this.pago = pago;
     }
+
+    public Float getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(Float servicio) {
+        this.servicio = servicio;
+    }
+    
     
     @Override
     public int hashCode() {
@@ -145,7 +157,7 @@ public class Venta {
 
     @Override
     public String toString() {
-        return "Venta{" + "cliente=" + cliente + ", fecha=" + fecha + ", total=" + total + ", empleado=" + empleado + '}';
+        return "Venta{" + "cliente=" + cliente.getNombre() + ", fecha=" + fecha + ", total=" + total + ", empleado=" + empleado.getNombre() + '}';
     }
     
     

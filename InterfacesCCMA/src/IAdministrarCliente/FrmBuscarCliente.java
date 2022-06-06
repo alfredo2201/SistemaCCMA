@@ -21,18 +21,18 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author herna
+ * @author Isai Perez
  */
-public class FrmBuscarCliente extends javax.swing.JFrame {
+public final class FrmBuscarCliente extends javax.swing.JFrame {
 
-    private PnContenido contenido = PnContenido.getInstance();
-    private PnConsularCliente consultar = new PnConsularCliente();
+    private final PnContenido contenido = PnContenido.getInstance();
+    private final PnConsularCliente consultar = new PnConsularCliente();
     private RegistrarVenta registrarVenta;
-    private INegocios negocios = FabricaNegocios.getInstance();
+    private final INegocios negocios = FabricaNegocios.getInstance();
     private int tipoPantalla;
-    private static int CONSULTAR_CLIENTE = 1;
-    private static int REGISTRAR_VENTA = 3;
-    private DefaultTableModel dtm;
+    private static final int CONSULTAR_CLIENTE = 1;
+    private static final int REGISTRAR_VENTA = 3;
+    private final DefaultTableModel dtm;
 
     /**
      * Creates new form IBuscarCliente
@@ -113,12 +113,10 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         lblTextoRFC.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoRFC.setText("RFC:");
 
-        txtNombreCliente.setBackground(new java.awt.Color(255, 255, 255));
         txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtNombreCliente.setForeground(new java.awt.Color(0, 0, 0));
         txtNombreCliente.setBorder(null);
 
-        txtRFC.setBackground(new java.awt.Color(255, 255, 255));
         txtRFC.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtRFC.setForeground(new java.awt.Color(0, 0, 0));
         txtRFC.setBorder(null);
@@ -126,10 +124,8 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         pnListaClientes.setBackground(new java.awt.Color(255, 255, 255));
 
         clienteTable.setAutoCreateRowSorter(true);
-        clienteTable.setBackground(new java.awt.Color(255, 255, 255));
         clienteTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         clienteTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        clienteTable.setForeground(new java.awt.Color(0, 0, 0));
         clienteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -173,7 +169,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         btnContinuar.setText("Continuar");
         btnContinuar.setBorder(null);
         btnContinuar.setBorderPainted(false);
-        btnContinuar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnContinuar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnContinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnContinuarActionPerformed(evt);
@@ -186,7 +182,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         btnCSinCliente.setText("Continuar sin cliente");
         btnCSinCliente.setBorder(null);
         btnCSinCliente.setBorderPainted(false);
-        btnCSinCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCSinCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCSinCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCSinClienteActionPerformed(evt);
@@ -198,7 +194,7 @@ public class FrmBuscarCliente extends javax.swing.JFrame {
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/buscarIcon.png"))); // NOI18N
         btnBuscar.setBorder(null);
         btnBuscar.setBorderPainted(false);
-        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);

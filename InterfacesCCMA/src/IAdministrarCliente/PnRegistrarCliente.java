@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author crist
+ * @author Isai Perez
  */
 public class PnRegistrarCliente extends javax.swing.JPanel {
 
@@ -62,11 +62,13 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Registrar Cliente Nuevo");
 
         btnAgregarCliente.setBackground(new java.awt.Color(255, 255, 0));
         btnAgregarCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAgregarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnAgregarCliente.setText("Guardar Cliente Nuevo");
         btnAgregarCliente.setBorder(null);
         btnAgregarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -78,6 +80,7 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
 
         btnCancelar.setBackground(new java.awt.Color(153, 153, 0));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelar.setText("Regresar al menú");
         btnCancelar.setBorder(null);
         btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -88,6 +91,7 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
         });
 
         lblTextoNombre.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        lblTextoNombre.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoNombre.setText("Nombre:");
 
@@ -95,6 +99,7 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
         txtNombreCliente.setBorder(null);
 
         lblTextoEmail.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        lblTextoEmail.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoEmail.setText("Correo electrónico:");
 
@@ -102,6 +107,7 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
         txtCorreo.setBorder(null);
 
         lblTextoTelefono.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        lblTextoTelefono.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoTelefono.setText("Teléfono:");
 
@@ -109,6 +115,7 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
         txtTelefono.setBorder(null);
 
         lblTextoRFC.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        lblTextoRFC.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoRFC.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTextoRFC.setText("RFC:");
 
@@ -116,6 +123,7 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
         txtRFC.setBorder(null);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Apellidos:");
 
@@ -177,7 +185,7 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTextoNombre))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(spNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -195,7 +203,7 @@ public class PnRegistrarCliente extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTextoTelefono))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(spTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

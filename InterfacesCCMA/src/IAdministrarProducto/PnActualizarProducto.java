@@ -22,11 +22,11 @@ public class PnActualizarProducto extends javax.swing.JPanel {
     /**
      * Creates new form ActualizarProducto
      */
-    private PnContenido pnContenido = PnContenido.getInstance();
-    private INegocios negocios = FabricaNegocios.getInstance();
-    private PnEditarProducto editar = new PnEditarProducto();
+    private final PnContenido pnContenido = PnContenido.getInstance();
+    private final INegocios negocios = FabricaNegocios.getInstance();
+    private final PnEditarProducto editar = new PnEditarProducto();
     private ArrayList<Producto> cLista;
-    private DefaultTableModel dtm;
+    private final DefaultTableModel dtm;
 
     public PnActualizarProducto() {
         initComponents();

@@ -7,7 +7,7 @@ package Dominio;
 
 /**
  *
- * @author crist
+ * @author Isai Perez
  */
 public class Persona {
 

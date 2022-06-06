@@ -5,14 +5,11 @@
 package IAdministrarVentas;
 
 import Control.Control;
-import Dominio.Cliente;
-import Dominio.Producto;
 import Dominio.Venta;
 import Fachada.FabricaNegocios;
 import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
 import java.util.ArrayList;
-import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -95,6 +92,7 @@ public class PnEliminarVenta extends javax.swing.JPanel {
 
         btnEliminarVenta.setBackground(new java.awt.Color(204, 102, 0));
         btnEliminarVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnEliminarVenta.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminarVenta.setText("Eliminar");
         btnEliminarVenta.setBorder(null);
         btnEliminarVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +103,7 @@ public class PnEliminarVenta extends javax.swing.JPanel {
 
         btnMenuPrincipal.setBackground(new java.awt.Color(204, 204, 0));
         btnMenuPrincipal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnMenuPrincipal.setForeground(new java.awt.Color(0, 0, 0));
         btnMenuPrincipal.setText("Regresar al menú");
         btnMenuPrincipal.setBorder(null);
         btnMenuPrincipal.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +114,7 @@ public class PnEliminarVenta extends javax.swing.JPanel {
 
         btnCancelarVenta.setBackground(new java.awt.Color(153, 153, 153));
         btnCancelarVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCancelarVenta.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelarVenta.setText("Cancelar");
         btnCancelarVenta.setBorder(null);
         btnCancelarVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +126,7 @@ public class PnEliminarVenta extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(204, 204, 0));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Venta seleccionada");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -146,6 +147,7 @@ public class PnEliminarVenta extends javax.swing.JPanel {
         );
 
         lblEliminarVenta.setFont(new java.awt.Font("Segoe UI", 3, 20)); // NOI18N
+        lblEliminarVenta.setForeground(new java.awt.Color(0, 0, 0));
         lblEliminarVenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEliminarVenta.setText("Eliminar venta");
 

@@ -5,7 +5,6 @@
  */
 package Control;
 
-import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

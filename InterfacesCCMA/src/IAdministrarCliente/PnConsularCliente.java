@@ -11,7 +11,7 @@ import PanelesGlobales.PnContenido;
 
 /**
  *
- * @author crist
+ * @author Isai Perez
  */
 public class PnConsularCliente extends javax.swing.JPanel {
 
@@ -19,7 +19,7 @@ public class PnConsularCliente extends javax.swing.JPanel {
      * Creates new form PnConsularCliente
      */
     private Cliente cliente;
-    private PnContenido pnContenido = PnContenido.getInstance();
+    private final PnContenido pnContenido = PnContenido.getInstance();
 
     public PnConsularCliente() {
         initComponents();

@@ -13,14 +13,13 @@ import javax.swing.WindowConstants;
 
 /**
  *
- * @author crist
+ * @author Isai Perez
  */
-public class FrmMetodoPago extends javax.swing.JFrame {
+public final class FrmMetodoPago extends javax.swing.JFrame {
 
     /**
      * Creates new form FrmMetodoPago
-     */
-    private PnContenido pnContenido = PnContenido.getInstance();
+     */    
     private RegistrarVenta registrarVenta;
     
     public FrmMetodoPago() {

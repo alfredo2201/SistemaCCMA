@@ -10,7 +10,7 @@ import PanelesGlobales.PnContenido;
 
 /**
  *
- * @author crist
+ * @author Isai Perez
  */
 public class PnMenuClientes extends javax.swing.JPanel {
 
@@ -46,6 +46,7 @@ public class PnMenuClientes extends javax.swing.JPanel {
 
         btnOpcionRegistrarCliente.setBackground(new java.awt.Color(204, 204, 0));
         btnOpcionRegistrarCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnOpcionRegistrarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnOpcionRegistrarCliente.setText("Registrar Cliente Nuevo");
         btnOpcionRegistrarCliente.setBorder(null);
         btnOpcionRegistrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -57,11 +58,13 @@ public class PnMenuClientes extends javax.swing.JPanel {
         });
 
         lblTextoMenuClientes.setFont(new java.awt.Font("Segoe UI", 2, 26)); // NOI18N
+        lblTextoMenuClientes.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoMenuClientes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTextoMenuClientes.setText("Menú de Clientes");
 
         btnOpcionActualizarCliente.setBackground(new java.awt.Color(204, 204, 0));
         btnOpcionActualizarCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnOpcionActualizarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnOpcionActualizarCliente.setText("Actualizar Cliente ");
         btnOpcionActualizarCliente.setBorder(null);
         btnOpcionActualizarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -74,6 +77,7 @@ public class PnMenuClientes extends javax.swing.JPanel {
 
         btnOpcionEliminarCliente.setBackground(new java.awt.Color(204, 204, 0));
         btnOpcionEliminarCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnOpcionEliminarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnOpcionEliminarCliente.setText("Eliminar Cliente");
         btnOpcionEliminarCliente.setBorder(null);
         btnOpcionEliminarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -86,6 +90,7 @@ public class PnMenuClientes extends javax.swing.JPanel {
 
         btnOpcionConsultarCliente.setBackground(new java.awt.Color(204, 204, 0));
         btnOpcionConsultarCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnOpcionConsultarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnOpcionConsultarCliente.setText("Consultar Clientes");
         btnOpcionConsultarCliente.setBorder(null);
         btnOpcionConsultarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));

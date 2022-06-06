@@ -19,8 +19,8 @@ import javax.swing.JOptionPane;
  */
 public class PnAgregarProducto extends javax.swing.JPanel {
 
-    private ControlProducto negocios = new ControlProducto();
-    private PnContenido pnContenido = PnContenido.getInstance();
+    private final ControlProducto negocios = new ControlProducto();
+    private final PnContenido pnContenido = PnContenido.getInstance();
     public DefaultListModel<String> modelo;
     public static ArrayList<Producto> auxProducts;
 
@@ -68,7 +68,6 @@ public class PnAgregarProducto extends javax.swing.JPanel {
 
         txtNombreCliente.setBackground(new java.awt.Color(255, 255, 255));
         txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        txtNombreCliente.setForeground(new java.awt.Color(0, 0, 0));
         txtNombreCliente.setBorder(null);
         txtNombreCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +122,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
         cmbAnios.setBackground(new java.awt.Color(204, 204, 204));
         cmbAnios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cmbAnios.setForeground(new java.awt.Color(0, 0, 0));
-        cmbAnios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1990", "2001", "2010" }));
+        cmbAnios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022" }));
         cmbAnios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cmbAnios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,9 +130,11 @@ public class PnAgregarProducto extends javax.swing.JPanel {
             }
         });
 
+        jScrollPane1.setBackground(new java.awt.Color(204, 204, 204));
+
         listArticulos.setBackground(new java.awt.Color(255, 255, 255));
         listArticulos.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        listArticulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        listArticulos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         listArticulos.setSelectionBackground(new java.awt.Color(204, 204, 0));
         listArticulos.setSelectionForeground(new java.awt.Color(0, 0, 0));
         listArticulos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -200,9 +201,11 @@ public class PnAgregarProducto extends javax.swing.JPanel {
             }
         });
 
+        jScrollPane2.setBackground(new java.awt.Color(204, 204, 204));
+
         listProductosSeleccionados.setBackground(new java.awt.Color(255, 255, 255));
         listProductosSeleccionados.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        listProductosSeleccionados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        listProductosSeleccionados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         listProductosSeleccionados.setSelectionBackground(new java.awt.Color(204, 204, 0));
         listProductosSeleccionados.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane2.setViewportView(listProductosSeleccionados);
@@ -316,7 +319,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
                 .addComponent(cmbModelos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTextoAnios)
-                .addGap(13, 13, 13)
+                .addGap(12, 12, 12)
                 .addComponent(cmbAnios, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68)
                 .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -353,7 +356,6 @@ public class PnAgregarProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarProductoActionPerformed
 
     private void btnContinuarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarVentaActionPerformed
-
         continuarVenta();
     }//GEN-LAST:event_btnContinuarVentaActionPerformed
 
@@ -419,6 +421,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
     }
 
     private void buscarArituclo() {
+        DefaultListModel<String> modeloLista = new DefaultListModel<>();
         String tipo = (String) cmbTipo.getSelectedItem();
         String marca = (String) cmbMarca.getSelectedItem();
         String model = (String) cmbModelos.getSelectedItem();
@@ -455,79 +458,81 @@ public class PnAgregarProducto extends javax.swing.JPanel {
             conjunto++;
         }
 
-        if (conjunto == 0) {
-            JOptionPane.showConfirmDialog(null,
-                    "Por favor seleccióne al menos un parametro de busqueda",
-                    "ERROR", JOptionPane.OK_OPTION);
-            return;
-        } else if (conjunto == 1) {
-            if (tipo != null) {
-                ArrayList<Producto> productos = negocios.consultarProductoByTipo(tipo);
-                if (productos != null) {
-                    DefaultListModel<String> modelo = new DefaultListModel<>();
-                    for (Producto producto : productos) {
-                        modelo.addElement(producto.getIdProducto() + "-" + producto.toString().trim());
-                    }
-                    listArticulos.setModel(modelo);
-                } else {
-                    JOptionPane.showConfirmDialog(null,
-                            "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
-                }
-            } else if (marca != null) {
-                ArrayList<Producto> productos = negocios.consultarProductoByMarca(marca);
-                if (productos != null) {
-                    System.out.println(productos);
-                    DefaultListModel<String> modelo = new DefaultListModel<>();
-                    for (Producto producto : productos) {
-                        modelo.addElement(producto.getIdProducto()
-                                + "-" + producto.toString().trim());
-                    }
-                    listArticulos.setModel(modelo);
-                } else {
-                    JOptionPane.showConfirmDialog(null,
-                            "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
-                }
-            } else if (model != null) {
-                ArrayList<Producto> productos = negocios.consultarProductoByModelo(model);
-                System.out.println(productos);
-                if (productos != null) {
-                    System.out.println("encuentra el producto por model");
-                    DefaultListModel<String> modelo = new DefaultListModel<>();
-                    for (Producto producto : productos) {
-                        modelo.addElement(producto.getIdProducto() + "-" + producto.toString().trim());
-                    }
-                    listArticulos.setModel(modelo);
-                } else {
-                    JOptionPane.showConfirmDialog(null,
-                            "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
-                }
-            } else if (anio != null) {
-                int anioActualizado = Integer.parseInt(anio);
-                ArrayList<Producto> productos = negocios.consultarProductoByAnio(anioActualizado);
-                if (productos != null) {
-                    DefaultListModel<String> modelo = new DefaultListModel<>();
-                    for (Producto producto : productos) {
-                        modelo.addElement(producto.getIdProducto() + "-" + producto.toString().trim());
-                    }
-                    listArticulos.setModel(modelo);
-                } else {
-                    JOptionPane.showConfirmDialog(null,
-                            "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
-                }
-            }
-        } else {
-            int anioActualizado = Integer.parseInt(anio);
-            ArrayList<Producto> productos = negocios.consultarProductoCompleto(tipo, marca, model, anioActualizado);
-            if (productos != null) {
-                DefaultListModel<String> modelo = new DefaultListModel<>();
-                for (Producto producto : productos) {
-                    modelo.addElement(producto.getIdProducto() + "-" + producto.toString().trim());
-                }
-                listArticulos.setModel(modelo);
-            } else {
+        switch (conjunto) {
+            case 0:
                 JOptionPane.showConfirmDialog(null,
-                        "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
-            }
+                        "Por favor seleccióne al menos un parametro de busqueda",
+                        "ERROR", JOptionPane.OK_OPTION);
+                return;
+            case 1:
+                if (tipo != null) {
+                    ArrayList<Producto> productos = negocios.consultarProductoByTipo(tipo);
+                    if (productos != null) {
+                        for (Producto producto : productos) {
+                            modeloLista.addElement(producto.getIdProducto() + "-" + producto.toString().trim());
+                        }
+                        listArticulos.setModel(modeloLista);
+                    } else {
+                        JOptionPane.showConfirmDialog(null,
+                                "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
+                    }
+                } else if (marca != null) {
+                    ArrayList<Producto> productos = negocios.consultarProductoByMarca(marca);
+                    if (productos != null) {
+                        System.out.println(productos);
+
+                        for (Producto producto : productos) {
+                            modeloLista.addElement(producto.getIdProducto()
+                                    + "-" + producto.toString().trim());
+                        }
+                        listArticulos.setModel(modeloLista);
+                    } else {
+                        JOptionPane.showConfirmDialog(null,
+                                "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
+                    }
+                } else if (model != null) {
+                    ArrayList<Producto> productos = negocios.consultarProductoByModelo(model);
+                    System.out.println(productos);
+                    if (productos != null) {
+                        System.out.println("encuentra el producto por model");
+
+                        for (Producto producto : productos) {
+                            modeloLista.addElement(producto.getIdProducto() + "-" + producto.toString().trim());
+                        }
+                        listArticulos.setModel(modeloLista);
+                    } else {
+                        JOptionPane.showConfirmDialog(null,
+                                "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
+                    }
+                } else if (anio != null) {
+                    int anioActualizado = Integer.parseInt(anio);
+                    ArrayList<Producto> productos = negocios.consultarProductoByAnio(anioActualizado);
+                    if (productos != null) {
+
+                        for (Producto producto : productos) {
+                            modeloLista.addElement(producto.getIdProducto() + "-" + producto.toString().trim());
+                        }
+                        listArticulos.setModel(modeloLista);
+                    } else {
+                        JOptionPane.showConfirmDialog(null,
+                                "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
+                    }
+                }
+                break;
+            default:
+                int anioActualizado = Integer.parseInt(anio);
+                ArrayList<Producto> productos = negocios.consultarProductoCompleto(tipo, marca, model, anioActualizado);
+                if (productos != null) {
+
+                    for (Producto producto : productos) {
+                        modeloLista.addElement(producto.getIdProducto() + "-" + producto.toString().trim());
+                    }
+                    listArticulos.setModel(modeloLista);
+                } else {
+                    JOptionPane.showConfirmDialog(null,
+                            "No se encontró ningun producto", "ERROR", JOptionPane.OK_OPTION);
+                }
+                break;
         }
     }
 
@@ -556,7 +561,7 @@ public class PnAgregarProducto extends javax.swing.JPanel {
         }
         DefaultListModel<String> listaProductosSeleccionados = (DefaultListModel<String>) listProductosSeleccionados.getModel();
         Object[] productosEnLista = listaProductosSeleccionados.toArray();
-        ArrayList<Producto> productos = new ArrayList<Producto>();
+        ArrayList<Producto> productos = new ArrayList<>();
         if (listaProductos != null) {
             if (productosEnLista.length > 0) {
                 for (Object prod : productosEnLista) {
@@ -582,12 +587,12 @@ public class PnAgregarProducto extends javax.swing.JPanel {
                     productos.add(productoTemp);
                 }
             }
-            DefaultListModel<String> modelo = new DefaultListModel<>();
+            DefaultListModel<String> auxModel = new DefaultListModel<>();
             for (Producto product : productos) {
-                modelo.addElement(product.getIdProducto() + "-" + product.toString().trim());
+                auxModel.addElement(product.getIdProducto() + "-" + product.toString().trim());
             }
             auxProducts = productos;
-            listProductosSeleccionados.setModel(modelo);
+            listProductosSeleccionados.setModel(auxModel);
 
         }
         listArticulos.clearSelection();
@@ -597,23 +602,13 @@ public class PnAgregarProducto extends javax.swing.JPanel {
     private void mostrarArticulos() {
         ArrayList<Producto> productos = negocios.consultarTodo();
         if (productos != null) {
-            DefaultListModel<String> modelo = new DefaultListModel<>();
+            DefaultListModel<String> auxModelo = new DefaultListModel<>();
             for (Producto producto : productos) {
-                modelo.addElement(producto.getIdProducto() + "-" + producto.toString().trim());
+                auxModelo.addElement(producto.getIdProducto() + "-" + producto.toString().trim());
             }
-            listArticulos.setModel(modelo);
+            listArticulos.setModel(auxModelo);
         } else {
             System.out.println("No sirve");
-        }
-    }
-
-    private boolean confirmarListaVacia() {
-        if (listProductosSeleccionados.getComponentCount() == 0) {
-            System.out.println("ta con datos");
-            return true;
-        } else {
-            System.out.println("trai datos");
-            return false;
         }
     }
 }

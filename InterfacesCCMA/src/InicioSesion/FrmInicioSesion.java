@@ -70,7 +70,6 @@ public class FrmInicioSesion extends javax.swing.JFrame {
 
         lblIcono.setBackground(new java.awt.Color(255, 255, 255));
         lblIcono.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        lblIcono.setForeground(new java.awt.Color(0, 0, 0));
         lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Logo.png"))); // NOI18N
 
         javax.swing.GroupLayout pnTopLayout = new javax.swing.GroupLayout(pnTop);
@@ -97,7 +96,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         btnSalir.setForeground(new java.awt.Color(0, 0, 0));
         btnSalir.setText("Salir");
         btnSalir.setBorder(null);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.setFocusPainted(false);
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,7 +109,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         btnIniciarSesion.setForeground(new java.awt.Color(0, 0, 0));
         btnIniciarSesion.setText("Iniciar Sesión");
         btnIniciarSesion.setBorder(null);
-        btnIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnIniciarSesion.setFocusPainted(false);
         btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,9 +125,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         lblTextoContraseña.setForeground(new java.awt.Color(0, 0, 0));
         lblTextoContraseña.setText("Contraseña:");
 
-        pfContraseña.setBackground(new java.awt.Color(255, 255, 255));
         pfContraseña.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        pfContraseña.setForeground(new java.awt.Color(0, 0, 0));
         pfContraseña.setBorder(null);
         pfContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -136,9 +133,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
             }
         });
 
-        txtNombreUsuario.setBackground(new java.awt.Color(255, 255, 255));
         txtNombreUsuario.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        txtNombreUsuario.setForeground(new java.awt.Color(0, 0, 0));
         txtNombreUsuario.setBorder(null);
         txtNombreUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -151,7 +146,7 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         btnRegistrarUsuario.setForeground(new java.awt.Color(0, 0, 0));
         btnRegistrarUsuario.setText("Crear cuenta nueva");
         btnRegistrarUsuario.setBorder(null);
-        btnRegistrarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegistrarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnRegistrarUsuario.setFocusPainted(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -310,7 +305,6 @@ public class FrmInicioSesion extends javax.swing.JFrame {
         Control ctl = new Control();
         user = txtNombreUsuario.getText();
         password = pfContraseña.getText();
-//        Empleado emp = new Empleado(6,"Alberto Hernandez","ahg@outlook.com","user","1234", Permiso.ADMIN);
         Empleado empleado = negocios.obtenEmpleado(user, password);
             if (empleado.getIdUsuario() != null && user.equals(empleado.getUsername()) && password.equals(empleado.getPassword())) {
                 FrmPrincipal main = FrmPrincipal.getInstance();

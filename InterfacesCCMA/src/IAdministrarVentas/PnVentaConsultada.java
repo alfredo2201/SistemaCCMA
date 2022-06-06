@@ -4,8 +4,8 @@
  */
 package IAdministrarVentas;
 
+import Control.Control;
 import Dominio.Producto;
-import Dominio.Venta;
 import Dominio.VentaProducto;
 import PanelesGlobales.PnContenido;
 import java.util.ArrayList;
@@ -135,12 +135,8 @@ public class PnVentaConsultada extends javax.swing.JPanel {
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         PnMenuVenta pnMnVenta = new PnMenuVenta();
-        pnContenido.removeAll();
-        pnMnVenta.setSize(pnContenido.getSize().width, pnContenido.getSize().height);
-        pnMnVenta.setLocation(0, -40);
-        pnContenido.add(pnMnVenta);
-        pnContenido.revalidate();
-        pnContenido.repaint();
+        Control ctl = new Control();
+        ctl.muestraPantalla(pnContenido, pnMnVenta);
     }//GEN-LAST:event_btnMenuActionPerformed
 
 

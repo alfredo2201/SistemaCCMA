@@ -20,7 +20,7 @@ public class PnMenuProducto extends javax.swing.JPanel {
     private PnRegistrarProducto registrar;
     private PnActualizarProducto actualizar;
     private PnEliminarProducto eliminar;    
-    private PnContenido pnContenido = PnContenido.getInstance();
+    private final PnContenido pnContenido = PnContenido.getInstance();
 
     public PnMenuProducto() {
         initComponents();

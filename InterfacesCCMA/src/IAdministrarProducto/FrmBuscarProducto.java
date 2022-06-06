@@ -20,16 +20,15 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author herna
+ * @author Alberto Hernandez
  */
-public class FrmBuscarProducto extends javax.swing.JFrame {
+public final class FrmBuscarProducto extends javax.swing.JFrame {
 
-    private PnContenido contenido = PnContenido.getInstance();
-    private PnConsultarProducto consultar = new PnConsultarProducto();
-    private INegocios negocios = FabricaNegocios.getInstance();
+    private final PnContenido contenido = PnContenido.getInstance();
+    private final PnConsultarProducto consultar = new PnConsultarProducto();
+    private final INegocios negocios = FabricaNegocios.getInstance();
     private ArrayList<Producto> cLista;
-
-    private DefaultTableModel dtm;
+    private final DefaultTableModel dtm;
 
     /**
      * Creates new form IBuscarCliente

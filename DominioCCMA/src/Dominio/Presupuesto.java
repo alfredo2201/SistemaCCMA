@@ -18,6 +18,7 @@ public class Presupuesto {
     private ArrayList<VentaProducto>listaProducto;
     private Float total;
     private Cliente cliente;
+    private Float servicio;
     private Empleado empleado;
     private Date fecha;
 
@@ -31,14 +32,16 @@ public class Presupuesto {
         this.empleado = empleado;
     }
 
-    public Presupuesto(Integer idPresupuesto, ArrayList<VentaProducto> listaProducto, Float total, Cliente cliente, Empleado empleado, Date fecha) {
+    public Presupuesto(Integer idPresupuesto, ArrayList<VentaProducto> listaProducto, Float total, Cliente cliente, Float servicio, Empleado empleado, Date fecha) {
         this.idPresupuesto = idPresupuesto;
         this.listaProducto = listaProducto;
         this.total = total;
         this.cliente = cliente;
+        this.servicio = servicio;
         this.empleado = empleado;
         this.fecha = fecha;
     }
+
 
     public Presupuesto(ArrayList<VentaProducto> listaProducto, Float total, Cliente cliente, Empleado empleado, Date fecha) {
         this.listaProducto = listaProducto;
@@ -96,6 +99,15 @@ public class Presupuesto {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    public Float getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(Float servicio) {
+        this.servicio = servicio;
+    }
+    
 
     @Override
     public int hashCode() {

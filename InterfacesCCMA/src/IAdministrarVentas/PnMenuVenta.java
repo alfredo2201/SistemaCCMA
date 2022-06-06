@@ -165,13 +165,8 @@ public class PnMenuVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_btnOpcionEliminarProductoActionPerformed
 
     private void btnOpcionGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionGenerarReporteActionPerformed
-        contenido.removeAll();
-        generarReporte.setVisible(true);
-        generarReporte.setSize(contenido.getSize().width, contenido.getSize().height);
-        generarReporte.setLocation(0, 0);
-        contenido.add(generarReporte);
-        contenido.revalidate();
-        contenido.repaint();
+        Control ctl = new Control();
+        ctl.muestraPantalla(contenido,generarReporte);       
     }//GEN-LAST:event_btnOpcionGenerarReporteActionPerformed
 
 

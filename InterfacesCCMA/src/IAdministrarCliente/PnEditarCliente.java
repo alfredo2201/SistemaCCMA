@@ -4,21 +4,16 @@
  * and open the template in the editor.
  */
 package IAdministrarCliente;
-//
-//import DAO.ClienteDAO;
-
 import Control.Control;
 import Dominio.Cliente;
 import Fachada.FabricaNegocios;
 import Fachada.INegocios;
 import PanelesGlobales.PnContenido;
-import javax.swing.Icon;
 import javax.swing.JOptionPane;
-//import javax.swing.JOptionPane;
 
 /**
  *
- * @author crist
+ * @author Isai Perez
  */
 public class PnEditarCliente extends javax.swing.JPanel {
 

@@ -23,10 +23,10 @@ public class PnEliminarProducto extends javax.swing.JPanel {
     /**
      * Creates new form EliminarProducto
      */
-    private PnContenido pnContenido = PnContenido.getInstance();
+    private final PnContenido pnContenido = PnContenido.getInstance();
     private ArrayList<Producto> pdLista;
-    private ArrayList<Producto> pdListaEliminar;
-    private INegocios negocios;
+    private final ArrayList<Producto> pdListaEliminar;
+    private final INegocios negocios;
 
     public PnEliminarProducto() {
         initComponents();
@@ -59,9 +59,7 @@ public class PnEliminarProducto extends javax.swing.JPanel {
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        tbProducto.setBackground(new java.awt.Color(255, 255, 255));
         tbProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tbProducto.setForeground(new java.awt.Color(0, 0, 0));
         tbProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -85,7 +83,7 @@ public class PnEliminarProducto extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tbProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tbProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tbProducto.setRowHeight(24);
         tbProducto.setSelectionBackground(new java.awt.Color(102, 102, 102));
         jScrollPane1.setViewportView(tbProducto);
@@ -110,7 +108,7 @@ public class PnEliminarProducto extends javax.swing.JPanel {
         btnEliminarProduc.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminarProduc.setText("Eliminar");
         btnEliminarProduc.setBorder(null);
-        btnEliminarProduc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminarProduc.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEliminarProduc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarProducActionPerformed(evt);
@@ -122,7 +120,7 @@ public class PnEliminarProducto extends javax.swing.JPanel {
         btnCancelar.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(null);
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -138,7 +136,7 @@ public class PnEliminarProducto extends javax.swing.JPanel {
         btnMenu.setForeground(new java.awt.Color(0, 0, 0));
         btnMenu.setText("Regresar al menú");
         btnMenu.setBorder(null);
-        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuActionPerformed(evt);
