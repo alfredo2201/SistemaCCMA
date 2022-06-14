@@ -176,7 +176,7 @@ public class ClienteDAO extends BaseDAO<Cliente> {
             try (Connection conexion = this.generarConexion()) {
                 Statement comando = conexion.createStatement();
                 String consultarSQL;
-                consultarSQL = String.format("SELECT id, nombre_completo, RFC, correo, telefono FROM clientes WHERE %s LIKE %s", nombreParametro, nombreEntidad);
+                consultarSQL = String.format("SELECT id, nombre_completo, RFC, correo, telefono FROM clientes WHERE %s LIKE '%s'", nombreParametro, nombreEntidad);
                 ResultSet resultadoConsulta = comando.executeQuery(consultarSQL);
                 while (resultadoConsulta.next()) {
                     Cliente cliente = new Cliente();

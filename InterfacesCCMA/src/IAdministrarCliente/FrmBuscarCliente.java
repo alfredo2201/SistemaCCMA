@@ -116,6 +116,11 @@ public final class FrmBuscarCliente extends javax.swing.JFrame {
         txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtNombreCliente.setForeground(new java.awt.Color(0, 0, 0));
         txtNombreCliente.setBorder(null);
+        txtNombreCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreClienteActionPerformed(evt);
+            }
+        });
 
         txtRFC.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtRFC.setForeground(new java.awt.Color(0, 0, 0));
@@ -293,6 +298,10 @@ public final class FrmBuscarCliente extends javax.swing.JFrame {
     private void btnCSinClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCSinClienteActionPerformed
         continuarSinCliente();
     }//GEN-LAST:event_btnCSinClienteActionPerformed
+
+    private void txtNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

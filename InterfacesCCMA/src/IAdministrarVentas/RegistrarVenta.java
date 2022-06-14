@@ -125,20 +125,20 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
         rbClienteTemporal.setBackground(new java.awt.Color(255, 255, 255));
 
-        tbProductos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tbProductos.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tbProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Descripción", "Marca", "Modelo", "Año", "Precio", "Cantidad", "Eliminar"
+                "Código", "Tipo", "Marca", "Modelo", "Año", "Precio", "Cantidad", "Eliminar"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true, true
+                false, false, false, false, false, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -151,11 +151,11 @@ public class RegistrarVenta extends javax.swing.JPanel {
         });
         tbProductos.setRowHeight(24);
         tbProductos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tbProductosMousePressed(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 tbProductosMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbProductosMousePressed(evt);
             }
         });
         tbProductos.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -186,28 +186,40 @@ public class RegistrarVenta extends javax.swing.JPanel {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Total:");
 
-        txtSubTotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtSubTotal.setBackground(new java.awt.Color(255, 255, 255));
+        txtSubTotal.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
+        txtSubTotal.setForeground(new java.awt.Color(0, 0, 0));
         txtSubTotal.setToolTipText("");
 
-        txtDescuento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtDescuento.setBackground(new java.awt.Color(255, 255, 255));
+        txtDescuento.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
+        txtDescuento.setForeground(new java.awt.Color(0, 0, 0));
         txtDescuento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtDescuentoKeyPressed(evt);
             }
         });
 
-        txtIva.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIva.setBackground(new java.awt.Color(255, 255, 255));
+        txtIva.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
+        txtIva.setForeground(new java.awt.Color(0, 0, 0));
 
-        txtTotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTotal.setBackground(new java.awt.Color(255, 255, 255));
+        txtTotal.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
+        txtTotal.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Pago:");
 
-        txtPago.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPago.setBackground(new java.awt.Color(255, 255, 255));
+        txtPago.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
+        txtPago.setForeground(new java.awt.Color(0, 0, 0));
 
-        txtServicio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtServicio.setBackground(new java.awt.Color(255, 255, 255));
+        txtServicio.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
+        txtServicio.setForeground(new java.awt.Color(0, 0, 0));
         txtServicio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtServicioKeyPressed(evt);
@@ -416,9 +428,9 @@ public class RegistrarVenta extends javax.swing.JPanel {
                         .addComponent(btnCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 41, Short.MAX_VALUE))
+                        .addGap(0, 23, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -455,6 +467,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
     private void tbProductosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbProductosKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             calcularSubTotal(pdLista);
+            cambiarPrecio(tbProductos.getSelectedRow());
         }
     }//GEN-LAST:event_tbProductosKeyPressed
 
@@ -554,7 +567,7 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
             pdLista.removeAll(lista);
             pdLista.forEach(pd -> {
-                dtm.addRow(new Object[]{pd.getIdProducto(), pd.getDescripcion(),
+                dtm.addRow(new Object[]{pd.getIdProducto(), pd.getTipo(),
                     pd.getMarca(), pd.getModelo(), pd.getAnio(), pd.getPrecio(), 1, "ELIMINAR"});
             });
 
@@ -628,11 +641,12 @@ public class RegistrarVenta extends javax.swing.JPanel {
                 Producto prod = negocios.consultarProductoById(pdLista.get(i).getIdProducto());
                 DefaultTableModel modelo = (DefaultTableModel) tbProductos.getModel();
                 int cantidad = (int) modelo.getValueAt(i, 6);
+                float precio = (float) modelo.getValueAt(i, 5);
                 VentaProducto produ = new VentaProducto();
                 produ.setProducto(prod);
                 produ.setCantidad(cantidad);
                 produ.setVenta(venta);
-                produ.setPrecioVenta(prod.getPrecio() * cantidad);
+                produ.setPrecioVenta(precio);
                 ventaProducto.add(produ);
             }
             venta.setListaProductos(ventaProducto);
@@ -688,6 +702,32 @@ public class RegistrarVenta extends javax.swing.JPanel {
 
     public void limpiarTabla() {
         tbProductos.removeAll();
+    }
+
+    private void cambiarPrecio(int fila) {
+
+        Control ctl = new Control();
+        float valor = (float) tbProductos.getValueAt(fila, 5);
+        int codigo = (int) tbProductos.getValueAt(fila, 0);
+        Producto pd = null;
+        for (Producto producto : pdLista) {
+            if (producto.getIdProducto().equals(codigo)) {
+                pd = producto;
+            }
+        }
+        if (pd == null) {
+            ctl.muestraMsj("No se encontro producto con el código: " + codigo, "Error de busqueda", JOptionPane.NO_OPTION, "src/iconos/warning.png");
+            return;
+        }
+        float precioMaxDesc = (float) (pd.getPrecio() * 0.85);
+        if (valor > pd.getPrecio()) {
+            ctl.muestraMsj("El precio excede el monto definido.", "Error de precio", JOptionPane.NO_OPTION, "src/iconos/warning.png");
+            tbProductos.setValueAt(pd.getPrecio(), fila, 5);
+        }
+        if (valor < precioMaxDesc) {
+            ctl.muestraMsj("El precio dado es menor al precio minimo definido.", "Error de precio", JOptionPane.NO_OPTION, "src/iconos/warning.png");
+            tbProductos.setValueAt(pd.getPrecio(), fila, 5);
+        }
     }
 
 
